@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/front"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+
+    <View
+        android:id="@+id/orderlistimage"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@color/blinkRed"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/linearLayout7" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        android:weightSum="105"
+        android:id="@+id/linearLayout7">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="35"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_toEndOf="@+id/orderlistimage"
+            android:layout_toRightOf="@+id/orderlistimage"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/ecx_mar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KSE-REG"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PSO"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/02/2016 03:24:41 PM"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="35"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clientCode"
+                android:textColor="@color/blackBackground"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:id="@+id/side"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SELL"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/blinkGreen" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="328.00"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="35"
+            android:gravity="center_vertical|right"
+            android:orientation="vertical"
+            android:paddingRight="5dp">
+
+
+            <TextView
+                android:id="@+id/qued"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Queued"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

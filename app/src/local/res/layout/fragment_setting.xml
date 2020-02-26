@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:divider="@drawable/divider"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:showDividers="middle|end"
+    tools:context=".Fragments.SettingFragment">
+
+
+    <TextView
+        android:id="@+id/text_change_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:drawableEnd="@drawable/arrowright2x"
+        android:drawableRight="@drawable/arrowright2x"
+        android:text="@string/change_pass"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_change_pin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:drawableEnd="@drawable/arrowright2x"
+        android:drawableRight="@drawable/arrowright2x"
+        android:text="@string/change_pin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/black" />
+
+</LinearLayout>

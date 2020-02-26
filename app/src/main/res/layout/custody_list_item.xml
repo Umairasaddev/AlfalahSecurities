@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="3"
+    >
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    >
+    <TextView
+        android:id="@+id/custody_symbol"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="SYMBOL"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/custody_cdc"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:padding="5dp"
+        android:text="CDC"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/custody_cdctradable"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:padding="5dp"
+        android:text="Cdc Tradable"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:id="@+id/custody_reg"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="REG"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/custody_regular"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Regular"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/custody_Fut"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="FUT"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary"
+            />
+        <TextView
+            android:id="@+id/custody_forward"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Forward"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:id="@+id/custody_Net"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Net"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/custody_Netvalue"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="5dp"
+            android:text="Net"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/custody_rate"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="5dp"
+            android:text="Rate"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary"
+            />
+        <TextView
+            android:id="@+id/custody_closerate"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="5dp"
+            android:text="Close Rate"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+</LinearLayout>
+
+

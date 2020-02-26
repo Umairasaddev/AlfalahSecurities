@@ -1,0 +1,180 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_bg"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/_191sdp"
+        android:layout_height="@dimen/_105sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bipl_logo" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/_222sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_below="@id/imageView5"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bipl_logo_text" />
+
+    <RelativeLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="@dimen/_256sdp"
+        android:layout_height="@dimen/_230sdp"
+        android:layout_below="@id/imageView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:background="@drawable/grey_box"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_credentials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Enter your credentials"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_17sdp" />
+
+        <EditText
+            android:id="@+id/login_name"
+            android:layout_width="@dimen/_213sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:text=""
+            android:layout_below="@+id/tv_credentials"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@drawable/input_fields"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="username"
+            android:inputType="textCapCharacters"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/login_pass"
+            android:layout_width="@dimen/_213sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_below="@+id/login_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/input_fields"
+            android:ems="10"
+            android:text=""
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_forgotPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_pass"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:textSize="@dimen/_12sdp"
+            android:text="Forgot your Password?"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/login_btn"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="@dimen/_98sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_below="@+id/tv_forgotPwd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:background="@drawable/blue_btn"
+            android:textAllCaps="false"
+            android:ems="10"
+            android:text="Log In"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/llSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout8"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_signup_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or Sign Up Now"
+            android:textSize="@dimen/_11sdp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="@dimen/_98sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:background="@drawable/blue_btn"
+            android:textAllCaps="false"
+            android:ems="10"
+            android:text="Sign Up"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_Trust"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/linearLayout8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:text="Your Trust, Our Strength"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version 2.0"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="www.bipldirect.com"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
+    </LinearLayout>
+
+</RelativeLayout>

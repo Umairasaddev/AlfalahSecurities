@@ -1,0 +1,440 @@
+package com.softech.bipldirect.Fragments;
+
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.MPPointF;
+import com.softech.bipldirect.Adapters.SearchClientListAdapter;
+import com.softech.bipldirect.Models.AccountModel.AccountDetail;
+import com.softech.bipldirect.Models.AccountModel.OrdersList;
+import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
+import com.softech.bipldirect.Models.PortfolioModel.*;
+import com.softech.bipldirect.Adapters.PortfolioAdapter;
+import com.softech.bipldirect.MainActivity;
+import com.softech.bipldirect.Models.LoginModel.LoginResponse;
+import com.softech.bipldirect.R;
+import com.softech.bipldirect.Util.Alert;
+import com.softech.bipldirect.Util.Preferences;
+import com.softech.bipldirect.charts.Pacpie;
+
+import net.orange_box.storebox.StoreBox;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+
+public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPortofolioClickListner {
+
+    public static final String TYPE = "type";
+    public static Pacpie pacpie;
+    public static Preferences preferences;
+    public static LoginResponse loginResponse;
+    //    private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};
+//    int[] pieChartValues = {25, 15, 20, 40};
+//    float values[] = {700, 400, 100, 500, 600};
+    @BindView(R.id.etclientcode)
+    EditText clientcode;
+    @BindView(R.id.portfolio_list)
+    RecyclerView portfolio_list;
+    @BindView(R.id.search_list1)
+    ListView listSearch1;
+    @BindView(R.id.search_list_view1)
+    LinearLayout listSearch_view1;
+    @BindView(R.id.piechart)
+    PieChart pieChart;
+    ArrayList<String> clientlist;
+    public static final int[] chartColors = {
+            Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),
+            Color.rgb(106, 150, 31), Color.rgb(179, 100, 53), Color.rgb(207, 248, 246),
+            Color.rgb(148, 212, 212), Color.rgb(136, 180, 187), Color.rgb(118, 174, 175),
+            Color.rgb(42, 109, 130), Color.rgb(217, 80, 138), Color.rgb(254, 149, 7),
+            Color.rgb(254, 247, 120), Color.rgb(106, 167, 134), Color.rgb(53, 194, 209),
+            Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
+            Color.rgb(191, 134, 134), Color.rgb(179, 48, 80), Color.rgb(192, 255, 140),
+            Color.rgb(255, 247, 140), Color.rgb(255, 208, 140), Color.rgb(140, 234, 255),
+            Color.rgb(255, 140, 157)
+    };
+
+
+    private SearchClientListAdapter searchClientListAdapter;
+    List<PortfolioSymbol> values1;
+    List<String> sortedValues;
+    View v;
+    boolean isSetInitialText = false;
+
+    public PortfolioFragment() {
+    }
+
+    public static PortfolioFragment newInstance() {
+        return new PortfolioFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+
+        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+        if (toolbar != null) {
+            toolbar.setTitle("Portfolio Summary");
+        }
+        super.onResume();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_portfolio, container, false);
+        ButterKnife.bind(this, view);
+        portfolio_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        preferences = StoreBox.create(getActivity(), Preferences.class);
+        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
+
+            clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
+            clientcode.setEnabled(false);
+            ((MainActivity) getActivity()).portfolioRequestRequest(clientcode.getText().toString());
+        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+
+            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
+        }
+
+        v = view;
+
+        return view;
+    }
+
+    private void setupViews() {
+
+    }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        listSearch1.setAdapter(searchClientListAdapter);
+        clientcode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isSetInitialText) {
+                    isSetInitialText = false;
+                    listSearch_view1.setVisibility(View.GONE);
+                } else {
+                    if (s.length() > 0) {
+
+                        listSearch_view1.setVisibility(View.VISIBLE);
+
+                        String text = clientcode.getText().toString();
+                        searchClientListAdapter.filter(text);
+                    } else {
+                        listSearch_view1.setVisibility(View.GONE);
+                    }
+                }
+
+            }
+        });
+        listSearch1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listSearch_view1.setVisibility(View.GONE);
+                ((MainActivity) getActivity()).portfolioRequestRequest(clientlist.get(position));
+                isSetInitialText = true;
+                clientcode.setText(clientlist.get(position));
+
+            }
+        });
+
+        // ((MainActivity) getActivity()).portfolioRequestRequest();
+    }
+    @OnClick(R.id.cancel_search1)
+    public void cancelSearch(View view) {
+        listSearch_view1.setVisibility(View.GONE);
+    }
+
+    public void setValues(final List<PortfolioSymbol> values) {
+
+
+        if (values.size() > 0) {
+
+            values1 = values;
+            Collections.sort(values1, new Comparator<PortfolioSymbol>() {
+                @Override
+                public int compare(PortfolioSymbol portfolioSymbol, PortfolioSymbol t1) {
+                    String pfWeight1 = portfolioSymbol.getPfWeight();
+                    String pfWeight2 = t1.getPfWeight();
+
+                    return pfWeight1.compareTo(pfWeight2);
+
+                }
+            });
+//            View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.acc_list_item_footer, portfolio_list, false);
+            double totalValue = 0;
+            for (PortfolioSymbol obj : values) {
+
+
+                try {
+                    double amountVal = Double.parseDouble(obj.getCapGainLoss().replace(",", ""));
+
+                    totalValue = totalValue + amountVal;
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            PortfolioFooter portfolioFooter = new PortfolioFooter();
+
+//            TextView sym = (TextView) footerView.findViewById(R.id.acc_sym);
+//            TextView qty = (TextView) footerView.findViewById(R.id.acc_qty);
+//            TextView amount = (TextView) footerView.findViewById(R.id.acc_ammount);
+//            TextView totalPortfolio = (TextView) footerView.findViewById(R.id.acc_totalPort);
+//            TextView totalPortfolioValue = (TextView) footerView.findViewById(R.id.acc_totalPortValue);
+//            footerView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.greyDarkBar));
+
+//            if (portfolio_list.getFooterViewsCount() > 0) {
+//
+//            } else {
+//                portfolio_list.addFooterView(footerView);
+//                sym.setText("");
+//                qty.setText("Total Profit/loss");
+//                totalPortfolio.setText("Total Portfolio");
+//
+//            }
+            //  double cashvalue = Double.parseDouble("");
+            Double totportfoliosum = totalValue;
+
+//            totalValue= Math.round(totalValue);
+
+            String sum = String.format("%.0f", totalValue);
+            String portsum = String.format("%.0f", totportfoliosum);
+            double portfoliosum = Double.parseDouble(portsum);
+            DecimalFormat formatter = new DecimalFormat("#,###,###,###.00");
+            //totalPortfolioValue.setText(formatter.format(portfoliosum));
+            String yourFormattedString = NumberFormat.getNumberInstance(Locale.UK).format(totalValue);
+            portfolioFooter.setTotalProfitloss(yourFormattedString);
+            ArrayList<Portfolio> arrayMain = new ArrayList<>();
+            arrayMain.addAll(values);
+            arrayMain.add(portfolioFooter);
+            PortfolioAdapter portfolioAdapter = new PortfolioAdapter(getActivity(), arrayMain, this);
+            portfolio_list.setAdapter(portfolioAdapter);
+            portfolioAdapter.notifyDataSetChanged();
+            setUpPieChart();
+
+//                amount.setText(yourFormattedString);
+//            portfolio_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+            //   ((MainActivity) getActivity()).showPortFolioDetail(values.get(position));
+//                }
+//            });
+
+        } else {
+            Alert.show(getActivity(), getString(R.string.app_name), "You do not have any portfolio yet.");
+        }
+    }
+    private void setUpPieChart() {
+
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(60, 3, 20, 3);
+
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.WHITE);
+
+        pieChart.setTransparentCircleColor(Color.WHITE);
+        pieChart.setTransparentCircleAlpha(50);
+
+        pieChart.setHoleRadius(30f);
+        pieChart.setTransparentCircleRadius(30f);
+
+        pieChart.setDrawCenterText(false);
+
+        pieChart.setDrawEntryLabels(false);
+
+        pieChart.setRotationAngle(0);
+        // enable rotation of the chart by touch
+        pieChart.setRotationEnabled(false);
+
+        // pieChart.setHighlightPerTapEnabled(true);
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+
+        if (values1 != null) {
+
+            ArrayList<PieEntry> entries = new ArrayList<>();
+            List<LegendEntry> legendEntries = new ArrayList<>();
+
+            if (entries.size() > 0) {
+
+                Collections.sort(values1, new Comparator<PortfolioSymbol>() {
+                    @Override
+                    public int compare(PortfolioSymbol t1, PortfolioSymbol t2) {
+
+                        if(Float.parseFloat(t1.getPfWeight()) < Float.parseFloat(t2.getPfWeight())){
+
+                            return 1;
+                        }
+                        else if(Float.parseFloat(t1.getPfWeight()) > Float.parseFloat(t2.getPfWeight()))
+                        {
+                            return -1;
+                        }
+                        else
+                            return 0;
+
+                    }
+                });
+
+                for(PortfolioSymbol p: values1){
+                    Log.d("VALUES", p.getPfWeight());
+
+                }
+            }
+
+
+            if(values1.size() < 18){
+                for (int i = 0; i < values1.size(); i++) {
+
+                    float percent = Float.valueOf(values1.get(i).getPfWeight());
+
+                    if (percent > 0) {
+
+                        entries.add(new PieEntry(percent, values1.get(i).getSymbol()));
+                    }
+                }
+
+                for (int i = 0; i < entries.size(); i++) {
+
+                    legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
+                            10f,10f, null, chartColors[i]));
+                }
+            }
+            else {
+                for (int i = 0; i <= 18; i++) {
+
+                    entries.add(new PieEntry(Float.parseFloat(values1.get(i).getPfWeight()), values1.get(i).getSymbol()));
+
+                    legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
+                            10f,10f, null, chartColors[i]));
+                }
+
+                float addedValues =0;
+                for (int i = 19; i < values1.size(); i++) {
+
+                    addedValues  += Float.valueOf(values1.get(i).getPfWeight());
+
+                }
+
+                entries.add(new PieEntry(addedValues, "others"));
+                legendEntries.add(new LegendEntry("others", Legend.LegendForm.CIRCLE,
+                        10f,10f, null,chartColors[19]));
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Allocation by Funds");
+            dataSet.setDrawIcons(false);
+            dataSet.setSliceSpace(2f);
+            dataSet.setIconsOffset(new MPPointF(0, 40));
+            dataSet.setSelectionShift(10f);
+            dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            dataSet.setValueTextColor(Color.BLACK);
+            dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            dataSet.setValueLinePart1OffsetPercentage(70.f);
+            dataSet.setValueLinePart1Length(0.4f);
+            dataSet.setValueLinePart2Length(0.7f);
+
+            dataSet.setColors(chartColors);
+            PieData data = new PieData(dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            data.setValueTextSize(11f);
+            pieChart.setData(data);
+
+            // undo all highlights
+            pieChart.highlightValues(null);
+
+            pieChart.invalidate();
+
+
+            Legend l = pieChart.getLegend();
+            l.setCustom(legendEntries);
+            l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+            l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+            l.setOrientation(Legend.LegendOrientation.VERTICAL);
+            l.setDrawInside(false);
+
+            l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+            l.setTextColor(Color.BLACK);
+            l.setFormToTextSpace(5);
+            l.setXEntrySpace(50.0f);
+        }
+
+    }
+
+    @Override
+    public void onPortfolioClick(PortfolioSymbol mItem) {
+        ((MainActivity) getActivity()).showPortFolioDetail(mItem);
+
+    }
+}

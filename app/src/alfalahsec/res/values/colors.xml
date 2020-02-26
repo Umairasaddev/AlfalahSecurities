@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="blackBackground">#1d1c1c</color>
+    <color name="white">#ffffff</color>
+    <color name="topExchangeBackground">#383838</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondary">#FFFFFF</color>
+    <color name="arrowColor">#FFFFFF</color>
+    <color name="textSymbolDetailColor">#a5a5a5</color>
+    <color name="orderStatusSelectedColor">#6e6e6e</color>
+    <color name="orderStatusUnselectedColor">#353535</color>
+
+
+    <color name="greyBar">#eae9e9</color>
+    <color name="greyDarkBar">#c2c2c2</color>
+    <color name="redDark">#610202</color>
+
+
+    <color name="slice_color">#5243ae</color>
+    <color name="slice_color_2">#ff6c2e</color>
+    <color name="slice_color_3">#398ddc</color>
+    <color name="slice_color_4">#a9ae16</color>
+
+    <color name="blinkGreen">#017E14</color>
+    <color name="blinkRed">#ff3333</color>
+    <color name="blinkGrey">#555555</color>
+    <color name="bidColor">@color/colorPrimary</color>
+    <color name="offerColor">#ffb6c1</color>
+    <color name="default_slice_color">#88FF0000</color>
+    <color name="default_line_color">#88FFFFFF</color>
+
+    <color name="ledRed">@color/blinkRed</color>
+    <color name="ledGreen">@color/blinkGreen</color>
+    <color name="searchIconColor">#000000</color>
+
+</resources>

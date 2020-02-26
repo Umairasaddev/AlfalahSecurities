@@ -1,0 +1,245 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Fragments.PaymentFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cash_withdrawal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/divider" />
+        <EditText
+            android:id="@+id/edittext_clientcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gray_cornerd"
+            android:gravity="left|center_vertical"
+            android:inputType="text"
+            android:hint="@string/ClientCode"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/blackBackground"
+            android:textColorHint="@color/blinkGrey" />
+        <LinearLayout
+            android:id="@+id/search_list_view1"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@+id/linearLayout10"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/cancel_search1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:src="@drawable/cancel_white" />
+
+            <ListView
+                android:id="@+id/search_list1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--<android.support.v7.widget.AppCompatEditText-->
+        <!--android:id="@+id/edittext_username"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@drawable/gray_cornerd"-->
+        <!--android:editable="false"-->
+        <!--android:enabled="false"-->
+        <!--android:gravity="left|center_vertical"-->
+        <!--android:inputType="text"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+        <!--android:textColor="@color/blackBackground"-->
+        <!--android:textColorHint="@color/blinkGrey" />-->
+
+        <EditText
+            android:id="@+id/edittext_exchange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gray_cornerd"
+            android:editable="false"
+            android:enabled="false"
+            android:gravity="left|center_vertical"
+            android:inputType="text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/blackBackground"
+            android:textColorHint="@color/blinkGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:text="@string/cashBalance"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/cashBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:text="@string/withDrawalLimit"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/withdrawalLimit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:text="@string/pendingWithdrawal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/pendingWithdrawal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edittext_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/white_cornerd"
+            android:gravity="center"
+            android:hint="@string/amount"
+            android:inputType="numberDecimal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/blackBackground"
+            android:textColorHint="@color/blinkGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:text="@string/remainingAmount"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/remainingAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank Transfer" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cheque Delivery" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button_payment_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_blue"
+            android:text="@string/submit"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</ScrollView>

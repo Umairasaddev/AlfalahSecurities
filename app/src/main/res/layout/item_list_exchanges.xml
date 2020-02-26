@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/front"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:tag="front"
+    android:weightSum="100">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="35"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/exchangeName"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OGDC"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/last"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="3dp"
+            android:text="Last:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/volume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="3dp"
+            android:text="Val:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="35"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/current"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="148.99"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/low"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Last:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/high"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Val:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="30"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/change"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0.0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/change_per"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="-0.13%"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TurnOver"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/turn_over"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="4,490"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

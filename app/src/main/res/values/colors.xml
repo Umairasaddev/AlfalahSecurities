@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3e5988</color>
+    <color name="colorPrimaryDark">#31476c</color>
+    <color name="colorAccent">#29a6ff</color>
+    <color name="blackBackground">#1d1c1c</color>
+    <color name="white">#ffffff</color>
+    <color name="greyBar">#eae9e9</color>
+    <color name="greyDarkBar">#c2c2c2</color>
+    <color name="redDark">#610202</color>
+    <color name="arrowColor">#FFFFFF</color>
+    <color name="topExchangeBackground">#383838</color>
+    <color name="orderStatusSelectedColor">#6e6e6e</color>
+    <color name="orderStatusUnselectedColor">#353535</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondary">#FFFFFF</color>
+
+    <color name="slice_color">#5243ae</color>
+    <color name="slice_color_2">#ff6c2e</color>
+    <color name="slice_color_3">#398ddc</color>
+    <color name="slice_color_4">#a9ae16</color>
+
+    <color name="blinkGreen">#3e5988</color>
+    <color name="blinkRed">#FF3333</color>
+    <color name="blinkGrey">#555555</color>
+    <color name="default_slice_color">#88FF0000</color>
+    <color name="default_line_color">#88FFFFFF</color>
+    <color name="greencolor">#00ff00</color>
+
+    <color name="ledRed">#ec0001</color>
+    <color name="ledGreen">#00ff00</color>
+
+</resources>
