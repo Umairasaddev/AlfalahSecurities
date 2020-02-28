@@ -36,6 +36,30 @@ public class PortfolioSymbol extends Portfolio implements Serializable {
     @Expose
     private String currentValue;
 
+    @SerializedName("announcementValue")
+    @Expose
+    private String announcementValue;
+
+    public String getAnnouncementValue() {
+        return announcementValue;
+    }
+
+    public void setAnnouncementValue(String announcementValue) {
+        this.announcementValue = announcementValue;
+    }
+
+    public String getAnnouncementDate() {
+        return announcementDate;
+    }
+
+    public void setAnnouncementDate(String announcementDate) {
+        this.announcementDate = announcementDate;
+    }
+
+    @SerializedName("announcementDate")
+    @Expose
+    private String announcementDate;
+
     /**
      * No args constructor for use in serialization
      */

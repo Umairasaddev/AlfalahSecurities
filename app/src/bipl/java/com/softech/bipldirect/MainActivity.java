@@ -45,6 +45,7 @@ import com.softech.bipldirect.Fragments.OrderStatsFragment;
 import com.softech.bipldirect.Fragments.PaymentFragment;
 import com.softech.bipldirect.Fragments.PortfolioDetail;
 import com.softech.bipldirect.Fragments.PortfolioFragment;
+import com.softech.bipldirect.Fragments.PortfolioWatchFragment;
 import com.softech.bipldirect.Fragments.QuotesFragment;
 import com.softech.bipldirect.Fragments.ResearchPortalFragment;
 import com.softech.bipldirect.Fragments.SettingFragment;
@@ -68,6 +69,8 @@ import com.softech.bipldirect.Models.OrderStatsModel.OrderStatsResponse;
 import com.softech.bipldirect.Models.OrderStatsModel.OrdersList;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioResponse;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
+import com.softech.bipldirect.Models.PortfolioWatch.Cash;
+import com.softech.bipldirect.Models.PortfolioWatch.PortfolioWatchResponse;
 import com.softech.bipldirect.Models.ProfileModel.ProfileResponse;
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
 import com.softech.bipldirect.Models.SymbolsModel.SymbolsResponse;
@@ -154,9 +157,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         fragmentManager = getSupportFragmentManager();
 
         replaceFragment(marketFragment, true, false);*/
-       // getMarket();
+        getMarket();
         getSymbolsFromServer();
-//        connectFeed();
+        connectFeed();
 //        loading.show();
     }
 
@@ -198,7 +201,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
 //        new FeedServer(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
 
-        if(feedServer == null) {
+        if (feedServer == null) {
             feedServer = new FeedServer(context);
             feedServer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
         }
@@ -210,9 +213,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         super.onResume();
         enableReconnect = true;
         isActive = true;
-        getMarket();
+        // getMarket();
         // connect feed server every time app comes from pause or app is just started
-        connectFeed();
+        // connectFeed();
 
     }
 
@@ -249,7 +252,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         if (TrnCodes.length() > 0) {
 
             if (TrnCodes.contains("OM01")) {
-            //    navMenuList.add(new Menu("Cash", R.drawable.cash, false));
+                //    navMenuList.add(new Menu("Cash", R.drawable.cash, false));
                 navMenuList.add(new Menu("My Watch", R.drawable.iconmarket2x, false));
             }
             if (TrnCodes.contains("OM19")) {
@@ -275,7 +278,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 navMenuList.add(new Menu("Symbols", R.drawable.symbols2x, false));
             }
             if (TrnCodes.contains("OM09")) {
-                if(BuildConfig.FLAVOR.equals("bipl")) {
+                if (BuildConfig.FLAVOR.equals("bipl")) {
                     navMenuList.add(new Menu("Market Performers", R.drawable.topsymbols2x, false));
                 } else {
 //                    navMenuList.add(new Menu("Top Symbols", R.drawable.topsymbols2x, false));
@@ -318,16 +321,20 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             if (TrnCodes.contains("OM22")) {
                 navMenuList.add(new Menu("Net Shares", R.drawable.netcustody2x, false));
             }
+            if (TrnCodes.contains("OM24")) {
+                optionItems.add("Research");
+            }
+            if (TrnCodes.contains("OM25")) {
+                navMenuList.add(new Menu("Portfolio Watch", R.drawable.cash, false));
+            }
 
         } else {
             navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
 
-                 navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
+            navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
             //navMenuList.add(new Menu("Market Indices", R.drawable.marketicon2x, false));
         }
-        if (TrnCodes.contains("OM24")) {
-            optionItems.add("Research");
-        }
+
         optionItems.add("Delete");
 
         navMenuList.add(new Menu("Logout", R.drawable.logout2x, false));
@@ -537,10 +544,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 replaceFragment(ResearchPortalFragment.newInstance(null), true, false);
 
             }
-//            case R.drawable.cash:{
-//                Intent intent = new Intent(this,PortfolioDetialActivity.class);
-//                startActivity(intent);
-//            }
+            case R.drawable.cash: {
+              replaceFragment(PortfolioWatchFragment.newInstance(), true, false);
+            }
         }
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -908,7 +914,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             if (result != null) {
 
                                 if (result.getCode().equals("200")) {
-                                    Log.i("printLogTime","Symbol Response");
+                                    Log.i("printLogTime", "Symbol Response");
 
                                     preferences.setSymbolResult(gson.toJson(result));
                                     symbolsResponse = gson.fromJson(preferences.getSymbolResult(), SymbolsResponse.class);
@@ -1006,7 +1012,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
 
                                 if (result.getCode().equals("200")) {
-                                    Log.i("printLogTime","Market Response");
+                                    Log.i("printLogTime", "Market Response");
 
 //                                    preferences.removeMarketResult(R.string.key_market);
 
@@ -1188,27 +1194,71 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-//                                            final PortfolioFragment frag =
-//                                                    (PortfolioFragment) fragmentManager
-//                                                            .findFragmentByTag(PortfolioFragment.class.getName());
+                                            final PortfolioFragment frag =
+                                                    (PortfolioFragment) fragmentManager
+                                                            .findFragmentByTag(PortfolioFragment.class.getName());
+
+                                            PortfolioWatchFragment fragment =
+                                                    (PortfolioWatchFragment)
+                                                            fragmentManager.findFragmentByTag(PortfolioWatchFragment.class.getName());
+
+                                            if(fragment!=null){
+                                                fragment.setValues(portfolioSymbols);
+                                            }
+                                            else {
+                                                Log.d("PortfolioResponse", "PortfolioResponse is null");
+                                            }
+
+                                            if (frag != null) {
+
+                                                frag.setValues(portfolioSymbols);
+
+                                            } else {
+                                                Log.d("PortfolioResponse", "PortfolioResponse is null");
+                                            }
+                                        }
+                                    });
+
+                                } else {
+
+                                    Alert.show(context, getString(R.string.app_name), result.getError());
+                                }
 
 
-                                                Intent intent = new Intent(MainActivity.this,PortfolioDetialActivity.class);
-                                                intent.putExtra("symbols", (Serializable) portfolioSymbols);
-                                                startActivity(intent);
+                            } else {
+                                Log.d(TAG, "Response :: PortfolioResponse null ");
+                            }
+                        }
+                        break;
+                        case Constants.PORTFOLIO_CASH_REQUEST_RESPONSE: {
 
 
-//                                            if (frag != null) {
-//
-//
-//                                                frag.setValues(portfolioSymbols);
-//
-//
-//
-//                                            }
-//                                            else {
-//                                                Log.d("PortfolioResponse", "PortfolioResponse is null");
-//                                            }
+                            Log.d("cash",resp);
+                            final PortfolioWatchResponse result = gson.fromJson(resp, PortfolioWatchResponse.class);
+                            if (result != null) {
+
+                                if (result.getCode().equals("200")) {
+
+                                    final Cash cash = result.getResponse().getCash();
+
+                                    final List<Cash> portfolioCash = new ArrayList<>();
+                                    portfolioCash.add(cash);
+                                    Log.d("cash_res", portfolioCash.toString());
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            PortfolioWatchFragment fragment =
+                                                    (PortfolioWatchFragment)
+                                                            fragmentManager.findFragmentByTag(PortfolioWatchFragment.class.getName());
+
+                                            if(fragment!=null){
+                                                fragment.setCash(portfolioCash);
+                                            }
+                                            else {
+                                                Log.d("PortfolioResponse", "PortfolioResponse is null");
+                                            }
                                         }
                                     });
 
@@ -1862,6 +1912,32 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
             Map<Integer, String> map = new HashMap<>();
             map.put(1, Constants.NET_CUSTODY_REQ_IDENTIFIER);
+            map.put(2, request_obj.toString());
+
+            write(map, true);
+
+        } else {
+
+            try {
+                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void portfolioWatchRequest(String clientcode){
+        JsonObject request_obj = new JsonObject();
+
+        request_obj.addProperty("MSGTYPE", Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
+        request_obj.addProperty("exchange", loginResponse.getResponse().getExchange());
+        request_obj.addProperty("client", clientcode);
+
+
+        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+
+            Map<Integer, String> map = new HashMap<>();
+            map.put(1, Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
             map.put(2, request_obj.toString());
 
             write(map, true);

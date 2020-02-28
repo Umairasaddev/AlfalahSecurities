@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.softech.bipldirect.Models.PortfolioModel.Portfolio;
+import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
@@ -20,10 +22,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyUtils;
 
 public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.ViewHolder> {
 
-    private final ArrayList<String> arraylist;
+    private final ArrayList<Portfolio> arraylist;
     private Context context;
 
-    public PLSummaryAdapter(Context context, ArrayList<String> items) {
+    public PLSummaryAdapter(Context context, ArrayList<Portfolio> items) {
         arraylist = items;
         this.context = context;
 
@@ -39,8 +41,11 @@ public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.View
     @Override
     public void onBindViewHolder(final PLSummaryAdapter.ViewHolder holder, int position) {
 
+        final PortfolioSymbol obj = (PortfolioSymbol) arraylist.get(position);
 
-
+        final ViewHolder viewHolder1 = (ViewHolder) holder;
+        viewHolder1.companyName.setText(obj.getSymbol());
+        viewHolder1.profitLoss.setText(obj.getCapGainLoss());
     }
 
     @Override
@@ -50,8 +55,6 @@ public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-
-        View mView;
         @BindView(R.id.profit_lossText)
         TextView profitLoss;
         @BindView(R.id.company_nameText)
@@ -69,10 +72,11 @@ public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.View
         @BindView(R.id.ann_dateValue)
         TextView annDate;
 
-        public ViewHolder(View view) {
-            super(view);
-//            ButterKnife.bind(this, view);
-//            this.mView = view;
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            profitLoss = itemView.findViewById(R.id.profit_lossText);
+            companyName = itemView.findViewById(R.id.company_nameText);
         }
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:padding="10dp"
+    android:padding="3dp"
+    android:layout_marginTop="8dp"
     android:orientation="vertical"
     android:background="@drawable/grey_background"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -55,137 +56,202 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/view1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:weightSum="6"
-        android:orientation="horizontal"
-        android:id="@+id/layout_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="0.2"
-            android:id="@+id/volume_text"
-            android:textSize="12dp"
-            android:textColor="#000000"
-            android:text="Volume:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:layout_weight="1.5"
-            android:id="@+id/volume"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/front"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1,000"
-            android:textColor="#616161"
-            android:textSize="12dp" />
+            android:orientation="horizontal"
+            android:tag="front"
+            android:weightSum="100">
 
-        <TextView
-            android:layout_weight="0.2"
-            android:id="@+id/avg_purchase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Avg Purchase Price:"
-            android:textColor="#000000"
-            android:textSize="12dp" />
+            <LinearLayout
+                android:id="@+id/llItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_weight="0.3"
-            android:id="@+id/avg_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10,000"
-            android:textColor="#616161"
-            android:textSize="12dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:layout_weight="0.2"
-            android:id="@+id/total_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total Cost:"
-            android:textColor="#000000"
-            android:textSize="12dp" />
+                    <TextView
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:text="Vol:"
+                        android:id="@+id/volume_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_weight="0.4"
-            android:id="@+id/total_cost_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10,000"
-            android:textColor="#616161"
-            android:textSize="12dp" />
+                    <TextView
+                        android:textSize="10sp"
+                        android:gravity="end"
+                        android:id="@+id/volume"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5,46645"
+                        android:textColor="#555454" />
 
-    </LinearLayout>
+                </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/layout_two"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:weightSum="6"
-        android:orientation="horizontal"
-        android:id="@+id/layout_third"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="0.2"
-            android:id="@+id/mkt_rate"
-            android:textSize="12dp"
-            android:textColor="#000000"
-            android:text="Mkt Rate:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <TextView
-            android:layout_weight="2.3"
-            android:id="@+id/mkt_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="120"
-            android:textColor="#616161"
-            android:textSize="12dp" />
+                    <TextView
+                        android:id="@+id/mkt_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mkt: "
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
 
-        <TextView
-            android:layout_weight="0.2"
-            android:id="@+id/ann_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ann Date:"
-            android:textColor="#000000"
-            android:textSize="12dp" />
+                    <TextView
+                        android:id="@+id/mkt_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="156755"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#555454"
+                        android:textSize="10sp" />
 
-        <TextView
-            android:layout_weight="3"
-            android:id="@+id/ann_dateValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dec 22 2020"
-            android:textColor="#616161"
-            android:textSize="12dp" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_weight="0.2"
-            android:id="@+id/last_payout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Payout:"
-            android:textColor="#000000"
-            android:textSize="12dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_weight="0.4"
-            android:id="@+id/payout_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dividend 20%"
-            android:textColor="#616161"
-            android:textSize="12dp" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:text="Avg:"
+                        android:id="@+id/avg_purchase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textSize="10sp"
+                        android:gravity="end"
+                        android:id="@+id/avg_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5,45"
+                        android:textColor="#555454" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ann_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ann Date:"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/ann_dateValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="#555454"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="32"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:text="Total Cost:"
+                        android:id="@+id/total_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textSize="10sp"
+                        android:gravity="end"
+                        android:id="@+id/total_cost_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="000000000000"
+                        android:textColor="#555454" />
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/last_payout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Last Payout:"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/payout_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="#555454"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -99,8 +99,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     View v;
     boolean isSetInitialText = false;
 
-    public PortfolioFragment() {
-    }
+
 
     public static PortfolioFragment newInstance() {
         return new PortfolioFragment();

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -92,12 +93,24 @@ public class PortfolioDetialActivity extends AppCompatActivity implements OnChar
 
         init();
 
-        List<PortfolioSymbol> portfolios = (List<PortfolioSymbol>) getIntent().getSerializableExtra("symbols");
-        Log.d("port", portfolios.toString());
+     //   List<PortfolioSymbol> portfolios = (List<PortfolioSymbol>) getIntent().getSerializableExtra("symbols");
+     //   Log.d("port", portfolios.toString());
+
+        MainActivity mainActivity = new MainActivity();
+        if (mainActivity.loginResponse.getResponse().getUsertype() == 1 ||
+                mainActivity.loginResponse.getResponse().getUsertype() == 2) {
+
+          String  clientcode = (mainActivity.loginResponse.getResponse().getClient());
+            mainActivity.portfolioRequestRequest(clientcode);
+        }
+        else {
+            Toast.makeText(this, "Sorry you cant see this", Toast.LENGTH_SHORT).show();
+        }
+
         setupBarChart();
         setBarData(10, 20f);
 
-        setValues(portfolios);
+       // setValues(portfolios);
 
     }
 
@@ -168,30 +181,7 @@ public class PortfolioDetialActivity extends AppCompatActivity implements OnChar
         scriptRecycler = (RecyclerView) findViewById(R.id.scrip_detail_recycler);
         summaryRecycler = (RecyclerView) findViewById(R.id.pl_recycler);
         pieChart = (PieChart) findViewById(R.id.piechart);
-
-        scriptList = new ArrayList<>();
-        scriptList.add("Test");
-        scriptList.add("Test");
-        scriptList.add("Test");
-
-        scriptDetailAdapter = new ScriptDetailAdapter(this, scriptList);
-        scriptRecycler.setLayoutManager(new LinearLayoutManager(this));
-        scriptRecycler.setAdapter(scriptDetailAdapter);
-        scriptDetailAdapter.notifyDataSetChanged();
-
-        plSummaryList = new ArrayList<>();
-        plSummaryList.add("Testing");
-        plSummaryList.add("Testing");
-        plSummaryList.add("Testing");
-
-        plSummaryAdapter = new PLSummaryAdapter(this, scriptList);
-        summaryRecycler.setLayoutManager(new LinearLayoutManager(this));
-        summaryRecycler.setAdapter(plSummaryAdapter);
-        plSummaryAdapter.notifyDataSetChanged();
-
-        //  tvX = findViewById(R.id.tvXMax);
-        //   tvY = findViewById(R.id.tvYMax);
-
+        netProfitBtn = (Button) findViewById(R.id.netProfit_btn);
 
     }
 
@@ -289,6 +279,56 @@ public class PortfolioDetialActivity extends AppCompatActivity implements OnChar
         if (values.size() > 0) {
 
             values1 = values;
+
+            Collections.sort(values1, new Comparator<PortfolioSymbol>() {
+                @Override
+                public int compare(PortfolioSymbol portfolioSymbol, PortfolioSymbol t1) {
+                    String pfWeight1 = portfolioSymbol.getPfWeight();
+                    String pfWeight2 = t1.getPfWeight();
+
+                    return pfWeight1.compareTo(pfWeight2);
+
+                }
+            });
+
+            double totalValue = 0;
+            for (PortfolioSymbol obj : values) {
+
+                try {
+                    double amountVal = Double.parseDouble(obj.getCapGainLoss().replace(",", ""));
+
+                    totalValue = totalValue + amountVal;
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            Double totportfoliosum = totalValue;
+
+//            totalValue= Math.round(totalValue);
+
+            String sum = String.format("%.0f", totalValue);
+            String portsum = String.format("%.0f", totportfoliosum);
+            double portfoliosum = Double.parseDouble(portsum);
+            DecimalFormat formatter = new DecimalFormat("#,###,###,###.00");
+            //totalPortfolioValue.setText(formatter.format(portfoliosum));
+            String yourFormattedString = NumberFormat.getNumberInstance(Locale.UK).format(totalValue);
+
+            ArrayList<Portfolio> arrayMain = new ArrayList<>();
+            arrayMain.addAll(values);
+
+
+            plSummaryAdapter = new PLSummaryAdapter(this, arrayMain);
+            summaryRecycler.setLayoutManager(new LinearLayoutManager(this));
+            summaryRecycler.setAdapter(plSummaryAdapter);
+            plSummaryAdapter.notifyDataSetChanged();
+            netProfitBtn.setText("NET PROFIT/(LOSE): " + values.get(0).getCapGainLoss());
+
+            scriptDetailAdapter = new ScriptDetailAdapter(this, arrayMain);
+            scriptRecycler.setLayoutManager(new LinearLayoutManager(this));
+            scriptRecycler.setAdapter(scriptDetailAdapter);
+            scriptDetailAdapter.notifyDataSetChanged();
 
             setUpPieChart();
 

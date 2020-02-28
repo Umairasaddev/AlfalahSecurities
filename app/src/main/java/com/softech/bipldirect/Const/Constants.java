@@ -92,6 +92,8 @@ public class Constants {
 
     public static final String FEED_SERVER_BROADCAST = "FEED_SERVER_BROADCAST";
     public static final String MSG_SERVER_BROADCAST = "MSG_SERVER_BROADCAST";
+    public static final String PORTFOLIO_CASH_REQUEST_IDENTIFIER ="PCRQ";
+    public static final String PORTFOLIO_CASH_REQUEST_RESPONSE ="PCRS";
 
     /**
      * UnComment following block for Live server
