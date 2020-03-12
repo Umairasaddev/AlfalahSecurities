@@ -1203,6 +1203,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                                             fragmentManager.findFragmentByTag(PortfolioWatchFragment.class.getName());
 
                                             if(fragment!=null){
+
                                                 fragment.setValues(portfolioSymbols);
                                             }
                                             else {

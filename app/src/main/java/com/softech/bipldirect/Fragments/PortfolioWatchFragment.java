@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
@@ -28,6 +29,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
@@ -41,11 +43,6 @@ import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.Models.PortfolioWatch.Cash;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
-import com.softech.bipldirect.charts.DayAxisValueFormatter;
-import com.softech.bipldirect.charts.Fill;
-import com.softech.bipldirect.charts.MyValueFormatter;
-import com.softech.bipldirect.charts.ValueFormatter;
-import com.softech.bipldirect.charts.XYMarkerView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -56,6 +53,8 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+
+import static java.util.Collections.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,14 +107,14 @@ public class PortfolioWatchFragment extends Fragment {
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
             String  clientcode = (MainActivity.loginResponse.getResponse().getClient());
-           ((MainActivity) getActivity()).portfolioRequestRequest(clientcode);
+            ((MainActivity) getActivity()).portfolioRequestRequest(clientcode);
             ((MainActivity) getActivity()).portfolioWatchRequest(clientcode);
         }
         else {
             Toast.makeText(getActivity(), "Sorry you cant see this", Toast.LENGTH_SHORT).show();
         }
 
-        setupBarChart();
+
 
 
 
@@ -126,7 +125,7 @@ public class PortfolioWatchFragment extends Fragment {
 
         cashTextView.setText( cash.get(0).getCash());
         capital.setText(cash.get(0).getWorkingCapital());
-       custody.setText( cash.get(0).getCustody());
+        custody.setText( cash.get(0).getCustody());
     }
 
     private void init(View view) {
@@ -157,35 +156,47 @@ public class PortfolioWatchFragment extends Fragment {
         chart.setPinchZoom(false);
 
         chart.setDrawGridBackground(false);
-        // chart.setDrawYLabels(false);
 
-        ValueFormatter xAxisFormatter = new DayAxisValueFormatter(chart);
+        final List<String> symbols = new ArrayList<>();
 
-        XAxis xAxis = chart.getXAxis();
+        for(int i = 0; i< values1.size();i++){
+            symbols.add(values1.get(i).getSymbol());
+
+        }
+
+        final XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        // xAxis.setTypeface(tfLight);
         xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f); // only intervals of 1 day
-        xAxis.setLabelCount(7);
-        xAxis.setValueFormatter(xAxisFormatter);
+//        xAxis.setGranularity(1f); // only intervals of 1 day
+//        xAxis.setLabelCount(10);
 
-        ValueFormatter custom = new MyValueFormatter("$");
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return symbols.get((int) value);
+            }
+        });
+
 
         YAxis leftAxis = chart.getAxisLeft();
         // leftAxis.setTypeface(tfLight);
-        leftAxis.setLabelCount(8, false);
-        leftAxis.setValueFormatter(custom);
+        //leftAxis.setLabelCount(10, false);
+        //leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        leftAxis.setStartAtZero(false);
+
+        //leftAxis.setAxisMinimum(); // this replaces setStartAtZero(true)
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setDrawGridLines(false);
+        rightAxis.setStartAtZero(false);
         // rightAxis.setTypeface(tfLight);
         rightAxis.setLabelCount(8, false);
-        rightAxis.setValueFormatter(custom);
+        //rightAxis.setValueFormatter(custom);
         rightAxis.setSpaceTop(15f);
         rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        rightAxis.setEnabled(false);
 
         Legend l = chart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -197,24 +208,22 @@ public class PortfolioWatchFragment extends Fragment {
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
 
-        XYMarkerView mv = new XYMarkerView(getActivity(), xAxisFormatter);
-        mv.setChartView(chart); // For bounds control
-        chart.setMarker(mv); // Set the marker to the chart
+//        XYMarkerView mv = new XYMarkerView(getActivity(), xAxisFormatter);
+//        mv.setChartView(chart); // For bounds control
+//        chart.setMarker(mv); // Set the marker to the chart
     }
 
     private void setBarData(int count,List<PortfolioSymbol> values1) {
 
         ArrayList<BarEntry> values = new ArrayList<>();
 
-        for (int i = 1; i < values1.size(); i++) {
-           // float val = (float) (Math.random() * (range + 1));
-               float val = Float.parseFloat(values1.get(i).getCapGainLoss().replace(",",""));
+        for (int i = 0; i < values1.size(); i++) {
+            float val = Float.parseFloat(values1.get(i).getCapGainLoss().replace(",",""));
 
-            if (Math.random() * 100 < 25) {
-                values.add(new BarEntry(i, val, getResources().getDrawable(R.drawable.star)));
-            } else {
-                values.add(new BarEntry(i, val));
-            }
+            // values.add(new BarEntry(i, val, getResources().getDrawable(R.drawable.star)));
+
+            values.add(new BarEntry(i, val));
+
         }
 
         BarDataSet set1;
@@ -242,14 +251,14 @@ public class PortfolioWatchFragment extends Fragment {
             int endColor4 = ContextCompat.getColor(getActivity(), android.R.color.holo_red_dark);
             int endColor5 = ContextCompat.getColor(getActivity(), android.R.color.holo_orange_dark);
 
-            List<Fill> gradientFills = new ArrayList<>();
-            gradientFills.add(new Fill(startColor1, endColor1));
-            gradientFills.add(new Fill(startColor2, endColor2));
-            gradientFills.add(new Fill(startColor3, endColor3));
-            gradientFills.add(new Fill(startColor4, endColor4));
-            gradientFills.add(new Fill(startColor5, endColor5));
+//            List<Fill> gradientFills = new ArrayList<>();
+//            gradientFills.add(new Fill(startColor1, endColor1));
+//            gradientFills.add(new Fill(startColor2, endColor2));
+//            gradientFills.add(new Fill(startColor3, endColor3));
+//            gradientFills.add(new Fill(startColor4, endColor4));
+//            gradientFills.add(new Fill(startColor5, endColor5));
 
-            // set1.setFills(gradientFills);
+            //set1.setFills(gradientFills);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
@@ -258,20 +267,26 @@ public class PortfolioWatchFragment extends Fragment {
             data.setValueTextSize(10f);
             //data.setValueTypeface(tfLight);
             data.setBarWidth(0.9f);
+            data.setHighlightEnabled(false);
+            chart.setScaleEnabled(false);
 
             chart.setData(data);
+            chart.invalidate();
+            chart.refreshDrawableState();
         }
     }
 
     public void setValues(final List<PortfolioSymbol> values) {
+
 
         setBarData(values.size(),values);
 
         if (values.size() > 0) {
 
             values1 = values;
+            setupBarChart();
 
-            Collections.sort(values1, new Comparator<PortfolioSymbol>() {
+            sort(values1, new Comparator<PortfolioSymbol>() {
                 @Override
                 public int compare(PortfolioSymbol portfolioSymbol, PortfolioSymbol t1) {
                     String pfWeight1 = portfolioSymbol.getPfWeight();
@@ -294,27 +309,22 @@ public class PortfolioWatchFragment extends Fragment {
                 }
             }
 
-
-            Double totportfoliosum = totalValue;
-
-//            totalValue= Math.round(totalValue);
-
-            String sum = String.format("%.0f", totalValue);
-            String portsum = String.format("%.0f", totportfoliosum);
-            double portfoliosum = Double.parseDouble(portsum);
-            DecimalFormat formatter = new DecimalFormat("#,###,###,###.00");
-            //totalPortfolioValue.setText(formatter.format(portfoliosum));
-            String yourFormattedString = NumberFormat.getNumberInstance(Locale.UK).format(totalValue);
-
             ArrayList<Portfolio> arrayMain = new ArrayList<>();
             arrayMain.addAll(values);
-
 
             plSummaryAdapter = new PLSummaryAdapter(getActivity(), arrayMain);
             summaryRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
             summaryRecycler.setAdapter(plSummaryAdapter);
             plSummaryAdapter.notifyDataSetChanged();
-            netProfitBtn.setText("NET PROFIT/(LOSE): " + values.get(0).getCapGainLoss());
+
+            float netProfitLoss = 0;
+
+            for(int i = 0; i < values.size(); i ++){
+                float amountVal = Float.parseFloat(values.get(i).getCapGainLoss().replace(",", ""));
+                netProfitLoss += amountVal;
+            }
+
+            netProfitBtn.setText("NET PROFIT/(LOSE): " +  netProfitLoss);
 
             scriptDetailAdapter = new ScriptDetailAdapter(getActivity(), arrayMain);
             scriptRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -377,7 +387,7 @@ public class PortfolioWatchFragment extends Fragment {
 
             if (values1.size() > 0) {
 
-                Collections.sort(values1, new Comparator<PortfolioSymbol>() {
+                sort(values1, new Comparator<PortfolioSymbol>() {
                     @Override
                     public int compare(PortfolioSymbol t1, PortfolioSymbol t2) {
 

@@ -4,7 +4,6 @@ package com.softech.bipldirect.Fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -33,9 +31,6 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
-import com.softech.bipldirect.Models.AccountModel.AccountDetail;
-import com.softech.bipldirect.Models.AccountModel.OrdersList;
-import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.Models.PortfolioModel.*;
 import com.softech.bipldirect.Adapters.PortfolioAdapter;
 import com.softech.bipldirect.MainActivity;
@@ -43,7 +38,6 @@ import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.Preferences;
-import com.softech.bipldirect.charts.Pacpie;
 
 import net.orange_box.storebox.StoreBox;
 
@@ -63,7 +57,7 @@ import butterknife.OnClick;
 public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPortofolioClickListner {
 
     public static final String TYPE = "type";
-    public static Pacpie pacpie;
+    //public static Pacpie pacpie;
     public static Preferences preferences;
     public static LoginResponse loginResponse;
     //    private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};

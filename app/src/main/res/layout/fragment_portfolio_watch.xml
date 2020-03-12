@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="end"
                     android:text="CUSTODY VALUE"
                     android:textColor="#fff"
                     android:textSize="10dp">
@@ -88,6 +88,7 @@
                 </TextView>
 
                 <TextView
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -227,7 +228,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="end"
                 android:background="#1973B9"
-                android:text="NET PROFIT/(LOSE): 15,000 "
+                android:text="NET PROFIT/(LOSE):  "
                 android:textColor="#fff">
 
             </Button>
@@ -321,7 +322,7 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/graphchart"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:layout_below="@+id/profit_loss_text">
 
         </com.github.mikephil.charting.charts.BarChart>

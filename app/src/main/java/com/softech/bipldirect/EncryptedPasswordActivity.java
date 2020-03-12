@@ -55,7 +55,7 @@ public class EncryptedPasswordActivity extends BaseActivity {
 //        else
 //            generatePasswordBtn.setVisibility(View.GONE);
 
-        passwordField.setText("UWJ9YZ");
+      //  passwordField.setText("UWJ9YZ");
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

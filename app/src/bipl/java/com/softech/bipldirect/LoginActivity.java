@@ -82,9 +82,9 @@ public class LoginActivity extends BaseActivity {
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
 //            TextView etServer = (TextView) findViewById(R.id.login_server);
 //        }
-
-        etName.setText("rms01");
-        etPass.setText("12345678");
+//
+//        etName.setText("rms01");
+//        etPass.setText("12345678");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();

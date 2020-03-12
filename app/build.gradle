@@ -31,12 +31,12 @@ android {
             applicationId "com.softech.bipldirect"
             minSdkVersion 16
             targetSdkVersion 28
-            versionCode 11
-            versionName "2.0"
+            versionCode 12
+            versionName "2.2"
             multiDexEnabled true
             buildConfigField 'String[]', 'HOST',
-                    "{" + "\"192.168.0.57\"," + "\"192.168.0.57\"" + "}"
-          //  "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
+            //        "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
+            "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
