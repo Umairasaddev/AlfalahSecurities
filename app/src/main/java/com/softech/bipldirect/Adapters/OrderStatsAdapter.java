@@ -1,6 +1,7 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
     OnListItemClickListener listener;
     private Context context;
     DecimalFormat decimalFormat;
+
     public OrderStatsAdapter(Context context, ArrayList<OrdersList> items, OnListItemClickListener listener) {
         arraylist = items;
         this.listener = listener;
@@ -102,7 +104,7 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
                 break;
         }
 
-        holder.price.setText(decimalFormat.format(obj.getPrice()));
+        holder.price.setText(obj.getPrice());
 
         holder.volume.setText("" + obj.getVolume());
 
@@ -144,6 +146,7 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
 
         OrdersList mItem;
         int position;
+        private long mLastClickTime = 0;
         @BindView(R.id.orderlistimage)
         View image;
         @BindView(R.id.ecx_mar)
@@ -173,6 +176,10 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
                 @Override
                 public void onClick(View v) {
 
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 2000){
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     listener.onListItemClick(v, mItem, position);
                 }
             });

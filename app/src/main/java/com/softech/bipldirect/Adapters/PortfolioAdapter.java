@@ -160,6 +160,5 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             super(view);
             ButterKnife.bind(this, view);
         }
-
     }
 }

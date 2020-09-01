@@ -3,5 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">capitalstake.com</domain>
         <domain includeSubdomains="true">bipldirect.com</domain>
+        <domain includeSubdomains="true">analytics.abbasiandcompany.com</domain>
     </domain-config>
 </network-security-config>

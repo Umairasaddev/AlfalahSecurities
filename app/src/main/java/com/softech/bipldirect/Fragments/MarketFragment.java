@@ -101,13 +101,20 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setAutoMeasureEnabled(false);
-        Collections.sort(MainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
-            @Override
-            public int compare(MarketSymbol e1, MarketSymbol e) {
-                return e1.getSymbol().compareTo(e.getSymbol());
-            }
-        });
-        marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+
+        try{
+            Collections.sort(MainActivity.marketResponse.getResponse().getSymbols(), new Comparator<MarketSymbol>() {
+                @Override
+                public int compare(MarketSymbol e1, MarketSymbol e) {
+                    return e1.getSymbol().compareTo(e.getSymbol());
+                }
+            });
+            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         setHasOptionsMenu(true);
 
@@ -171,7 +178,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         if (shouldReload) {
 
-         //   ((MainActivity) getActivity()).getMarket();
+            ((MainActivity) getActivity()).getMarket();
 
             shouldReload = false;
         }

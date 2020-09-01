@@ -122,10 +122,12 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     //Code
     private Loading loading;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         connectMessageServer();
 
@@ -568,6 +570,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 logoutRequest();
             }
         });
@@ -615,6 +618,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.LOGOUT_MESSAGE_REQUEST_IDENTIFIER, request_obj.toString());
 
             deleteAll();
+
+
+
+
+
             startActivity(new Intent(context, LoginActivity.class));
             finish();
 

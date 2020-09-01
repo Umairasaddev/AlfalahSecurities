@@ -85,8 +85,11 @@ public class LoginActivity extends BaseActivity {
 
 
         // foundATION EDGE WORKING
-        etName.setText("RMS01");
-        etPass.setText("123456");
+//        etName.setText("RMS01");
+//        etPass.setText("123456");
+
+                etName.setText("softech");
+        etPass.setText("ABC258");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -148,72 +151,77 @@ public class LoginActivity extends BaseActivity {
             // For encryption
             login_obj.addProperty("Ver", "1.7");
 //For encryption
-            if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+//            if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+////
+//                if(!Constants.KASB_API_LOGIN.isEmpty()) {
+//                    Constants.KASB_API_LOGIN.length();
 //
-                if(!Constants.KASB_API_LOGIN.isEmpty()) {
-                    Constants.KASB_API_LOGIN.length();
-
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("userId", user);
-
-                        RestClient.postRequest("login",
-                                context,
-                                Constants.KASB_API_LOGIN,
-                                jsonObject,
-                                new OnRestClientCallback() {
-                                    @Override
-                                    public void onRestSuccess(JSONObject response, String action) {
-
-//                                    Log.d("Call","response: "+response);
-                                        try {
-                                            if (response.getString("code").equals("200")) {
-
-                                                String ip = response.getString("ip");
-                                                String port = response.getString("port");
-                                                Constants.serverIpAddress = new String[]{ip};
-                                                if (port.contains(",")) {
-                                                    String[] portsArray = port.split(",");
-                                                    Constants.ports = new int[portsArray.length];
-                                                    for (int i = 0; i < Constants.ports.length; i++) {
-                                                        Constants.ports[i] = Integer.parseInt(portsArray[i]);
-                                                    }
-                                                } else
-                                                    Constants.ports[0] = Integer.parseInt(port);
-
-                                                connectWithMessageServer(login_obj);
-
-                                            }
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                            HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onRestError(Exception e, String action) {
-
-                                        Alert.showErrorAlert(context);
-                                        Log.d("Call", "onRestError: ");
-                                    }
-                                }, false, "Fetching Server IP's");
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Alert.showErrorAlert(context);
-                        Log.d("Call", "JSONException: ");
-                    }
-                } else {
-                    connectMessageServer();
-                }
-
-            } else {
-                try {
-                    HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+//                    JSONObject jsonObject = new JSONObject();
+//                    try {
+//                        jsonObject.put("userId", user);
+//
+//                        RestClient.postRequest("login",
+//                                context,
+//                                Constants.KASB_API_LOGIN,
+//                                jsonObject,
+//                                new OnRestClientCallback() {
+//                                    @Override
+//                                    public void onRestSuccess(JSONObject response, String action) {
+//
+////                                    Log.d("Call","response: "+response);
+//                                        try {
+//                                            if (response.getString("code").equals("200")) {
+//
+//                                                String ip = response.getString("ip");
+//                                                String port = response.getString("port");
+//                                                Constants.serverIpAddress = new String[]{ip};
+//                                                if (port.contains(",")) {
+//                                                    String[] portsArray = port.split(",");
+//                                                    Constants.ports = new int[portsArray.length];
+//                                                    for (int i = 0; i < Constants.ports.length; i++) {
+//                                                        Constants.ports[i] = Integer.parseInt(portsArray[i]);
+//                                                    }
+//                                                } else
+//                                                    Constants.ports[0] = Integer.parseInt(port);
+//
+//                                                connectWithMessageServer(login_obj);
+//
+//                                            }
+//                                        } catch (Exception e) {
+//                                            e.printStackTrace();
+//                                            HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onRestError(Exception e, String action) {
+//
+//                                        Alert.showErrorAlert(context);
+//                                        Log.d("Call", "onRestError: ");
+//                                    }
+//                                }, false, "Fetching Server IP's");
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                        Alert.showErrorAlert(context);
+//                        Log.d("Call", "JSONException: ");
+//                    }
+//                } else {
+//                    connectMessageServer();
+//                }
+//
+//            }
+//            else {
+//
+//
+//                try {
+//                    HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//                    connectMessageServer();
+                    connectWithMessageServer(login_obj);
 
 
         } else {

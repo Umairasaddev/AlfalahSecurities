@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -73,12 +74,14 @@ public class BaseActivity extends AppCompatActivity {
                     Alert.showErrorAlert(BaseActivity.this);
 
                 } else if (msgType.equals(STATE_CONNECT_EXCEPTION)) {
+                    Log.d("BaseActivity",STATE_CONNECT_EXCEPTION);
 
                     //    Alert.show(BaseActivity.this, getString(R.string.app_name), "Unable to connect to Server. Please try later or check your network.");
 
                 } else if (msgType.equals(STATE_DISCONNECTED)) {
 
                     //     Alert.show(BaseActivity.this, getString(R.string.app_name), "Unable to connect to Server. Please wait while we try to re connect to the Server");
+                    Log.d("BaseActivity",STATE_DISCONNECTED);
 
                 } else if (msgType.equals(STATE_RECONNECTED)) {
 
@@ -98,11 +101,14 @@ public class BaseActivity extends AppCompatActivity {
 
                     //   Alert.show(BaseActivity.this, getString(R.string.app_name), "App is connect to Server. Please continue");
 
-                } else if (msgType.equals(STATE_CONNECT_FAILURE)) {
+                }
+                else if (msgType.equals(STATE_CONNECT_FAILURE)) {
 
+                    Log.d("BaseActivity",STATE_CONNECT_FAILURE);
                     // Alert.show(BaseActivity.this, getString(R.string.app_name), "Unable to connect to Server. Please wait while we try to reconnect to Server.");
 
-                } else {
+                }
+                else {
                     onMessageReceived(msgType, message);
                 }
             }
@@ -115,9 +121,18 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void connectMessageServer() {
-       // synchronized (this) {
-            messageServerReadThread = MessageServerReadThread.getInstance(getApplicationContext());
-            messageServerThread = MessageServerThread.getInstance(getApplicationContext());
+        // synchronized (this) {
+        messageServerReadThread = MessageServerReadThread.getInstance(getApplicationContext());
+        messageServerThread = MessageServerThread.getInstance(getApplicationContext());
+
+//        }
+
+    }
+
+    public void connectMessageServerWithNewInstance() {
+        // synchronized (this) {
+        messageServerReadThread = MessageServerReadThread.getNewInstance(getApplicationContext());
+        messageServerThread = MessageServerThread.getNewInstance(getApplicationContext());
 
 //        }
 
@@ -139,7 +154,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void write(final Map<Integer, String> map, boolean showLoading) {
 
-        if (messageServerThread != null && messageServerReadThread != null) {
+            if (messageServerThread != null && messageServerReadThread != null) {
 
 //            if (messageServerThread.isAlive() && messageServerReadThread.isAlive()) {
 
@@ -161,8 +176,10 @@ public class BaseActivity extends AppCompatActivity {
                         final Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
-//                                loading.dismiss();
+                                loading.dismiss();
                                 handler.removeCallbacks(this);
+
+
                             }
                         };
 

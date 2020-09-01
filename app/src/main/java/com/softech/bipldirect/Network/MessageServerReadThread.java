@@ -57,6 +57,12 @@ public class MessageServerReadThread extends HandlerThread {
         return instance;
     }
 
+    public static MessageServerReadThread getNewInstance(Context context) {
+        instance = new MessageServerReadThread(context);
+        return instance;
+    }
+
+
     public static void LogResponse(String tag, String response) {
         int maxLogSize = 1000;
         for (int i = 0; i <= response.length() / maxLogSize; i++) {

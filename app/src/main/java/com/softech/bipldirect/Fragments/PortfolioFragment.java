@@ -30,10 +30,10 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
-import com.softech.bipldirect.Adapters.SearchClientListAdapter;
-import com.softech.bipldirect.Models.PortfolioModel.*;
 import com.softech.bipldirect.Adapters.PortfolioAdapter;
+import com.softech.bipldirect.Adapters.SearchClientListAdapter;
 import com.softech.bipldirect.MainActivity;
+import com.softech.bipldirect.Models.PortfolioModel.*;
 import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
@@ -129,7 +129,10 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
             ((MainActivity) getActivity()).portfolioRequestRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
+        }
+        else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
             clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
@@ -213,7 +216,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
                 }
             });
-//            View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.acc_list_item_footer, portfolio_list, false);
+            View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.acc_list_item_footer, portfolio_list, false);
             double totalValue = 0;
             for (PortfolioSymbol obj : values) {
 
@@ -260,7 +263,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             ArrayList<Portfolio> arrayMain = new ArrayList<>();
             arrayMain.addAll(values);
             arrayMain.add(portfolioFooter);
-            PortfolioAdapter portfolioAdapter = new PortfolioAdapter(getActivity(), arrayMain, this);
+            PortfolioAdapter portfolioAdapter = new PortfolioAdapter(getActivity(), arrayMain,  this);
             portfolio_list.setAdapter(portfolioAdapter);
             portfolioAdapter.notifyDataSetChanged();
             setUpPieChart();

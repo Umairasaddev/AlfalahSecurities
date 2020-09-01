@@ -44,13 +44,9 @@ import com.softech.bipldirect.Models.PortfolioWatch.Cash;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -108,7 +104,7 @@ public class PortfolioWatchFragment extends Fragment {
 
             String  clientcode = (MainActivity.loginResponse.getResponse().getClient());
             ((MainActivity) getActivity()).portfolioRequestRequest(clientcode);
-            ((MainActivity) getActivity()).portfolioWatchRequest(clientcode);
+//            ((MainActivity) getActivity()).portfolioWatchRequest(clientcode);
         }
         else {
             Toast.makeText(getActivity(), "Sorry you cant see this", Toast.LENGTH_SHORT).show();

@@ -16,7 +16,7 @@
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:src="@drawable/pointer" />
 
     <RelativeLayout
@@ -43,6 +43,7 @@
             android:background="@drawable/textfield_white_border"
             android:ems="10"
             android:gravity="center"
+            android:textColorHint="@color/white"
             android:hint="username"
             android:inputType="textCapCharacters"
             android:maxLines="1"
@@ -59,6 +60,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/textfield_white_border"
             android:ems="10"
+            android:textColorHint="@color/white"
             android:gravity="center"
             android:hint="password"
             android:inputType="textPassword"
@@ -88,7 +90,7 @@
             android:layout_alignStart="@+id/login_pass"
             android:layout_below="@+id/tv_forgotPwd"
             android:layout_marginTop="15dp"
-            android:background="@drawable/button_blue"
+            android:background="@drawable/blue_btn"
             android:ems="10"
             android:text="Login"
             android:textColor="@android:color/white" />

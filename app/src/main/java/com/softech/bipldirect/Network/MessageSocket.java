@@ -6,7 +6,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.softech.bipldirect.Const.Constants;
-import com.softech.bipldirect.LoginActivity;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -66,6 +65,7 @@ public class MessageSocket extends Socket {
         return instance;
     }
 
+    //broadcastResponse
     private static void broadcastResponse(String msgType, String response) {
         Intent intent = new Intent(Constants.MSG_SERVER_BROADCAST);
         intent.putExtra("msgType", msgType);
@@ -83,11 +83,11 @@ public class MessageSocket extends Socket {
     }
 
 
-    private static void logInAferReconnect() {
-        Intent intent = new Intent(context, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
+//    private static void logInAferReconnect() {
+//        Intent intent = new Intent(context, LoginActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+//                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(intent);
+//    }
 
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -27,7 +26,6 @@ import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.PaymentModel.PaymentResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
-
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

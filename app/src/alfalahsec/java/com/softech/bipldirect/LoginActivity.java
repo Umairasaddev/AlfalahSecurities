@@ -1,11 +1,14 @@
 package com.softech.bipldirect;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -57,8 +60,8 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.tv_forgotPwd)
     TextView forgotPassword;
 
-    //        @BindView(R.id.login_server)
-//    TextView etServer;
+    @BindView(R.id.login_server)
+    TextView etServer;
     Context context = LoginActivity.this;
     private Preferences preferences;
     private String user, pas;
@@ -73,9 +76,9 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-//        if (BuildConfig.FLAVOR=="alfalahsec") {
-//            TextView etServer = (TextView) findViewById(R.id.login_server);
-//        }
+        if (BuildConfig.FLAVOR=="alfalahsec") {
+            TextView etServer = (TextView) findViewById(R.id.login_server);
+        }
 //        etName.setText("act01315");
 //        etPass.setText("123456");
 //        etName.setText("00022249");
@@ -84,8 +87,9 @@ public class LoginActivity extends BaseActivity {
 //        etPass.setText("pakipower1");
 
 
-        etName.setText("RMS01");
-        etPass.setText("123456");
+//
+//        etName.setText("Softech");
+//        etPass.setText("afs987");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -107,25 +111,25 @@ public class LoginActivity extends BaseActivity {
 //                startActivity(new Intent(context, SignupActivity.class));
 //            }
 //        });
-//        etServer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (BuildConfig.FLAVOR.equals("alfalahsec")) {
-//                    etServer.setText("Primary");
-//                    final AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-//                    alert.setItems(serverNameArray, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            etServer.setText(serverNameArray[which]);
-//                            Constants.serverIpAddress = new String[]{serverUrlArray[which]};
-//
-//
-//                        }
-//                    });
-//                    alert.show();
-//                }
-//            }
-//        });
+        etServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (BuildConfig.FLAVOR.equals("alfalahsec")) {
+                    etServer.setText("Primary");
+                    final AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                    alert.setItems(serverNameArray, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            etServer.setText(serverNameArray[which]);
+                            Constants.serverIpAddress = new String[]{serverUrlArray[which]};
+
+
+                        }
+                    });
+                    alert.show();
+                }
+            }
+        });
     }
 
     public void callingloginservice(View view) {
@@ -152,55 +156,61 @@ public class LoginActivity extends BaseActivity {
                 Constants.KASB_API_LOGIN.length();
 
                 JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("userId", user);
 
-                    RestClient.postRequest("login",
-                            context,
-                            Constants.KASB_API_LOGIN,
-                            jsonObject,
-                            new OnRestClientCallback() {
-                                @Override
-                                public void onRestSuccess(JSONObject response, String action) {
+                if (Constants.KASB_API_LOGIN !=null && !Constants.KASB_API_LOGIN.isEmpty()){
+                    try {
+                        jsonObject.put("userId", user);
+
+                        RestClient.postRequest("login",
+                                context,
+                                Constants.KASB_API_LOGIN,
+                                jsonObject,
+                                new OnRestClientCallback() {
+                                    @Override
+                                    public void onRestSuccess(JSONObject response, String action) {
 
 //                                    Log.d("Call","response: "+response);
-                                    try {
-                                        if (response.getString("code").equals("200")) {
+                                        try {
+                                            if (response.getString("code").equals("200")) {
 
-                                            String ip = response.getString("ip");
-                                            String port = response.getString("port");
-                                            Constants.serverIpAddress = new String[]{ip};
-                                            if (port.contains(",")) {
-                                                String[] portsArray = port.split(",");
-                                                Constants.ports = new int[portsArray.length];
-                                                for (int i = 0; i < Constants.ports.length; i++) {
-                                                    Constants.ports[i] = Integer.parseInt(portsArray[i]);
-                                                }
-                                            } else
-                                                Constants.ports[0] = Integer.parseInt(port);
+                                                String ip = response.getString("ip");
+                                                String port = response.getString("port");
+                                                Constants.serverIpAddress = new String[]{ip};
+                                                if (port.contains(",")) {
+                                                    String[] portsArray = port.split(",");
+                                                    Constants.ports = new int[portsArray.length];
+                                                    for (int i = 0; i < Constants.ports.length; i++) {
+                                                        Constants.ports[i] = Integer.parseInt(portsArray[i]);
+                                                    }
+                                                } else
+                                                    Constants.ports[0] = Integer.parseInt(port);
 
-                                            connectWithMessageServer(login_obj);
+                                                connectWithMessageServer(login_obj);
 
+                                            }
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                            HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
                                         }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
                                     }
-                                }
 
-                                @Override
-                                public void onRestError(Exception e, String action) {
+                                    @Override
+                                    public void onRestError(Exception e, String action) {
 
-                                    Alert.showErrorAlert(context);
-                                    Log.d("Call","onRestError: ");
-                                }
-                            }, false, "Fetching Server IP's");
+                                        Alert.showErrorAlert(context);
+                                        Log.d("Call","onRestError: ");
+                                    }
+                                }, false, "Fetching Server IP's");
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Alert.showErrorAlert(context);
-                    Log.d("Call","JSONException: ");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Alert.showErrorAlert(context);
+                        Log.d("Call","JSONException: ");
+                    }
+                }else{
+                    connectWithMessageServer(login_obj);
                 }
+
 
             } else {
                 try {

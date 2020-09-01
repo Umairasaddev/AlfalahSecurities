@@ -289,6 +289,7 @@ public class TradeFragment extends Fragment {
 
                 } else {
                     radiosell.setBackgroundResource(R.drawable.selector_radio_red);
+                    textViewOrderType.setText("LIMIT");
                     action = "SELL";
                     if (textViewOrderType.getText().toString().equals("MFB") || textViewOrderType.getText().toString().equals("LB")) {
                         textViewOrderType.setText(ordTypes.get(0).getName());

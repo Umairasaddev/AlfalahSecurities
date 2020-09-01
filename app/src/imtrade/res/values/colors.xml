@@ -33,5 +33,6 @@
     <color name="ledRed">@color/blinkRed</color>
     <color name="ledGreen">@color/blinkGreen</color>
     <color name="searchIconColor">#000000</color>
+    <color name="dialog_text_green">#86AA76</color>
 
 </resources>
