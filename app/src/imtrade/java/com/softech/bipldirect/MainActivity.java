@@ -187,13 +187,19 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         JsonObject feed_obj = new JsonObject();
 
-        String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
-        String user = MainActivity.loginResponse.getResponse().getUserId();
+        try {
+            String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
+            String user = MainActivity.loginResponse.getResponse().getUserId();
 
-        feed_obj.addProperty("MSGTYPE", action);
-        feed_obj.addProperty("userId", user);
+            feed_obj.addProperty("MSGTYPE", action);
+            feed_obj.addProperty("userId", user);
 
-        new FeedServer(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
+            new FeedServer(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -598,7 +604,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.LOGOUT_MESSAGE_REQUEST_IDENTIFIER, request_obj.toString());
 
             deleteAll();
-            startActivity(new Intent(context, LoginActivity.class));
+            EncryptedPasswordActivity.check=0;
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             finish();
 
         } else {
@@ -1447,7 +1456,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             deleteAll();
                             startActivity(new Intent(context, LoginActivity.class)
                                     .putExtra("discon", true)
-                                    .putExtra("message", response.get("remarks").getAsString()));
+                                    .putExtra("message", response.get("remarks").getAsString())
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                             finish();
                         }
                         break;

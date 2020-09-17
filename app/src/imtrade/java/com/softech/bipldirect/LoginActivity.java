@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
+import com.softech.bipldirect.Util.Loading;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
 
@@ -67,13 +69,17 @@ public class LoginActivity extends BaseActivity {
     String[] serverUrlArray = new String[]{"terminal1.alfalahtrade.com", "terminal2.alfalahtrade.com", "terminal1.alfalahtrade.net"};
     String userEncoded;
     String passEncoded, passdecoded;
-
+    Button login_btn;
+    private Loading loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        login_btn= (Button) findViewById(R.id.login_btn);
+        loading = new Loading(context, "Please wait...");
+
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
 //            TextView etServer = (TextView) findViewById(R.id.login_server);
 //        }
@@ -88,8 +94,10 @@ public class LoginActivity extends BaseActivity {
 //        etName.setText("RMS01");
 //        etPass.setText("123456");
 
-        etName.setText("TESTING");
-        etPass.setText("12345678");
+//        etName.setText("TESTING");
+//        etPass.setText("12345678");
+//        etName.setText("25394");
+//        etPass.setText("12345678");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -140,6 +148,7 @@ public class LoginActivity extends BaseActivity {
             userEncoded = enctyptionUtils.encrypt(user.trim());
             passEncoded = enctyptionUtils.encrypt(pas);
         } catch (Exception e) {
+            login_btn.setEnabled(true);
             e.printStackTrace();
         }
         if (user.length() > 0 && pas.length() > 0) {
@@ -152,9 +161,12 @@ public class LoginActivity extends BaseActivity {
             login_obj.addProperty("Ver", "1.7");
 //For encryption
             if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-//
+                login_btn.setEnabled(false);
+                loading.show();
                 connectWithMessageServer(login_obj);
             } else {
+                login_btn.setEnabled(true);
+
                 try {
                     HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
                 } catch (Exception e) {
@@ -162,6 +174,8 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         } else {
+            login_btn.setEnabled(true);
+
             HSnackBar.showMsg(view, "Please enter username and password.");
         }
 
@@ -185,7 +199,7 @@ public class LoginActivity extends BaseActivity {
                 Map<Integer, String> map = new HashMap<>();
                 map.put(1, Constants.LOGIN_MESSAGE_IDENTIFIER);
                 map.put(2, login_obj.toString());
-                write(map, true);
+                write(map, false);
             }
         }, 1000);
     }
@@ -244,12 +258,13 @@ public class LoginActivity extends BaseActivity {
 
 
                                         if (encodedPass.equals("")) {
-
+                                            loading.dismiss();
                                             preferences.setDecryptedPassword(encodedPass);
                                             check=false;
                                             startActivity(new Intent(context, EncryptedPasswordActivity.class));
                                             finish();
                                         } else {
+                                            loading.dismiss();
                                             check=false;
                                             EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
                                             passdecoded = enctyptionUtils.decrypt(result.getResponse().getSecondLevelPassword());
@@ -261,14 +276,19 @@ public class LoginActivity extends BaseActivity {
                                         }
 
                                     } catch (Exception e) {
+                                        loading.dismiss();
+                                        login_btn.setEnabled(true);
                                         e.printStackTrace();
 
                                     }
                                 } else if (result.getResponse().getChangePassword() !=null && result.getResponse().getChangePassword().equals("true")) {
+                                    loading.dismiss();
+
                                     preferences.setUserId(result.getResponse().getUserId());
                                     startActivity(new Intent(LoginActivity.this, ChangePasswordActivity.class));
                                 } else {
 //      FOR ZAFAR SECURITIES
+
                                     getMarket();
                                 }
                                 preferences.removeEvents(R.string.key_events);
@@ -279,11 +299,15 @@ public class LoginActivity extends BaseActivity {
 //                                getSymbolsFromServer();
                             } else {
 
+                                loading.dismiss();
+                                login_btn.setEnabled(true);
                                 Alert.show(LoginActivity.this, "", result.getError());
                             }
 
 
                         } else {
+                            loading.dismiss();
+                            login_btn.setEnabled(true);
                             Log.d(TAG, "Response :: LoginResponse null ");
                         }
 
@@ -304,12 +328,17 @@ public class LoginActivity extends BaseActivity {
 //                                getMarket();
 
                             } else {
+                                loading.dismiss();
+                                login_btn.setEnabled(true);
 
                                 Alert.show(context, "", result.getError());
                             }
 
 
                         } else {
+                            loading.dismiss();
+                            login_btn.setEnabled(true);
+
                             Log.d(TAG, "Response :: SymbolsResponse null ");
                         }
                     }
@@ -325,17 +354,22 @@ public class LoginActivity extends BaseActivity {
                             if (result.getCode().equals("200")) {
 
                                 preferences.setMarketResult(gson.toJson(result));
-
+                                loading.dismiss();
                                 startActivity(new Intent(context, MainActivity.class));
                                 finish();
 
                             } else {
+                                loading.dismiss();
+                                login_btn.setEnabled(true);
 
                                 Alert.show(context, "", result.getError());
                             }
 
 
                         } else {
+                            loading.dismiss();
+                            login_btn.setEnabled(true);
+
                             Log.d(TAG, "Response :: MarketResponse null ");
                         }
                     }
@@ -343,14 +377,17 @@ public class LoginActivity extends BaseActivity {
                 }
 
             } else {
+                loading.dismiss();
+                login_btn.setEnabled(true);
                 Alert.show(context, getString(R.string.app_name), error);
             }
 
 
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
+            loading.dismiss();
+            login_btn.setEnabled(true);
             Alert.showErrorAlert(context);
-
 
         }
 
@@ -370,7 +407,7 @@ public class LoginActivity extends BaseActivity {
             map.put(1, Constants.SYMBOL_MESSAGE_IDENTIFIER);
             map.put(2, login_obj.toString());
 
-            write(map, true);
+            write(map, false);
 
         } else {
 
@@ -405,7 +442,7 @@ public class LoginActivity extends BaseActivity {
             map.put(1, Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
             map.put(2, login_obj.toString());
 
-            write(map, true);
+            write(map, false);
 
         } else {
 

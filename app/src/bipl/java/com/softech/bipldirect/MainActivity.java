@@ -6,9 +6,11 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.BuildConfig;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -80,7 +83,6 @@ import com.softech.bipldirect.Network.FeedServer;
 import com.softech.bipldirect.Network.FeedSocket;
 import com.softech.bipldirect.Network.MessageSocket;
 import com.softech.bipldirect.Util.Alert;
-import com.softech.bipldirect.Util.DividerItemDecoration;
 import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.Loading;
@@ -127,7 +129,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 
         connectMessageServer();
 
@@ -287,6 +289,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                     navMenuList.add(new Menu("Market Performers", R.drawable.topsymbols2x, false));
                 }
             }
+
+            if (TrnCodes.contains("OM25")) {
+            navMenuList.add(new Menu("Portfolio Watch", R.drawable.cash, false));
+            }
             if (TrnCodes.contains("OM04")) {
                 navMenuList.add(new Menu("Portfolio Summary", R.drawable.portfoliosummary2x, false));
             }
@@ -326,9 +332,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             if (TrnCodes.contains("OM24")) {
                 optionItems.add("Research");
             }
-            if (TrnCodes.contains("OM25")) {
-                navMenuList.add(new Menu("Portfolio Watch", R.drawable.cash, false));
-            }
+
 
         } else {
             navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
@@ -342,7 +346,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         navMenuList.add(new Menu("Logout", R.drawable.logout2x, false));
 
         navigationView.setLayoutManager(new LinearLayoutManager(context));
-        navigationView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
+        navigationView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
 
         navigationView.setAdapter(new NavAdapter(navMenuList, this));
 

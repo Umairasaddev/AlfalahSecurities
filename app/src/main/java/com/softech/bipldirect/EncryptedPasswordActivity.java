@@ -27,6 +27,7 @@ import com.softech.bipldirect.Models.SecondLevelPassword.SecondLevelPassword;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HSnackBar;
+import com.softech.bipldirect.Util.Loading;
 import com.softech.bipldirect.Util.Preferences;
 
 
@@ -50,12 +51,14 @@ public class EncryptedPasswordActivity extends BaseActivity {
     CountDownTimer countDownTimer;
     static int  check=0;
     SharedPreferences pref;
+    private Loading loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encrypted_password);
         ButterKnife.bind(this);
+        loading = new Loading(context, "Please wait...");
 
 
         try {
@@ -91,6 +94,8 @@ public class EncryptedPasswordActivity extends BaseActivity {
                 if (passwordField.getText().length() > 0) {
                     Log.d("decryptedpass", preferences.getDecryptedPassword());
                     if (getPackageName().equals("com.softech.bipldirect")){
+                        loginBtn.setEnabled(false);
+                        loading.show();
                         getMarket();
                     }
                     else if (passwordField.getText().toString().equals(preferences.getDecryptedPassword())) {
@@ -108,11 +113,22 @@ public class EncryptedPasswordActivity extends BaseActivity {
 //                                }
 //                            }.start();
 //                        }
+                        loginBtn.setEnabled(false);
+
+                        loading.show();
                         getMarket();
-                    } else
+                    } else{
+                        loginBtn.setEnabled(true);
+
+                        loading.dismiss();
                         HSnackBar.showMsg(findViewById(android.R.id.content), "Passowrd Does Not Match.");
 
+                    }
+
                 } else {
+                    loginBtn.setEnabled(true);
+
+                    loading.dismiss();
                     HSnackBar.showMsg(findViewById(android.R.id.content), "Please enter Second Level password.");
                 }
             }
@@ -175,13 +191,17 @@ public class EncryptedPasswordActivity extends BaseActivity {
             map.put(1, Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
             map.put(2, login_obj.toString());
 
-            write(map, true);
+            write(map, false);
 
         } else {
 
             try {
+                loginBtn.setEnabled(true);
+                loading.dismiss();
                 HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
             } catch (Exception e) {
+                loginBtn.setEnabled(true);
+                loading.dismiss();
                 e.printStackTrace();
             }
         }
@@ -205,6 +225,7 @@ public class EncryptedPasswordActivity extends BaseActivity {
 //            Log.d(TAG, "MSGTYPE: " + MSGTYPE);
 
                 if (code.equals("200") && error.equals("")) {
+                    loading.dismiss();
 
                     switch (MSGTYPE) {
                         case Constants.SUBSCRIPTION_LIST_REQUEST_RESPONSE: {
@@ -226,7 +247,8 @@ public class EncryptedPasswordActivity extends BaseActivity {
                                     }
 
                                 } else {
-
+                                        loading.dismiss();
+                                        loginBtn.setEnabled(true);
                                     Alert.show(EncryptedPasswordActivity.this, "", result.getError());
                                 }
 
@@ -253,6 +275,8 @@ public class EncryptedPasswordActivity extends BaseActivity {
 
                             } else {
 
+                                loading.dismiss();
+                                loginBtn.setEnabled(true);
                                 Alert.show(EncryptedPasswordActivity.this, "", result.getError());
                             }
 
@@ -262,12 +286,16 @@ public class EncryptedPasswordActivity extends BaseActivity {
                     }
 
                 } else {
+                    loginBtn.setEnabled(true);
+                    loading.dismiss();
                     Alert.show(EncryptedPasswordActivity.this, getString(R.string.app_name), error);
                 }
 
 
             } catch(JsonSyntaxException e){
-                e.printStackTrace();
+            loginBtn.setEnabled(true);
+            e.printStackTrace();
+                loading.dismiss();
                 Alert.showErrorAlert(EncryptedPasswordActivity.this);
 
 

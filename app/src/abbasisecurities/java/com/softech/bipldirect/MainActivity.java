@@ -598,6 +598,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.LOGOUT_MESSAGE_REQUEST_IDENTIFIER, request_obj.toString());
 
             deleteAll();
+
             startActivity(new Intent(context, LoginActivity.class));
             finish();
 

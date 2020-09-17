@@ -37,13 +37,12 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.softech.bipldirect.Adapters.PLSummaryAdapter;
 import com.softech.bipldirect.Adapters.ScriptDetailAdapter;
-import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.PortfolioModel.Portfolio;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.Models.PortfolioWatch.Cash;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
-
+import com.softech.bipldirect.MainActivity;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -104,24 +103,20 @@ public class PortfolioWatchFragment extends Fragment {
 
             String  clientcode = (MainActivity.loginResponse.getResponse().getClient());
             ((MainActivity) getActivity()).portfolioRequestRequest(clientcode);
-//            ((MainActivity) getActivity()).portfolioWatchRequest(clientcode);
+            ((MainActivity) getActivity()).portfolioWatchRequest(clientcode);
         }
         else {
             Toast.makeText(getActivity(), "Sorry you cant see this", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
         return view;
     }
 
-    public void setCash(List<Cash> cash) {
 
+    public void setCash(List<Cash> cash) {
         cashTextView.setText( cash.get(0).getCash());
         capital.setText(cash.get(0).getWorkingCapital());
         custody.setText( cash.get(0).getCustody());
+
     }
 
     private void init(View view) {
@@ -138,7 +133,6 @@ public class PortfolioWatchFragment extends Fragment {
 
     private void setupBarChart() {
 
-
         chart.setDrawBarShadow(false);
         chart.setDrawValueAboveBar(true);
 
@@ -150,19 +144,18 @@ public class PortfolioWatchFragment extends Fragment {
 
         // scaling can now only be done on x- and y-axis separately
         chart.setPinchZoom(false);
-
         chart.setDrawGridBackground(false);
 
         final List<String> symbols = new ArrayList<>();
 
         for(int i = 0; i< values1.size();i++){
             symbols.add(values1.get(i).getSymbol());
-
         }
 
         final XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
+//        xAxis.setGridColor(getContext().getResources().getColor(R.color.blinkGreen));
 //        xAxis.setGranularity(1f); // only intervals of 1 day
 //        xAxis.setLabelCount(10);
 
@@ -183,7 +176,7 @@ public class PortfolioWatchFragment extends Fragment {
         leftAxis.setStartAtZero(false);
 
         //leftAxis.setAxisMinimum(); // this replaces setStartAtZero(true)
-
+        chart.setBackgroundColor(getContext().getResources().getColor(R.color.blinkRed));
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setDrawGridLines(false);
         rightAxis.setStartAtZero(false);
@@ -191,6 +184,7 @@ public class PortfolioWatchFragment extends Fragment {
         rightAxis.setLabelCount(8, false);
         //rightAxis.setValueFormatter(custom);
         rightAxis.setSpaceTop(15f);
+//                rightAxis.setGridColor(getContext().getResources().getColor(R.color.blinkGreen));
         rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         rightAxis.setEnabled(false);
 
@@ -203,6 +197,7 @@ public class PortfolioWatchFragment extends Fragment {
         l.setFormSize(9f);
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
+
 
 //        XYMarkerView mv = new XYMarkerView(getActivity(), xAxisFormatter);
 //        mv.setChartView(chart); // For bounds control
@@ -336,7 +331,7 @@ public class PortfolioWatchFragment extends Fragment {
 
     private void setUpPieChart() {
 
-        // pieChart.setUsePercentValues(true);
+         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(60, 3, 20, 3);
 
@@ -411,14 +406,13 @@ public class PortfolioWatchFragment extends Fragment {
                     float percent = Float.valueOf(values1.get(i).getPfWeight());
 
                     if (percent > 0) {
-
                         entries.add(new PieEntry(percent, values1.get(i).getSymbol()));
                     }
                 }
 
                 for (int i = 0; i < entries.size(); i++) {
 
-                    legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.SQUARE,
+                    legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
                             10f, 10f, null, pieChartColors[i]));
                 }
             } else {
@@ -438,23 +432,26 @@ public class PortfolioWatchFragment extends Fragment {
                 }
 
                 entries.add(new PieEntry(addedValues, "others"));
-                legendEntries.add(new LegendEntry("others", Legend.LegendForm.SQUARE,
+                legendEntries.add(new LegendEntry("others", Legend.LegendForm.CIRCLE,
                         10f, 10f, null, pieChartColors[13]));
             }
+
+
+            Log.d("MyTesting","entries "+entries);
 
             PieDataSet dataSet = new PieDataSet(entries, "Allocation by Funds");
             dataSet.setDrawIcons(false);
             dataSet.setSliceSpace(2f);
             dataSet.setIconsOffset(new MPPointF(0, 40));
             dataSet.setSelectionShift(10f);
-            //  dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-            dataSet.setValueTextColor(Color.WHITE);
-            //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            dataSet.setValueTextColor(Color.BLACK);
+            dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
             dataSet.setValueLinePart1OffsetPercentage(70.f);
             dataSet.setValueLinePart1Length(0.4f);
             dataSet.setValueLinePart2Length(0.7f);
-            pieChart.setDrawEntryLabels(false);
-            dataSet.setDrawValues(false);
+//            pieChart.setDrawEntryLabels(false);
+//            dataSet.setDrawValues(false);
 
             dataSet.setColors(pieChartColors);
             PieData data = new PieData(dataSet);

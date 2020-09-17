@@ -384,10 +384,15 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
                 }
 
+                Log.d("MyTesting","added values "+addedValues);
                 entries.add(new PieEntry(addedValues, "others"));
                 legendEntries.add(new LegendEntry("others", Legend.LegendForm.CIRCLE,
                         10f,10f, null,chartColors[19]));
             }
+
+            Log.d("MyTesting","legendEntries "+legendEntries);
+            Log.d("MyTesting","entries "+entries);
+
 
             PieDataSet dataSet = new PieDataSet(entries, "Allocation by Funds");
             dataSet.setDrawIcons(false);

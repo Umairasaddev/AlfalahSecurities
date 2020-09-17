@@ -145,10 +145,17 @@ public class TradeFragment extends Fragment {
         }
 //        clientlist=new ArrayList<String>(Arrays.asList(MainActivity.loginResponse.getResponse().getClientlist().split("\\s*,\\s*")));
 
-        searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
-        clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
-        searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
-        searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
+        try {
+            searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
+            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+            searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
+            searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }

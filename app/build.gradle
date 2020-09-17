@@ -29,7 +29,7 @@ android {
         bipl {
             dimension "version"
             applicationId "com.softech.bipldirect"
-            minSdkVersion 16
+            minSdkVersion 17
             targetSdkVersion 28
             versionCode 12
             versionName "2.2"
@@ -47,10 +47,10 @@ android {
         imtrade {
             dimension "version"
             applicationId "com.imtrade.intermarket"
-            minSdkVersion 16
-            targetSdkVersion 23
-            versionCode 9
-            versionName "2.0"
+            minSdkVersion 17
+            targetSdkVersion 28
+            versionCode 16
+            versionName "3.4"
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"103.94.186.27\"," + "\"103.94.186.27\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
@@ -58,7 +58,7 @@ android {
             buildConfigField 'String', 'CLIENT', '"admin.ims"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
             buildConfigField 'int[]', 'PORTS',
-                    "{5678,5678}"
+                    "{5678,5679,5680,5681}"
         }
         alfalahsec {
             dimension "version"
@@ -118,7 +118,7 @@ android {
         foundationEdge {
             dimension "version"
             applicationId "com.softech.foundationedge"
-            minSdkVersion 16
+            minSdkVersion 17
             targetSdkVersion 25
             versionCode 4
             versionName "1.5"

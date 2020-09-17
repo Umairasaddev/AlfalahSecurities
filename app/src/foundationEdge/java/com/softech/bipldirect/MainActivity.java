@@ -1856,6 +1856,32 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
+    public void portfolioWatchRequest(String clientcode){
+        JsonObject request_obj = new JsonObject();
+
+        request_obj.addProperty("MSGTYPE", Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
+        request_obj.addProperty("exchange", loginResponse.getResponse().getExchange());
+        request_obj.addProperty("client", clientcode);
+
+
+        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+
+            Map<Integer, String> map = new HashMap<>();
+            map.put(1, Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
+            map.put(2, request_obj.toString());
+
+            write(map, true);
+
+        } else {
+
+            try {
+                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void portfolioRequestRequest(String clientcode) {
 
         JsonObject request_obj = new JsonObject();

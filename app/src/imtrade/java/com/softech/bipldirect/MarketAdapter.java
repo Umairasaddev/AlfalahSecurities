@@ -73,18 +73,29 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
 
         holder.change.setText(holder.mItem.getChange());
         double percentage=0;
-        String changeStr  = holder.mItem.getChange().replace(",", "");
-        String lastStr   = holder.mItem.getCurrent().replace(",", "");
-        Double change = Double.parseDouble(changeStr);
-     //   Log.d("Low ",holder.mItem.getLowerLimit());
-      //  Log.d("High ",holder.mItem.getUpperLimit());
-     //   Log.d("Symbol High Low",holder.mItem.getSymbol() + holder.mItem.getLowPrice()+holder.mItem.getHighPrice());
-     //   Log.d("last : ",lastStr);
-     //   Log.d("change : ",changeStr);
 
-        double last = Double.parseDouble(lastStr);
-        double open = last - change;
+        double last=0;
+        double open=0;
+        double change=0;
+        String lastStr="";
+        try {
+            String changeStr  = holder.mItem.getChange().replace(",", "");
+             lastStr   = holder.mItem.getCurrent().replace(",", "");
+            change = Double.parseDouble(changeStr);
 
+            last = Double.parseDouble(lastStr);
+            open = last - change;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        //   Log.d("Low ",holder.mItem.getLowerLimit());
+        //  Log.d("High ",holder.mItem.getUpperLimit());
+        //   Log.d("Symbol High Low",holder.mItem.getSymbol() + holder.mItem.getLowPrice()+holder.mItem.getHighPrice());
+        //   Log.d("last : ",lastStr);
+        //   Log.d("change : ",changeStr);
         if (open!=0) {
             percentage = change * 100 / open;
             Log.d("Perc " ,String.valueOf(percentage));

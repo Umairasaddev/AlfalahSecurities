@@ -86,6 +86,12 @@ public class LoginActivity extends BaseActivity {
 //        etName.setText("00005425");
 //        etPass.setText("bipl1234");
 
+//        etName.setText("00022249");
+//        etPass.setText("bipl1234");
+
+        etName.setText("00024639");
+        etPass.setText("pakipower2");
+
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
 
@@ -171,10 +177,12 @@ public class LoginActivity extends BaseActivity {
                                     public void onRestSuccess(JSONObject response, String action) {
 
 //                                    Log.d("Call","response: "+response);
+
                                         try {
                                             if (response.getString("code").equals("200")) {
 
                                                 String ip = response.getString("ip");
+                                                Log.d("My IP",ip);
                                                 String port = response.getString("port");
                                                 Constants.serverIpAddress = new String[]{ip};
                                                 if (port.contains(",")) {
