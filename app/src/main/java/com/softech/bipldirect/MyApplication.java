@@ -15,7 +15,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  */
 @ReportsCrashes(
         formUri = "http://locallylahore.com/evolve_crash_log/", // will not be used
-        mailTo = "saadshafiq@softech.com.pk",
+        mailTo = "waqarmustafa18@gmail.com",
         mode = ReportingInteractionMode.TOAST,
         resToastText = R.string.crash_toast_text, formKey = "")
 /*@ReportsCrashes(formKey = "", // will not be used

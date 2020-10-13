@@ -31,7 +31,7 @@ public class OrdersList {
     private String orderNo;
     @SerializedName("price")
     @Expose
-    private String price;
+    private Double price;
     @SerializedName("side")
     @Expose
     private String side;
@@ -77,7 +77,7 @@ public class OrdersList {
      * @param identifier
      * @param exchange
      */
-    public OrdersList(String symbol, String orderType, String execVolume, String triggerPrice, String marketRate, String date, String market, String orderNo, String price, String side, Integer volume, Double value, String discVol, String orderProp, String identifier, String exchange,String client) {
+    public OrdersList(String symbol, String orderType, String execVolume, String triggerPrice, String marketRate, String date, String market, String orderNo, Double price, String side, Integer volume, Double value, String discVol, String orderProp, String identifier, String exchange,String client) {
 
         this.symbol = symbol;
         this.orderType = orderType;
@@ -172,11 +172,11 @@ public class OrdersList {
         this.orderNo = orderNo;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

@@ -1,12 +1,7 @@
 
 package com.softech.bipldirect.Models.PortfolioWatch;
 
-import com.softech.bipldirect.Models.PortfolioModel.Portfolio;
-import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
-
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Cash  implements Serializable
 {

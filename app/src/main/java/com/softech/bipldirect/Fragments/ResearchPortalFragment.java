@@ -1,6 +1,8 @@
 package com.softech.bipldirect.Fragments;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -69,7 +72,14 @@ public class ResearchPortalFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new AppWebViewClient());
-
+        webView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(s));
+                startActivity(i);
+            }
+        });
         return webView;
     }
 

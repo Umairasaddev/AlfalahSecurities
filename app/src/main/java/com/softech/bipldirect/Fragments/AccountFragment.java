@@ -3,12 +3,14 @@ package com.softech.bipldirect.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +22,12 @@ import android.widget.TextView;
 
 import com.softech.bipldirect.Adapters.AccountAdapter;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
-import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.AccountModel.AccountDetail;
 import com.softech.bipldirect.Models.AccountModel.AccountFooter;
 import com.softech.bipldirect.Models.AccountModel.AccountResponse;
 import com.softech.bipldirect.Models.AccountModel.OrdersList;
+import com.softech.bipldirect.MainActivity;
+import com.softech.bipldirect.Models.MarginModel.MarginDetail;
 import com.softech.bipldirect.R;
 
 import java.text.DecimalFormat;
@@ -207,7 +210,7 @@ public class AccountFragment extends Fragment {
             }
             AccountFooter accountFooter = new AccountFooter();
 
-            double cashvalue = Double.parseDouble(cash.getText().toString().replace(",", ""));
+            double cashvalue = Double.parseDouble(freecash.getText().toString().replace(",", ""));
             Double totportfoliosum = totalValue + cashvalue;
 
             totalValue = Math.round(totalValue);

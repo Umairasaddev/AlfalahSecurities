@@ -1,46 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/llItem"
+        android:id="@+id/front"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:tag="front"
+        android:gravity="center"
+        android:weightSum="100">
 
-        <TextView
-            android:id="@+id/portfolio_symbol"
+        <LinearLayout
+            android:id="@+id/llItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="SYMBOL"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
+            android:layout_weight="35"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/portfolio_volume"
+            <TextView
+                android:id="@+id/portfolio_symbol"
+                fontPath="fonts/Helvetica Bold.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="OGDC"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Market:"
+                    android:textColor="@color/textSymbolDetailColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/portfolio_market_price"
+                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/topExchangeBackground"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="volume"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
+            android:layout_weight="35"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/portfolio_profitloss"
+            <TextView
+                android:id="@+id/portfolio_volume"
+                fontPath="fonts/Helvetica Bold.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="58,000"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cost:"
+                    android:textColor="#225A8B"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/portfolio_cost_price"
+                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/topExchangeBackground"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:singleLine="true"
-            android:text="profit"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
+            android:layout_weight="25"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="35"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/portfolio_profitloss"
+                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:text="5,488.45"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total:"
+                        android:textColor="@color/textSymbolDetailColor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/portfolio_total"
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="69dp"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/orderStatusUnselectedColor"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
     </LinearLayout>
 
-
-</LinearLayout>
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="@dimen/_12sdp"
+        android:layout_height="@dimen/_11sdp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_75sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@drawable/arrow_green"/>
+</RelativeLayout>

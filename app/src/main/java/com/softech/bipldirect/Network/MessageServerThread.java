@@ -52,11 +52,6 @@ public class MessageServerThread extends HandlerThread {
         return instance;
     }
 
-    public static MessageServerThread getNewInstance(Context context) {
-        instance = new MessageServerThread(context);
-        return instance;
-    }
-
     @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();

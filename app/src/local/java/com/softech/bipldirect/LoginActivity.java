@@ -1,11 +1,14 @@
 package com.softech.bipldirect;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,13 +22,19 @@ import com.softech.bipldirect.Models.Event;
 import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.Models.MarketModel.MarketResponse;
 import com.softech.bipldirect.Models.SymbolsModel.SymbolsResponse;
+import com.softech.bipldirect.Network.OnRestClientCallback;
+import com.softech.bipldirect.Network.RestClient;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HSnackBar;
+import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
 
 import net.orange_box.storebox.StoreBox;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -37,19 +37,20 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.softech.bipldirect.Adapters.PLSummaryAdapter;
 import com.softech.bipldirect.Adapters.ScriptDetailAdapter;
+import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.PortfolioModel.Portfolio;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.Models.PortfolioWatch.Cash;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
-import com.softech.bipldirect.MainActivity;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
 
-import static java.util.Collections.*;
+import static java.util.Collections.sort;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -176,7 +177,7 @@ public class PortfolioWatchFragment extends Fragment {
         leftAxis.setStartAtZero(false);
 
         //leftAxis.setAxisMinimum(); // this replaces setStartAtZero(true)
-        chart.setBackgroundColor(getContext().getResources().getColor(R.color.blinkRed));
+//        chart.setBackgroundColor(getContext().getResources().getColor(R.color.blinkRed));
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setDrawGridLines(false);
         rightAxis.setStartAtZero(false);
@@ -315,7 +316,7 @@ public class PortfolioWatchFragment extends Fragment {
                 netProfitLoss += amountVal;
             }
 
-            netProfitBtn.setText("NET PROFIT/(LOSE): " +  netProfitLoss);
+            netProfitBtn.setText("NET PROFIT/(LOSS): " +  netProfitLoss);
 
             scriptDetailAdapter = new ScriptDetailAdapter(getActivity(), arrayMain);
             scriptRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -76,11 +76,11 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
         String changeStr  = holder.mItem.getChange().replace(",", "");
         String lastStr   = holder.mItem.getCurrent().replace(",", "");
         Double change = Double.parseDouble(changeStr);
-     //   Log.d("Low ",holder.mItem.getLowerLimit());
-      //  Log.d("High ",holder.mItem.getUpperLimit());
-     //   Log.d("Symbol High Low",holder.mItem.getSymbol() + holder.mItem.getLowPrice()+holder.mItem.getHighPrice());
-     //   Log.d("last : ",lastStr);
-     //   Log.d("change : ",changeStr);
+        //   Log.d("Low ",holder.mItem.getLowerLimit());
+        //  Log.d("High ",holder.mItem.getUpperLimit());
+        //   Log.d("Symbol High Low",holder.mItem.getSymbol() + holder.mItem.getLowPrice()+holder.mItem.getHighPrice());
+        //   Log.d("last : ",lastStr);
+        //   Log.d("change : ",changeStr);
 
         double last = Double.parseDouble(lastStr);
         double open = last - change;
@@ -92,9 +92,9 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
             holder.change_per.setText(perc.concat("%"));
         }
         else
-            {holder.change_per.setText(holder.mItem.getChangePer().concat("%"));
+        {holder.change_per.setText(holder.mItem.getChangePer().concat("%"));
 
-            }
+        }
 
 
         holder.turn_over.setText(holder.mItem.getTurnOver());
@@ -183,7 +183,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
                 float exChange = Float.parseFloat(existingSym.getChange().replace(",", ""));
                 float newChange = Float.parseFloat(symToCompare.getChange().replace(",", ""));
 
-              //  mValues.set(position,symToCompare);
+                //  mValues.set(position,symToCompare);
 
                 MarketSymbol oldMarketSymbol = mValues.get(position);
 //

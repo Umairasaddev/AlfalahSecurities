@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -66,13 +67,14 @@ public class LoginActivity extends BaseActivity {
     String[] serverUrlArray = new String[]{"terminal1.alfalahtrade.com", "terminal2.alfalahtrade.com", "terminal1.alfalahtrade.net"};
     String userEncoded;
     String passEncoded, passdecoded;
-
+    Button login_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        login_btn= (Button) findViewById(R.id.login_btn);
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
 //            TextView etServer = (TextView) findViewById(R.id.login_server);
 //        }
@@ -88,8 +90,8 @@ public class LoginActivity extends BaseActivity {
 //        etName.setText("RMS01");
 //        etPass.setText("123456");
 
-//                etName.setText("softech");
-//        etPass.setText("ABC258");
+        etName.setText("softech");
+        etPass.setText("imran456");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -144,6 +146,7 @@ public class LoginActivity extends BaseActivity {
         }
         if (user.length() > 0 && pas.length() > 0) {
             final JsonObject login_obj = new JsonObject();
+            login_btn.setEnabled(false);
 
             login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
             login_obj.addProperty("userId", userEncoded);
@@ -221,10 +224,12 @@ public class LoginActivity extends BaseActivity {
 //                }
 //            }
 //                    connectMessageServer();
-                    connectWithMessageServer(login_obj);
+            connectWithMessageServer(login_obj);
 
 
         } else {
+
+            login_btn.setEnabled(true);
 
             HSnackBar.showMsg(view, "Please enter username and password.");
         }
@@ -271,6 +276,7 @@ public class LoginActivity extends BaseActivity {
         Gson gson = new Gson();
 
         JsonParser jsonParser = new JsonParser();
+        login_btn.setEnabled(true);
 
         try {
             JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();

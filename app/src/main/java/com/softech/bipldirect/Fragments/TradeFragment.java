@@ -3,6 +3,7 @@ package com.softech.bipldirect.Fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -46,6 +47,7 @@ import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -145,17 +147,10 @@ public class TradeFragment extends Fragment {
         }
 //        clientlist=new ArrayList<String>(Arrays.asList(MainActivity.loginResponse.getResponse().getClientlist().split("\\s*,\\s*")));
 
-        try {
-            searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
-            searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
-            searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
-        }
-
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
+        searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
+        clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
+        searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
+        searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
@@ -296,7 +291,6 @@ public class TradeFragment extends Fragment {
 
                 } else {
                     radiosell.setBackgroundResource(R.drawable.selector_radio_red);
-                    textViewOrderType.setText("LIMIT");
                     action = "SELL";
                     if (textViewOrderType.getText().toString().equals("MFB") || textViewOrderType.getText().toString().equals("LB")) {
                         textViewOrderType.setText(ordTypes.get(0).getName());
@@ -509,7 +503,7 @@ public class TradeFragment extends Fragment {
             case R.id.tradebutton: {
 
                 if (checkTradeLogic()) {
-//todo check here
+
                     proceedTradePopup();
 //    proceedToTrade();
                 }
@@ -723,8 +717,8 @@ public class TradeFragment extends Fragment {
         final TextView priceField = dialogView.findViewById(R.id.price_field);
         final TextView valueField = dialogView.findViewById(R.id.value_field);
 
-//        if(radiobuy.isSelected()) actionField.setText("BUY");
-//        else actionField.setText("SELL");
+        if(radiobuy.isSelected()) actionField.setText("BUY");
+        else actionField.setText("SELL");
         actionField.setText(action);
 
         symbolField.setText(symbol.getText().toString());

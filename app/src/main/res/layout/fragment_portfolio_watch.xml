@@ -228,7 +228,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="end"
                 android:background="#1973B9"
-                android:text="NET PROFIT/(LOSE):  "
+                android:text="NET PROFIT/(LOSS):  "
                 android:textColor="#fff">
 
             </Button>

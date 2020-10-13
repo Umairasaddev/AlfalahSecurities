@@ -6,11 +6,13 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.softech.bipldirect.Const.Constants;
+import com.softech.bipldirect.LoginActivity;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Random;
 
 /**
  * Developed by Hasham.Tahir on 1/27/2016.
@@ -34,16 +36,18 @@ public class MessageSocket extends Socket {
             outerLoop:
             for (int i = 0; i < Constants.ports.length; i++) {
 
+                Random rand = new Random();
+                int portPos = rand.nextInt(Constants.ports.length);
+
                 for (int j = 0; j < Constants.serverIpAddress.length; j++) {
                     InetAddress serverAddress = InetAddress.getByName(Constants.serverIpAddress[j]);
-                    Log.d("MessageSocket", "trying on: " +
-                            Constants.serverIpAddress[j] + ":" + Constants.ports[i]);
+                    Log.d("MessageSocket", "trying on: " +   Constants.serverIpAddress[j] + ":" + Constants.ports[portPos]);
 
                     try {
-                        instance = new MessageSocket(new InetSocketAddress(serverAddress, Constants.ports[i]), 6000);
+                        instance = new MessageSocket(new InetSocketAddress(serverAddress, Constants.ports[portPos]), 6000);
                         if (instance.isConnected()) {
                             Log.d("MessageSocket", "connected to: " +
-                                    Constants.serverIpAddress[j] + ":" + Constants.ports[i]);
+                                    Constants.serverIpAddress[j] + ":" + Constants.ports[portPos]);
 
                             break outerLoop;
                         }
@@ -65,7 +69,6 @@ public class MessageSocket extends Socket {
         return instance;
     }
 
-    //broadcastResponse
     private static void broadcastResponse(String msgType, String response) {
         Intent intent = new Intent(Constants.MSG_SERVER_BROADCAST);
         intent.putExtra("msgType", msgType);
@@ -83,11 +86,11 @@ public class MessageSocket extends Socket {
     }
 
 
-//    private static void logInAferReconnect() {
-//        Intent intent = new Intent(context, LoginActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-//                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(intent);
-//    }
+    private static void logInAferReconnect() {
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
 }

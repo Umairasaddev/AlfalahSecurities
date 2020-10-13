@@ -102,32 +102,26 @@ public class TopPagerAdapter extends PagerAdapter {
 
     public void updateFeed(List<Exchange> exchangeList) {
 
-//        for (int i = 0; i < exchangeList.size(); i++) {
-//
-//            Exchange symToCompare = exchangeList.get(i);
-//
-//            for (int j = 0; j < exchanges.size(); j++) {
-//
-//                Exchange existingSym = exchanges.get(j);
-//
-//                if (symToCompare.getSymbol().equals(existingSym.getSymbol())
-////                        && symToCompare.getExchangeCode().equals(existingSym.getExchangeCode())
-//                        ) {
-//                    blink(j, existingSym, symToCompare);
-//
-//                }
-//            }
-//        }
+        for (int i = 0; i < exchangeList.size(); i++) {
 
-        for (int i=0; i<exchanges.size();i++){
-            for (int j=0;j<exchangeList.size();j++){
-                if (exchanges.get(i).getSymbol().equals(exchangeList.get(j).getSymbol())){
-                    blink(i, exchanges.get(i), exchangeList.get(j));
+            Exchange symToCompare = exchangeList.get(i);
+
+            for (int j = 0; j < exchanges.size(); j++) {
+
+                Exchange existingSym = exchanges.get(j);
+
+                if (symToCompare.getSymbol().equals(existingSym.getSymbol())
+                    //    && symToCompare.getExchangeCode().equals(existingSym.getExchangeCode())
+                        ) {
+
+
+                    blink(j, existingSym, symToCompare);
+
                 }
+
             }
+
         }
-
-
     }
 
     private void blink(int position, Exchange existingSym, Exchange symToCompare) {
@@ -138,8 +132,8 @@ public class TopPagerAdapter extends PagerAdapter {
 
             if (view != null) {
 
-                float exChange = Float.parseFloat(existingSym.getChange().replace(",",""));
-                float newChange = Float.parseFloat(symToCompare.getChange().replace(",",""));
+                float exChange = Float.parseFloat(existingSym.getChange().replace(",", ""));
+                float newChange = Float.parseFloat(symToCompare.getChange().replace(",", ""));
 
                 float exCurrent = Float.parseFloat(existingSym.getCurrent().replace(",", ""));
                 float newCurrent = Float.parseFloat(symToCompare.getCurrent().replace(",", ""));

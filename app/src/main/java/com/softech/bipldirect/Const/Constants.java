@@ -10,6 +10,7 @@ public class Constants {
     public static final String ForgotPasswordResponse = "FGPS";
     public static final String SIGNUP_MESSAGE_IDENTIFIER = "SGNR";
     public static final String SIGNUP_MESSAGE_RESPONSE = "SGNS";
+    public static final String PORTFOLIO_CASH_REQUEST_RESPONSE ="PCRS";
 
     public static final String LOGIN_MESSAGE_IDENTIFIER = "LOGN";
     public static final String LOGIN_MESSAGE_RESPONSE = "LCNF";
@@ -17,6 +18,9 @@ public class Constants {
     public static final String LOGOUT_MESSAGE_RESPONSE = "LOGT";
     public static final String SECOND_LEVEL_PASSWORD_REQUEST = "GSLP";
     public static final String SECOND_LEVEL_PASSWORD_RESPONSE = "GSLR";
+
+    public static final String PORTFOLIO_CASH_REQUEST_IDENTIFIER ="PCRQ";
+
 
     public static final String SYMBOL_MESSAGE_IDENTIFIER = "SYMR";
     public static final String SYMBOL_MESSAGE_RESPONSE = "SYMS";
@@ -92,8 +96,6 @@ public class Constants {
 
     public static final String FEED_SERVER_BROADCAST = "FEED_SERVER_BROADCAST";
     public static final String MSG_SERVER_BROADCAST = "MSG_SERVER_BROADCAST";
-    public static final String PORTFOLIO_CASH_REQUEST_IDENTIFIER ="PCRQ";
-    public static final String PORTFOLIO_CASH_REQUEST_RESPONSE ="PCRS";
 
     /**
      * UnComment following block for Live server

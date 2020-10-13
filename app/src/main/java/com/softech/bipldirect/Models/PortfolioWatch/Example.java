@@ -2,8 +2,6 @@
 package com.softech.bipldirect.Models.PortfolioWatch;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Example implements Serializable
 {

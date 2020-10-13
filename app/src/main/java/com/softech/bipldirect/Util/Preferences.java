@@ -95,10 +95,4 @@ public interface Preferences {
     @KeyByResource(R.string.key_userId)
     void setUserId(String value);
 
-//    @KeyByResource(R.string.check)
-//    void setCheck(boolean value);
-//
-//    @KeyByResource(R.string.check)
-//    void getCheck(boolean value);
-
 }

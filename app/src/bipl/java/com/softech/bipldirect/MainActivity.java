@@ -6,8 +6,8 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.BuildConfig;
@@ -20,7 +20,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -82,22 +81,32 @@ import com.softech.bipldirect.Models.TopSymModel.TopSymbol;
 import com.softech.bipldirect.Network.FeedServer;
 import com.softech.bipldirect.Network.FeedSocket;
 import com.softech.bipldirect.Network.MessageSocket;
+import com.softech.bipldirect.Network.OnRestClientCallback;
+import com.softech.bipldirect.Network.RestClient;
 import com.softech.bipldirect.Util.Alert;
+import com.softech.bipldirect.Util.DividerItemDecoration;
 import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HSnackBar;
+import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Loading;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
 
 import net.orange_box.storebox.StoreBox;
+import net.orange_box.storebox.adapters.StoreType;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.softech.bipldirect.Network.MessageSocket.context;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
         MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
@@ -124,12 +133,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     //Code
     private Loading loading;
-    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 
         connectMessageServer();
 
@@ -163,7 +170,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         replaceFragment(marketFragment, true, false);*/
         getMarket();
         getSymbolsFromServer();
-        connectFeed();
+//        connectFeed();
 //        loading.show();
     }
 
@@ -205,7 +212,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
 //        new FeedServer(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
 
-        if (feedServer == null) {
+        if(feedServer == null) {
             feedServer = new FeedServer(context);
             feedServer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
         }
@@ -217,9 +224,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         super.onResume();
         enableReconnect = true;
         isActive = true;
-        // getMarket();
+
         // connect feed server every time app comes from pause or app is just started
-        // connectFeed();
+        connectFeed();
 
     }
 
@@ -291,7 +298,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             }
 
             if (TrnCodes.contains("OM25")) {
-            navMenuList.add(new Menu("Portfolio Watch", R.drawable.cash, false));
+                navMenuList.add(new Menu("Portfolio Watch", R.drawable.cash, false));
             }
             if (TrnCodes.contains("OM04")) {
                 navMenuList.add(new Menu("Portfolio Summary", R.drawable.portfoliosummary2x, false));
@@ -340,13 +347,12 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
             //navMenuList.add(new Menu("Market Indices", R.drawable.marketicon2x, false));
         }
-
         optionItems.add("Delete");
 
         navMenuList.add(new Menu("Logout", R.drawable.logout2x, false));
 
         navigationView.setLayoutManager(new LinearLayoutManager(context));
-        navigationView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+        navigationView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
 
         navigationView.setAdapter(new NavAdapter(navMenuList, this));
 
@@ -550,8 +556,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 replaceFragment(ResearchPortalFragment.newInstance(null), true, false);
 
             }
+            break;
+
             case R.drawable.cash: {
-              replaceFragment(PortfolioWatchFragment.newInstance(), true, false);
+                replaceFragment(PortfolioWatchFragment.newInstance(), true, false);
             }
         }
 
@@ -574,7 +582,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 logoutRequest();
             }
         });
@@ -622,11 +629,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.LOGOUT_MESSAGE_REQUEST_IDENTIFIER, request_obj.toString());
 
             deleteAll();
-
-
-
-
-
             startActivity(new Intent(context, LoginActivity.class));
             finish();
 
@@ -1939,32 +1941,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
-    public void portfolioWatchRequest(String clientcode){
-        JsonObject request_obj = new JsonObject();
-
-        request_obj.addProperty("MSGTYPE", Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
-        request_obj.addProperty("exchange", loginResponse.getResponse().getExchange());
-        request_obj.addProperty("client", clientcode);
-
-
-        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-
-            Map<Integer, String> map = new HashMap<>();
-            map.put(1, Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
-            map.put(2, request_obj.toString());
-
-            write(map, true);
-
-        } else {
-
-            try {
-                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void portfolioRequestRequest(String clientcode) {
 
         JsonObject request_obj = new JsonObject();
@@ -1984,6 +1960,31 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
 //            new MessageServer(context, this, true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
 //                    Constants.PORTFOLIO_REQUEST_IDENTIFIER, request_obj.toString());
+        } else {
+
+            try {
+                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void portfolioWatchRequest(String clientcode){
+        JsonObject request_obj = new JsonObject();
+
+        request_obj.addProperty("MSGTYPE", Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
+        request_obj.addProperty("exchange", loginResponse.getResponse().getExchange());
+        request_obj.addProperty("client", clientcode);
+
+
+        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+
+            Map<Integer, String> map = new HashMap<>();
+            map.put(1, Constants.PORTFOLIO_CASH_REQUEST_IDENTIFIER);
+            map.put(2, request_obj.toString());
+
+            write(map, true);
+
         } else {
 
             try {

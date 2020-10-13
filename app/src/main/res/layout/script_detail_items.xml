@@ -87,14 +87,14 @@
 
                     <TextView
                         android:textColor="#000000"
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:text="Vol:"
                         android:id="@+id/volume_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:gravity="end"
                         android:id="@+id/volume"
                         android:layout_width="wrap_content"
@@ -115,7 +115,8 @@
                         android:layout_height="wrap_content"
                         android:text="Mkt Pr: "
                         android:textColor="#000000"
-                        android:textSize="10sp" />
+                        android:textSize="8sp"
+                        />
 
                     <TextView
                         android:id="@+id/mkt_value"
@@ -124,7 +125,8 @@
                         android:text="156755"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="#555454"
-                        android:textSize="10sp" />
+                        android:textSize="8sp"
+                        />
 
                 </LinearLayout>
 
@@ -146,14 +148,14 @@
 
                     <TextView
                         android:textColor="#000000"
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:text="Avg Cost:"
                         android:id="@+id/avg_purchase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:gravity="end"
                         android:id="@+id/avg_text"
                         android:layout_width="wrap_content"
@@ -176,7 +178,8 @@
                         android:layout_height="wrap_content"
                         android:text="Ann Date:"
                         android:textColor="#000000"
-                        android:textSize="10sp" />
+                        android:textSize="8sp"
+                        />
 
                     <TextView
                         android:id="@+id/ann_dateValue"
@@ -184,7 +187,8 @@
                         android:layout_height="wrap_content"
                         android:text="-"
                         android:textColor="#555454"
-                        android:textSize="10sp" />
+                        android:textSize="8sp"
+                        />
 
                 </LinearLayout>
 
@@ -206,14 +210,14 @@
 
                     <TextView
                         android:textColor="#000000"
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:text="Total Cost:"
                         android:id="@+id/total_cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:textSize="10sp"
+                        android:textSize="8sp"
                         android:gravity="end"
                         android:id="@+id/total_cost_text"
                         android:layout_width="match_parent"
@@ -262,7 +266,8 @@
                 android:layout_height="wrap_content"
                 android:text="Last Payout : "
                 android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textSize="8sp"
+                />
 
             <TextView
                 android:id="@+id/payout_value"
@@ -270,7 +275,8 @@
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:textColor="#555454"
-                android:textSize="10sp" />
+                android:textSize="8sp"
+                />
 
         </LinearLayout>
 

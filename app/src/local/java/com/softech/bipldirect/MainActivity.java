@@ -88,16 +88,20 @@ import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
 
 import net.orange_box.storebox.StoreBox;
+import net.orange_box.storebox.adapters.StoreType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.softech.bipldirect.Network.MessageSocket.context;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
         MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
@@ -598,8 +602,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.LOGOUT_MESSAGE_REQUEST_IDENTIFIER, request_obj.toString());
 
             deleteAll();
-
-
             startActivity(new Intent(context, LoginActivity.class));
             finish();
 

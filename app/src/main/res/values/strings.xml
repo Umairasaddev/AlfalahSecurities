@@ -37,7 +37,6 @@
     <string name="key_username">key_username</string>
     <string name="key_password">key_password</string>
     <string name="key_userId">key_userid</string>
-    <string name="check">check</string>
     <string name="key_decrypted_password">key_decrypted_password</string>
     <string name="key_client">key_client</string>
     <string name="transaction">Transaction</string>

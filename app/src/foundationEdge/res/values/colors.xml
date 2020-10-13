@@ -6,6 +6,7 @@
     <color name="topExchangeBackground">#383838</color>
     <color name="textColorPrimary">#000000</color>
     <color name="textColorSecondary">#FFFFFF</color>
+	 <color name="black">#000</color>
     <color name="arrowColor">#FFFFFF</color>
     <color name="textSymbolDetailColor">#a5a5a5</color>
     <color name="orderStatusSelectedColor">#6e6e6e</color>

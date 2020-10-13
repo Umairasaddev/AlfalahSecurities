@@ -4,13 +4,13 @@ package com.softech.bipldirect.Fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -30,14 +31,18 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
-import com.softech.bipldirect.Adapters.PortfolioAdapter;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
-import com.softech.bipldirect.MainActivity;
+import com.softech.bipldirect.Models.AccountModel.AccountDetail;
+import com.softech.bipldirect.Models.AccountModel.OrdersList;
+import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.Models.PortfolioModel.*;
+import com.softech.bipldirect.Adapters.PortfolioAdapter;
+import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.Preferences;
+import com.softech.bipldirect.charts.Pacpie;
 
 import net.orange_box.storebox.StoreBox;
 
@@ -57,12 +62,12 @@ import butterknife.OnClick;
 public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPortofolioClickListner {
 
     public static final String TYPE = "type";
-    //public static Pacpie pacpie;
+    public static Pacpie pacpie;
     public static Preferences preferences;
     public static LoginResponse loginResponse;
-    //    private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};
-//    int[] pieChartValues = {25, 15, 20, 40};
-//    float values[] = {700, 400, 100, 500, 600};
+    private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};
+    int[] pieChartValues = {25, 15, 20, 40};
+    float values[] = {700, 400, 100, 500, 600};
     @BindView(R.id.etclientcode)
     EditText clientcode;
     @BindView(R.id.portfolio_list)
@@ -89,11 +94,11 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
     private SearchClientListAdapter searchClientListAdapter;
     List<PortfolioSymbol> values1;
-    List<String> sortedValues;
     View v;
     boolean isSetInitialText = false;
 
-
+    public PortfolioFragment() {
+    }
 
     public static PortfolioFragment newInstance() {
         return new PortfolioFragment();
@@ -118,7 +123,6 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_portfolio, container, false);
         ButterKnife.bind(this, view);
         portfolio_list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -129,16 +133,13 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
             ((MainActivity) getActivity()).portfolioRequestRequest(clientcode.getText().toString());
-            clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
-            searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
-        }
-        else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
             clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
-
+        ;
         v = view;
 
         return view;
@@ -216,7 +217,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
                 }
             });
-            View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.acc_list_item_footer, portfolio_list, false);
+//            View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.acc_list_item_footer, portfolio_list, false);
             double totalValue = 0;
             for (PortfolioSymbol obj : values) {
 
@@ -263,7 +264,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             ArrayList<Portfolio> arrayMain = new ArrayList<>();
             arrayMain.addAll(values);
             arrayMain.add(portfolioFooter);
-            PortfolioAdapter portfolioAdapter = new PortfolioAdapter(getActivity(), arrayMain,  this);
+            PortfolioAdapter portfolioAdapter = new PortfolioAdapter(getActivity(), arrayMain, this);
             portfolio_list.setAdapter(portfolioAdapter);
             portfolioAdapter.notifyDataSetChanged();
             setUpPieChart();
@@ -285,7 +286,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(60, 3, 20, 3);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
 
         pieChart.setDragDecelerationFrictionCoef(0.95f);
 
@@ -293,10 +294,10 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
         pieChart.setHoleColor(Color.WHITE);
 
         pieChart.setTransparentCircleColor(Color.WHITE);
-        pieChart.setTransparentCircleAlpha(50);
+        pieChart.setTransparentCircleAlpha(110);
 
-        pieChart.setHoleRadius(30f);
-        pieChart.setTransparentCircleRadius(30f);
+        pieChart.setHoleRadius(58f);
+        pieChart.setTransparentCircleRadius(61f);
 
         pieChart.setDrawCenterText(false);
 
@@ -306,7 +307,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
         // enable rotation of the chart by touch
         pieChart.setRotationEnabled(false);
 
-        // pieChart.setHighlightPerTapEnabled(true);
+        pieChart.setHighlightPerTapEnabled(true);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -324,92 +325,40 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             ArrayList<PieEntry> entries = new ArrayList<>();
             List<LegendEntry> legendEntries = new ArrayList<>();
 
-            if (entries.size() > 0) {
+            for (int i = 0; i < values1.size(); i++) {
 
-                Collections.sort(values1, new Comparator<PortfolioSymbol>() {
-                    @Override
-                    public int compare(PortfolioSymbol t1, PortfolioSymbol t2) {
+                float percent = Float.valueOf(values1.get(i).getPfWeight());
 
-                        if(Float.parseFloat(t1.getPfWeight()) < Float.parseFloat(t2.getPfWeight())){
+                if (percent > 0) {
 
-                            return 1;
-                        }
-                        else if(Float.parseFloat(t1.getPfWeight()) > Float.parseFloat(t2.getPfWeight()))
-                        {
-                            return -1;
-                        }
-                        else
-                            return 0;
-
-                    }
-                });
-
-                for(PortfolioSymbol p: values1){
-                    Log.d("VALUES", p.getPfWeight());
-
+                    entries.add(new PieEntry(percent, values1.get(i).getSymbol()));
                 }
             }
 
+            for (int i = 0; i < entries.size(); i++) {
 
-            if(values1.size() < 18){
-                for (int i = 0; i < values1.size(); i++) {
-
-                    float percent = Float.valueOf(values1.get(i).getPfWeight());
-
-                    if (percent > 0) {
-
-                        entries.add(new PieEntry(percent, values1.get(i).getSymbol()));
-                    }
-                }
-
-                for (int i = 0; i < entries.size(); i++) {
-
-                    legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
-                            10f,10f, null, chartColors[i]));
-                }
+                legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
+                        Float.NaN, Float.NaN, null, chartColors[i]));
             }
-            else {
-                for (int i = 0; i <= 18; i++) {
-
-                    entries.add(new PieEntry(Float.parseFloat(values1.get(i).getPfWeight()), values1.get(i).getSymbol()));
-
-                    legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
-                            10f,10f, null, chartColors[i]));
-                }
-
-                float addedValues =0;
-                for (int i = 19; i < values1.size(); i++) {
-
-                    addedValues  += Float.valueOf(values1.get(i).getPfWeight());
-
-                }
-
-                Log.d("MyTesting","added values "+addedValues);
-                entries.add(new PieEntry(addedValues, "others"));
-                legendEntries.add(new LegendEntry("others", Legend.LegendForm.CIRCLE,
-                        10f,10f, null,chartColors[19]));
-            }
-
-            Log.d("MyTesting","legendEntries "+legendEntries);
-            Log.d("MyTesting","entries "+entries);
-
 
             PieDataSet dataSet = new PieDataSet(entries, "Allocation by Funds");
             dataSet.setDrawIcons(false);
-            dataSet.setSliceSpace(2f);
+            dataSet.setSliceSpace(3f);
             dataSet.setIconsOffset(new MPPointF(0, 40));
-            dataSet.setSelectionShift(10f);
+            dataSet.setSelectionShift(5f);
             dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
             dataSet.setValueTextColor(Color.BLACK);
             dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-            dataSet.setValueLinePart1OffsetPercentage(70.f);
-            dataSet.setValueLinePart1Length(0.4f);
-            dataSet.setValueLinePart2Length(0.7f);
+            dataSet.setValueLinePart1OffsetPercentage(80.f);
+            dataSet.setValueLinePart1Length(0.2f);
+            dataSet.setValueLinePart2Length(0.4f);
 
             dataSet.setColors(chartColors);
+            dataSet.setSelectionShift(4f);
             PieData data = new PieData(dataSet);
             data.setValueFormatter(new PercentFormatter());
             data.setValueTextSize(11f);
+            data.setValueTextColor(Color.BLACK);
             pieChart.setData(data);
 
             // undo all highlights
@@ -421,14 +370,9 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             Legend l = pieChart.getLegend();
             l.setCustom(legendEntries);
             l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-            l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+            l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
             l.setOrientation(Legend.LegendOrientation.VERTICAL);
             l.setDrawInside(false);
-
-            l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-            l.setTextColor(Color.BLACK);
-            l.setFormToTextSpace(5);
-            l.setXEntrySpace(50.0f);
         }
 
     }

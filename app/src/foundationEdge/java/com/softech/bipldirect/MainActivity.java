@@ -232,7 +232,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
             }
             if (TrnCodes.contains("OM19")) {
-             //   navMenuList.add(new Menu("Exchange", R.drawable.marketicon2x, false));
+                //   navMenuList.add(new Menu("Exchange", R.drawable.marketicon2x, false));
                 navMenuList.add(new Menu("Index Watch", R.drawable.marketicon2x, false));
             }
             if (TrnCodes.contains("OM24")) {
@@ -304,8 +304,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         } else {
             navMenuList.add(new Menu("Market", R.drawable.iconmarket2x, false));
 
-       //     navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
-                 navMenuList.add(new Menu("Market Indices", R.drawable.marketicon2x, false));
+            //     navMenuList.add(new Menu("Exchanges", R.drawable.marketicon2x, false));
+            navMenuList.add(new Menu("Market Indices", R.drawable.marketicon2x, false));
         }
         if (TrnCodes.contains("OM24")) {
             optionItems.add("Research");
@@ -709,6 +709,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         } catch (IOException e) {
             e.printStackTrace();
         }
+        EncryptedPasswordActivity.check=0;
 
         preferences.removeLoginResult(R.string.key_login);
         preferences.removeMarketResult(R.string.key_symbols);
@@ -745,7 +746,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             case "Research":
                 ResearchPortalFragment fragment = ResearchPortalFragment.newInstance(sym.getSymbol());
                 replaceFragment(fragment, true, true);
-               // callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
+                // callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
                 break;
         }
     }
@@ -1633,7 +1634,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
             } catch (Exception e) {
                 e.printStackTrace();
-             //   Alert.showErrorAlert(context);
+                //   Alert.showErrorAlert(context);
 
 
             }

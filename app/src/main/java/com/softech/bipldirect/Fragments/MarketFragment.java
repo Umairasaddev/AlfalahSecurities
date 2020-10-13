@@ -121,7 +121,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         // For bipl flavor
 //        searchKeywordsList = new ArrayList<>(MainActivity.symbolsResponse.getResponse().getSymbols());
         Log.d("search_debug", "onCreate: setting adapter with " + searchKeywordsList.size());
-        searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
+        searchAdapter = new SearchListAdapter(getContext(), searchKeywordsList);
         // For bipl flavor
     }
 
@@ -129,7 +129,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 //        Log.d("MarketFragment","search");
         searchKeywordsList.clear();
         searchKeywordsList.addAll(MainActivity.symbolsResponse.getResponse().getSymbols());
-        searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
+        searchAdapter = new SearchListAdapter(getContext(), searchKeywordsList);
         Log.d("search_debug", "setSearchSymbols: setting adapter with " + searchKeywordsList.size());
         listSearch.setAdapter(searchAdapter);
     }

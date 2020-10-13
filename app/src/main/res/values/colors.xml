@@ -14,21 +14,22 @@
     <color name="orderStatusUnselectedColor">#353535</color>
     <color name="textColorPrimary">#000000</color>
     <color name="textColorSecondary">#FFFFFF</color>
+    <color name="black">#000000</color>
 
     <color name="slice_color">#5243ae</color>
     <color name="slice_color_2">#ff6c2e</color>
     <color name="slice_color_3">#398ddc</color>
     <color name="slice_color_4">#a9ae16</color>
 
-    <color name="blinkGreen">#3e5988</color>
+    <color name="blinkGreen">#228B22</color>
     <color name="blinkRed">#FF3333</color>
     <color name="blinkGrey">#555555</color>
     <color name="default_slice_color">#88FF0000</color>
     <color name="default_line_color">#88FFFFFF</color>
     <color name="greencolor">#00ff00</color>
-    <color name="dialog_text_green">#86AA76</color>
 
     <color name="ledRed">#ec0001</color>
     <color name="ledGreen">#00ff00</color>
+    <color name="textSymbolDetailColor">#A5A5A5</color>
 
 </resources>

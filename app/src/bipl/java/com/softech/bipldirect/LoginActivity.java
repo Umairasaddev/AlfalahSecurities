@@ -82,15 +82,17 @@ public class LoginActivity extends BaseActivity {
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
 //            TextView etServer = (TextView) findViewById(R.id.login_server);
 //        }
-//
-//        etName.setText("00005425");
-//        etPass.setText("bipl1234");
-
+//        etName.setText("act01315");
+//        etPass.setText("123456");
 //        etName.setText("00022249");
 //        etPass.setText("bipl1234");
+//        etName.setText("00024639");
+//        etPass.setText("pakipower1");
+//        etName.setText("00024639");
+//        etPass.setText("pakipower2");
 
-        etName.setText("00024639");
-        etPass.setText("pakipower2");
+        etName.setText("00005425");
+        etPass.setText("bipl1234");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -156,66 +158,62 @@ public class LoginActivity extends BaseActivity {
             login_obj.addProperty("userId", userEncoded);
             login_obj.addProperty("pswd", passEncoded);
             // For encryption
-            login_obj.addProperty("Ver", "1.7");
+            login_obj.addProperty("Ver", BuildConfig.VERSION_NAME);
 //For encryption
             if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-
+//
                 Constants.KASB_API_LOGIN.length();
 
-//                    connectWithMessageServer(login_obj);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("userId", user);
 
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("userId", user);
-
-                        RestClient.postRequest("login",
-                                context,
-                                Constants.KASB_API_LOGIN,
-                                jsonObject,
-                                new OnRestClientCallback() {
-                                    @Override
-                                    public void onRestSuccess(JSONObject response, String action) {
+                    RestClient.postRequest("login",
+                            context,
+                            Constants.KASB_API_LOGIN,
+                            jsonObject,
+                            new OnRestClientCallback() {
+                                @Override
+                                public void onRestSuccess(JSONObject response, String action) {
 
 //                                    Log.d("Call","response: "+response);
+                                    try {
+                                        if (response.getString("code").equals("200")) {
 
-                                        try {
-                                            if (response.getString("code").equals("200")) {
+                                            String ip = response.getString("ip");
+                                            String port = response.getString("port");
+                                            Constants.serverIpAddress = new String[]{ip};
+                                            if (port.contains(",")) {
+                                                String[] portsArray = port.split(",");
+                                                Constants.ports = new int[portsArray.length];
+                                                for (int i = 0; i < Constants.ports.length; i++) {
+                                                    Constants.ports[i] = Integer.parseInt(portsArray[i]);
+                                                }
+                                            } else
+                                                Constants.ports[0] = Integer.parseInt(port);
 
-                                                String ip = response.getString("ip");
-                                                Log.d("My IP",ip);
-                                                String port = response.getString("port");
-                                                Constants.serverIpAddress = new String[]{ip};
-                                                if (port.contains(",")) {
-                                                    String[] portsArray = port.split(",");
-                                                    Constants.ports = new int[portsArray.length];
-                                                    for (int i = 0; i < Constants.ports.length; i++) {
-                                                        Constants.ports[i] = Integer.parseInt(portsArray[i]);
-                                                    }
-                                                } else
-                                                    Constants.ports[0] = Integer.parseInt(port);
+                                            connectWithMessageServer(login_obj);
 
-                                                connectWithMessageServer(login_obj);
-
-                                            }
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                            HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
                                         }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
                                     }
+                                }
 
-                                    @Override
-                                    public void onRestError(Exception e, String action) {
+                                @Override
+                                public void onRestError(Exception e, String action) {
 
-                                        Alert.showErrorAlert(context);
-                                        Log.d("Call", "onRestError: ");
-                                    }
-                                }, false, "Fetching Server IP's");
+                                    Alert.showErrorAlert(context);
+                                    Log.d("Call", "onRestError: ");
+                                }
+                            }, false, "Fetching Server IP's");
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Alert.showErrorAlert(context);
-                        Log.d("Call", "JSONException: ");
-                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Alert.showErrorAlert(context);
+                    Log.d("Call", "JSONException: ");
+                }
 
             } else {
                 try {
@@ -232,8 +230,6 @@ public class LoginActivity extends BaseActivity {
         }
 
     }
-
-
 
     @OnClick(R.id.login_btn)
     public void submit(final View view) {
@@ -311,11 +307,6 @@ public class LoginActivity extends BaseActivity {
                                     try {
                                         String encodedPass = result.getResponse().getSecondLevelPassword();
 
-                                        if (!encodedPass.equals("")) {
-                                            preferences.setDecryptedPassword(encodedPass);
-                                            startActivity(new Intent(context, EncryptedPasswordActivity.class));
-                                            finish();
-                                        }
 
                                         if (encodedPass.equals("")) {
 

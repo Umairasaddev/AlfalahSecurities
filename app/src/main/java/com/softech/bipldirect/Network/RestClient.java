@@ -75,12 +75,10 @@ public class RestClient {
                 }
             });
 
-            request.setShouldCache(false);
             request.setRetryPolicy(new DefaultRetryPolicy(
                     10000,
                     2,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-            );
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             // Add the request to the queue
             RequestQueue queue = VolleySingleton.getInstance().getRequestQueue();
             queue.add(request);

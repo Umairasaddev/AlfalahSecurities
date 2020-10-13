@@ -2,10 +2,6 @@ package com.softech.bipldirect.Models.PortfolioWatch;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Response {

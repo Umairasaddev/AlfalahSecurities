@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.TopSymModel.TopSymbol;
 import com.softech.bipldirect.Adapters.TopSymbolAdapter;
+import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 

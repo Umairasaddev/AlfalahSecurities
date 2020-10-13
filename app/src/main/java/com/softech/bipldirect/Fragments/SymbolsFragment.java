@@ -19,6 +19,7 @@ import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
 import com.softech.bipldirect.R;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
