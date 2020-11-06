@@ -79,7 +79,6 @@
 
         <Button
             android:id="@+id/login_btn"
-            fontPath="fonts/Helvetica Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/login_pass"

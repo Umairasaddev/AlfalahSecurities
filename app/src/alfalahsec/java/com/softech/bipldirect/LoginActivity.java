@@ -89,8 +89,8 @@ public class LoginActivity extends BaseActivity {
 
 
 //
-//        etName.setText("Softech");
-//        etPass.setText("afs987");
+        etName.setText("Softech");
+        etPass.setText("afs987");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();

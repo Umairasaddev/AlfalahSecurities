@@ -16,7 +16,6 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
         android:layout_centerHorizontal="true"
         android:background="@color/greyBar"
         android:drawableEnd="@drawable/iconsearch"
@@ -29,7 +28,6 @@
 
     <TextView
         android:id="@+id/symbol"
-        fontPath="fonts/Helvetica Bold.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search"
@@ -41,7 +39,6 @@
 
     <TextView
         android:id="@+id/name"
-        fontPath="fonts/Helvetica Bold.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/symbol"
@@ -346,7 +343,6 @@
             </TableLayout>
 
             <TextView
-                fontPath="fonts/Helvetica Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -368,7 +364,6 @@
                     android:weightSum="3">
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -377,7 +372,6 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -386,7 +380,6 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -404,7 +397,6 @@
                     android:weightSum="4">
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -458,7 +450,6 @@
                     android:weightSum="4">
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -512,7 +503,6 @@
                     android:weightSum="4">
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -566,7 +556,6 @@
                     android:weightSum="4">
 
                     <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

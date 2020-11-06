@@ -89,7 +89,7 @@ public class LoginActivity extends BaseActivity {
 //        etPass.setText("abcdef123");
 //
 //            etName.setText("softech");
-//        etPass.setText("allah786");
+//        etPass.setText("Allah_786");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -111,6 +111,7 @@ public class LoginActivity extends BaseActivity {
                 startActivity(new Intent(context, SignupActivity.class));
             }
         });
+
 //        registermeBut.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -149,15 +150,17 @@ public class LoginActivity extends BaseActivity {
             e.printStackTrace();
         }
         if (user.length() > 0 && pas.length() > 0) {
-            final JsonObject login_obj = new JsonObject();
 
-            login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
-            login_obj.addProperty("userId", userEncoded);
-            login_obj.addProperty("pswd", passEncoded);
-            // For encryption
-            login_obj.addProperty("Ver", "1.7");
+            if (pas.length()>7 && pas.length()<16){
+                final JsonObject login_obj = new JsonObject();
 
-            connectWithMessageServer(login_obj);
+                login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
+                login_obj.addProperty("userId", userEncoded);
+                login_obj.addProperty("pswd", passEncoded);
+                // For encryption
+                login_obj.addProperty("Ver", "1.7");
+
+                connectWithMessageServer(login_obj);
 
 //For encryption
 //            if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
@@ -222,6 +225,12 @@ public class LoginActivity extends BaseActivity {
 //                    e.printStackTrace();
 //                }
 //            }
+
+            }
+            else {
+                HSnackBar.showMsg(view, "Password length should be minimum of 8 characters");
+
+            }
 
         } else {
             HSnackBar.showMsg(view, "Please enter username and password.");

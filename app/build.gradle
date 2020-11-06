@@ -81,8 +81,8 @@ android {
             applicationId "com.softech.abbasisecurities"
             minSdkVersion 18
             targetSdkVersion 28
-            versionCode 9
-            versionName "2.0"
+            versionCode 10
+            versionName "2.1"
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"203.101.179.147\"," + "\"203.101.179.147\"" + "}"
 //                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
@@ -99,13 +99,13 @@ android {
             applicationId "com.softech.askarisecurities"
             minSdkVersion 17
             targetSdkVersion 28
-            versionCode 3
-            versionName "3.0"
+            versionCode 4
+            versionName "3.1"
             multiDexEnabled true
             buildConfigField 'String[]', 'HOST',
 //                            "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
 //                            "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
-                    "{" + "\"115.186.156.214\"," + "\"115.186.156.214\"" + "}"
+                    "{" + "\"115.186.156.214\"," + "\"59.103.185.185\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
@@ -120,8 +120,8 @@ android {
             applicationId "com.softech.foundationedge"
             minSdkVersion 17
             targetSdkVersion 28
-            versionCode 9
-            versionName "2.0"
+            versionCode 10
+            versionName "2.1"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"

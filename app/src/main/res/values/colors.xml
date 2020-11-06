@@ -15,6 +15,7 @@
     <color name="textColorPrimary">#000000</color>
     <color name="textColorSecondary">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="dialog_text_green">#86AA76</color>
 
     <color name="slice_color">#5243ae</color>
     <color name="slice_color_2">#ff6c2e</color>

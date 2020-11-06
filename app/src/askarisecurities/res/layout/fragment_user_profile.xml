@@ -19,7 +19,6 @@
             android:id="@+id/linearLayout10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioGroup"
 
             android:layout_marginRight="6dp"
             android:layout_marginBottom="4dp"
@@ -52,7 +51,6 @@
         <TextView
             android:id="@+id/textViewSummary"
             android:layout_below="@id/linearLayout10"
-            fontPath="fonts/Helvetica Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -556,7 +554,6 @@
 
         <TextView
             android:id="@+id/textViewSummary2"
-            fontPath="fonts/Helvetica Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tableLayout"
@@ -575,7 +572,6 @@
             android:orientation="vertical">
 
             <TextView
-                fontPath="fonts/Helvetica Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -603,7 +599,6 @@
             android:orientation="vertical">
 
             <TextView
-                fontPath="fonts/Helvetica Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -624,7 +619,6 @@
 
         <TextView
             android:id="@+id/textViewSummary3"
-            fontPath="fonts/Helvetica Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tableLayout3"

@@ -254,7 +254,7 @@
                         android:background="@color/greyBar"
                         android:hint="@string/enterTriggerPrice"
                         android:imeOptions="actionDone"
-                        android:inputType="numberSigned|numberDecimal"
+                        android:inputType="numberDecimal"
                         android:padding="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/textColorPrimary" />

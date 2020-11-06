@@ -101,8 +101,8 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
                 holder.side.setText(sideLabelText + "(STLMKT)");
                 break;
         }
-
-        holder.price.setText(decimalFormat.format(obj.getPrice()));
+//        String price=obj.getPrice().replace(",","");
+        holder.price.setText(obj.getPrice());
 
         holder.volume.setText("" + obj.getVolume());
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -52,8 +53,8 @@ public class LoginActivity extends BaseActivity {
     EditText etName;
     @BindView(R.id.login_pass)
     EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
+        @BindView(R.id.login_registerme)
+        Button registermeBut;
     @BindView(R.id.tv_forgotPwd)
     TextView forgotPassword;
 
@@ -86,8 +87,8 @@ public class LoginActivity extends BaseActivity {
 
 //        etName.setText("RMS01");
 //        etPass.setText("123456");
-        etName.setText("ACT01315");
-        etPass.setText("445566");
+//        etName.setText("ACT01315");
+//        etPass.setText("445566");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -103,12 +104,12 @@ public class LoginActivity extends BaseActivity {
                 startActivity(new Intent(context, ForgetPasswordActivity.class));
             }
         });
-//        registermeBut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(context, SignupActivity.class));
-//            }
-//        });
+        registermeBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, SignupActivity.class));
+            }
+        });
 //        etServer.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
