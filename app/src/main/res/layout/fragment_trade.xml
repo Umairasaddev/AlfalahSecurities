@@ -452,7 +452,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            fontPath="fonts/Helvetica Bold.ttf"
+                            android:fontFamily="@font/helvetica_bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -481,7 +481,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            fontPath="fonts/Helvetica Bold.ttf"
+                            android:fontFamily="@font/helvetica_bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -510,7 +510,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            fontPath="fonts/Helvetica Bold.ttf"
+                            android:fontFamily="@font/helvetica_bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"

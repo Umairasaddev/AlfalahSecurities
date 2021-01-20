@@ -17,7 +17,7 @@
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
         android:scaleType="fitCenter"
-        android:src="@drawable/pointer" />
+        android:src="@drawable/ic_launcher" />
 
     <RelativeLayout
         android:id="@+id/linearLayout8"
@@ -87,7 +87,7 @@
             android:layout_alignStart="@+id/login_pass"
             android:layout_below="@+id/tv_forgotPwd"
             android:layout_marginTop="15dp"
-            android:background="@drawable/button_blue"
+            android:background="@drawable/button_yellowishgreen"
             android:ems="10"
             android:text="Login"
             android:textColor="@android:color/white" />

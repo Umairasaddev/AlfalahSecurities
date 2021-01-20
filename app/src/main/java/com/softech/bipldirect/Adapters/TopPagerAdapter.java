@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.softech.bipldirect.Models.MarketModel.Exchange;
@@ -65,6 +66,7 @@ public class TopPagerAdapter extends PagerAdapter {
             exc_chng.setTextColor(colorRed);
 
         } else if (exChange > 0) {
+
 
             exc_chng.setTextColor(colorGreen);
 

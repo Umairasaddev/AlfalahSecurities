@@ -68,7 +68,7 @@ public class ChangePasswordActivity extends BaseActivity {
 
         if (!TextUtils.equals(oldPassword, "")) {
 
-            if (!TextUtils.equals(newPassword, "") && newPassword.length() >= 6) {
+            if (!TextUtils.equals(newPassword, "") && newPassword.length() >= 8) {
 
                 if (TextUtils.equals(newPassword, confirmPassword)) {
 
@@ -78,7 +78,7 @@ public class ChangePasswordActivity extends BaseActivity {
                     HToast.showMsg(this, "Passwords do not match.");
                 }
             } else {
-                HToast.showMsg(this, "New password must be equal to 6 characters.");
+                HToast.showMsg(this, "New password must be equal to at least 8 characters.");
             }
 
         } else {

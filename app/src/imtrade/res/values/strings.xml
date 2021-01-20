@@ -5,5 +5,6 @@
     <string name="enterYourLoginCredentials">Enter your login credentials</string>
     <string name="link">www.bmatrade.com</string>
     <string name="thinkStupid">Think Investments. Think BMA</string>
+    <string name="instructions">Place your fingertip on the Home button to verify your identity</string>
     <string name="pleaseLoginHere">PLEASE LOGIN HERE</string>
 </resources>

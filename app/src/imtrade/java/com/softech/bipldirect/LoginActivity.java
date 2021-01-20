@@ -1,14 +1,24 @@
 package com.softech.bipldirect;
 
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyPermanentlyInvalidatedException;
+import android.security.keystore.KeyProperties;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -24,6 +34,7 @@ import com.softech.bipldirect.Network.OnRestClientCallback;
 import com.softech.bipldirect.Network.RestClient;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.EnctyptionUtils;
+import com.softech.bipldirect.Util.FingerprintHandler;
 import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Loading;
@@ -35,8 +46,22 @@ import net.orange_box.storebox.StoreBox;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,10 +72,11 @@ import butterknife.OnClick;
  */
 
 
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
-    public static boolean check=false;
+    public static boolean check = false;
     @BindView(R.id.login_name)
     EditText etName;
     @BindView(R.id.login_pass)
@@ -71,13 +97,20 @@ public class LoginActivity extends BaseActivity {
     String passEncoded, passdecoded;
     Button login_btn;
     private Loading loading;
+    private FingerprintManager.CryptoObject cryptoObject;
+    private FingerprintManager fingerprintManager;
+    private KeyguardManager keyguardManager;
+    private static final String KEY_NAME = "yourKey";
+    private Cipher cipher;
+    private KeyStore keyStore;
+    private KeyGenerator keyGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        login_btn= (Button) findViewById(R.id.login_btn);
+        login_btn = (Button) findViewById(R.id.login_btn);
         loading = new Loading(context, "Please wait...");
 
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
@@ -94,8 +127,8 @@ public class LoginActivity extends BaseActivity {
 //        etName.setText("RMS01");
 //        etPass.setText("123456");
 
-//        etName.setText("TESTING");
-//        etPass.setText("12345678");
+        etName.setText("TESTING");
+        etPass.setText("12345678");
 //        etName.setText("25394");
 //        etPass.setText("12345678");
 
@@ -138,6 +171,141 @@ public class LoginActivity extends BaseActivity {
 //                }
 //            }
 //        });
+
+
+
+
+    }
+
+    public void checkFingerPrint() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //Get an instance of KeyguardManager and FingerprintManager//
+            keyguardManager =
+                    (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+            fingerprintManager =
+                    (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+
+            //Check whether the device has a fingerprint sensor//
+            if (!fingerprintManager.isHardwareDetected()) {
+                // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
+                Toast.makeText(context, "Your device doesn't support fingerprint authentication", Toast.LENGTH_SHORT).show();
+            }
+            //Check whether the user has granted your app the USE_FINGERPRINT permission//
+//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_BIOMETRIC)
+//                    != PackageManager.PERMISSION_GRANTED) {
+//                // If your app doesn't have this permission, then display the following text//
+//                Toast.makeText(context, "Please enable the fingerprint permission", Toast.LENGTH_SHORT).show();
+//
+//            }
+
+            //Check that the user has registered at least one fingerprint//
+            if (!fingerprintManager.hasEnrolledFingerprints()) {
+                // If the user hasn’t configured any fingerprints, then display the following message//
+                Toast.makeText(context, "No fingerprint configured. Please register at least one fingerprint in your device's Settings", Toast.LENGTH_SHORT).show();
+
+            }
+
+            //Check that the lockscreen is secured//
+            if (!keyguardManager.isKeyguardSecure()) {
+                // If the user hasn’t secured their lockscreen with a PIN password or pattern, then display the following text//
+                Toast.makeText(context, "Please enable lockscreen security in your device's Settings", Toast.LENGTH_SHORT).show();
+
+            } else {
+                try {
+                    generateKey();
+
+                } catch (Exception e) {
+
+                }
+
+                if (initCipher()) {
+                    //If the cipher is initialized successfully, then create a CryptoObject instance//
+                    cryptoObject = new FingerprintManager.CryptoObject(cipher);
+
+                    // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
+                    // for starting the authentication process (via the startAuth method) and processing the authentication process events//
+                    FingerprintHandler helper = new FingerprintHandler(this);
+                    helper.startAuth(fingerprintManager, cryptoObject);
+                }
+            }
+        }
+    }
+
+    private void generateKey() throws FingerprintException {
+        try {
+            // Obtain a reference to the Keystore using the standard Android keystore container identifier (“AndroidKeystore”)//
+            keyStore = KeyStore.getInstance("AndroidKeyStore");
+
+            //Generate the key//
+            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+
+            //Initialize an empty KeyStore//
+            keyStore.load(null);
+
+            //Initialize the KeyGenerator//
+            keyGenerator.init(new
+
+                    //Specify the operation(s) this key can be used for//
+                    KeyGenParameterSpec.Builder(KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT |
+                            KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+
+                    //Configure this key so that the user has to confirm their identity with a fingerprint each time they want to use it//
+                    .setUserAuthenticationRequired(true)
+                    .setEncryptionPaddings(
+                            KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    .build());
+
+            //Generate the key//
+            keyGenerator.generateKey();
+
+        } catch (KeyStoreException
+                | NoSuchAlgorithmException
+                | NoSuchProviderException
+                | InvalidAlgorithmParameterException
+                | CertificateException
+                | IOException exc) {
+            exc.printStackTrace();
+            throw new FingerprintException(exc);
+        }
+    }
+
+
+    public boolean initCipher() {
+        try {
+            //Obtain a cipher instance and configure it with the properties required for fingerprint authentication//
+            cipher = Cipher.getInstance(
+                    KeyProperties.KEY_ALGORITHM_AES + "/"
+                            + KeyProperties.BLOCK_MODE_CBC + "/"
+                            + KeyProperties.ENCRYPTION_PADDING_PKCS7);
+        } catch (NoSuchAlgorithmException |
+                NoSuchPaddingException e) {
+            throw new RuntimeException("Failed to get Cipher", e);
+        }
+
+        try {
+            keyStore.load(null);
+            SecretKey key = (SecretKey) keyStore.getKey(KEY_NAME,
+                    null);
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            //Return true if the cipher has been initialized successfully//
+            return true;
+        } catch (KeyPermanentlyInvalidatedException e) {
+
+            //Return false if cipher initialization failed//
+            return false;
+        } catch (KeyStoreException | CertificateException
+                | UnrecoverableKeyException | IOException
+                | NoSuchAlgorithmException | InvalidKeyException e) {
+            throw new RuntimeException("Failed to init Cipher", e);
+        }
+    }
+
+    private class FingerprintException extends Exception {
+        public FingerprintException(Exception e) {
+            super(e);
+        }
     }
 
     public void callingloginservice(View view) {
@@ -184,12 +352,13 @@ public class LoginActivity extends BaseActivity {
     @OnClick(R.id.login_btn)
     public void submit(final View view) {
         callingloginservice(view);
+//        checkFingerPrint();
     }
 
     private void connectWithMessageServer(final JsonObject login_obj) {
         Log.d(TAG, "connectWithMessageServer");
 
-        connectMessageServerWithNewInstance();
+        connectMessageServer();
 
         Handler handler = new Handler();
 
@@ -219,7 +388,7 @@ public class LoginActivity extends BaseActivity {
     public void onMessageReceived(String action, String resp) {
 
         Gson gson = new Gson();
-        check=true;
+        check = true;
         JsonParser jsonParser = new JsonParser();
 
         try {
@@ -238,7 +407,7 @@ public class LoginActivity extends BaseActivity {
                     case Constants.LOGIN_MESSAGE_RESPONSE: {
 
                         LoginResponse result = gson.fromJson(resp, LoginResponse.class);
-                        Log.d("Call","response result: "+result);
+                        Log.d("Call", "response result: " + result);
 
 
                         if (result != null) {
@@ -260,12 +429,12 @@ public class LoginActivity extends BaseActivity {
                                         if (encodedPass.equals("")) {
                                             loading.dismiss();
                                             preferences.setDecryptedPassword(encodedPass);
-                                            check=false;
+                                            check = false;
                                             startActivity(new Intent(context, EncryptedPasswordActivity.class));
                                             finish();
                                         } else {
                                             loading.dismiss();
-                                            check=false;
+                                            check = false;
                                             EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
                                             passdecoded = enctyptionUtils.decrypt(result.getResponse().getSecondLevelPassword());
                                             Log.d("passworddecoded", passdecoded);
@@ -281,7 +450,7 @@ public class LoginActivity extends BaseActivity {
                                         e.printStackTrace();
 
                                     }
-                                } else if (result.getResponse().getChangePassword() !=null && result.getResponse().getChangePassword().equals("true")) {
+                                } else if (result.getResponse().getChangePassword() != null && result.getResponse().getChangePassword().equals("true")) {
                                     loading.dismiss();
 
                                     preferences.setUserId(result.getResponse().getUserId());

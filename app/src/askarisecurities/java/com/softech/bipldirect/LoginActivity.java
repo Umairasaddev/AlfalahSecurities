@@ -151,7 +151,7 @@ public class LoginActivity extends BaseActivity {
         }
         if (user.length() > 0 && pas.length() > 0) {
 
-            if (pas.length()>7 && pas.length()<16){
+            if (pas.length()>4 && pas.length()<=16){
                 final JsonObject login_obj = new JsonObject();
 
                 login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);

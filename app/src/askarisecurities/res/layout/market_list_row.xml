@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/symbol"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OGDC"
@@ -64,7 +64,7 @@
 
             <TextView
                 android:id="@+id/current"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="148.99"
@@ -78,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bid: "
@@ -87,7 +87,7 @@
 
                 <TextView
                     android:id="@+id/buy_price"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="148.99"
@@ -97,7 +97,7 @@
 
                 <TextView
                     android:id="@+id/textView7"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" x "
@@ -106,7 +106,7 @@
 
                 <TextView
                     android:id="@+id/buy_volume"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -126,7 +126,7 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Offer: "
@@ -135,7 +135,7 @@
 
                 <TextView
                     android:id="@+id/sell_price"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="148.76"
@@ -145,7 +145,7 @@
 
                 <TextView
                     android:id="@+id/textView9"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" x "
@@ -154,7 +154,7 @@
 
                 <TextView
                     android:id="@+id/sell_volume"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -172,7 +172,7 @@
 
                 <TextView
                     android:id="@+id/HighLowtextview"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="L/H: "
@@ -181,7 +181,7 @@
 
                 <TextView
                     android:id="@+id/low_price"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="148.76"
@@ -191,7 +191,7 @@
 
                 <TextView
                     android:id="@+id/textView10"
-                    fontPath="fonts/Helvetica Bold.ttf"
+                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-"
@@ -223,7 +223,7 @@
 
             <TextView
                 android:id="@+id/change"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -233,7 +233,7 @@
 
             <TextView
                 android:id="@+id/change_per"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -254,7 +254,7 @@
 
             <TextView
                 android:id="@+id/turn_over"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

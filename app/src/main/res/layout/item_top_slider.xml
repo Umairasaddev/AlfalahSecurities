@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/exc_symbol"
-        fontPath="fonts/Helvetica Bold.ttf"
+        android:fontFamily="@font/helvetica_bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -32,7 +32,7 @@
             android:orientation="horizontal">
 
             <TextView
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/exc_curr"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -60,7 +60,7 @@
             android:orientation="horizontal">
 
             <TextView
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -70,7 +70,7 @@
 
             <TextView
                 android:id="@+id/exc_turnover"
-                fontPath="fonts/Helvetica Bold.ttf"
+                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/exc_change"
-        fontPath="fonts/Helvetica Bold.ttf"
+        android:fontFamily="@font/helvetica_bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

@@ -8,7 +8,7 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+//import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Developed by Hasham.Tahir on 1/27/2016.
@@ -50,11 +50,11 @@ public class MyApplication extends MultiDexApplication {
 
         setAppContext(this);
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Helvetica.otf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
+//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+//                .setDefaultFontPath("fonts/helvetica.otf")
+//                .setFontAttrId(R.attr.fontPath)
+//                .build()
+//        );
 
     }
 

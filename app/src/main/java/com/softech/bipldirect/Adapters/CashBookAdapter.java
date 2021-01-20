@@ -2,7 +2,9 @@ package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import uk.co.chrisjenx.calligraphy.CalligraphyUtils;
 
 /**
  * Developed by Hasham.Tahir on 1/13/2017.
@@ -81,7 +82,10 @@ public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHo
                 }
             }
 
-            CalligraphyUtils.applyFontToTextView(context, holder.textView4, "fonts/Helvetica.otf");
+//            CalligraphyUtils.applyFontToTextView(context, holder.textView4, "fonts/helvetica.otf");
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/helvetica_bold.ttf");
+
+            holder.textView4.setTypeface(typeface);
 
 
         } else {
@@ -92,8 +96,10 @@ public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHo
 
             double runningBalance = Double.parseDouble(runningBalanceText.replace(",", ""));
 
-            CalligraphyUtils.applyFontToTextView(context, holder.textView4, "fonts/Helvetica Bold.otf");
+//            CalligraphyUtils.applyFontToTextView(context, holder.textView4, "fonts/Helvetica Bold.otf");
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/helvetica_bold.ttf");
 
+            holder.textView4.setTypeface(typeface);
             if (runningBalance < 0) {
                 holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.blinkRed));
                 holder.textView4.setText(runningBalanceText.replace("-", ""));

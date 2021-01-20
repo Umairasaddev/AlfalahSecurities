@@ -71,14 +71,13 @@ public class LoginActivity extends BaseActivity {
     String userEncoded;
     String passEncoded, passdecoded;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         if (BuildConfig.FLAVOR=="alfalahsec") {
-            TextView etServer = (TextView) findViewById(R.id.login_server);
+             etServer = (TextView) findViewById(R.id.login_server);
         }
 //        etName.setText("act01315");
 //        etPass.setText("123456");
@@ -89,8 +88,11 @@ public class LoginActivity extends BaseActivity {
 
 
 //
-        etName.setText("Softech");
-        etPass.setText("afs987");
+//        etName.setText("Softech");
+//        etPass.setText("afs987");
+
+//        etName.setText("Demo320");
+//        etPass.setText("Demo123");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -115,7 +117,7 @@ public class LoginActivity extends BaseActivity {
         etServer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (BuildConfig.FLAVOR.equals("alfalahsec")) {
+
                     etServer.setText("Primary");
                     final AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
                     alert.setItems(serverNameArray, new DialogInterface.OnClickListener() {
@@ -128,7 +130,7 @@ public class LoginActivity extends BaseActivity {
                         }
                     });
                     alert.show();
-                }
+
             }
         });
     }

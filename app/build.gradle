@@ -8,6 +8,13 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     flavorDimensions "version"
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
     productFlavors {
         local {
             dimension "version"
@@ -30,15 +37,15 @@ android {
             dimension "version"
             applicationId "com.softech.bipldirect"
             minSdkVersion 17
-            targetSdkVersion 28
-            versionCode 18
-            versionName "2.7"
+            targetSdkVersion 29
+            versionCode 19
+            versionName "2.8"
             multiDexEnabled true
             buildConfigField 'String[]', 'HOST',
 //                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
                     "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
-            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.bipldirect.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
             buildConfigField 'int[]', 'PORTS',
@@ -64,30 +71,49 @@ android {
             dimension "version"
             applicationId "com.alfalah.mobileterminal"
             minSdkVersion 18
-            targetSdkVersion 28
+            targetSdkVersion 29
             versionCode 8
-            versionName "1.8"
+            versionName "1.9"
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"terminal1.alfalahtrade.com\"," + "\"terminal1.alfalahtrade.com\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
-            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.e-falah.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"atif.khan"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
             buildConfigField 'int[]', 'PORTS',
                     "{5678,5679}"
         }
+
+        rahatsec {
+            dimension "version"
+            applicationId "com.softech.rahatsecurities"
+            minSdkVersion 18
+            targetSdkVersion 29
+            versionCode 1
+            versionName "1"
+            buildConfigField 'String[]', 'HOST',
+                    "{" + "\"203.223.172.46\"," + "\"203.223.172.46\"" + "}"
+            buildConfigField 'String', 'API_LOGIN', '""'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.rahatonline.com/api/v2/service/authenticate"'
+            buildConfigField 'String', 'CLIENT', '"admin.rahat"'
+            buildConfigField 'String', 'IP', '"203.17577.130"'
+            buildConfigField 'int[]', 'PORTS',
+                    "{5678,5679}"
+        }
+
+
         abbasisecurities {
             dimension "version"
             applicationId "com.softech.abbasisecurities"
             minSdkVersion 18
-            targetSdkVersion 28
-            versionCode 10
-            versionName "2.1"
+            targetSdkVersion 29
+            versionCode 13
+            versionName "2.4"
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"203.101.179.147\"," + "\"203.101.179.147\"" + "}"
 //                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
-            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/api/v2/service/authenticate"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.analytics.abbasiandcompany.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.abbasico"'
             buildConfigField 'String', 'IP', '""'
             buildConfigField 'int[]', 'PORTS',
@@ -98,7 +124,7 @@ android {
             dimension "version"
             applicationId "com.softech.askarisecurities"
             minSdkVersion 17
-            targetSdkVersion 28
+            targetSdkVersion 29
             versionCode 4
             versionName "3.1"
             multiDexEnabled true
@@ -119,17 +145,17 @@ android {
             dimension "version"
             applicationId "com.softech.foundationedge"
             minSdkVersion 17
-            targetSdkVersion 28
-            versionCode 10
-            versionName "2.1"
+            targetSdkVersion 29
+            versionCode 11
+            versionName "2.2"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"
-            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://research.fsedge.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"FSEDGE"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
             buildConfigField 'int[]', 'PORTS',
-                    "{5678,5678}"
+                    "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
         }
 
 
@@ -202,7 +228,6 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.hudomju:swipe-to-dismiss-undo:1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
