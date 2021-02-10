@@ -1,3 +1,2 @@
- pass: imtradesoftechbackconnect
-
-alias:key
+ pass: epkfalah45trade
+alias:tomcat

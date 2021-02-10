@@ -30,6 +30,7 @@
     <color name="bidColor">@color/colorPrimary</color>
     <color name="offerColor">#ffb6c1</color>
     <color name="default_slice_color">#88FF0000</color>
+    <color name="red">#88FF0000</color>
     <color name="default_line_color">#88FFFFFF</color>
 
     <color name="ledRed">@color/blinkRed</color>

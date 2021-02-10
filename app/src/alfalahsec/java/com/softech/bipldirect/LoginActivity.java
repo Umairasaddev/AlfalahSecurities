@@ -87,9 +87,9 @@ public class LoginActivity extends BaseActivity {
 //        etPass.setText("pakipower1");
 
 
-//
+////
 //        etName.setText("Softech");
-//        etPass.setText("afs987");
+//        etPass.setText("afs321");
 
 //        etName.setText("Demo320");
 //        etPass.setText("Demo123");

@@ -93,8 +93,14 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
 
     @OnClick(R.id.orderbtn)
     public void orderPressed() {
-        trade.setBackgroundResource(R.drawable.unselected);
-        order.setBackgroundResource(R.drawable.selected);
+//        trade.setBackgroundResource(R.drawable.unselected);
+//        trade.setBackgroundResource(R.drawable.unselected);
+//        order.setBackgroundColor(R.drawable.selected);
+
+
+
+        trade.setBackgroundColor(getContext().getResources().getColor(R.color.greyDarkBar));
+        order.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
 
         tabSelected = 1;
         setResult(result);
@@ -105,6 +111,12 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         trade.setBackgroundResource(R.drawable.selected);
         order.setBackgroundResource(R.drawable.unselected);
 
+
+//        trade.setBackgroundColor(getContext().getResources().getColor(R.color.greyDarkBar));
+//        order.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
+
+        order.setBackgroundColor(getContext().getResources().getColor(R.color.greyDarkBar));
+        trade.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
         tabSelected = 2;
         setResult(result);
     }

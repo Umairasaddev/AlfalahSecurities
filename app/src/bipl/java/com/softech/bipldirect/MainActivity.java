@@ -1245,6 +1245,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             }
                         }
                         break;
+
                         case Constants.PORTFOLIO_CASH_REQUEST_RESPONSE: {
 
 
@@ -1288,6 +1289,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             }
                         }
                         break;
+
+
+
 
                         case Constants.MARGIN_REQUEST_RESPONSE: {
 

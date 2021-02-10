@@ -10,6 +10,7 @@
     <color name="greyDarkBar">#c2c2c2</color>
     <color name="redDark">#610202</color>
     <color name="arrowColor">#FFFFFF</color>
+    <color name="green">#FFFFFF</color>
     <color name="topExchangeBackground">#383838</color>
     <color name="orderStatusSelectedColor">#6e6e6e</color>
     <color name="orderStatusUnselectedColor">#353535</color>

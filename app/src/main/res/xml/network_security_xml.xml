@@ -7,8 +7,10 @@
         <domain includeSubdomains="true">research.fsedge.com</domain>
         <domain includeSubdomains="true">capitalstake.com</domain>
         <domain includeSubdomains="true">bipldirect.com</domain>
+        <domain includeSubdomains="true">124.29.245.115</domain>
         <domain includeSubdomains="true">analytics.bipldirect.com</domain>
-        <domain includeSubdomains="true">www.e-falah.com</domain>
+        <domain includeSubdomains="true">terminal1.alfalahtrade.com</domain>
+        <domain includeSubdomains="true">e-falah.com</domain>
         <domain includeSubdomains="true">analytics.abbasiandcompany.com</domain>
         <domain includeSubdomains="true">analytics.rahatonline.com</domain>
     </domain-config>

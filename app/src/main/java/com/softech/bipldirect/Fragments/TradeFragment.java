@@ -271,6 +271,8 @@ public class TradeFragment extends Fragment {
                     action = "BUY";
                     orderSide = "B";
                     radiobuy.setBackgroundResource(R.drawable.selector_radio_button);
+                    radiosell.setBackgroundResource(R.drawable.selector_radio_button);
+
                     if (textViewOrderType.getText().toString().equals("SHORT SELL") || textViewOrderType.getText().toString().equals("LS")) {
                         textViewOrderType.setText(ordTypes.get(0).getName());
                         textViewOrderType.setTag(ordTypes.get(0).getCode());
@@ -290,7 +292,8 @@ public class TradeFragment extends Fragment {
                     }
 
                 } else {
-                    radiosell.setBackgroundResource(R.drawable.selector_radio_red);
+                    radiosell.setBackgroundColor(getResources().getColor(R.color.red));
+
                     action = "SELL";
                     if (textViewOrderType.getText().toString().equals("MFB") || textViewOrderType.getText().toString().equals("LB")) {
                         textViewOrderType.setText(ordTypes.get(0).getName());

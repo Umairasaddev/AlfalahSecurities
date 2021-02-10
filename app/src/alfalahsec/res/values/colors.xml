@@ -25,6 +25,7 @@
 
     <color name="blinkGreen">#017E14</color>
     <color name="blinkRed">#ff3333</color>
+    <color name="red">#EC0001</color>
     <color name="blinkGrey">#555555</color>
     <color name="bidColor">@color/colorPrimary</color>
     <color name="offerColor">#ffb6c1</color>

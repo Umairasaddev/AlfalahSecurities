@@ -210,7 +210,11 @@ public class AccountFragment extends Fragment {
             }
             AccountFooter accountFooter = new AccountFooter();
 
-            double cashvalue = Double.parseDouble(freecash.getText().toString().replace(",", ""));
+            double cashvalue = Double.parseDouble(cash.getText().toString().replace(",", ""));
+            if(cashvalue  >= 0){
+                cashvalue = Double.parseDouble(freecash.getText().toString().replace(",", ""));
+            }
+
             Double totportfoliosum = totalValue + cashvalue;
 
             totalValue = Math.round(totalValue);

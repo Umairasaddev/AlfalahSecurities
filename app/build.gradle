@@ -51,9 +51,29 @@ android {
             buildConfigField 'int[]', 'PORTS',
                     "{5678,5679}"
         }
+
+        ahl {
+        dimension "version"
+        applicationId "com.ahl.islamictrading"
+        minSdkVersion 17
+        targetSdkVersion 29
+        versionCode 2
+        versionName "1.1"
+        multiDexEnabled true
+        buildConfigField 'String[]', 'HOST',
+//                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
+                "{" + "\"124.29.245.115\"," + "\"124.29.245.115\"" + "}"
+        buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
+        buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.bipldirect.com/api/v2/service/authenticate"'
+        buildConfigField 'String', 'CLIENT', '"admin.bipl"'
+        buildConfigField 'String', 'IP', '"203.17577.130"'
+        buildConfigField 'int[]', 'PORTS',
+                "{5678,5679,5680,5681}"
+    }
+
         imtrade {
             dimension "version"
-            applicationId "com.imtrade.intermarket"
+            applicationId "com.imtrade.securities"
             minSdkVersion 17
             targetSdkVersion 28
             versionCode 16
@@ -72,10 +92,11 @@ android {
             applicationId "com.alfalah.mobileterminal"
             minSdkVersion 18
             targetSdkVersion 29
-            versionCode 8
-            versionName "1.9"
+            versionCode 12
+            versionName "2.3"
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"terminal1.alfalahtrade.com\"," + "\"terminal1.alfalahtrade.com\"" + "}"
+//                    "{" + "\"124.29.245.115\"," + "\"124.29.245.115\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.e-falah.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"atif.khan"'
@@ -107,15 +128,15 @@ android {
             applicationId "com.softech.abbasisecurities"
             minSdkVersion 18
             targetSdkVersion 29
-            versionCode 13
-            versionName "2.4"
+            versionCode 14
+            versionName "2.5"
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"203.101.179.147\"," + "\"203.101.179.147\"" + "}"
 //                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
-            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.analytics.abbasiandcompany.com/api/v2/service/authenticate"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.abbasiandcompany.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.abbasico"'
-            buildConfigField 'String', 'IP', '""'
+            buildConfigField 'String', 'IP', '"203.17577.130"'
             buildConfigField 'int[]', 'PORTS',
                     "{5678,5679,5680,5681,5682,5683}"
         }

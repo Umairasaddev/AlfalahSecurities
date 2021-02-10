@@ -1,5 +1,6 @@
 package com.softech.bipldirect;
 
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,11 @@ public class ChangePasswordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, this.getTheme()));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        }
         setContentView(R.layout.activity_change_password);
         ButterKnife.bind(this);
         preferences = StoreBox.create(this, Preferences.class);

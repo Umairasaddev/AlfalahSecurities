@@ -32,12 +32,12 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
+import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.AccountModel.AccountDetail;
 import com.softech.bipldirect.Models.AccountModel.OrdersList;
 import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.Models.PortfolioModel.*;
 import com.softech.bipldirect.Adapters.PortfolioAdapter;
-import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
@@ -139,7 +139,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }
-        ;
+
         v = view;
 
         return view;

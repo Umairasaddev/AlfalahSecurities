@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="horizontal"
+    android:weightSum="3">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/symbol"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OGDC"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oil and Gas Development Authority"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/current"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="148.99"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bid:"
+                android:textColor="#3f66f0" />
+
+            <TextView
+                android:id="@+id/buy_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="148.99"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/buy_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="247"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/sell_price"
+                android:text="Offer:"
+                android:textColor="#f06f8a" />
+
+            <TextView
+                android:id="@+id/sell_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="148.76"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/sell_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="321"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/change"
+            fontPath="fonts/Helvetica Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#78787f"
+            android:gravity="center"
+            android:text="0.0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/change_per"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#78787f"
+            android:gravity="center"
+            android:text="-0.13%"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TurnOver"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/turn_over"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="4,490"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>
