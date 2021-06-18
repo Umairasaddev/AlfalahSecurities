@@ -1,145 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/front"
+<!--<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:id="@+id/front"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="horizontal"-->
+<!--    android:tag="front"-->
+<!--    android:weightSum="100">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="40"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/exchangeName"-->
+<!--            fontPath="fonts/Helvetica Bold.ttf"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="OGDC"-->
+<!--            android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--            android:textColor="@color/colorPrimary"-->
+<!--            android:textSize="12sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/volume"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingRight="3dp"-->
+<!--            android:text="Val:"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="12sp" />-->
+
+<!--        &lt;!&ndash;<TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;android:id="@+id/last"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:paddingRight="3dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:text="Last:"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:textAppearance="@style/TextAppearance.AppCompat.Small"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:textColor="@android:color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:textSize="12sp" />&ndash;&gt;-->
+<!--        &lt;!&ndash;<TextView&ndash;&gt;-->
+<!--        &lt;!&ndash;android:id="@+id/textView13"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:text="TurnOver"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:textAppearance="?android:attr/textAppearanceSmall"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:textColor="@android:color/black"&ndash;&gt;-->
+<!--        &lt;!&ndash;android:textSize="12sp" />&ndash;&gt;-->
+
+<!--        <TextView-->
+<!--        android:id="@+id/turn_over"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ellipsize="end"-->
+
+<!--        android:maxLines="1"-->
+<!--        android:singleLine="true"-->
+<!--        android:text="4,490"-->
+<!--        android:textAppearance="?android:attr/textAppearanceSmall"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="12sp" />-->
+
+
+
+<!--    </LinearLayout>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="35"-->
+<!--        android:orientation="vertical">-->
+<!--        <TextView-->
+<!--            android:id="@+id/low"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:paddingRight="5dp"-->
+<!--            android:text="Last:"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="12sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/current"-->
+<!--            fontPath="fonts/Helvetica Bold.ttf"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:paddingRight="5dp"-->
+<!--            android:text="148.99"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textColor="@android:color/black" />-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/high"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:paddingRight="5dp"-->
+<!--            android:text="Val:"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/blinklayout"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:padding="5dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="25"-->
+<!--        android:orientation="vertical">-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/change"-->
+<!--            fontPath="fonts/Helvetica Bold.ttf"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="0.0"-->
+
+<!--            android:textSize="13sp"-->
+<!--            android:textColor="@color/white" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/change_per"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="-0.13%"-->
+<!--            android:textAppearance="?android:attr/textAppearanceSmall"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--    </LinearLayout>-->
+
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:tag="front"
-    android:weightSum="100">
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/exchangeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OGDC"
+        android:textStyle="bold"
+        android:textColor="@color/slice_color_3"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="148.99"
+        app:layout_constraintRight_toLeftOf="@id/guideLine1"
+        app:layout_constraintTop_toBottomOf="@+id/exchangeName"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray" />
+
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/exchangeName"
+        android:src="@drawable/green_arrow"
+        app:layout_constraintRight_toLeftOf="@+id/change"
+        app:layout_constraintLeft_toRightOf="@id/guideLine1" />
+
+    <TextView
+        android:id="@+id/change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0.0"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintRight_toLeftOf="@id/guideLine2"
+        app:layout_constraintTop_toTopOf="@+id/ivArrow"
+        app:layout_constraintBottom_toBottomOf="@+id/ivArrow"
+        app:layout_constraintLeft_toRightOf="@+id/ivArrow"
+        android:textSize="18sp"
+        android:textColor="@color/blinkGreen" />
+
+    <TextView
+        android:id="@+id/change_per"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="-0.13%"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivArrow"
+        app:layout_constraintBottom_toBottomOf="@+id/ivArrow"
+        app:layout_constraintLeft_toRightOf="@id/guideLine2"
+        android:textColor="@color/blinkGreen"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/volumee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="3dp"
+        android:text="VOLUME"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guideLine1"
+        app:layout_constraintTop_toBottomOf="@+id/current"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/blinkGrey"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/volume"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="35"
-        android:orientation="vertical">
+        android:paddingRight="3dp"
+        android:text="VOLUME"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideLine1"
+        app:layout_constraintTop_toBottomOf="@+id/volumee"
+        android:textColor="@color/blinkGrey"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/exchangeName"
-            android:fontFamily="@font/helvetica_bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OGDC"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideLine1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"
+        />
 
-        <TextView
-            android:id="@+id/last"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="3dp"
-            android:text="Last:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/highh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="3dp"
+        android:text="HIGH"
+        android:layout_marginTop="10dp"
+        app:layout_constraintRight_toLeftOf="@id/guideLine2"
+        app:layout_constraintLeft_toRightOf="@id/guideLine1"
+        app:layout_constraintTop_toBottomOf="@+id/current"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/blinkGrey"
+        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/volume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="3dp"
-            android:text="Val:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/high"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="35"
-        android:orientation="vertical">
+        android:paddingRight="3dp"
+        android:text="HIGH"
+        android:gravity="center"
+        app:layout_constraintRight_toLeftOf="@id/guideLine2"
+        app:layout_constraintLeft_toRightOf="@id/guideLine1"
+        app:layout_constraintTop_toBottomOf="@+id/highh"
+        android:textColor="@color/blinkGrey"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/current"
-            android:fontFamily="@font/helvetica_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="148.99"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/low"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="Last:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/high"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="Val:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
+    <android.support.constraint.Guideline
+        android:id="@+id/guideLine2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"
+        />
 
+    <TextView
+        android:id="@+id/loww"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="3dp"
+        android:text="LOW"
+        android:layout_marginTop="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideLine2"
+        app:layout_constraintTop_toBottomOf="@+id/current"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/blinkGrey"
+        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/change"
-            android:fontFamily="@font/helvetica_bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0.0"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:text="Last:"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loww"
+        app:layout_constraintLeft_toRightOf="@id/guideLine2"
+        android:textColor="@color/blinkGrey"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/change_per"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="-0.13%"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/default_line_color"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="TurnOver"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
+        />
 
-        <TextView
-            android:id="@+id/turn_over"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="4,490"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
+</android.support.constraint.ConstraintLayout>
 
-
-    </LinearLayout>
-
-
-</LinearLayout>
+    <!--</LinearLayout>-->

@@ -3,9 +3,11 @@ package com.softech.bipldirect;
 
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -16,6 +18,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,6 +33,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.softech.bipldirect.Adapters.NavAdapter;
 import com.softech.bipldirect.Const.ConnectionDetector;
 import com.softech.bipldirect.Const.Constants;
@@ -53,6 +57,7 @@ import com.softech.bipldirect.Fragments.SymbolsFragment;
 import com.softech.bipldirect.Fragments.TopSymbolsFragment;
 import com.softech.bipldirect.Fragments.TradeFragment;
 import com.softech.bipldirect.Fragments.UserProfileFragment;
+import com.softech.bipldirect.Fragments.WatchlistPagerFragment;
 import com.softech.bipldirect.Models.AccountModel.AccountResponse;
 import com.softech.bipldirect.Models.CashBookModel.CashBookResponse;
 import com.softech.bipldirect.Models.Event;
@@ -154,8 +159,13 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
 
         fragmentManager = getSupportFragmentManager();
+        WatchlistPagerFragment masterFragment = WatchlistPagerFragment.newInstance(0);
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, masterFragment, "ABC")
+                .commit();
 
-        replaceFragment(marketFragment, true, false);
+//        replaceFragment(marketFragment, true, false);
+        broadCastStart();
         getSymbolsFromServer();
         connectFeed();
     }
@@ -410,7 +420,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
 
             case R.drawable.iconmarket2x: {
-                replaceFragment(marketFragment, true, false);
+                replaceFragment(new WatchlistPagerFragment(), true, false);
             }
             break;
 
@@ -669,6 +679,126 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             }
         };
     }
+
+
+    private BroadcastReceiver mMessageReceiver;
+
+    private void broadCastStart() {
+        mMessageReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String message = intent.getStringExtra("response");
+                String msgType = intent.getStringExtra("msgType");
+
+                if (message != null && msgType != null) {
+
+                    if (msgType.equalsIgnoreCase(Constants.LOGOUT_MESSAGE_RESPONSE)) {
+
+//                        deleteAll();
+                    } else if (msgType.equals(Constants.MSG_TYPE_TEXT)) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(message);
+                            JSONObject response = jsonObject.getJSONObject("response");
+                            String data = response.getString("message");
+
+                            if (data.equalsIgnoreCase("You have been disconnected because you logged in somewhere else.")) {
+//                                HToast.showMsgLong(NavigationDrawerActivity.this, data);
+                                deleteAll();
+                                logoutRequest();
+                            } else if (data.equalsIgnoreCase("You have been logged out.")) {
+//                                HToast.showMsgLong(NavigationDrawerActivity.this, data);
+                                deleteAll();
+                                logoutRequest();
+                            } else {
+                                Event.add(context, new Event(System.currentTimeMillis(), data));
+//                                Alert.showAlerts(NavigationDrawerActivity.this, "KTrade", data);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+
+                    else if (msgType.equalsIgnoreCase("TCNF")) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(message);
+                            JSONObject response = jsonObject.getJSONObject("response");
+                            String data = response.getString("remarks");
+                            Event.add(context, new Event(System.currentTimeMillis(), data));
+//                            Alert.showAlerts(NavigationDrawerActivity.this, "KTrade", data);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else if (msgType.equalsIgnoreCase("OCNF")) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(message);
+                            JSONObject response = jsonObject.getJSONObject("response");
+                            String data = response.getString("orderRemarks");
+                            Event.add(context, new Event(System.currentTimeMillis(), data));
+//                            Alert.showAlerts(NavigationDrawerActivity.this, "KTrade", data);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else if (msgType.equalsIgnoreCase(Constants.LOGIN_MESSAGE_RESPONSE)) {
+//                        setLoginResponse(message);
+                    } else if (msgType.equalsIgnoreCase(Constants.SYMBOL_MESSAGE_RESPONSE)) {
+                        symbolResponse(message);
+                    } else if (msgType.equalsIgnoreCase(Constants.SUBSCRIPTION_LIST_REQUEST_RESPONSE)) {
+//                        marketResponse(message);
+                    }
+                } else {
+                    HSnackBar.showMsg(findViewById(android.R.id.content), "Check Internet Connection.");
+                }
+
+            }
+        };
+
+        LocalBroadcastManager.getInstance(context).registerReceiver(mMessageReceiver,
+                new IntentFilter(Constants.MSG_SERVER_BROADCAST));
+    }
+
+
+    private void symbolResponse(String resp) {
+
+        Gson gson = new Gson();
+
+        JsonParser jsonParser = new JsonParser();
+
+        try {
+            JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
+
+//            String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
+            String error = jsonObject.get("error").getAsString();
+            String code = jsonObject.get("code").getAsString();
+
+//            Log.e(TAG, "MSGTYPE: " + MSGTYPE);
+
+            if (code.equals("200") && error.equals("")) {
+                SymbolsResponse result = gson.fromJson(resp, SymbolsResponse.class);
+
+                if (result != null) {
+                    if (result.getCode().equals("200")) {
+                        preferences.setSymbolResult(gson.toJson(result));
+                        // startActivity(new Intent(context, SwipingTabsActivity.class));
+//                        getMarket();
+                    } else {
+                        Alert.show(context, "", result.getError());
+                    }
+                } else {
+//                    Log.e(TAG, "Response :: SymbolsResponse null ");
+                }
+            }
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+            Alert.showErrorAlert(context);
+        }
+    }
+
+
+
 
 
     public void orderStatusRequest() {
@@ -1311,16 +1441,20 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                 if (result.getCode().equals("200")) {
 
                                     final ExchangeFragment frag = (ExchangeFragment)
-                                            fragmentManager.findFragmentByTag(ExchangeFragment.class.getName());
+                                            fragmentManager.findFragmentByTag("ABC");
 
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            if (frag != null) {
-                                                frag.setResult(result);
-                                            }
-                                        }
-                                    });
+                                    if (frag != null) {
+                                        frag.setResult(result);
+                                    }
+                                    else {
+                                        Log.d("Null","Null");
+                                    }
+//                                    runOnUiThread(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//
+//                                        }
+//                                    });
 
                                 } else {
 
@@ -1446,10 +1580,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         case Constants.LOGOUT_MESSAGE_RESPONSE: {
 
                             deleteAll();
+                            finish();
                             startActivity(new Intent(context, LoginActivity.class)
                                     .putExtra("discon", true)
                                     .putExtra("message", response.get("remarks").getAsString()));
-                            finish();
                         }
                         break;
 

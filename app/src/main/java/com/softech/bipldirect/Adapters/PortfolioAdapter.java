@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,19 +17,20 @@ import com.softech.bipldirect.Models.PortfolioModel.PortfolioFooter;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Developed by Hasham.Tahir on 2/3/2016.
- */
 public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final String TAG = "PortfolioAdapter";
 
     private static final int TYPE_FOOTER = 0;
     private static final int TYPE_NORMAL = 1;
     Context mContext;
+    double totalInv=0.00;
     LayoutInflater inflater;
     private List<Portfolio> arrayList;
     private int m_flag = 1;
@@ -48,11 +50,8 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         switch (viewType) {
             case TYPE_NORMAL: {
-                View v = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.portfolio_list_item, viewGroup, false);
-                viewHolder = new ViewHolder(v) {
-                };
-
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.portfolio_list_item, viewGroup, false);
+                viewHolder = new ViewHolder(v) {};
             }
             break;
             case TYPE_FOOTER: {
@@ -78,14 +77,32 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }
                 final PortfolioSymbol obj = (PortfolioSymbol) arrayList.get(position);
                 final ViewHolder viewHolder1 = (ViewHolder) viewHolder;
-//                viewHolder1.mItem = obj;
                 viewHolder1.sym.setText(obj.getSymbol());
+                viewHolder1.portfolio_market_price.setText(obj.getCurrentPrice());
+
                 viewHolder1.volume.setText(obj.getVolume());
+                viewHolder1.portfolio_cost_price.setText(obj.getCostPerUnit());
+
+                double profitLoss=Double.parseDouble(obj.getCapGainLoss().replace(",", ""));
+                if(profitLoss>0){
+                    viewHolder1.ivArrow.setBackground(ContextCompat.getDrawable(mContext, R.drawable.arrow_green));
+                    viewHolder1.profitloss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                }else{
+                    viewHolder1.ivArrow.setBackground(ContextCompat.getDrawable(mContext, R.drawable.arrow_red));
+                    viewHolder1.profitloss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                }
                 viewHolder1.profitloss.setText(obj.getCapGainLoss());
+
+
+                viewHolder1.portfolio_total.setText(obj.getTotalCost());
+
+                double totalCost  = Double.parseDouble(obj.getTotalCost().replace(",", ""));
+                totalInv=totalInv+totalCost;
+                Log.e(TAG, "Total Investment: "+ totalInv);
+
                 viewHolder1.llItem.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        portofolioClickListner.onPortfolioClick(obj);
+                    public void onClick(View v) { portofolioClickListner.onPortfolioClick(obj);
                     }
                 });
             }
@@ -93,15 +110,32 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case TYPE_FOOTER: {
                 FooterViewHolder footerView = (FooterViewHolder) viewHolder;
                 PortfolioFooter portfolioFooter = (PortfolioFooter) arrayList.get(arrayList.size() - 1);
-                footerView.sym.setText("");
-                footerView.qty.setText("Total Profit/loss");
-                Log.d("totalprofitloss", portfolioFooter.getTotalProfitloss());
-                footerView.totalProfitloss.setText(portfolioFooter.getTotalProfitloss());
+
+
+                DecimalFormat formatter = new DecimalFormat("#,###,###.##");
+                String totalInvestmentFormatted = formatter.format(totalInv);
+                if(totalInv>0){
+                    footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                }else{
+                    footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                }
+                footerView.totalInvestment.setText(totalInvestmentFormatted);
+
+
+                double totalGainLoss=Double.parseDouble(portfolioFooter.getTotalProfitloss().replace(",", ""));
+                if(totalGainLoss>0){
+                    footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                }else{
+                    footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                }
+                footerView.totalProfitLoss.setText(portfolioFooter.getTotalProfitloss());
+
             }
             break;
         }
 
     }
+
 
     public interface OnPortofolioClickListner {
         void onPortfolioClick(PortfolioSymbol mItem);
@@ -130,7 +164,7 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.portfolio_symbol)
         TextView sym;
         @BindView(R.id.portfolio_volume)
@@ -139,26 +173,31 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         TextView profitloss;
         @BindView(R.id.llItem)
         LinearLayout llItem;
-//        View mView;
-//        PortfolioSymbol mItem;
+
+        ImageView ivArrow;
+        TextView portfolio_market_price, portfolio_cost_price, portfolio_total;
+
 
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            ivArrow=view.findViewById(R.id.ivArrow);
+            portfolio_market_price=view.findViewById(R.id.portfolio_market_price);
+            portfolio_cost_price=view.findViewById(R.id.portfolio_cost_price);
+            portfolio_total=view.findViewById(R.id.portfolio_total);
+
         }
     }
 
-    public class FooterViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.acc_sym)
-        TextView sym;
-        @BindView(R.id.acc_qty)
-        TextView qty;
-        @BindView(R.id.acc_ammount)
-        TextView totalProfitloss;
+    public static class FooterViewHolder extends RecyclerView.ViewHolder {
+
+        TextView totalInvestment;
+        TextView totalProfitLoss;
 
         public FooterViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            totalInvestment=view.findViewById(R.id.acc_ammount);
+            totalProfitLoss=view.findViewById(R.id.acc_totalPortValue);
         }
     }
 }

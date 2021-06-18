@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/pleaseLoginHere"
+            android:text="PLEASE LOGIN HERE"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFFFF" />
 
@@ -105,7 +105,7 @@
 
         <Button
             android:id="@+id/login_btn"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_phone"
@@ -139,7 +139,7 @@
 
     <TextView
         android:id="@+id/link"
-        fontPath="fonts/Roboto-Light.ttf"
+        android:fontFamily="@font/helvetica_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

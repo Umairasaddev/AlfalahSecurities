@@ -39,10 +39,35 @@ public class FeedServer extends AsyncTask<String, String, String> {
     List<String> serverIpAddress;
     String serverPort;
     public FeedSocket socket;
+    FeedCallback listener;
+
+    public FeedServer(Context context,FeedCallback listener) {
+
+        this.context = context;
+        this.listener = listener;
+
+        Preferences preferences = StoreBox.create(context, Preferences.class);
+
+        Gson gson = new Gson();
+        LoginResponse loginResult = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
+
+        serverPort = loginResult.getResponse().getFeedPort();
+        String feedIP = loginResult.getResponse().getFeedIP();
+
+        try {
+            serverIpAddress = new ArrayList<>(Arrays.asList(feedIP.split(",")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d(TAG, "FeedIP: null");
+        }
+
+        Log.d(TAG, "FeedIP: " + loginResult.getResponse().getFeedIP());
+    }
 
     public FeedServer(Context context) {
 
         this.context = context;
+        this.listener = listener;
 
         Preferences preferences = StoreBox.create(context, Preferences.class);
 
@@ -183,7 +208,12 @@ public class FeedServer extends AsyncTask<String, String, String> {
         super.onProgressUpdate(values);
 
         sendMessage(values[0], true);
-
+        if (listener != null) {
+//            LogResponse(TAG, "Response :: " +values[0]);
+            listener.onFeedReceived(values[0]);
+        } else {
+            Log.e(TAG, "Response :: listener.onFeedReceived null ");
+        }
     }
 
     private void sendMessage(String response, boolean isConnected) {

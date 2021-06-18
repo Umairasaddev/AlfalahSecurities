@@ -41,10 +41,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
-
 
 public class LoginActivity extends BaseActivity {
 
@@ -95,6 +91,9 @@ public class LoginActivity extends BaseActivity {
 //
 //        etName.setText("00000036");
 //        etPass.setText("qaz123");
+
+//                etName.setText("Softech");
+//        etPass.setText("Azhar1");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();

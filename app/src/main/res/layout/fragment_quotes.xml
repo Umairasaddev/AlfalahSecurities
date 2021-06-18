@@ -1,22 +1,685 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<RelativeLayout -->
+<!--     android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@color/white"-->
+<!--    android:clickable="true"-->
+<!--    android:focusable="true"-->
+<!--    android:focusableInTouchMode="true"-->
+<!--    android:paddingBottom="@dimen/activity_vertical_margin"-->
+<!--    android:paddingLeft="@dimen/activity_horizontal_margin"-->
+<!--    android:paddingRight="@dimen/activity_horizontal_margin"-->
+<!--    android:paddingTop="@dimen/activity_vertical_margin"-->
+<!--    tools:context=".Fragments.QuotesFragment">-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/search"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:background="@color/greyBar"-->
+<!--        android:drawableEnd="@drawable/iconsearch"-->
+<!--        android:drawableRight="@drawable/iconsearch"-->
+<!--        android:hint="Securities"-->
+<!--        android:inputType="textCapCharacters|textVisiblePassword|textNoSuggestions"-->
+<!--        android:padding="15dp"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textColorHint="@color/redDark" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/symbol"-->
+<!--        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/search"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:gravity="center"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="20dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/name"-->
+<!--        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/symbol"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:gravity="center"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="20dp" />-->
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@+id/trade_btn"-->
+<!--        android:layout_alignRight="@+id/search"-->
+<!--        android:layout_below="@+id/name"-->
+<!--        android:layout_marginTop="5dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+
+<!--            <TableLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView15"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Last"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView16"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/bid"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Bid (Size)"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/bidtext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="#6387f1" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/offer"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Offer (Size)"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/offertext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="#eaea0f0f" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:id="@+id/row"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/Change"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Change (%)"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/changetext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/low"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Low - High"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lowtext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:id="@+id/roww"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/limit"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Limits"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/limittext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/turnover"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Turnover"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/turnovertext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/exchange"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Exchange"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/exchangetext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/market"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Market"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/markettext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lot"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="1"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Lot Size"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lottext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_column="17"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+
+<!--                </TableRow>-->
+<!--            </TableLayout>-->
+
+<!--            <TextView-->
+<!--                fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="History"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--                android:textColor="@android:color/black" />-->
+
+<!--            <TableLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp">-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="3">-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Ranges"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Price(avg)"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Vol(avg)"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="4">-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:text="30 Days"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="3">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lowhighPrice30"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0 - 0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/avgPrice30"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/AvgVolume30"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="4">-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:text="90 Days"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="3">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lowhighPrice90"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0 - 0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/avgPrice90"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/AvgVolume90"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="4">-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:text="180 Days"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="3">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lowhighPrice180"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0 - 0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/avgPrice180"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/AvgVolume180"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/greyDarkBar"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="4">-->
+
+<!--                    <TextView-->
+<!--                        fontPath="fonts/Helvetica Bold.ttf"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:text="52 Weeks"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:weightSum="3">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/lowhighPrice52"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0 - 0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/avgPrice52"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0.0"-->
+<!--                        android:textColor="@android:color/black" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/AvgVolume52"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="0"-->
+<!--                        android:textColor="@android:color/black" />-->
+<!--                </TableRow>-->
+
+<!--            </TableLayout>-->
+
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/trade_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:background="@drawable/button_blue"-->
+<!--        android:text="Trade"-->
+<!--        android:textColor="@android:color/white" />-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/search_list_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/search"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@color/white"-->
+<!--        android:clickable="true"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/cancel_search"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:src="@drawable/cancel_white" />-->
+
+<!--        <ListView-->
+<!--            android:id="@+id/search_list"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+<!--    </LinearLayout>-->
+
+<!--</RelativeLayout>-->
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:background="@color/white"
-    android:clickable="true"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Fragments.QuotesFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/white"
+    >
+
+
+
 
     <EditText
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_centerHorizontal="true"
         android:background="@color/greyBar"
         android:drawableEnd="@drawable/iconsearch"
@@ -27,606 +690,6 @@
         android:textColor="#000000"
         android:textColorHint="@color/redDark" />
 
-    <TextView
-        android:id="@+id/symbol"
-        fontPath="fonts/Helvetica Bold.ttf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/name"
-        fontPath="fonts/Helvetica Bold.ttf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/symbol"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textSize="20dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/trade_btn"
-        android:layout_alignRight="@+id/search"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Last"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/textView16"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/bid"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Bid (Size)"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/bidtext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="#6387f1" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/offer"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Offer (Size)"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/offertext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="#eaea0f0f" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/row"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Change"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Change (%)"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/changetext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/low"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Low - High"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/lowtext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/roww"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/limit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Limits"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/limittext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/turnover"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Turnover"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/turnovertext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/exchange"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Exchange"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/exchangetext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/market"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Market"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/markettext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/lot"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:text="Lot Size"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/lottext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_column="17"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@android:color/black" />
-
-
-                </TableRow>
-            </TableLayout>
-
-            <TextView
-                fontPath="fonts/Helvetica Bold.ttf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:text="History"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@android:color/black" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="3">
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Ranges"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Price(avg)"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Vol(avg)"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="4">
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="30 Days"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/lowhighPrice30"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0 - 0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/avgPrice30"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/AvgVolume30"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="4">
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="90 Days"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/lowhighPrice90"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0 - 0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/avgPrice90"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/AvgVolume90"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="4">
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="180 Days"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/lowhighPrice180"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0 - 0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/avgPrice180"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/AvgVolume180"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greyDarkBar"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="4">
-
-                    <TextView
-                        fontPath="fonts/Helvetica Bold.ttf"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="52 Weeks"
-                        android:textColor="@android:color/black" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/lowhighPrice52"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0 - 0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/avgPrice52"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textColor="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/AvgVolume52"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@android:color/black" />
-                </TableRow>
-
-            </TableLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/trade_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button_blue"
-        android:text="Trade"
-        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:id="@+id/search_list_view"
@@ -653,4 +716,652 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-</RelativeLayout>
+
+    <android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:id="@+id/constraint1"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/white_rectange">
+
+    <TextView
+        android:id="@+id/tvCompanyProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company Profile | "
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/slice_color_2"
+        />
+
+    <TextView
+        android:id="@+id/symbol1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="hello"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tvCompanyProfile"
+        android:textColor="@color/slice_color_2"
+        android:textSize="20dp" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SYMBOL"
+        android:id="@+id/tvSymbol"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyProfile"
+        />
+
+    <TextView
+        android:id="@+id/symboll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="asdasdasdasd"
+        app:layout_constraintTop_toTopOf="@+id/tvSymbol"
+        app:layout_constraintLeft_toRightOf="@+id/guideLine1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NAME"
+        android:id="@+id/tvName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvSymbol"
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="asdasdasdasd"
+        app:layout_constraintTop_toTopOf="@+id/tvName"
+        app:layout_constraintLeft_toRightOf="@id/guideLine1"
+      />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideLine1"
+        app:layout_constraintGuide_percent="0.25"
+        android:orientation="vertical"
+        />
+</android.support.constraint.ConstraintLayout>
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:id="@+id/constraint2"
+        app:layout_constraintTop_toBottomOf="@+id/constraint1"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/white_rectange">
+
+        <TextView
+            android:id="@+id/tvData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data | "
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="@color/slice_color_2"
+            />
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="hello"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tvData"
+            android:textColor="@color/slice_color_2"
+            android:textSize="20dp" />
+
+
+
+
+        <TextView
+            android:id="@+id/bidtextt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="118.4"
+            android:textSize="23dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvData" />
+
+        <TextView
+            android:id="@+id/changetextt"
+            android:layout_width="wrap_content"
+            android:text="asdja"
+            android:textSize="23dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvData"
+            app:layout_constraintLeft_toRightOf="@+id/bidtext"
+            android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/greyBar"
+                android:text="Price Data"
+                android:id="@+id/tvPriceData"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/changetextt"
+                />
+
+<android.support.constraint.Guideline
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintGuide_percent="0.25"
+    android:orientation="vertical"
+    android:id="@+id/guideLine2"
+    />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvPriceData"
+            android:text="Last" />
+
+        <TextView
+            android:id="@+id/bid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            android:text="Bid (Size)" />
+
+        <TextView
+            android:id="@+id/offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/bid"
+            android:text="Offer (Size)" />
+
+
+        <TextView
+            android:id="@+id/Change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/offer"
+            android:text="Change (%)" />
+
+        <TextView
+            android:id="@+id/low"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Change"
+            android:text="Low - High" />
+
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:text="asdasd"
+            app:layout_constraintLeft_toRightOf="@id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/textView15"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/bidtext"
+            android:layout_width="wrap_content"
+            android:text="bidtext"
+            app:layout_constraintLeft_toRightOf="@id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/bid"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/offertext"
+            android:layout_width="wrap_content"
+            android:text="bidtext"
+            app:layout_constraintLeft_toRightOf="@id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/offer"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/changetext"
+            android:layout_width="wrap_content"
+            android:text="bidtext"
+            app:layout_constraintLeft_toRightOf="@id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/Change"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/lowtext"
+            android:layout_width="wrap_content"
+            android:text="bidtext"
+            app:layout_constraintLeft_toRightOf="@id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/low"
+            android:layout_height="wrap_content" />
+
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideLine3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.55"
+            android:orientation="vertical"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideLine4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.75"
+            android:orientation="vertical"
+            />
+
+
+        <TextView
+            android:id="@+id/limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine3"
+            app:layout_constraintTop_toBottomOf="@+id/tvPriceData"
+            android:text="Limits" />
+
+
+        <TextView
+            android:id="@+id/turnover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine3"
+            app:layout_constraintTop_toBottomOf="@+id/limit"
+            android:text="Turnover" />
+
+        <TextView
+            android:id="@+id/exchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine3"
+            app:layout_constraintTop_toBottomOf="@+id/turnover"
+            android:text="Exchange" />
+
+
+        <TextView
+            android:id="@+id/market"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine3"
+            app:layout_constraintTop_toBottomOf="@+id/exchange"
+            android:text="Market" />
+
+        <TextView
+            android:id="@+id/lot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine3"
+            app:layout_constraintTop_toBottomOf="@+id/market"
+            android:text="Lot Size" />
+
+        <TextView
+            android:id="@+id/limittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine4"
+            app:layout_constraintTop_toBottomOf="@+id/tvPriceData"
+            android:text="Limits" />
+
+
+        <TextView
+            android:id="@+id/turnovertext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/guideLine4"
+            app:layout_constraintTop_toTopOf="@+id/turnover"
+            android:text="turnovertext" />
+
+        <TextView
+            android:id="@+id/exchangetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/guideLine4"
+            app:layout_constraintTop_toTopOf="@+id/exchange"
+            android:text="exchangetext" />
+
+        <TextView
+            android:id="@+id/markettext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/guideLine4"
+            app:layout_constraintTop_toTopOf="@+id/market"
+            android:text="exchangetext" />
+
+        <TextView
+            android:id="@+id/lottext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/guideLine4"
+            app:layout_constraintTop_toTopOf="@+id/lot"
+            android:text="exchangetext" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:id="@+id/constraint3"
+        app:layout_constraintTop_toBottomOf="@+id/constraint2"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/white_rectange">
+
+        <TextView
+            android:id="@+id/tvHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="History"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="@color/slice_color_2"
+            />
+
+
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/greyBar"
+            android:text="History Data"
+            android:id="@+id/tvHistoryData"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHistory"
+            />
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.25"
+            android:orientation="vertical"
+            android:id="@+id/guideLine5"
+            />
+
+        <TextView
+            android:id="@+id/invisibleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvHistoryData"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thirtyDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/invisibleText"
+            android:text="30 Days" />
+
+        <TextView
+            android:id="@+id/ninetyDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/thirtyDays"
+            android:text="90 Days" />
+
+
+        <TextView
+            android:id="@+id/oneeightyDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/ninetyDays"
+            android:text="180 Days" />
+
+        <TextView
+            android:id="@+id/fiftyTwoWeeks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/oneeightyDays"
+            android:text="52 Weeks" />
+
+
+        <TextView
+            android:id="@+id/tvRanges"
+            android:layout_width="0dp"
+            android:text="Ranges"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintRight_toLeftOf="@+id/guideLine6"
+            app:layout_constraintLeft_toRightOf="@id/guideLine5"
+            app:layout_constraintTop_toTopOf="@+id/invisibleText"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/lowhighPrice30"
+            android:layout_width="0dp"
+            android:text="bidtext"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine6"
+            app:layout_constraintLeft_toRightOf="@id/guideLine5"
+            app:layout_constraintTop_toTopOf="@+id/thirtyDays"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/lowhighPrice90"
+            android:layout_width="0dp"
+            android:text="bidtext"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine6"
+            app:layout_constraintLeft_toRightOf="@id/guideLine5"
+            app:layout_constraintTop_toTopOf="@+id/ninetyDays"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/lowhighPrice180"
+            android:layout_width="0dp"
+            android:text="bidtext"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine6"
+            app:layout_constraintLeft_toRightOf="@id/guideLine5"
+            app:layout_constraintTop_toTopOf="@+id/oneeightyDays"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/lowhighPrice52"
+            android:layout_width="0dp"
+            android:text="bidtext"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine6"
+            app:layout_constraintLeft_toRightOf="@id/guideLine5"
+            app:layout_constraintTop_toTopOf="@+id/fiftyTwoWeeks"
+            android:layout_height="wrap_content" />
+
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideLine6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.45"
+            android:orientation="vertical"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideLine7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.75"
+            android:orientation="vertical"
+            />
+
+
+        <TextView
+            android:id="@+id/priceAvg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintRight_toLeftOf="@id/guideLine7"
+            app:layout_constraintLeft_toRightOf="@id/guideLine6"
+            app:layout_constraintTop_toBottomOf="@+id/tvHistoryData"
+            android:text="Price(avg)" />
+
+
+        <TextView
+            android:id="@+id/avgPrice30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine7"
+            app:layout_constraintLeft_toRightOf="@id/guideLine6"
+            app:layout_constraintTop_toBottomOf="@+id/priceAvg"
+            android:text="Turnover" />
+
+        <TextView
+            android:id="@+id/avgPrice90"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine7"
+            app:layout_constraintLeft_toRightOf="@id/guideLine6"
+            app:layout_constraintTop_toBottomOf="@+id/avgPrice30"
+            android:text="Exchange" />
+
+
+        <TextView
+            android:id="@+id/avgPrice180"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine7"
+            app:layout_constraintLeft_toRightOf="@id/guideLine6"
+            app:layout_constraintTop_toBottomOf="@+id/avgPrice90"
+            android:text="Market" />
+
+        <TextView
+            android:id="@+id/avgPrice52"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            app:layout_constraintRight_toLeftOf="@id/guideLine7"
+            app:layout_constraintLeft_toRightOf="@id/guideLine6"
+            app:layout_constraintTop_toBottomOf="@+id/avgPrice180"
+            android:text="Lot Size" />
+
+        <TextView
+            android:id="@+id/volAvg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/guideLine7"
+            app:layout_constraintTop_toBottomOf="@+id/tvHistoryData"
+            android:text="Vol (avg)" />
+
+
+        <TextView
+            android:id="@+id/AvgVolume30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine7"
+            app:layout_constraintTop_toTopOf="@+id/thirtyDays"
+            android:text="turnovertext" />
+
+        <TextView
+            android:id="@+id/AvgVolume90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine7"
+            app:layout_constraintTop_toTopOf="@+id/ninetyDays"
+            android:text="exchangetext" />
+
+        <TextView
+            android:id="@+id/AvgVolume180"
+            android:layout_width="wrap_content"
+            android:textSize="10dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/guideLine7"
+            app:layout_constraintTop_toTopOf="@+id/oneeightyDays"
+            android:text="exchangetext" />
+
+        <TextView
+            android:id="@+id/AvgVolume52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            app:layout_constraintLeft_toRightOf="@id/guideLine7"
+            app:layout_constraintTop_toTopOf="@+id/fiftyTwoWeeks"
+            android:text="exchangetext" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/trade_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint3"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_blue"
+        android:text="Trade"
+        android:textColor="@android:color/white" />
+
+</android.support.constraint.ConstraintLayout>
+
+</ScrollView>

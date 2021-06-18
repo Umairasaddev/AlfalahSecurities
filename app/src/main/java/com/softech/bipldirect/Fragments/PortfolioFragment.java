@@ -175,6 +175,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
                         listSearch_view1.setVisibility(View.VISIBLE);
 
                         String text = clientcode.getText().toString();
+                        if (searchClientListAdapter!=null)
                         searchClientListAdapter.filter(text);
                     } else {
                         listSearch_view1.setVisibility(View.GONE);

@@ -46,6 +46,12 @@ QuotesFragment extends Fragment {
     TextView name;
     @BindView(R.id.symbol)
     TextView symbol;
+
+    @BindView(R.id.symboll)
+    TextView symboll;
+
+    @BindView(R.id.symbol1)
+    TextView symbol1;
     @BindView(R.id.textView16)
     TextView last;
     @BindView(R.id.bidtext)
@@ -54,6 +60,9 @@ QuotesFragment extends Fragment {
     TextView offersize;
     @BindView(R.id.changetext)
     TextView change;
+    @BindView(R.id.changetextt)
+    TextView change1;
+
     @BindView(R.id.lowtext)
     TextView lowhigh;
     @BindView(R.id.limittext)
@@ -290,18 +299,23 @@ QuotesFragment extends Fragment {
 
             name.setText(marketSymbol.getName());
             symbol.setText(marketSymbol.getSymbol() + "-" + marketSymbol.getMarket());
+            symbol.setText(marketSymbol.getSymbol() + "-" + marketSymbol.getMarket());
+            symboll.setText(marketSymbol.getSymbol() + "-" + marketSymbol.getMarket());
             last.setText(marketSymbol.getCurrent());
             bid_size.setText(marketSymbol.getBuyPrice() + "(" + marketSymbol.getBuyVolume() + ")");
             offersize.setText(marketSymbol.getSellPrice() + "(" + marketSymbol.getSellVolume() + ")");
 
             if (ichange > 0) {
                 change.setTextColor(Color.GREEN);
+                change1.setTextColor(Color.GREEN);
             }
             if (ichange < 0) {
                 change.setTextColor(Color.RED);
+                change1.setTextColor(Color.RED);
             }
             if (ichange == 0) {
                 change.setTextColor(Color.GRAY);
+                change1.setTextColor(Color.GRAY);
             }
             double percentage = 0;
             String changeStr = marketSymbol.getChange().replace(",", "");
@@ -314,6 +328,7 @@ QuotesFragment extends Fragment {
             Log.d("Perc ", String.valueOf(percentage));
             String perc = String.format("%.2f", percentage);
             change.setText(marketSymbol.getChange() + "(" + perc + "%)");
+            change1.setText(marketSymbol.getChange() + "(" + perc + "%)");
             lowhigh.setText(marketSymbol.getLowPrice() + "-" + marketSymbol.getHighPrice());
             limits.setText(marketSymbol.getLowerLimit() + "-" + marketSymbol.getUpperLimit());
             turnover.setText(marketSymbol.getTurnOver());

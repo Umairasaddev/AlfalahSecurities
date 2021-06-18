@@ -32,15 +32,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.softech.bipldirect.Adapters.MarketAdapter;
 import com.softech.bipldirect.Adapters.SearchListAdapter;
 import com.softech.bipldirect.Adapters.TopPagerAdapter;
 import com.softech.bipldirect.Const.Constants;
+import com.softech.bipldirect.LoginActivity;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.MarketModel.Exchange;
 import com.softech.bipldirect.Models.MarketModel.MarketSymbol;
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
+import com.softech.bipldirect.Models.SymbolsModel.SymbolsResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.DividerItemDecoration;
 import com.softech.bipldirect.Util.HSnackBar;
@@ -61,7 +64,7 @@ import butterknife.OnClick;
 
 public class MarketFragment extends Fragment implements MarketAdapter.OnMarketItemClickListener {
 
-    private static int postionToRemove = -1;
+    public static int postionToRemove = -1;
     public Boolean shouldReload = false;
     public boolean isReloaded = false;
     @BindView(R.id.pager)
@@ -109,7 +112,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                     return e1.getSymbol().compareTo(e.getSymbol());
                 }
             });
-            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
 
         }
         catch (Exception e){
@@ -194,7 +197,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                     return e1.getSymbol().compareTo(e.getSymbol());
                 }
             });
-            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
             marketListView.setAdapter(marketAdapter);
 
             isReloaded = false;
@@ -208,6 +211,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         ButterKnife.bind(this, view);
+        broadCastStart();
 
         return view;
     }
@@ -217,7 +221,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         super.onViewCreated(view, savedInstanceState);
 
         if (marketListView.getLayoutManager() == null) {
-            marketListView.setLayoutManager(linearLayoutManager);
+            marketListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         }
 
         marketListView.setItemAnimator(new MyItemAnimator());
@@ -474,7 +478,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
 //                    marketSymbolList =  new ArrayList<>( MainActivity.marketResponse.getResponse().getSymbols());
 
-                    marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+                    marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
 
                     marketListView.setAdapter(marketAdapter);
 
@@ -502,7 +506,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                         return e1.getSymbol().compareTo(e.getSymbol());
                     }
                 });
-                marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
+                marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
 
                 marketListView.setAdapter(marketAdapter);
 
@@ -681,4 +685,139 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         Log.d("search_debug", "onPause: ");
     }
 
+
+    private BroadcastReceiver mMessageReceiver;
+
+    private void broadCastStart() {
+        mMessageReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+
+                String message = intent.getStringExtra("response");
+                String msgType = intent.getStringExtra("msgType");
+
+                if (message != null && msgType != null) {
+
+                    if (msgType.equalsIgnoreCase("ACPT") || msgType.equalsIgnoreCase("REM") ||
+                            msgType.equalsIgnoreCase("SRES")) {
+                        addsymbolRespones(msgType, message);
+                    } else if (msgType.equalsIgnoreCase(Constants.SYMBOL_MESSAGE_RESPONSE)) {
+                        Log.d("ServerSwitch", "SYMBOL_MESSAGE_RESPONSE: ");
+                        symbolResponse(message);
+                    }
+                }
+
+
+            }
+        };
+
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mMessageReceiver,
+                new IntentFilter(Constants.MSG_SERVER_BROADCAST));
+    }
+
+    public void addsymbolRespones(String action, String resp) {
+        Gson gson = new Gson();
+
+        JsonParser jsonParser = new JsonParser();
+        try {
+
+            JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
+            JsonObject response = jsonObject.get("response").getAsJsonObject();
+
+            String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
+            String error = jsonObject.get("error").getAsString();
+            String code = jsonObject.get("code").getAsString();
+
+
+            if (code.equals("200") && error.equals("")) {
+                // String responseType = jsonObject.get("responseType").getAsString();
+                String requestType = response.get("requestType").getAsString();
+
+                if (requestType.equals("REM")) { //delete request
+
+                    removeMarket();
+
+                } else if (requestType.equals("ADD")) { //add request
+
+                    MarketSymbol sym = new Gson().fromJson(response.getAsJsonObject("symbols"), MarketSymbol.class);
+
+                    if (sym.getSymbol() != null) {
+                        switch (action) {
+                            case Constants.ACTION_FROM_SYMBOLS: { //for symbols screen add request
+//                                Alert.show(getActivity(), "", sym.getSymbol() + " Successfully added.");
+                                shouldReload = true;
+                            }
+                            break;
+                            default: { //for market screen add request
+                                addMarketItem(sym);
+                            }
+                            break;
+                        }
+                    } else {
+                        //  Alert.showErrorAlert(getActivity());
+//                        Alert.show(getActivity(), getString(R.string.app_name), "No symbol found.");
+
+                    }
+                }
+
+
+            }
+        } catch (JsonSyntaxException e) {
+
+            e.printStackTrace();
+//            Alert.showErrorAlert(getActivity());
+
+        }
+
+    }
+    private void symbolResponse(String resp) {
+
+        Log.e("Market", "Symbol Response: " + resp);
+
+
+        Gson gson = new Gson();
+
+        JsonParser jsonParser = new JsonParser();
+
+        try {
+
+            JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
+
+            String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
+            String error = jsonObject.get("error").getAsString();
+            String code = jsonObject.get("code").getAsString();
+
+            Log.e("Market", "MSGTYPE: " + MSGTYPE);
+
+            if (code.equals("200") && error.equals("")) {
+                SymbolsResponse result = gson.fromJson(resp, SymbolsResponse.class);
+
+                if (result != null) {
+
+                    if (result.getCode().equals("200")) {
+//                        if (LoginActivity.searchKeywordsList.size() == 0) {
+//                            LoginActivity.searchKeywordsList.addAll(result.getResponse().getSymbols());
+//                            Log.e("Market", "SymbolsResponse size " + LoginActivity.searchKeywordsList.size());
+//                            searchKeywordsList = new ArrayList<>(LoginActivity.searchKeywordsList);
+//                            searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
+//                            listSearch.setAdapter(searchAdapter);
+//                        }
+//                        preferences.setSymbolResult(gson.toJson(result));
+                        // startActivity(new Intent(context, SwipingTabsActivity.class));
+//                        getMarket();
+                    } else {
+//                        Alert.show(context, "", result.getError());
+                    }
+                } else {
+                    Log.e("Market", "Response :: SymbolsResponse null ");
+                }
+            }
+        } catch (JsonSyntaxException e) {
+
+            e.printStackTrace();
+//            Alert.showErrorAlert(context);
+
+        }
+    }
 }

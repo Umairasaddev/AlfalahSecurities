@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.softech.bipldirect.Fragments.ExchangeFragment;
@@ -33,6 +34,7 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
     private RecyclerView.LayoutManager linearLayoutManager;
     private long animDuration = 1600;
     private Context mContext;
+    ViewHolder myHolder;
 
     public ExchangeAdapter(Context context, List<Exchange> items, RecyclerView.LayoutManager linearLayoutManager, ExchangeFragment listener) {
         mValues = items;
@@ -53,15 +55,16 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        myHolder=holder;
         holder.position = position;
         holder.mItem = mValues.get(position);
 
         holder.exchangeName.setText(holder.mItem.getSymbol());
 
         final SpannableStringBuilder sbLast = new SpannableStringBuilder("Last: " + holder.mItem.getLastIndex());
-        final SpannableStringBuilder sbVol = new SpannableStringBuilder("Val: " + holder.mItem.getMonitoryVolume());
-        final SpannableStringBuilder sbLow = new SpannableStringBuilder("Low: " + holder.mItem.getLowIndex());
-        final SpannableStringBuilder sbHigh = new SpannableStringBuilder("High: " + holder.mItem.getHighIndex());
+        final SpannableStringBuilder sbVol = new SpannableStringBuilder( holder.mItem.getMonitoryVolume());
+        final SpannableStringBuilder sbLow = new SpannableStringBuilder( holder.mItem.getLowIndex());
+        final SpannableStringBuilder sbHigh = new SpannableStringBuilder( holder.mItem.getHighIndex());
 
         final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.parseColor("#555555"));
 
@@ -70,7 +73,7 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
         sbLow.setSpan(fcs, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         sbHigh.setSpan(fcs, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
-        holder.last.setText(sbLast);
+//        holder.last.setText(sbLast);
         holder.volume.setText(sbVol);
         holder.current.setText(holder.mItem.getCurrent());
         holder.low.setText(sbLow);
@@ -87,7 +90,7 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
         Log.d("Perc " ,String.valueOf(percentage));
         String perc=String.format("%.2f", percentage);
         holder.changePer.setText(perc.concat("%"));
-        holder.turnOver.setText(holder.mItem.getTurnOver());
+//        holder.turnOver.setText(holder.mItem.getTurnOver());
 
         try {
             float change = Float.parseFloat(holder.mItem.getChange().replace(",", ""));
@@ -95,9 +98,13 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
             if (change < 0) {
                 holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                holder.ivArrow.setImageResource(R.drawable.red_arrow);
+
             } else if (change > 0) {
                 holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
                 holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.ivArrow.setImageResource(R.drawable.green_arrow);
+
             } else {
                 holder.change.setTextColor(Color.BLACK);
                 holder.changePer.setTextColor(Color.BLACK);
@@ -114,9 +121,12 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
             if (current > last) {
                 Log.d("ExchangeCheck", "current: " + current + " > last:" + last);
                 holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.ivArrow.setImageResource(R.drawable.green_arrow);
             } else if (current < last) {
                 Log.d("ExchangeCheck", "current: " + current + " < last:" + last);
                 holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                holder.ivArrow.setImageResource(R.drawable.red_arrow);
+
             } else if (current == last) {
                 Log.d("ExchangeCheck", "current: " + current + " == last:" + last);
                 holder.current.setTextColor(Color.BLACK);
@@ -202,8 +212,12 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
 
                 if (current > last) {
                     blinkAnimationText(view.findViewById(R.id.current), colorGreen);
+                    myHolder.ivArrow.setImageResource(R.drawable.green_arrow);
+
                 } else if (current < last) {
                     blinkAnimationText(view.findViewById(R.id.current), colorRed);
+                    myHolder.ivArrow.setImageResource(R.drawable.red_arrow);
+
                 }
 
             }
@@ -294,14 +308,15 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
         public Exchange mItem;
         int position;
         private TextView exchangeName;
-        private TextView last;
+//        private TextView last;
         private TextView volume;
         private TextView current;
         private TextView low;
         private TextView high;
         private TextView change;
         private TextView changePer;
-        private TextView turnOver;
+        private ImageView ivArrow;
+//        private TextView turnOver;
 
         public ViewHolder(View view) {
             super(view);
@@ -309,14 +324,15 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
 
             mView = view.findViewById(R.id.front);
             exchangeName = (TextView) view.findViewById(R.id.exchangeName);
-            last = (TextView) view.findViewById(R.id.last);
+//            last = (TextView) view.findViewById(R.id.last);
             volume = (TextView) view.findViewById(R.id.volume);
             current = (TextView) view.findViewById(R.id.current);
+            ivArrow=view.findViewById(R.id.ivArrow);
             low = (TextView) view.findViewById(R.id.low);
             high = (TextView) view.findViewById(R.id.high);
             change = (TextView) view.findViewById(R.id.change);
             changePer = (TextView) view.findViewById(R.id.change_per);
-            turnOver = (TextView) view.findViewById(R.id.turn_over);
+//            turnOver = (TextView) view.findViewById(R.id.turn_over);
 
 //            mView.setOnClickListener(new View.OnClickListener() {
 //                @Override

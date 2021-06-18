@@ -35,23 +35,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView10"
-                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Market:"
+                    android:fontFamily="@font/helvetica_bold"
+                    android:text="Market: "
                     android:textColor="@color/textSymbolDetailColor"
                     android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/portfolio_market_price"
-                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_bold"
                     android:text="-"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/topExchangeBackground"
@@ -71,9 +71,9 @@
 
             <TextView
                 android:id="@+id/portfolio_volume"
-                android:fontFamily="@font/helvetica_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/helvetica_bold"
                 android:text="58,000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/black" />
@@ -88,7 +88,7 @@
                     android:fontFamily="@font/helvetica_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cost:"
+                    android:text="Cost: "
                     android:textColor="#225A8B"
                     android:textSize="12sp" />
 
@@ -135,9 +135,9 @@
 
                 <TextView
                     android:id="@+id/portfolio_profitloss"
-                    android:fontFamily="@font/helvetica_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_bold"
                     android:paddingLeft="15dp"
                     android:text="5,488.45"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -153,7 +153,7 @@
                         android:fontFamily="@font/helvetica_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total:"
+                        android:text="Total: "
                         android:textColor="@color/textSymbolDetailColor"
                         android:textSize="12sp" />
 
@@ -192,6 +192,5 @@
         android:layout_height="@dimen/_11sdp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/_75sdp"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:background="@drawable/arrow_green"/>
+        android:layout_marginTop="@dimen/_4sdp"/>
 </RelativeLayout>

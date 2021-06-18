@@ -4,42 +4,63 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import com.softech.bipldirect.Const.ConnectionDetector;
+import com.softech.bipldirect.Const.Constants;
+import com.softech.bipldirect.Fragments.MarketFragment;
 import com.softech.bipldirect.Models.MarketModel.MarketSymbol;
+import com.softech.bipldirect.Network.MessageCallback;
+import com.softech.bipldirect.Network.MessageServerReadThread;
+import com.softech.bipldirect.Network.MessageServerThread;
 import com.softech.bipldirect.R;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Developed by Hasham.Tahir on 1/28/2016.
  */
-public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder> {
+public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder> implements MessageCallback {
 
     private final List<MarketSymbol> mValues;
     private final int colorRed, colorGreen, colorReallyGreen;
     OnMarketItemClickListener listener;
-    private Context context;
+    private Activity context;
     private RecyclerView.LayoutManager linearLayoutManager;
     private long animDuration = 2000;
     private ValueAnimator blinkAnimationText;
     private AnimatorSet animatorSet;
+        private MessageServerThread messageServerThread;
+    private MessageServerReadThread messageServerReadThread;
+    private MarketFragment fr;
+    ViewHolder myHolder;
 
-    public MarketAdapter(Context context, List<MarketSymbol> items, RecyclerView.LayoutManager linearLayoutManager, OnMarketItemClickListener listener) {
+    public MarketAdapter(Activity context, List<MarketSymbol> items,
+                         RecyclerView.LayoutManager linearLayoutManager, OnMarketItemClickListener listener,MarketFragment fr) {
         mValues = items;
         this.linearLayoutManager = linearLayoutManager;
         this.context = context;
         this.listener = listener;
+        this.fr = fr;
         colorRed = ContextCompat.getColor(context, R.color.blinkRed);
         colorGreen = ContextCompat.getColor(context, R.color.blinkGreen);
         colorReallyGreen = ContextCompat.getColor(context, R.color.ledGreen);
@@ -56,11 +77,12 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+        myHolder=holder;
         holder.position = position;
         holder.mItem = mValues.get(position);
 
         holder.symbol.setText(holder.mItem.getSymbol());
-        holder.market.setText(holder.mItem.getMarket());
+//        holder.market.setText(holder.mItem.getMarket());
         holder.name.setText(holder.mItem.getName());
         holder.current.setText(holder.mItem.getCurrent());
         holder.buy_price.setText(holder.mItem.getBuyPrice());
@@ -104,14 +126,28 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
         if (exChange < 0) {
 
             holder.change.setTextColor(colorRed);
+            holder.ivRedArrow.setImageResource(R.drawable.red_arrow);
             holder.change_per.setTextColor(colorRed);
 
         } else if (exChange > 0) {
 
+            holder.ivRedArrow.setImageResource(R.drawable.green_arrow);
             holder.change.setTextColor(colorGreen);
             holder.change_per.setTextColor(colorGreen);
         }
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+//
+//                    listener.onMarketItemClick(v, mItem, position, false);
+                MarketFragment.postionToRemove = position;
+                symbolDeleteRequest(holder.mItem);
+//                notifyItemRemoved(position);
+                notifyDataSetChanged();
 
+            }
+        });
     }
 
     @Override
@@ -162,11 +198,11 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
 
         try {
 
-            final View row = linearLayoutManager.findViewByPosition(position);
+//            final View row = linearLayoutManager.findViewByPosition(position);
 
-            if (row != null) {
+//            if (row != null) {
 
-                final View parent = row.findViewById(R.id.front);
+                final View parent = myHolder.front.findViewById(R.id.front);
 
                 float exBuyPrice = Float.parseFloat(existingSym.getBuyPrice().replace(",", ""));
                 float newBuyPrice = Float.parseFloat(symToCompare.getBuyPrice().replace(",", ""));
@@ -271,7 +307,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
                 }
 
 
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -399,19 +435,25 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
+//        public final View mView;
         public MarketSymbol mItem;
         int position;
+        ConstraintLayout front;
+        ImageView ivRedArrow,ivExclaim,ivDelete;
         private TextView symbol, market, name, current, buy_price, sell_price, buy_volume, sell_voulme,low_price,high_price, change, change_per, turn_over;
-        private LinearLayout linearLayout1, linearLayout2, linearLayout3;
+//        private LinearLayout linearLayout1, linearLayout2, linearLayout3;
 
         public ViewHolder(View view, final OnMarketItemClickListener listener) {
             super(view);
 
-            mView = view.findViewById(R.id.front);
+//            mView = view.findViewById(R.id.front);
             symbol = (TextView) view.findViewById(R.id.symbol);
-            market = (TextView) view.findViewById(R.id.market);
+//            market = (TextView) view.findViewById(R.id.market);
+            ivDelete=view.findViewById(R.id.ivDelete);
+            front=view.findViewById(R.id.front);
             name = (TextView) view.findViewById(R.id.name);
+            ivExclaim=view.findViewById(R.id.ivExclaim);
+            ivRedArrow=view.findViewById(R.id.ivRedArrow);
             current = (TextView) view.findViewById(R.id.current);
             buy_price = (TextView) view.findViewById(R.id.buy_price);
             sell_price = (TextView) view.findViewById(R.id.sell_price);
@@ -422,34 +464,143 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
             change = (TextView) view.findViewById(R.id.change);
             change_per = (TextView) view.findViewById(R.id.change_per);
             turn_over = (TextView) view.findViewById(R.id.turn_over);
-            linearLayout1 = (LinearLayout) view.findViewById(R.id.linearLayout1);
-            linearLayout2 = (LinearLayout) view.findViewById(R.id.linearLayout2);
-            linearLayout3 = (LinearLayout) view.findViewById(R.id.linearLayout3);
+//            linearLayout1 = (LinearLayout) view.findViewById(R.id.linearLayout1);
+//            linearLayout2 = (LinearLayout) view.findViewById(R.id.linearLayout2);
+//            linearLayout3 = (LinearLayout) view.findViewById(R.id.linearLayout3);
 
-            linearLayout1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
 
-                    listener.onMarketItemClick(v, mItem, position, false);
-                }
-            });
 
-            linearLayout3.setOnClickListener(new View.OnClickListener() {
+//
+            ivExclaim.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
                     listener.onMarketItemClick(v, mItem, position, false);
                 }
             });
+//
+//            linearLayout2.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
+//                    listener.onMarketItemClick(v, mItem, position, true);
+//                }
+//            });
+        }
+    }
 
-            linearLayout2.setOnClickListener(new View.OnClickListener() {
+    public void symbolDeleteRequest(MarketSymbol symbol) {
+        JsonObject request_obj = new JsonObject();
+        request_obj.addProperty("MSGTYPE", Constants.SUBSCRIPTION_REQUEST_IDENTIFIER);
+        request_obj.addProperty("symbol", symbol.getSymbol());
+        request_obj.addProperty("market", symbol.getMarket());
+        request_obj.addProperty("exchange", symbol.getExchangeCode());
+        request_obj.addProperty("requestType", "REM");
+        if (ConnectionDetector.getInstance(context).isConnectingToInternet()) {
+//            new MessageServer(context, this, true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Constants.SUBSCRIPTION_REQUEST_IDENTIFIER, request_obj.toString());
+            connectWithMessageServer(request_obj);
+        } else {
+        }
+    }
+    private void connectWithMessageServer(final JsonObject login_obj) {
+
+        connectMessageServer();
+
+        Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Map<Integer, String> map = new HashMap<>();
+                map.put(1, Constants.LOGIN_MESSAGE_IDENTIFIER);
+                map.put(2, login_obj.toString());
+
+                write(map, true);
+            }
+        }, 1000);
+
+
+    }
+
+    public void write(final Map<Integer, String> map, boolean showLoading) {
+
+        if (messageServerThread != null && messageServerReadThread != null) {
+//            if (messageServerThread.isAlive() && messageServerReadThread.isAlive()) {
+            Log.d("MessageServerThread", "message server thread running. writing now..");
+            Log.d("messageServerReadThread", "message server read thread running");
+
+            context.runOnUiThread(new Runnable() {
                 @Override
-                public void onClick(View v) {
-                    Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
-                    listener.onMarketItemClick(v, mItem, position, true);
+                public void run() {
+                    messageServerThread.write(map);
                 }
             });
+            if (showLoading) {
+                try {
+
+                    // Hide after some seconds
+                    final Handler handler = new Handler();
+                    final Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+
+//                            loading.dismiss();
+                            handler.removeCallbacks(this);
+                        }
+                    };
+
+                    handler.postDelayed(runnable, 1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+//            }
+        }
+
+        if (messageServerThread == null) {
+            Log.d("MessageServerThread", "is null..");
+        }
+
+        if (messageServerReadThread == null) {
+            Log.d("messageServerReadThread", "is null..");
+        }
+    }
+    public void connectMessageServer() {
+        messageServerReadThread = MessageServerReadThread.getInstance(context);
+        messageServerThread = MessageServerThread.getInstance(context);
+
+
+    }
+
+    @Override
+    public void onMessageReceived(String action, String resp) {
+
+        Gson gson = new Gson();
+
+        JsonParser jsonParser = new JsonParser();
+
+        try {
+            JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
+
+            JsonObject response = jsonObject.get("response").getAsJsonObject();
+            String MSGTYPE = response.get("MSGTYPE").getAsString();
+            String error = jsonObject.get("error").getAsString();
+            String code = jsonObject.get("code").getAsString();
+
+            String responseType = response.get("responseType").getAsString();
+            String requestType = response.get("requestType").getAsString();
+
+            if (responseType.equals("ACPT") && requestType.equals("REM")) { //delete request
+
+
+                fr.removeMarket();
+
+            }
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+//            Alert.showErrorAlert(context);
+
+
         }
     }
 }
