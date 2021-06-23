@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
@@ -25,11 +25,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-//import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-/**
- * Developed by Hasham.Tahir on 7/25/2016.
- */
 public class BaseActivity extends AppCompatActivity {
 
     public static final String STATE_CONNECT_EXCEPTION = "ConnectException";
@@ -37,7 +32,6 @@ public class BaseActivity extends AppCompatActivity {
     public static final String STATE_RECONNECTED = "Reconnected";
     public static final String STATE_CONNECT_FAILURE = "ConnectFailure";
     public static boolean enableReconnect = false;
-    public Context context = BaseActivity.this;
     public MessageServerThread messageServerThread;
     public MessageServerReadThread messageServerReadThread;
     private Loading loading;
@@ -54,7 +48,7 @@ public class BaseActivity extends AppCompatActivity {
 
         preferences = StoreBox.create(this, Preferences.class);
 
-        loading = new Loading(context, "Please wait...");
+        loading = new Loading(BaseActivity.this, "Please wait...");
 
         mMessageReceiver = new BroadcastReceiver() {
             @Override
@@ -108,7 +102,7 @@ public class BaseActivity extends AppCompatActivity {
             }
         };
 
-        LocalBroadcastManager.getInstance(context).registerReceiver(mMessageReceiver,
+        LocalBroadcastManager.getInstance(BaseActivity.this).registerReceiver(mMessageReceiver,
                 new IntentFilter(Constants.MSG_SERVER_BROADCAST));
 
 
@@ -133,7 +127,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        LocalBroadcastManager.getInstance(context).unregisterReceiver(mMessageReceiver);
+        LocalBroadcastManager.getInstance(BaseActivity.this).unregisterReceiver(mMessageReceiver);
         super.onDestroy();
     }
 

@@ -1,8 +1,13 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +24,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.softech.bipldirect.R.layout.item_list_margin_header;
-import static com.softech.bipldirect.R.layout.symbols_list_item;
-
-/**
- * Created by saimshafqat on 23/11/2017.
- */
 
 public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_HEADER = 0;
@@ -132,65 +131,68 @@ public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.symbol_symbol)
         TextView symbol_symbol;
-        @BindView(R.id.symbol_market)
         TextView symbol_market;
-        @BindView(R.id.symbol_exchange)
         TextView symbol_exchange;
 
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-
+            symbol_symbol=itemView.findViewById(R.id.symbol_symbol);
+            symbol_market=itemView.findViewById(R.id.symbol_market);
+            symbol_exchange=itemView.findViewById(R.id.symbol_exchange);
         }
     }
 
-    public class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
         View mView;
-        @BindView(R.id.textViewDateTime)
         TextView textViewDateTime;
-        @BindView(R.id.usertext)
         TextView usertext;
-        @BindView(R.id.cashtext)
         TextView cashtext;
-        @BindView(R.id.worthText)
         TextView worthText;
-        @BindView(R.id.custodyText)
+
         TextView custodyText;
-        @BindView(R.id.mtmText)
         TextView mtmText;
-        @BindView(R.id.blockedMtmText)
         TextView blockedMtmText;
-        @BindView(R.id.marginText)
         TextView marginText;
-        @BindView(R.id.exposureText)
+
         TextView exposureText;
-        @BindView(R.id.marginRequiredText)
         TextView marginRequiredText;
-        @BindView(R.id.cashRequiredText)
         TextView cashRequiredText;
-        @BindView(R.id.availableMarginText)
         TextView availableMarginText;
-        @BindView(R.id.currentMarginText)
+
         TextView currentMarginText;
-        @BindView(R.id.cashWithdrawalText)
         TextView cashWithdrawalText;
-        @BindView(R.id.cashWithdrawalLimitText)
         TextView cashWithdrawalLimitText;
-        @BindView(R.id.marginCallText)
         TextView marginCallText;
-        @BindView(R.id.cashCallText)
         TextView cashCallText;
-        @BindView(R.id.availableCashText)
         TextView availableCashText;
 
         public HeaderViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            textViewDateTime=itemView.findViewById(R.id.textViewDateTime);
+            usertext=itemView.findViewById(R.id.usertext);
+            cashtext=itemView.findViewById(R.id.cashtext);
+            worthText=itemView.findViewById(R.id.worthText);
+
+            custodyText=itemView.findViewById(R.id.custodyText);
+            mtmText=itemView.findViewById(R.id.mtmText);
+            blockedMtmText=itemView.findViewById(R.id.blockedMtmText);
+            marginText=itemView.findViewById(R.id.marginText);
+
+            exposureText=itemView.findViewById(R.id.exposureText);
+            marginRequiredText=itemView.findViewById(R.id.marginRequiredText);
+            cashRequiredText=itemView.findViewById(R.id.cashRequiredText);
+            availableMarginText=itemView.findViewById(R.id.availableMarginText);
+
+            currentMarginText=itemView.findViewById(R.id.currentMarginText);
+            cashWithdrawalText=itemView.findViewById(R.id.cashWithdrawalText);
+            cashWithdrawalLimitText=itemView.findViewById(R.id.cashWithdrawalLimitText);
+            marginCallText=itemView.findViewById(R.id.marginCallText);
+            cashCallText=itemView.findViewById(R.id.cashCallText);
+            availableCashText=itemView.findViewById(R.id.availableCashText);
 
         }
     }

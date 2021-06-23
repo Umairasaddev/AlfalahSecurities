@@ -5,11 +5,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.softech.bipldirect.Adapters.OrderStatsAdapter;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.OrderStatsModel.OrderStatsResponse;
 import com.softech.bipldirect.Models.OrderStatsModel.OrdersList;
 import com.softech.bipldirect.R;
-import com.softech.bipldirect.Util.DividerItemDecoration;
 import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Util;
@@ -35,25 +34,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Developed by Hasham.Tahir on 2/1/2016.
- */
 public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.OnListItemClickListener {
 
     private static int postionToRemove = -1;
-    @BindView(R.id.order_status_list)
-    RecyclerView order_status_list;
-    @BindView(R.id.orderbtn)
-    Button order;
-    @BindView(R.id.tradebtn)
-    Button trade;
-    @BindView(R.id.textView8)
-    TextView textViewError;
+    private RecyclerView order_status_list;
+    private Button order;
+    private Button trade;
+    private TextView textViewError;
     OrderStatsResponse result;
     ArrayList<OrdersList> OrdersList, TradeList;
     OnOrderDeleteRequest deleteListener;
     int tabSelected = 1;
     private OrderStatsAdapter adapter;
+    private View mOrderbtn;
+    private View mTradebtn;
 
     public OrderStatsFragment() {
         // Required empty public constructor
@@ -85,14 +79,13 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_status, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
 
         return view;
     }
 
 
-    @OnClick(R.id.orderbtn)
-    public void orderPressed() {
+    private void orderPressed() {
 //        trade.setBackgroundResource(R.drawable.unselected);
 //        trade.setBackgroundResource(R.drawable.unselected);
 //        order.setBackgroundColor(R.drawable.selected);
@@ -106,8 +99,7 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         setResult(result);
     }
 
-    @OnClick(R.id.tradebtn)
-    public void tradePressed() {
+    private void tradePressed() {
         trade.setBackgroundResource(R.drawable.selected);
         order.setBackgroundResource(R.drawable.unselected);
 
@@ -126,9 +118,9 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         super.onViewCreated(view, savedInstanceState);
 
         order_status_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        order_status_list.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        order_status_list.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
 
-        ((MainActivity) getActivity()).orderStatusRequest();
+        ((MainActivity) requireActivity()).orderStatusRequest();
 
         textViewError.setText("No orders or trades available to display.");
 
@@ -335,6 +327,27 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
 
             ((MainActivity) getActivity()).orderStatusRequest();
         }
+    }
+
+    private void bindView(View bindSource) {
+        order_status_list = bindSource.findViewById(R.id.order_status_list);
+        order = bindSource.findViewById(R.id.orderbtn);
+        trade = bindSource.findViewById(R.id.tradebtn);
+        textViewError = bindSource.findViewById(R.id.textView8);
+        mOrderbtn = bindSource.findViewById(R.id.orderbtn);
+        mTradebtn = bindSource.findViewById(R.id.tradebtn);
+        mOrderbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderPressed();
+            }
+        });
+        mTradebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tradePressed();
+            }
+        });
     }
 
     public interface OnOrderDeleteRequest {

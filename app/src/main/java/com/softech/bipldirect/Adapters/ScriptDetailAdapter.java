@@ -1,7 +1,7 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,21 +60,13 @@ public class ScriptDetailAdapter extends RecyclerView.Adapter<ScriptDetailAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.profit_lossText)
         TextView profitLoss;
-        @BindView(R.id.company_nameText)
         TextView companyName;
-        @BindView(R.id.volume)
         TextView volume;
-        @BindView(R.id.avg_text)
         TextView avg;
-        @BindView(R.id.total_cost_text)
         TextView totalCost;
-        @BindView(R.id.mkt_value)
         TextView mktValue;
-        @BindView(R.id.payout_value)
         TextView payoutValue;
-        @BindView(R.id.ann_dateValue)
         TextView annDate;
 
         public ViewHolder(View itemView) {

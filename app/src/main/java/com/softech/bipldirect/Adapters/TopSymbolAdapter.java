@@ -1,7 +1,7 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +18,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Developed by Hasham.Tahir on 2/3/2016.
- */
 public class TopSymbolAdapter extends BaseAdapter {
 
     private static final String TAG = "TopSymbolAdapterDebug";
@@ -85,18 +82,17 @@ public class TopSymbolAdapter extends BaseAdapter {
 
 
     static class ViewHolder {
-        @BindView(R.id.top_symbol)
         TextView sym;
-        @BindView(R.id.top_change)
         TextView chng;
-        @BindView(R.id.top_lasttrade)
         TextView lasttrade;
-        @BindView(R.id.top_turnover)
         TextView turnover;
 
 
         public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+            sym=view.findViewById(R.id.top_symbol);
+            chng=view.findViewById(R.id.top_change);
+            lasttrade=view.findViewById(R.id.top_lasttrade);
+            turnover=view.findViewById(R.id.top_turnover);
         }
     }
 }

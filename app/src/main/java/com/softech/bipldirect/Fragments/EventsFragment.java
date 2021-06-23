@@ -2,9 +2,10 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +20,13 @@ import butterknife.ButterKnife;
 
 public class EventsFragment extends Fragment {
 
-    @BindView(R.id.events_list)
-    ListView eventsListView;
+    private ListView eventsListView;
 
     public EventsFragment() {
         // Required empty public constructor
     }
 
-    public static EventsFragment newInstance() {
+    public static Fragment newInstance() {
         return new EventsFragment();
     }
 
@@ -51,7 +51,7 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_events, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
 
         eventsListView.setAdapter(new EventAdapter(getActivity()));
 
@@ -63,5 +63,9 @@ public class EventsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+    }
+
+    private void bindView(View bindSource) {
+        eventsListView = bindSource.findViewById(R.id.events_list);
     }
 }

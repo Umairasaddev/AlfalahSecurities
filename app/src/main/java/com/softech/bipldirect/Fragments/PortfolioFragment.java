@@ -3,12 +3,13 @@ package com.softech.bipldirect.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -18,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -33,9 +33,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
 import com.softech.bipldirect.MainActivity;
-import com.softech.bipldirect.Models.AccountModel.AccountDetail;
-import com.softech.bipldirect.Models.AccountModel.OrdersList;
-import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.Models.PortfolioModel.*;
 import com.softech.bipldirect.Adapters.PortfolioAdapter;
 import com.softech.bipldirect.Models.LoginModel.LoginResponse;
@@ -68,16 +65,11 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};
     int[] pieChartValues = {25, 15, 20, 40};
     float values[] = {700, 400, 100, 500, 600};
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.portfolio_list)
-    RecyclerView portfolio_list;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
-    @BindView(R.id.piechart)
-    PieChart pieChart;
+    private EditText clientcode;
+    private RecyclerView portfolio_list;
+    private ListView listSearch1;
+    private LinearLayout listSearch_view1;
+    private PieChart pieChart;
     ArrayList<String> clientlist;
     public static final int[] chartColors = {
             Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),
@@ -96,6 +88,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     List<PortfolioSymbol> values1;
     View v;
     boolean isSetInitialText = false;
+    private View mCancelSearch1;
 
     public PortfolioFragment() {
     }
@@ -124,7 +117,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_portfolio, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         portfolio_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         preferences = StoreBox.create(getActivity(), Preferences.class);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
@@ -175,7 +168,6 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
                         listSearch_view1.setVisibility(View.VISIBLE);
 
                         String text = clientcode.getText().toString();
-                        if (searchClientListAdapter!=null)
                         searchClientListAdapter.filter(text);
                     } else {
                         listSearch_view1.setVisibility(View.GONE);
@@ -197,8 +189,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
         // ((MainActivity) getActivity()).portfolioRequestRequest();
     }
-    @OnClick(R.id.cancel_search1)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
 
@@ -301,11 +292,8 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
         pieChart.setTransparentCircleRadius(61f);
 
         pieChart.setDrawCenterText(false);
-
         pieChart.setDrawEntryLabels(false);
-
         pieChart.setRotationAngle(0);
-        // enable rotation of the chart by touch
         pieChart.setRotationEnabled(false);
 
         pieChart.setHighlightPerTapEnabled(true);
@@ -382,5 +370,20 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     public void onPortfolioClick(PortfolioSymbol mItem) {
         ((MainActivity) getActivity()).showPortFolioDetail(mItem);
 
+    }
+
+    private void bindView(View bindSource) {
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        portfolio_list = bindSource.findViewById(R.id.portfolio_list);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        pieChart = bindSource.findViewById(R.id.piechart);
+        mCancelSearch1 = bindSource.findViewById(R.id.cancel_search1);
+        mCancelSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
     }
 }

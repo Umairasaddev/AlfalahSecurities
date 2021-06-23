@@ -12,9 +12,6 @@ import com.softech.bipldirect.R;
 
 import java.util.List;
 
-/**
- * Developed by Hasham.Tahir on 1/29/2016.
- */
 public class EventAdapter extends BaseAdapter {
 
     // Declare Variables
@@ -68,7 +65,7 @@ public class EventAdapter extends BaseAdapter {
     }
 
 
-    public class ViewHolder {
+    public static class ViewHolder {
         TextView dateTime, body;
 
     }

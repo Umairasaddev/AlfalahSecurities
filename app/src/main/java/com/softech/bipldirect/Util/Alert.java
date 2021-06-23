@@ -9,10 +9,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.softech.bipldirect.LoginActivity;
+import com.softech.bipldirect.MainActivity;
 
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
 public class Alert {
 
     public static void show(final Context context, final String title, final String msg) {
@@ -81,7 +79,6 @@ public class Alert {
     }
 
     public static void showErrorAlert(Context context) {
-
         Alert.show(context, "ERROR", "Error occurred please try again.");
     }
 

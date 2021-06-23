@@ -1,658 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout -->
-<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:id="@+id/front"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:orientation="horizontal"-->
-<!--    android:tag="front"-->
-<!--    android:weightSum="100">-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayout1"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="35"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/symbol"-->
-<!--            android:fontFamily="@font/helvetica_bold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="OGDC"-->
-<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
-<!--            android:textColor="@android:color/black" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/market"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ellipsize="end"-->
-<!--            android:maxLines="1"-->
-<!--            android:paddingRight="3dp"-->
-<!--            android:text="Oil and Gas Development Authority"-->
-<!--            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="12sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ellipsize="end"-->
-<!--            android:maxLines="3"-->
-<!--            android:paddingRight="3dp"-->
-<!--            android:text="Oil and Gas Development Authority"-->
-<!--            android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
-<!--            android:textColor="#555555"-->
-<!--            android:textSize="12sp" />-->
-
-<!--    </LinearLayout>-->
-
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayout2"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="35"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/current"-->
-<!--            android:fontFamily="@font/helvetica_bold"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="148.99"-->
-<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
-<!--            android:textColor="@color/blackBackground" />-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView5"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:text="Bid: "-->
-<!--                android:textColor="@color/bidColor"-->
-<!--                android:textSize="12sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/buy_price"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="148.99"-->
-<!--                android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="12sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView7"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text=" x "-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="12sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/buy_volume"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:maxLines="1"-->
-<!--                android:text="247"-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="12sp" />-->
-
-<!--        </LinearLayout>-->
-
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView6"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Offer: "-->
-<!--                android:textColor="@color/offerColor"-->
-<!--                android:textSize="12sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/sell_price"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="148.76"-->
-<!--                android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="12sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView9"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text=" x "-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="12sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/sell_volume"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:maxLines="1"-->
-<!--                android:text="321"-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="12sp" />-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/HighLowtextview"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="L/H: "-->
-<!--                android:textColor="@color/blackBackground"-->
-<!--                android:textSize="11sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/low_price"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="148.76"-->
-<!--                android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="11sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView10"-->
-<!--                android:fontFamily="@font/helvetica_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="-"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="11sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/high_price"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:maxLines="1"-->
-<!--                android:singleLine="true"-->
-<!--                android:text="321"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="11sp" />-->
-<!--        </LinearLayout>-->
-
-
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayout3"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="30"-->
-<!--        android:orientation="vertical">-->
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/change"-->
-<!--            android:fontFamily="@font/helvetica_bold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:text="0.0"-->
-<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
-<!--            android:textColor="@color/blackBackground" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/change_per"-->
-<!--            android:fontFamily="@font/helvetica_bold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:text="-0.13%"-->
-<!--            android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--            android:textColor="@color/blackBackground"-->
-<!--            android:textSize="12sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView13"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:text="TurnOver"-->
-<!--            android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--            android:textColor="@color/blackBackground"-->
-<!--            android:textSize="12sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/turn_over"-->
-<!--            android:fontFamily="@font/helvetica_bold"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ellipsize="end"-->
-<!--            android:gravity="center"-->
-<!--            android:maxLines="1"-->
-<!--            android:text="4,490"-->
-<!--            android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--            android:textColor="@color/blackBackground"-->
-<!--            android:textSize="12sp" />-->
-
-
-<!--    </LinearLayout>-->
-
-
-<!--</LinearLayout>-->
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="130dp"
-    android:layout_width="match_parent"
-    android:padding="10dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/front"
-    android:layout_marginTop="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="5dp"
-    android:background="@drawable/white_rectange">
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="FFBL"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/guideLine1"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        android:id="@+id/symbol"
-        android:textColor="@color/purple"
-        />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingRight="3dp"
-        app:layout_constraintTop_toBottomOf="@id/symbol"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/guideLine1"
-        android:text="Oil and Gas Development Authority"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textSize="10sp"
-
-        />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:id="@+id/guideLine1"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.3"
-        android:orientation="vertical"
-        />
-
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="28.55"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:id="@+id/current"
-        app:layout_constraintRight_toLeftOf="@id/guideLine3"
-        app:layout_constraintLeft_toRightOf="@id/guideLine1"
-        />
-
-
-
-
-
-    <TextView
-        android:id="@+id/textView5"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bid: "
-        app:layout_constraintLeft_toRightOf="@id/guideLine1"
-        app:layout_constraintTop_toBottomOf="@id/current"
-        android:textColor="@color/bidColor"
-        android:layout_marginTop="10dp"
-        android:textSize="10sp"
-        />
-
-    <TextView
-        android:id="@+id/buy_price"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="148.99"
-        android:layout_marginTop="10dp"
-        android:maxLength="5"
-        app:layout_constraintTop_toBottomOf="@id/current"
-        app:layout_constraintLeft_toRightOf="@id/textView5"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/blackBackground"
-        android:textSize="10sp"
-
-        />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" x "
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/current"
-        app:layout_constraintLeft_toRightOf="@+id/buy_price"
-
-        android:textColor="@color/blackBackground"
-        android:textSize="10sp"
-
-
-        />
-
-    <TextView
-        android:id="@+id/buy_volume"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:layout_marginTop="10dp"
-        android:maxLength="5"
-        android:textSize="10sp"
-
-        app:layout_constraintTop_toBottomOf="@id/current"
-        android:maxLines="1"
-        app:layout_constraintLeft_toRightOf="@+id/textView7"
-
-        android:text="247"
-        android:textColor="@color/blackBackground" />
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:tag="front"
+    android:weightSum="100">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/current"
-        android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toRightOf="@+id/buy_volume"
-        android:orientation="horizontal">
+        android:layout_weight="35"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/symbol"
             android:fontFamily="@font/helvetica_bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Offer: "
-            android:textColor="@color/offerColor"
-            android:textSize="10sp"
-
-
-            />
+            android:text="OGDC"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
 
         <TextView
-            android:id="@+id/sell_price"
-            android:fontFamily="@font/helvetica_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="148.76"
-            android:maxLength="5"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/blackBackground"
-            android:textSize="10sp"
-
-
-            />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:fontFamily="@font/helvetica_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" x "
-            android:textColor="@color/blackBackground"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/sell_volume"
-            android:fontFamily="@font/helvetica_bold"
+            android:id="@+id/market"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:maxLength="6"
-            android:text="321123"
-            android:textColor="@color/blackBackground"
-            android:textSize="10sp"
+            android:paddingRight="3dp"
+            android:text="Oil and Gas Development Authority"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
 
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingRight="3dp"
+            android:text="Oil and Gas Development Authority"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#555555"
+            android:textSize="12sp" />
 
-            />
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="VOLUME"
-        android:id="@+id/tvVolume"
-        app:layout_constraintLeft_toRightOf="@id/guideLine1"
-        app:layout_constraintTop_toBottomOf="@id/buy_volume"
-        android:textSize="10sp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/turn_over"
-        android:fontFamily="@font/helvetica_bold"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="@id/tvVolume"
-        app:layout_constraintLeft_toRightOf="@id/guideLine1"
-        app:layout_constraintTop_toBottomOf="@+id/tvVolume"
-        android:text="4,490"
-        android:textSize="10sp"
+        android:layout_weight="35"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/current"
+            android:fontFamily="@font/helvetica_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="148.99"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/blackBackground" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Bid: "
+                android:textColor="@color/bidColor"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/buy_price"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="148.99"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/blackBackground"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" x "
+                android:textColor="@color/blackBackground"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/buy_volume"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="247"
+                android:textColor="@color/blackBackground"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
 
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:id="@+id/guideLine2"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.5"
-        android:orientation="vertical"
-        />
+            <TextView
+                android:id="@+id/textView6"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offer: "
+                android:textColor="@color/offerColor"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sell_price"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="148.76"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/blackBackground"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" x "
+                android:textColor="@color/blackBackground"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/sell_volume"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="321"
+                android:textColor="@color/blackBackground"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/HighLowtextview"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L/H: "
+                android:textColor="@color/blackBackground"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/low_price"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="148.76"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:fontFamily="@font/helvetica_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/high_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="321"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+        </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOW"
-        android:id="@+id/tvLow"
-        android:textSize="10sp"
-
-        app:layout_constraintLeft_toRightOf="@id/guideLine2"
-        app:layout_constraintTop_toBottomOf="@id/buy_volume"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/low_price"
-        android:fontFamily="@font/helvetica_bold"
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintRight_toRightOf="@id/guideLine3"
-        app:layout_constraintTop_toBottomOf="@+id/tvLow"
-        app:layout_constraintLeft_toLeftOf="@id/guideLine2"
-        android:text="4,490"
-        android:textSize="10sp"
+        android:layout_weight="30"
+        android:orientation="vertical">
 
 
-        />
+        <TextView
+            android:id="@+id/change"
+            android:fontFamily="@font/helvetica_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0.0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/blackBackground" />
+
+        <TextView
+            android:id="@+id/change_per"
+            android:fontFamily="@font/helvetica_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="-0.13%"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/blackBackground"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TurnOver"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/blackBackground"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/turn_over"
+            android:fontFamily="@font/helvetica_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="4,490"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/blackBackground"
+            android:textSize="12sp" />
 
 
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:id="@+id/guideLine3"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.65"
-        android:orientation="vertical"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/red_arrow"
-        android:id="@+id/ivRedArrow"
-        android:scaleType="fitXY"
-        app:layout_constraintLeft_toRightOf="@id/guideLine3"
-        />
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/change"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="0.0"
-        android:textSize="10sp"
-
-        app:layout_constraintLeft_toRightOf="@+id/ivRedArrow" />
-
-    <TextView
-        android:id="@+id/change_per"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="-0.13%"
-        app:layout_constraintTop_toBottomOf="@+id/change"
-        app:layout_constraintLeft_toRightOf="@+id/ivRedArrow"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="10sp"
-
-
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HIGH"
-        android:id="@+id/tvHigh"
-        android:textSize="10sp"
-
-        app:layout_constraintLeft_toRightOf="@id/guideLine3"
-        app:layout_constraintTop_toBottomOf="@id/buy_volume"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/high_price"
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintRight_toRightOf="@id/tvHigh"
-        app:layout_constraintLeft_toRightOf="@id/guideLine3"
-        app:layout_constraintTop_toBottomOf="@+id/tvHigh"
-        android:text="4,490"
-        android:textSize="10sp"
-
-
-        />
-
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:id="@+id/guideLine4"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.75"
-        android:orientation="vertical"
-        />
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LDCP"
-        android:id="@+id/tvLDCP"
-        android:textSize="10sp"
-
-        app:layout_constraintLeft_toRightOf="@id/guideLine4"
-        app:layout_constraintTop_toBottomOf="@id/buy_volume"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:fontFamily="@font/helvetica_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintRight_toRightOf="@id/tvLDCP"
-        app:layout_constraintLeft_toRightOf="@id/guideLine4"
-        app:layout_constraintTop_toBottomOf="@+id/tvLDCP"
-        android:text="4,490"
-        android:textSize="10sp"
-
-
-        />
-
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.9"
-        android:orientation="vertical"
-        android:id="@+id/guideLine5"
-        />
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/greyDarkBar"
-        app:layout_constraintLeft_toRightOf="@id/guideLine5"
-        />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/exclamation"
-        android:id="@+id/ivExclaim"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/delete"
-        android:id="@+id/ivDelete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

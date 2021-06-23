@@ -8,13 +8,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -32,20 +35,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.softech.bipldirect.Adapters.MarketAdapter;
 import com.softech.bipldirect.Adapters.SearchListAdapter;
 import com.softech.bipldirect.Adapters.TopPagerAdapter;
 import com.softech.bipldirect.Const.Constants;
-import com.softech.bipldirect.LoginActivity;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.MarketModel.Exchange;
 import com.softech.bipldirect.Models.MarketModel.MarketSymbol;
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
-import com.softech.bipldirect.Models.SymbolsModel.SymbolsResponse;
 import com.softech.bipldirect.R;
-import com.softech.bipldirect.Util.DividerItemDecoration;
 import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.MyItemAnimator;
@@ -64,21 +63,15 @@ import butterknife.OnClick;
 
 public class MarketFragment extends Fragment implements MarketAdapter.OnMarketItemClickListener {
 
-    public static int postionToRemove = -1;
+    private static int postionToRemove = -1;
     public Boolean shouldReload = false;
     public boolean isReloaded = false;
-    @BindView(R.id.pager)
-    ViewPager mPager;
-    @BindView(R.id.market_list)
-    RecyclerView marketListView;
-    @BindView(R.id.editText)
-    EditText etSearch;
-    @BindView(R.id.search_list)
-    ListView listSearch;
-    @BindView(R.id.search_list_view)
-    LinearLayout listSearch_view;
+    private ViewPager mPager;
+    private RecyclerView marketListView;
+    private EditText etSearch;
+    private ListView listSearch;
+    private LinearLayout listSearch_view;
     List<Symbol> searchKeywordsList = new ArrayList<>();
-    //    List<MarketSymbol> marketSymbolList;
     private OnMarketFragmentListener mListener;
     private OnSymbolRequest mAddSymbol;
     private SearchListAdapter searchAdapter;
@@ -88,6 +81,9 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     private BroadcastReceiver mFeedReceiver;
     private MenuItem feedMenuItem;
     private boolean isConnected;
+    private View mLeftArrow;
+    private View mRightArrow;
+    private View mCancelSearch;
 
     public MarketFragment() {
         // Required empty public constructor
@@ -112,7 +108,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                     return e1.getSymbol().compareTo(e.getSymbol());
                 }
             });
-            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
+            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
 
         }
         catch (Exception e){
@@ -197,7 +193,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                     return e1.getSymbol().compareTo(e.getSymbol());
                 }
             });
-            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
+            marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
             marketListView.setAdapter(marketAdapter);
 
             isReloaded = false;
@@ -210,8 +206,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_market, container, false);
-        ButterKnife.bind(this, view);
-        broadCastStart();
+        bindView(view);
 
         return view;
     }
@@ -221,7 +216,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         super.onViewCreated(view, savedInstanceState);
 
         if (marketListView.getLayoutManager() == null) {
-            marketListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            marketListView.setLayoutManager(linearLayoutManager);
         }
 
         marketListView.setItemAnimator(new MyItemAnimator());
@@ -230,7 +225,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         mPager.setAdapter(pagerAdapter);
 
-        marketListView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        marketListView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         marketListView.setHasFixedSize(true);
 
         marketListView.setAdapter(marketAdapter);
@@ -345,7 +340,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
             }
         };
 
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mFeedReceiver,
+        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mFeedReceiver,
                 new IntentFilter(Constants.FEED_SERVER_BROADCAST));
         ((MainActivity) getActivity()).exchangesRequest();
 
@@ -378,8 +373,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     }
 
 
-    @OnClick({R.id.left_arrow, R.id.right_arrow})
-    public void pagerChange(View v) {
+    private void pagerChange(View v) {
 
         if (v.getId() == R.id.left_arrow) {
 
@@ -478,7 +472,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
 //                    marketSymbolList =  new ArrayList<>( MainActivity.marketResponse.getResponse().getSymbols());
 
-                    marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
+                    marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
 
                     marketListView.setAdapter(marketAdapter);
 
@@ -506,7 +500,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
                         return e1.getSymbol().compareTo(e.getSymbol());
                     }
                 });
-                marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this,MarketFragment.this);
+                marketAdapter = new MarketAdapter(getActivity(), MainActivity.marketResponse.getResponse().getSymbols(), linearLayoutManager, MarketFragment.this);
 
                 marketListView.setAdapter(marketAdapter);
 
@@ -521,8 +515,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
     }
 
-    @OnClick(R.id.cancel_search)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view.setVisibility(View.GONE);
     }
 
@@ -659,6 +652,35 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         }
     }
 
+    private void bindView(View bindSource) {
+        mPager = bindSource.findViewById(R.id.pager);
+        marketListView = bindSource.findViewById(R.id.market_list);
+        etSearch = bindSource.findViewById(R.id.editText);
+        listSearch = bindSource.findViewById(R.id.search_list);
+        listSearch_view = bindSource.findViewById(R.id.search_list_view);
+        mLeftArrow = bindSource.findViewById(R.id.left_arrow);
+        mRightArrow = bindSource.findViewById(R.id.right_arrow);
+        mCancelSearch = bindSource.findViewById(R.id.cancel_search);
+        mLeftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pagerChange(v);
+            }
+        });
+        mRightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pagerChange(v);
+            }
+        });
+        mCancelSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
+    }
+
 //    private void onPageFinished(int position) {
 //
 //        if (position == 0 || position == mPager.getAdapter().getCount() - 1) {
@@ -685,139 +707,4 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         Log.d("search_debug", "onPause: ");
     }
 
-
-    private BroadcastReceiver mMessageReceiver;
-
-    private void broadCastStart() {
-        mMessageReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-
-                String message = intent.getStringExtra("response");
-                String msgType = intent.getStringExtra("msgType");
-
-                if (message != null && msgType != null) {
-
-                    if (msgType.equalsIgnoreCase("ACPT") || msgType.equalsIgnoreCase("REM") ||
-                            msgType.equalsIgnoreCase("SRES")) {
-                        addsymbolRespones(msgType, message);
-                    } else if (msgType.equalsIgnoreCase(Constants.SYMBOL_MESSAGE_RESPONSE)) {
-                        Log.d("ServerSwitch", "SYMBOL_MESSAGE_RESPONSE: ");
-                        symbolResponse(message);
-                    }
-                }
-
-
-            }
-        };
-
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mMessageReceiver,
-                new IntentFilter(Constants.MSG_SERVER_BROADCAST));
-    }
-
-    public void addsymbolRespones(String action, String resp) {
-        Gson gson = new Gson();
-
-        JsonParser jsonParser = new JsonParser();
-        try {
-
-            JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
-            JsonObject response = jsonObject.get("response").getAsJsonObject();
-
-            String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
-            String error = jsonObject.get("error").getAsString();
-            String code = jsonObject.get("code").getAsString();
-
-
-            if (code.equals("200") && error.equals("")) {
-                // String responseType = jsonObject.get("responseType").getAsString();
-                String requestType = response.get("requestType").getAsString();
-
-                if (requestType.equals("REM")) { //delete request
-
-                    removeMarket();
-
-                } else if (requestType.equals("ADD")) { //add request
-
-                    MarketSymbol sym = new Gson().fromJson(response.getAsJsonObject("symbols"), MarketSymbol.class);
-
-                    if (sym.getSymbol() != null) {
-                        switch (action) {
-                            case Constants.ACTION_FROM_SYMBOLS: { //for symbols screen add request
-//                                Alert.show(getActivity(), "", sym.getSymbol() + " Successfully added.");
-                                shouldReload = true;
-                            }
-                            break;
-                            default: { //for market screen add request
-                                addMarketItem(sym);
-                            }
-                            break;
-                        }
-                    } else {
-                        //  Alert.showErrorAlert(getActivity());
-//                        Alert.show(getActivity(), getString(R.string.app_name), "No symbol found.");
-
-                    }
-                }
-
-
-            }
-        } catch (JsonSyntaxException e) {
-
-            e.printStackTrace();
-//            Alert.showErrorAlert(getActivity());
-
-        }
-
-    }
-    private void symbolResponse(String resp) {
-
-        Log.e("Market", "Symbol Response: " + resp);
-
-
-        Gson gson = new Gson();
-
-        JsonParser jsonParser = new JsonParser();
-
-        try {
-
-            JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
-
-            String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
-            String error = jsonObject.get("error").getAsString();
-            String code = jsonObject.get("code").getAsString();
-
-            Log.e("Market", "MSGTYPE: " + MSGTYPE);
-
-            if (code.equals("200") && error.equals("")) {
-                SymbolsResponse result = gson.fromJson(resp, SymbolsResponse.class);
-
-                if (result != null) {
-
-                    if (result.getCode().equals("200")) {
-//                        if (LoginActivity.searchKeywordsList.size() == 0) {
-//                            LoginActivity.searchKeywordsList.addAll(result.getResponse().getSymbols());
-//                            Log.e("Market", "SymbolsResponse size " + LoginActivity.searchKeywordsList.size());
-//                            searchKeywordsList = new ArrayList<>(LoginActivity.searchKeywordsList);
-//                            searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
-//                            listSearch.setAdapter(searchAdapter);
-//                        }
-//                        preferences.setSymbolResult(gson.toJson(result));
-                        // startActivity(new Intent(context, SwipingTabsActivity.class));
-//                        getMarket();
-                    } else {
-//                        Alert.show(context, "", result.getError());
-                    }
-                } else {
-                    Log.e("Market", "Response :: SymbolsResponse null ");
-                }
-            }
-        } catch (JsonSyntaxException e) {
-
-            e.printStackTrace();
-//            Alert.showErrorAlert(context);
-
-        }
-    }
 }

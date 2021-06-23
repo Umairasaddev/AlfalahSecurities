@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.softech.bipldirect.BaseActivity;
 import com.softech.bipldirect.Const.Constants;
+import com.softech.bipldirect.MainActivity;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

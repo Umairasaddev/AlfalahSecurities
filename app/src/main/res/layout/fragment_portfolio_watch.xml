@@ -212,13 +212,13 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:padding="5dp"
                 android:id="@+id/pl_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <Button
                 android:layout_marginTop="5dp"
@@ -258,13 +258,13 @@
 
         </TextView>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scrip_detail_recycler"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_below="@+id/scrip_text">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <View
             android:id="@+id/view_third"

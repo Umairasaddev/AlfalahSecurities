@@ -4,9 +4,10 @@ package com.softech.bipldirect.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +28,14 @@ import butterknife.ButterKnife;
 
 public class LinksFragment extends Fragment {
 
-    @BindView(R.id.links_listView)
-    ListView links_listView;
+    private ListView links_listView;
 
     public LinksFragment() {
         // Required empty public constructor
     }
 
 
-    public static LinksFragment newInstance() {
+    public static Fragment newInstance() {
         LinksFragment fragment = new LinksFragment();
         return fragment;
     }
@@ -50,7 +50,7 @@ public class LinksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_links, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
@@ -92,5 +92,9 @@ public class LinksFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void bindView(View bindSource) {
+        links_listView = bindSource.findViewById(R.id.links_listView);
     }
 }

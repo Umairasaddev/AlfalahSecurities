@@ -2,10 +2,9 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatEditText;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -39,38 +38,30 @@ import butterknife.OnClick;
 public class PaymentFragment extends Fragment {
 
     //    @BindView(R.id.edittext_username)
-    // EditText edit_username;
-    @BindView(R.id.edittext_clientcode)
+// EditText edit_username;
+    private
     EditText clientcode;
-    @BindView(R.id.edittext_exchange)
-    EditText edit_exchange;
-    @BindView(R.id.edittext_amount)
-    EditText edit_amount;
-    @BindView(R.id.radioGroup)
-    RadioGroup radioGroup;
-    @BindView(R.id.cashBalance)
-    TextView cashBalance;
-    @BindView(R.id.withdrawalLimit)
-    TextView withdrawalLimit;
-    @BindView(R.id.pendingWithdrawal)
-    TextView pendingWithdrawal;
-    @BindView(R.id.remainingAmount)
-    TextView remainingAmount;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
+    private EditText edit_exchange;
+    private EditText edit_amount;
+    private RadioGroup radioGroup;
+    private TextView cashBalance;
+    private TextView withdrawalLimit;
+    private TextView pendingWithdrawal;
+    private TextView remainingAmount;
+    private LinearLayout listSearch_view1;
+    private ListView listSearch1;
     ArrayList<String> clientlist;
     SearchClientListAdapter searchClientListAdapter;
     String client;
     String selectedVal = null; //B bank, C cheque
     boolean isSetInitialText = false;
+    private View mButtonPaymentRequest;
 
     public PaymentFragment() {
         // Required empty public constructor
     }
 
-    public static PaymentFragment newInstance() {
+    public static Fragment newInstance() {
         return new PaymentFragment();
     }
 
@@ -83,7 +74,7 @@ public class PaymentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
@@ -172,8 +163,7 @@ public class PaymentFragment extends Fragment {
 
     }
 
-    @OnClick(R.id.button_payment_request)
-    public void submit(View view) {
+    private void submit(View view) {
 
         String amount = edit_amount.getText().toString();
         String client = clientcode.getText().toString();
@@ -293,5 +283,25 @@ public class PaymentFragment extends Fragment {
         }
 
 
+    }
+
+    private void bindView(View bindSource) {
+        clientcode = bindSource.findViewById(R.id.edittext_clientcode);
+        edit_exchange = bindSource.findViewById(R.id.edittext_exchange);
+        edit_amount = bindSource.findViewById(R.id.edittext_amount);
+        radioGroup = bindSource.findViewById(R.id.radioGroup);
+        cashBalance = bindSource.findViewById(R.id.cashBalance);
+        withdrawalLimit = bindSource.findViewById(R.id.withdrawalLimit);
+        pendingWithdrawal = bindSource.findViewById(R.id.pendingWithdrawal);
+        remainingAmount = bindSource.findViewById(R.id.remainingAmount);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        mButtonPaymentRequest = bindSource.findViewById(R.id.button_payment_request);
+        mButtonPaymentRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit(v);
+            }
+        });
     }
 }

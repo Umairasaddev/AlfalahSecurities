@@ -5,14 +5,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,34 +23,24 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.softech.bipldirect.Adapters.ExchangeAdapter;
 import com.softech.bipldirect.Const.Constants;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.ExchangeModel.Exchange;
 import com.softech.bipldirect.Models.ExchangeModel.ExchangeResponse;
-import com.softech.bipldirect.Network.FeedCallback;
-import com.softech.bipldirect.Network.FeedServer;
 import com.softech.bipldirect.R;
-import com.softech.bipldirect.Util.Alert;
-import com.softech.bipldirect.Util.DividerItemDecoration;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.softech.bipldirect.MainActivity.loginResponse;
-
-public class ExchangeFragment extends Fragment implements FeedCallback {
+public class ExchangeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ExchangeAdapter exchangesAdapter;
     private RecyclerView.LayoutManager linearLayoutManager;
     private BroadcastReceiver mFeedReceiver;
     private List<Exchange> exchangeList = new ArrayList<>();
-    View view;
-    private static final String TAG = "Exchange";
 
     public ExchangeFragment() {
         // Required empty public constructor
@@ -70,8 +61,7 @@ public class ExchangeFragment extends Fragment implements FeedCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.fragment_exchange, container, false);
-        recyclerView=view.findViewById(R.id.exchange_list);
+        recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_exchange, container, false);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         if (recyclerView.getLayoutManager() == null) {
@@ -80,13 +70,12 @@ public class ExchangeFragment extends Fragment implements FeedCallback {
 
         exchangesAdapter = new ExchangeAdapter(getActivity(), exchangeList, linearLayoutManager, this);
 
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        recyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
 
         recyclerView.setAdapter(exchangesAdapter);
-        broadCastStart();
 
 
-        return view;
+        return recyclerView;
     }
 
     @Override
@@ -122,14 +111,6 @@ public class ExchangeFragment extends Fragment implements FeedCallback {
             }
         };
 
-        JsonObject feed_obj = new JsonObject();
-        String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
-        String user = loginResponse.getResponse().getUserId();
-        feed_obj.addProperty("MSGTYPE", action);
-        feed_obj.addProperty("userId", user);
-        new FeedServer(getActivity(), this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
-
-
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mFeedReceiver,
                 new IntentFilter(Constants.FEED_SERVER_BROADCAST));
         ((MainActivity) getActivity()).exchangesRequest();
@@ -155,119 +136,9 @@ public class ExchangeFragment extends Fragment implements FeedCallback {
 
         }
     }
-    private BroadcastReceiver mMessageReceiver;
-
-    private void broadCastStart() {
-        mMessageReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                try {
-//                    loading.dismiss();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                String message = intent.getStringExtra("response");
-                String msgType = intent.getStringExtra("msgType");
-
-                if (message != null && msgType != null) {
-                    if (msgType.equalsIgnoreCase(Constants.EXC_REQ_RESPONSE)) {
-                        exchangeResponse(message);
-                    }
-                }
-            }
-        };
-
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mMessageReceiver,
-                new IntentFilter(Constants.MSG_SERVER_BROADCAST));
-    }
 
 
-
-    private void exchangeResponse(String resp) {
-        if (!(resp.equals("null"))) {
-
-            Gson gson = new Gson();
-
-            JsonParser jsonParser = new JsonParser();
-
-            try {
-
-                JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
-
-                String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
-                String error = jsonObject.get("error").getAsString();
-                String code = jsonObject.get("code").getAsString();
-
-                Log.e(TAG, "MSGTYPE: " + MSGTYPE);
-
-                if (!(MSGTYPE.equals(Constants.EXC_REQ_RESPONSE))) {
-//                    callingExchangeService();
-                    return;
-                }
-
-                if (code.equals("200") && error.equals("")) {
-                    final ExchangeResponse result = gson.fromJson(resp, ExchangeResponse.class);
-
-                    if (result != null) {
-
-                        if (result.getCode().equals("200")) {
-                            try{
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (result.getResponse().getExchanges().size() == 0) {
-
-                                            Alert.show(getActivity(), getString(R.string.app_name), "Market is Closed.Please Open Market First");
-                                            return;
-                                        } else {
-                                            exchangeList.clear();
-                                            exchangeList.addAll(result.getResponse().getExchanges());
-                                            exchangesAdapter = new ExchangeAdapter(getActivity(),exchangeList, linearLayoutManager, ExchangeFragment.this);
-                                            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-                                            recyclerView.setAdapter(exchangesAdapter);
-
-                                        }
-
-                                        if (result != null) {
-                                        }
-                                    }
-                                });
-                            }
-                            catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-
-
-                        }
-
-                        else {
-
-                            Alert.show(getActivity(), "", result.getError());
-                        }
-
-
-                    } else {
-                        Log.e(TAG, "Response :: SymbolsResponse null ");
-                    }
-                }
-            } catch (JsonSyntaxException e) {
-
-                e.printStackTrace();
-                Alert.showErrorAlert(getActivity());
-
-            }
-        } else if (resp.equals("null")) {
-//            Alert.showSessionExpAlert(getActivity(), getString(R.string.app_name), "Your session has been expired.Please Relogin");
-
-
-        }
-    }
-
-
-    public void onFeedReceived(String resp) {
+    private void onFeedReceived(String resp) {
 
         Log.d("ExchangesFrag", "resp: " + resp);
         try {

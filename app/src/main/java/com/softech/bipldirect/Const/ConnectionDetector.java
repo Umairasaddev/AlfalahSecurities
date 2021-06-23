@@ -4,6 +4,10 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import androidx.core.content.ContextCompat;
+
+import com.softech.bipldirect.MainActivity;
+
 /**
  * Developed by Hasham.Tahir on 1/27/2016.
  */

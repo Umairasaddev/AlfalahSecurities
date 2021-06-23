@@ -1,14 +1,18 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.softech.bipldirect.BuildConfig;
 import com.softech.bipldirect.Models.OrderStatsModel.OrdersList;
 import com.softech.bipldirect.R;
 
@@ -18,9 +22,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Developed by Hasham.Tahir on 2/1/2016.
- */
 public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.ViewHolder> {
 
     private final ArrayList<OrdersList> arraylist;
@@ -144,30 +145,21 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
 
         OrdersList mItem;
         int position;
-        @BindView(R.id.orderlistimage)
+
         View image;
-        @BindView(R.id.ecx_mar)
         TextView exc_mar;
-        @BindView(R.id.symbol)
         TextView s_symbol;
-        @BindView(R.id.datetime)
         TextView datetime;
-        @BindView(R.id.side)
         TextView side;
-        @BindView(R.id.price)
         TextView price;
-        @BindView(R.id.qued)
         TextView qued;
-        @BindView(R.id.volume)
         TextView volume;
-        @BindView(R.id.textView26)
         TextView textView26;
-        @BindView(R.id.clientCode)
         TextView clientCode;
 
         public ViewHolder(View view, final OnListItemClickListener listener) {
             super(view);
-            ButterKnife.bind(this, view);
+            initViews(view);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -176,6 +168,24 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
                     listener.onListItemClick(v, mItem, position);
                 }
             });
+        }
+
+        private void initViews(View view) {
+
+
+            image=view.findViewById(R.id.orderlistimage);
+            exc_mar=view.findViewById(R.id.ecx_mar);
+            s_symbol=view.findViewById(R.id.symbol);
+            datetime=view.findViewById(R.id.datetime);
+
+
+            side=view.findViewById(R.id.side);
+            price=view.findViewById(R.id.price);
+            qued=view.findViewById(R.id.qued);
+            volume=view.findViewById(R.id.volume);
+
+            textView26=view.findViewById(R.id.textView26);
+            clientCode=view.findViewById(R.id.clientCode);
         }
     }
 }

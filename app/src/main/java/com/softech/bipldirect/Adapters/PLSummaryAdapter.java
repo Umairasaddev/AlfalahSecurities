@@ -1,9 +1,12 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +20,6 @@ import java.util.ArrayList;
 
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.ViewHolder> {
 
@@ -54,21 +56,13 @@ public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.profit_lossText)
         TextView profitLoss;
-        @BindView(R.id.company_nameText)
         TextView companyName;
-        @BindView(R.id.volume)
         TextView volume;
-        @BindView(R.id.avg_text)
         TextView avg;
-        @BindView(R.id.total_cost_text)
         TextView totalCost;
-        @BindView(R.id.mkt_value)
         TextView mktValue;
-        @BindView(R.id.payout_value)
         TextView payoutValue;
-        @BindView(R.id.ann_dateValue)
         TextView annDate;
 
         public ViewHolder(View itemView) {
@@ -76,6 +70,13 @@ public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.View
 
             profitLoss = itemView.findViewById(R.id.profit_lossText);
             companyName = itemView.findViewById(R.id.company_nameText);
+            volume = itemView.findViewById(R.id.volume);
+            avg = itemView.findViewById(R.id.avg_text);
+            totalCost = itemView.findViewById(R.id.total_cost_text);
+            mktValue = itemView.findViewById(R.id.mkt_value);
+            payoutValue = itemView.findViewById(R.id.payout_value);
+            annDate = itemView.findViewById(R.id.ann_dateValue);
+
         }
     }
 }

@@ -2,9 +2,10 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,73 +34,46 @@ public class UserProfileFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    @BindView(R.id.clientName)
-    TextView clientName;
-    @BindView(R.id.clientCode)
-    TextView clientCode;
-    @BindView(R.id.tradingAccount)
-    TextView tradingAccount;
-    @BindView(R.id.email)
-    TextView email;
-    @BindView(R.id.address)
-    TextView address;
-    @BindView(R.id.smsService)
-    TextView smsService;
-    @BindView(R.id.accountOpenDate)
-    TextView accountOpenDate;
-    @BindView(R.id.nicExpiryDate)
-    TextView nicExpiryDate;
-    @BindView(R.id.cdcAccount)
-    TextView cdcAccount;
-    @BindView(R.id.branchName)
-    TextView branchName;
-    @BindView(R.id.traderName)
-    TextView traderName;
-    @BindView(R.id.traderCode)
-    TextView traderCode;
-    @BindView(R.id.traderMobile)
-    TextView traderMobile;
-    @BindView(R.id.traderEmail)
-    TextView traderEmail;
-    @BindView(R.id.zakatStatus)
-    TextView zakatStatus;
-    @BindView(R.id.cityName)
-    TextView cityName;
-    @BindView(R.id.nic)
-    TextView nic;
-    @BindView(R.id.nominee)
-    TextView nominee;
-    @BindView(R.id.jointHolders)
-    TextView jointHolders;
-    @BindView(R.id.bankName)
-    TextView bankName;
-    @BindView(R.id.accountTitle)
-    TextView accountTitle;
-    @BindView(R.id.accountNo)
-    TextView accountNo;
-    @BindView(R.id.accountBranch)
-    TextView accountBranch;
-    @BindView(R.id.accountCity)
-    TextView accountCity;
-    @BindView(R.id.dividend)
-    TextView dividend;
+    private TextView clientName;
+    private TextView clientCode;
+    private TextView tradingAccount;
+    private TextView email;
+    private TextView address;
+    private TextView smsService;
+    private TextView accountOpenDate;
+    private TextView nicExpiryDate;
+    private TextView cdcAccount;
+    private TextView branchName;
+    private TextView traderName;
+    private TextView traderCode;
+    private TextView traderMobile;
+    private TextView traderEmail;
+    private TextView zakatStatus;
+    private TextView cityName;
+    private TextView nic;
+    private TextView nominee;
+    private TextView jointHolders;
+    private TextView bankName;
+    private TextView accountTitle;
+    private TextView accountNo;
+    private TextView accountBranch;
+    private TextView accountCity;
+    private TextView dividend;
     private String mParam1;
     private String mParam2;
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
+    private EditText clientcode;
+    private ListView listSearch1;
+    private LinearLayout listSearch_view1;
     boolean isSetInitialText = false;
     private SearchClientListAdapter searchClientListAdapter;
     ArrayList<String> clientlist;
+    private View mCancelSearch1;
 
     public UserProfileFragment() {
         // Required empty public constructor
     }
 
-    public static UserProfileFragment newInstance(String param1, String param2) {
+    public static Fragment newInstance(String param1, String param2) {
         UserProfileFragment fragment = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -124,7 +98,7 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
@@ -197,8 +171,7 @@ public class UserProfileFragment extends Fragment {
 
     }
 
-    @OnClick(R.id.cancel_search1)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
 
@@ -236,5 +209,43 @@ public class UserProfileFragment extends Fragment {
         }
 
 
+    }
+
+    private void bindView(View bindSource) {
+        clientName = bindSource.findViewById(R.id.clientName);
+        clientCode = bindSource.findViewById(R.id.clientCode);
+        tradingAccount = bindSource.findViewById(R.id.tradingAccount);
+        email = bindSource.findViewById(R.id.email);
+        address = bindSource.findViewById(R.id.address);
+        smsService = bindSource.findViewById(R.id.smsService);
+        accountOpenDate = bindSource.findViewById(R.id.accountOpenDate);
+        nicExpiryDate = bindSource.findViewById(R.id.nicExpiryDate);
+        cdcAccount = bindSource.findViewById(R.id.cdcAccount);
+        branchName = bindSource.findViewById(R.id.branchName);
+        traderName = bindSource.findViewById(R.id.traderName);
+        traderCode = bindSource.findViewById(R.id.traderCode);
+        traderMobile = bindSource.findViewById(R.id.traderMobile);
+        traderEmail = bindSource.findViewById(R.id.traderEmail);
+        zakatStatus = bindSource.findViewById(R.id.zakatStatus);
+        cityName = bindSource.findViewById(R.id.cityName);
+        nic = bindSource.findViewById(R.id.nic);
+        nominee = bindSource.findViewById(R.id.nominee);
+        jointHolders = bindSource.findViewById(R.id.jointHolders);
+        bankName = bindSource.findViewById(R.id.bankName);
+        accountTitle = bindSource.findViewById(R.id.accountTitle);
+        accountNo = bindSource.findViewById(R.id.accountNo);
+        accountBranch = bindSource.findViewById(R.id.accountBranch);
+        accountCity = bindSource.findViewById(R.id.accountCity);
+        dividend = bindSource.findViewById(R.id.dividend);
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        mCancelSearch1 = bindSource.findViewById(R.id.cancel_search1);
+        mCancelSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
     }
 }

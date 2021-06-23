@@ -2,11 +2,6 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,6 +12,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.softech.bipldirect.Adapters.MarginDetailAdapter;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
@@ -42,20 +43,17 @@ public class MarginDetailFragment extends Fragment {
     private static final String PARAM = "clientCode";
 
 
-    @BindView(R.id.custody_listView)
-    RecyclerView custody_listView;
+    private RecyclerView custody_listView;
 
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
+    private EditText clientcode;
+    private ListView listSearch1;
+    private LinearLayout listSearch_view1;
     private SearchClientListAdapter searchClientListAdapter;
 
     private String clientCode = "";
     ArrayList<String> clientlist;
     boolean isSetInitialText = false;
+    private View mCancelSearch1;
 
     public MarginDetailFragment() {
         // Required empty public constructor
@@ -82,7 +80,7 @@ public class MarginDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_margin_detail, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         custody_listView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
@@ -100,8 +98,7 @@ public class MarginDetailFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.cancel_search1)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
 
@@ -233,6 +230,20 @@ public class MarginDetailFragment extends Fragment {
 
     public String getDateTimeString() {
         return new SimpleDateFormat("MMMM dd, yyyy, hh:mm a", Locale.UK).format(new Date());
+    }
+
+    private void bindView(View bindSource) {
+        custody_listView = bindSource.findViewById(R.id.custody_listView);
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        mCancelSearch1 = bindSource.findViewById(R.id.cancel_search1);
+        mCancelSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
     }
 
     static class HeaderView {

@@ -14,9 +14,6 @@ import com.softech.bipldirect.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Developed by Hasham.Tahir on 1/29/2016.
- */
 public class SearchListAdapter extends BaseAdapter {
 
     // Declare Variables
@@ -88,7 +85,7 @@ public class SearchListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public class ViewHolder {
+    public static class ViewHolder {
         TextView label;
     }
 

@@ -16,17 +16,11 @@ public class LoginResponse {
     @Expose
     private String code;
 
-    /**
-     * No args constructor for use in serialization
-     */
+
     public LoginResponse() {
     }
 
-    /**
-     * @param response
-     * @param error
-     * @param code
-     */
+
     public LoginResponse(Response response, String error, String code) {
         this.response = response;
         this.error = error;
@@ -75,4 +69,12 @@ public class LoginResponse {
         this.code = code;
     }
 
+    @Override
+    public String toString() {
+        return "LoginResponse{" +
+                "response=" + response +
+                ", error='" + error + '\'' +
+                ", code='" + code + '\'' +
+                '}';
+    }
 }

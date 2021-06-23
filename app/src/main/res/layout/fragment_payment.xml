@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -79,7 +80,7 @@
             <!--android:textColor="@color/blackBackground"-->
             <!--android:textColorHint="@color/blinkGrey" />-->
 
-        <android.support.v7.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edittext_exchange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,7 +173,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edittext_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -218,15 +219,14 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatRadioButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/radio1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bank Transfer" />
 
-            <android.support.v7.widget.AppCompatRadioButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/radio2"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cheque Delivery" />

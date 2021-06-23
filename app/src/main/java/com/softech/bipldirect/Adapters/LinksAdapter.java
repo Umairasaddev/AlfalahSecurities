@@ -8,15 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.softech.bipldirect.Models.LinksModel.Link;
+import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Developed by Hasham.Tahir on 7/15/2016.
- */
+
 public class LinksAdapter extends BaseAdapter {
 
     Context mContext;
@@ -68,14 +67,11 @@ public class LinksAdapter extends BaseAdapter {
     }
 
 
-    public class ViewHolder {
+    public static class ViewHolder {
 
-        @BindView(android.R.id.text1)
         TextView sym;
-
-
         public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+            sym=view.findViewById(R.id.text1);
         }
 
     }

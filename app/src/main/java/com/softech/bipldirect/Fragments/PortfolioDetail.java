@@ -2,9 +2,9 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,32 +15,20 @@ import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 public class
 PortfolioDetail extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
-    @BindView(R.id.port_vol)
-    TextView volume;
-    @BindView(R.id.port_cost_unit)
-    TextView costperunit;
-    @BindView(R.id.port_totalcost)
-    TextView totalcost;
-    @BindView(R.id.port_curr_price)
-    TextView currprice;
-    @BindView(R.id.port_curr_val)
-    TextView currval;
-    @BindView(R.id.port_inves)
-    TextView invest;
-    @BindView(R.id.port_gainloss)
-    TextView gainloss;
-    @BindView(R.id.port_weight)
-    TextView portweight;
-    @BindView(R.id.port_symbol)
-    TextView portsym;
+    private TextView volume;
+    private TextView costperunit;
+    private TextView totalcost;
+    private TextView currprice;
+    private TextView currval;
+    private TextView invest;
+    private TextView gainloss;
+    private TextView portweight;
+    private TextView portsym;
 
     private String mParam1;
     private PortfolioSymbol portfolioSymbol;
@@ -81,7 +69,7 @@ PortfolioDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_portfolio_detail, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
@@ -104,5 +92,17 @@ PortfolioDetail extends Fragment {
         } else {
             Alert.showErrorAlert(getActivity());
         }
+    }
+
+    private void bindView(View bindSource) {
+        volume = bindSource.findViewById(R.id.port_vol);
+        costperunit = bindSource.findViewById(R.id.port_cost_unit);
+        totalcost = bindSource.findViewById(R.id.port_totalcost);
+        currprice = bindSource.findViewById(R.id.port_curr_price);
+        currval = bindSource.findViewById(R.id.port_curr_val);
+        invest = bindSource.findViewById(R.id.port_inves);
+        gainloss = bindSource.findViewById(R.id.port_gainloss);
+        portweight = bindSource.findViewById(R.id.port_weight);
+        portsym = bindSource.findViewById(R.id.port_symbol);
     }
 }

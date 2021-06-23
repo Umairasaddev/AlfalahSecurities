@@ -1,8 +1,13 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +20,6 @@ import java.util.List;
 
 import static com.softech.bipldirect.Network.MessageSocket.context;
 
-/**
- * Developed by hasham on 4/20/17.
- */
 
 public class NetShareCustodyAdapter extends RecyclerView.Adapter<NetShareCustodyAdapter.ViewHolder> {
 

@@ -3,15 +3,15 @@ package com.softech.bipldirect.Fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -47,70 +47,41 @@ import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class TradeFragment extends Fragment {
+public class TradeFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     public boolean sendMessage = true;
 
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.etSymbol)
-    EditText symbol;
-    @BindView(R.id.etVolume)
-    EditText volume;
-    @BindView(R.id.etPrice)
-    EditText price;
-    @BindView(R.id.tvlimit)
-    TextView limit_tv;
-    @BindView(R.id.tvbuyvol)
-    TextView buyvol;
-    @BindView(R.id.tvsellvol)
-    TextView sellvol;
-    //    @BindView({R.id.buybutton, R.id.sellbutton, R.id.shortbutton})
-//    List<Button> tab1Views;
-//    @BindView({R.id.limitbutton, R.id.marketbutton})
-//    List<Button> tab2Views;
-    @BindView(R.id.search_list)
-    ListView listSearch;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
+    private EditText clientcode;
+    private EditText symbol;
+    private EditText volume;
+    private EditText price;
+    private TextView limit_tv;
+    private TextView buyvol;
+    private TextView sellvol;
+    private ListView listSearch;
+    private ListView listSearch1;
 
-    @BindView(R.id.search_list_view)
-    LinearLayout listSearch_view;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
+    private LinearLayout listSearch_view;
+    private LinearLayout listSearch_view1;
     List<Symbol> searchKeywordsList;
     MarketSymbol marketSymbol = null;
     int buyFlag, sellFlag, shortFlag = 0;
     int tab1Selected = 1;
     String orderSide = "B";
     String orderType = "4";
-    @BindView(R.id.radioGroup)
-    RadioGroup radioGroup;
-    @BindView(R.id.radioButtonBuy)
-    RadioButton radiobuy;
-    @BindView(R.id.radioButtonSell)
-    RadioButton radiosell;
-    @BindView(R.id.textViewOrderType)
-    TextView textViewOrderType;
-    @BindView(R.id.textViewOrderProp)
-    TextView textViewOrderProp;
-    @BindView(R.id.textViewOrderValue)
-    TextView textViewOrderValue;
-    @BindView(R.id.etTriggerPrice)
-    EditText etTriggerPrice;
-    @BindView(R.id.etDiscVolume)
-    EditText etDiscVolume;
-    @BindView(R.id.etOrderReference)
-    EditText etOrderReference;
+    private RadioGroup radioGroup;
+    private RadioButton radiobuy;
+    private RadioButton radiosell;
+    private TextView textViewOrderType;
+    private TextView textViewOrderProp;
+    private TextView textViewOrderValue;
+    private EditText etTriggerPrice;
+    private EditText etDiscVolume;
+    private EditText etOrderReference;
     private SearchListAdapter searchAdapter;
     private SearchClientListAdapter searchClientListAdapter;
     private MarketSymbol values;
@@ -124,12 +95,17 @@ public class TradeFragment extends Fragment {
     private String action = "BUY";
     private final String[] months = new String[]{"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG",
             "SEP", "OCT", "NOV", "DEC"};
+    private View mCancelSearch;
+    private View mCancelSearch1;
+    private View mTradebutton;
+    private View mTextViewOrderType;
+    private View mTextViewOrderProp;
 
     public TradeFragment() {
         // Required empty public constructor
     }
 
-    public static TradeFragment newInstance(String param1) {
+    public static Fragment newInstance(String param1) {
         TradeFragment fragment = new TradeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -156,10 +132,9 @@ public class TradeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trade, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
@@ -428,138 +403,11 @@ public class TradeFragment extends Fragment {
         super.onResume();
     }
 
-    @OnClick({R.id.cancel_search, R.id.cancel_search1})
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         if (view.getId() == R.id.cancel_search) {
             listSearch_view.setVisibility(View.GONE);
         } else {
             listSearch_view1.setVisibility(View.GONE);
-        }
-    }
-
-    @OnClick({/*R.id.buybutton, R.id.sellbutton, R.id.shortbutton, R.id.limitbutton, R.id.marketbutton,*/
-            R.id.tradebutton, R.id.textViewOrderType, R.id.textViewOrderProp})
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-//            case R.id.buybutton: {
-//
-//                if (buyFlag == 0) {
-//                    HToast.showMsg(getActivity(), "You cannot buy shares.");
-//                } else {
-////                    resetButtonView(view, tab1Views);
-//
-//                    tab1Selected = 1;
-//                    orderSide = "B";
-//
-//                    setPriceValue(marketSymbol);
-//                }
-//            }
-//            break;
-//            case R.id.sellbutton: {
-//
-//                if (sellFlag == 0) {
-//                    HToast.showMsg(getActivity(), "You cannot sell shares.");
-//                } else {
-////                    resetButtonView(view, tab1Views);
-//
-//                    tab1Selected = 2;
-//                    orderSide = "S";
-//
-//                    setPriceValue(marketSymbol);
-//                }
-//            }
-//            break;
-//            case R.id.shortbutton: {
-//
-//                if (shortFlag == 1) {
-////                    resetButtonView(view, tab1Views);
-//
-//                    tab1Selected = 3;
-//                    orderSide = "S";
-//                }
-//            }
-//            break;
-//            case R.id.limitbutton: {
-//
-////                resetButtonView(view, tab2Views);
-//
-//                orderType = "4";
-//
-//                price.setTextColor(Color.WHITE);
-//                price.setEnabled(true);
-//
-//            }
-//            break;
-//            case R.id.marketbutton: {
-//
-////                resetButtonView(view, tab2Views);
-//
-//                orderType = "3";
-//
-//                price.setTextColor(Color.parseColor("#61696C"));
-//                price.setEnabled(false);
-//
-//            }
-//            break;
-            case R.id.tradebutton: {
-
-                if (checkTradeLogic()) {
-
-                    proceedTradePopup();
-//    proceedToTrade();
-                }
-
-
-//                if (tab1Selected == 1 && buyFlag == 0) {
-//
-//                    HToast.showMsg(getActivity(), "You cannot buy shares.");
-//
-//                } else if (tab1Selected == 2 && sellFlag == 0) {
-//
-//                    HToast.showMsg(getActivity(), "You cannot sell shares.");
-//
-//                } else {
-//
-//                    if (marketSymbol != null && marketSymbol.getSymbol() != null) {
-//
-//                        String volumeVal = volume.getText().toString();
-//                        String priceVal = price.getText().toString();
-//
-//                        if (volumeVal.length() > 0 && priceVal.length() > 0) {
-//
-//                            sendMessage = true;
-//                            proceedTradePopup();
-//
-//                        } else {
-//                            HToast.showMsg(getActivity(), "Please fill all fields.");
-//                        }
-//
-//                    } else {
-//
-//                        HToast.showMsg(getActivity(), "Please select symbol first.");
-//                    }
-//
-//                }
-            }
-            break;
-
-            case R.id.textViewOrderType: {
-
-                if (ordTypes != null && ordTypes.size() > 0) {
-                    showPickerOrderType(view);
-                }
-            }
-            break;
-            case R.id.textViewOrderProp: {
-
-                if (ordProps != null && ordProps.size() > 0) {
-                    showPickerOrderProp(view);
-                }
-            }
-            break;
-
         }
     }
 
@@ -1513,6 +1361,78 @@ public class TradeFragment extends Fragment {
         Util.hideKeyboard(getActivity());
 
         return true;
+    }
+
+    private void bindView(View bindSource) {
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        symbol = bindSource.findViewById(R.id.etSymbol);
+        volume = bindSource.findViewById(R.id.etVolume);
+        price = bindSource.findViewById(R.id.etPrice);
+        limit_tv = bindSource.findViewById(R.id.tvlimit);
+        buyvol = bindSource.findViewById(R.id.tvbuyvol);
+        sellvol = bindSource.findViewById(R.id.tvsellvol);
+        listSearch = bindSource.findViewById(R.id.search_list);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view = bindSource.findViewById(R.id.search_list_view);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        radioGroup = bindSource.findViewById(R.id.radioGroup);
+        radiobuy = bindSource.findViewById(R.id.radioButtonBuy);
+        radiosell = bindSource.findViewById(R.id.radioButtonSell);
+        textViewOrderType = bindSource.findViewById(R.id.textViewOrderType);
+        textViewOrderProp = bindSource.findViewById(R.id.textViewOrderProp);
+        textViewOrderValue = bindSource.findViewById(R.id.textViewOrderValue);
+        etTriggerPrice = bindSource.findViewById(R.id.etTriggerPrice);
+        etDiscVolume = bindSource.findViewById(R.id.etDiscVolume);
+        etOrderReference = bindSource.findViewById(R.id.etOrderReference);
+        mCancelSearch = bindSource.findViewById(R.id.cancel_search);
+        mCancelSearch1 = bindSource.findViewById(R.id.cancel_search1);
+        mTradebutton = bindSource.findViewById(R.id.tradebutton);
+        mTextViewOrderType = bindSource.findViewById(R.id.textViewOrderType);
+        mTextViewOrderProp = bindSource.findViewById(R.id.textViewOrderProp);
+        mCancelSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
+        mCancelSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
+
+
+        mTradebutton.setOnClickListener(this);
+        mTextViewOrderType.setOnClickListener(this);
+        mTextViewOrderProp.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tradebutton: {
+                if (checkTradeLogic()) {
+                    proceedTradePopup();
+                }
+            }
+            break;
+            case R.id.textViewOrderType: {
+
+                if (ordTypes != null && ordTypes.size() > 0) {
+                    showPickerOrderType(v);
+                }
+            }
+            break;
+            case R.id.textViewOrderProp: {
+
+                if (ordProps != null && ordProps.size() > 0) {
+                    showPickerOrderProp(v);
+                }
+            }
+            break;
+        }
     }
 
     private class OrdTypeAdapter<T> extends ArrayAdapter<T> {

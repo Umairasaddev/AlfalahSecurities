@@ -3,18 +3,23 @@ package com.softech.bipldirect;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
-/**
- * Developed by Hasham.Tahir on 7/14/2016.
- */
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.multidex.BuildConfig;
+
 public class SplashActivity extends AppCompatActivity {
+
+    ImageView ivLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.splash_main);
+        ivLogo=findViewById(R.id.ivLogo);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

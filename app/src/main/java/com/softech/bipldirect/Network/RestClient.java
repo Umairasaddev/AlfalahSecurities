@@ -17,9 +17,6 @@ import com.softech.bipldirect.Util.Alert;
 
 import org.json.JSONObject;
 
-/**
- * Developed by Hasham.Tahir on 1/14/2016.
- */
 public class RestClient {
 
 
@@ -29,7 +26,7 @@ public class RestClient {
 
     public static void postRequest(final String action, Context context, String url,
                                    final JSONObject json, final OnRestClientCallback listener,
-                                   final boolean isBackground,String loadingMsg) {
+                                   final boolean isBackground, String loadingMsg) {
 
         Log.d(TAG, "url: " + url);
         Log.d(TAG, "action: " + action);

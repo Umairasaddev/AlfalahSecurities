@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.ahl.islamictrading",
+  "variantName": "processAhlReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 2,
+      "versionName": "1.1",
+      "outputFile": "biplDirect-ahl-releaseFeb-10-1028.apk"
+    }
+  ]
+}

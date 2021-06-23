@@ -6,11 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import com.infragistics.controls.AbsoluteVolumeOscillatorIndicator;
 import com.infragistics.controls.AccumulationDistributionIndicator;
@@ -67,16 +69,15 @@ import butterknife.OnClick;
 
 public class ChartViewFragment extends Fragment {
 
-    @BindView(R.id.symbolName)
-    TextView textViewSymbolName;
-    @BindView(R.id.chart_container1)
-    FrameLayout chartContainer1;
-    @BindView(R.id.chart_container2)
-    FrameLayout chartContainer2;
+    private TextView textViewSymbolName;
+    private FrameLayout chartContainer1;
+    private FrameLayout chartContainer2;
     private OnChartViewListener mListener;
     private ChartTypeFragment.Type chartType;
     private String symbolName;
     private ChartsResponse result;
+    private View mIndicatorBtn;
+    private View mOverlaysBtn;
 
     public ChartViewFragment() {
         // Required empty public constructor
@@ -117,7 +118,7 @@ public class ChartViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chart_view, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
 
         return view;
     }
@@ -282,6 +283,8 @@ public class ChartViewFragment extends Fragment {
 
         chart.addSeries(series);
         chartContainer1.addView(chart);
+
+
     }
 
     private void addBollingerWidthChart(ChartsResponse result) {
@@ -1469,8 +1472,7 @@ public class ChartViewFragment extends Fragment {
         series.setToolTip(tip);
     }
 
-    @OnClick(R.id.indicator_btn)
-    public void showIndicatorsChooser() {
+    private void showIndicatorsChooser() {
 
         final String[] indicatorNames = {
                 "Accumulation Distribution Indicator", "Absolute Volume Indicator",
@@ -1593,8 +1595,7 @@ public class ChartViewFragment extends Fragment {
 
     }
 
-    @OnClick(R.id.overlays_btn)
-    public void showOverlaysChooser() {
+    private void showOverlaysChooser() {
 
         final String[] overlayNames = {"Bollinger Band Overlay", "Price Channel Overlay"};
 
@@ -1638,6 +1639,26 @@ public class ChartViewFragment extends Fragment {
 
         alert.show();
 
+    }
+
+    private void bindView(View bindSource) {
+        textViewSymbolName = bindSource.findViewById(R.id.symbolName);
+        chartContainer1 = bindSource.findViewById(R.id.chart_container1);
+        chartContainer2 = bindSource.findViewById(R.id.chart_container2);
+        mIndicatorBtn = bindSource.findViewById(R.id.indicator_btn);
+        mOverlaysBtn = bindSource.findViewById(R.id.overlays_btn);
+        mIndicatorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showIndicatorsChooser();
+            }
+        });
+        mOverlaysBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOverlaysChooser();
+            }
+        });
     }
 
     public interface OnChartViewListener {

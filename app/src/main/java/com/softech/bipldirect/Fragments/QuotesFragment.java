@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,78 +43,44 @@ QuotesFragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
-    @BindView(R.id.search)
-    EditText search;
-    @BindView(R.id.name)
-    TextView name;
-    @BindView(R.id.symbol)
-    TextView symbol;
-
-    @BindView(R.id.symboll)
-    TextView symboll;
-
-    @BindView(R.id.symbol1)
-    TextView symbol1;
-    @BindView(R.id.textView16)
-    TextView last;
-    @BindView(R.id.bidtext)
-    TextView bid_size;
-    @BindView(R.id.offertext)
-    TextView offersize;
-    @BindView(R.id.changetext)
-    TextView change;
-    @BindView(R.id.changetextt)
-    TextView change1;
-
-    @BindView(R.id.lowtext)
-    TextView lowhigh;
-    @BindView(R.id.limittext)
-    TextView limits;
-    @BindView(R.id.turnovertext)
-    TextView turnover;
-    @BindView(R.id.exchangetext)
-    TextView exchange;
-    @BindView(R.id.markettext)
-    TextView market;
-    @BindView(R.id.lottext)
-    TextView lotsize;
-    @BindView(R.id.lowhighPrice30)
-    TextView lowhighPrice30;
-    @BindView(R.id.lowhighPrice90)
-    TextView lowhighPrice90;
-    @BindView(R.id.lowhighPrice180)
-    TextView lowhighPrice180;
-    @BindView(R.id.lowhighPrice52)
-    TextView lowhighPrice52;
-    @BindView(R.id.avgPrice30)
-    TextView avgPrice30;
-    @BindView(R.id.avgPrice90)
-    TextView avgPrice90;
-    @BindView(R.id.avgPrice180)
-    TextView avgPrice180;
-    @BindView(R.id.avgPrice52)
-    TextView avgPrice52;
-    @BindView(R.id.AvgVolume30)
-    TextView AvgVolume30;
-    @BindView(R.id.AvgVolume90)
-    TextView AvgVolume90;
-    @BindView(R.id.AvgVolume180)
-    TextView AvgVolume180;
-    @BindView(R.id.AvgVolume52)
-    TextView AvgVolume52;
+    private EditText search;
+    private TextView name;
+    private TextView symbol;
+    private TextView last;
+    private TextView bid_size;
+    private TextView offersize;
+    private TextView change;
+    private TextView lowhigh;
+    private TextView limits;
+    private TextView turnover;
+    private TextView exchange;
+    private TextView market;
+    private TextView lotsize;
+    private TextView lowhighPrice30;
+    private TextView lowhighPrice90;
+    private TextView lowhighPrice180;
+    private TextView lowhighPrice52;
+    private TextView avgPrice30;
+    private TextView avgPrice90;
+    private TextView avgPrice180;
+    private TextView avgPrice52;
+    private TextView AvgVolume30;
+    private TextView AvgVolume90;
+    private TextView AvgVolume180;
+    private TextView AvgVolume52;
 
 
-    @BindView(R.id.search_list)
-    ListView listSearch;
+    private ListView listSearch;
 
-    @BindView(R.id.search_list_view)
-    LinearLayout listSearch_view;
+    private LinearLayout listSearch_view;
     List<Symbol> searchKeywordsList;
     private SearchListAdapter searchAdapter;
 
     private MarketSymbol marketSymbol;
 
     private OnQoutesFragmentListener mListener;
+    private View mCancelSearch;
+    private View mTradeBtn;
 
     public QuotesFragment() {
         // Required empty public constructor
@@ -159,7 +128,7 @@ QuotesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quotes, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
@@ -252,13 +221,11 @@ QuotesFragment extends Fragment {
         });
     }
 
-    @OnClick(R.id.cancel_search)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view.setVisibility(View.GONE);
     }
 
-    @OnClick(R.id.trade_btn)
-    public void tradeButton() {
+    private void tradeButton() {
 
         String TrnCodes = MainActivity.loginResponse.getResponse().getTrnCodes();
 
@@ -299,23 +266,18 @@ QuotesFragment extends Fragment {
 
             name.setText(marketSymbol.getName());
             symbol.setText(marketSymbol.getSymbol() + "-" + marketSymbol.getMarket());
-            symbol.setText(marketSymbol.getSymbol() + "-" + marketSymbol.getMarket());
-            symboll.setText(marketSymbol.getSymbol() + "-" + marketSymbol.getMarket());
             last.setText(marketSymbol.getCurrent());
             bid_size.setText(marketSymbol.getBuyPrice() + "(" + marketSymbol.getBuyVolume() + ")");
             offersize.setText(marketSymbol.getSellPrice() + "(" + marketSymbol.getSellVolume() + ")");
 
             if (ichange > 0) {
                 change.setTextColor(Color.GREEN);
-                change1.setTextColor(Color.GREEN);
             }
             if (ichange < 0) {
                 change.setTextColor(Color.RED);
-                change1.setTextColor(Color.RED);
             }
             if (ichange == 0) {
                 change.setTextColor(Color.GRAY);
-                change1.setTextColor(Color.GRAY);
             }
             double percentage = 0;
             String changeStr = marketSymbol.getChange().replace(",", "");
@@ -328,7 +290,6 @@ QuotesFragment extends Fragment {
             Log.d("Perc ", String.valueOf(percentage));
             String perc = String.format("%.2f", percentage);
             change.setText(marketSymbol.getChange() + "(" + perc + "%)");
-            change1.setText(marketSymbol.getChange() + "(" + perc + "%)");
             lowhigh.setText(marketSymbol.getLowPrice() + "-" + marketSymbol.getHighPrice());
             limits.setText(marketSymbol.getLowerLimit() + "-" + marketSymbol.getUpperLimit());
             turnover.setText(marketSymbol.getTurnOver());
@@ -353,6 +314,50 @@ QuotesFragment extends Fragment {
             e.printStackTrace();
             Alert.show(getActivity(), "ERROR", e.getLocalizedMessage());
         }
+    }
+
+    private void bindView(View bindSource) {
+        search = bindSource.findViewById(R.id.search);
+        name = bindSource.findViewById(R.id.name);
+        symbol = bindSource.findViewById(R.id.symbol);
+        last = bindSource.findViewById(R.id.textView16);
+        bid_size = bindSource.findViewById(R.id.bidtext);
+        offersize = bindSource.findViewById(R.id.offertext);
+        change = bindSource.findViewById(R.id.changetext);
+        lowhigh = bindSource.findViewById(R.id.lowtext);
+        limits = bindSource.findViewById(R.id.limittext);
+        turnover = bindSource.findViewById(R.id.turnovertext);
+        exchange = bindSource.findViewById(R.id.exchangetext);
+        market = bindSource.findViewById(R.id.markettext);
+        lotsize = bindSource.findViewById(R.id.lottext);
+        lowhighPrice30 = bindSource.findViewById(R.id.lowhighPrice30);
+        lowhighPrice90 = bindSource.findViewById(R.id.lowhighPrice90);
+        lowhighPrice180 = bindSource.findViewById(R.id.lowhighPrice180);
+        lowhighPrice52 = bindSource.findViewById(R.id.lowhighPrice52);
+        avgPrice30 = bindSource.findViewById(R.id.avgPrice30);
+        avgPrice90 = bindSource.findViewById(R.id.avgPrice90);
+        avgPrice180 = bindSource.findViewById(R.id.avgPrice180);
+        avgPrice52 = bindSource.findViewById(R.id.avgPrice52);
+        AvgVolume30 = bindSource.findViewById(R.id.AvgVolume30);
+        AvgVolume90 = bindSource.findViewById(R.id.AvgVolume90);
+        AvgVolume180 = bindSource.findViewById(R.id.AvgVolume180);
+        AvgVolume52 = bindSource.findViewById(R.id.AvgVolume52);
+        listSearch = bindSource.findViewById(R.id.search_list);
+        listSearch_view = bindSource.findViewById(R.id.search_list_view);
+        mCancelSearch = bindSource.findViewById(R.id.cancel_search);
+        mTradeBtn = bindSource.findViewById(R.id.trade_btn);
+        mCancelSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
+        mTradeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tradeButton();
+            }
+        });
     }
 
     public interface OnQoutesFragmentListener {

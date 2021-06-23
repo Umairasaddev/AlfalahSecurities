@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:swipe="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greyBar"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -14,7 +15,6 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="50dp">
 
         <ImageView
@@ -29,12 +29,11 @@
             android:src="@drawable/arrowleft2x" />
 
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:visibility="gone"
             android:layout_toEndOf="@+id/left_arrow"
             android:layout_toLeftOf="@+id/right_arrow"
             android:layout_toRightOf="@+id/left_arrow"
@@ -59,7 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout"
-        android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:background="@color/greyBar"
@@ -72,10 +70,11 @@
         android:textColorHint="@color/redDark" />
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/market_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/editText"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -84,7 +83,6 @@
         swipe:swipeCloseAllItemsWhenMoveList="true"
         swipe:swipeFrontView="@+id/front"
         swipe:swipeMode="left"
-        android:layout_marginBottom="20dp"
         swipe:swipeOffsetLeft="100dp" />
 
 

@@ -2,9 +2,10 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,18 +29,19 @@ import butterknife.OnClick;
 
 public class TopSymbolsFragment extends Fragment {
 
-    @BindView(R.id.top_symbol_list)
-    ListView top_symbol_list;
-
+    private ListView top_symbol_list;
     @BindViews({R.id.gainers, R.id.losers, R.id.volleader})
     List<Button> buttonViews;
 
     private List<TopSymbol> values;
+    private View mGainers;
+    private View mLosers;
+    private View mVolleader;
 
     public TopSymbolsFragment() {
     }
 
-    public static TopSymbolsFragment newInstance() {
+    public static Fragment newInstance() {
         return new TopSymbolsFragment();
     }
 
@@ -52,28 +54,25 @@ public class TopSymbolsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_symbols, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
-    @OnClick(R.id.gainers)
-    public void gainers(View view) {
+    private void gainers(View view) {
 
         setValues(values, "1");
 
         resetButtonView(view);
     }
 
-    @OnClick(R.id.losers)
-    public void losers(View view) {
+    private void losers(View view) {
 
         setValues(values, "2");
 
         resetButtonView(view);
     }
 
-    @OnClick(R.id.volleader)
-    public void leaders(View view) {
+    private void leaders(View view) {
 
         setValues(values, "3");
 
@@ -132,5 +131,30 @@ public class TopSymbolsFragment extends Fragment {
 
             Alert.show(getActivity(), getString(R.string.app_name), "No Symbols to display, Try again later.");
         }
+    }
+
+    private void bindView(View bindSource) {
+        top_symbol_list = bindSource.findViewById(R.id.top_symbol_list);
+        mGainers = bindSource.findViewById(R.id.gainers);
+        mLosers = bindSource.findViewById(R.id.losers);
+        mVolleader = bindSource.findViewById(R.id.volleader);
+        mGainers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gainers(v);
+            }
+        });
+        mLosers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                losers(v);
+            }
+        });
+        mVolleader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                leaders(v);
+            }
+        });
     }
 }

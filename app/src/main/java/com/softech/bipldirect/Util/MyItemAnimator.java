@@ -1,20 +1,20 @@
 package com.softech.bipldirect.Util;
 
-import android.support.annotation.NonNull;
-import android.support.v4.animation.AnimatorCompatHelper;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorCompat;
+import androidx.core.view.ViewPropertyAnimatorListener;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
+
+import android.animation.TimeInterpolator;
 import android.view.View;
+
+import com.nineoldandroids.animation.ValueAnimator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Developed by Hasham.Tahir on 12/13/2016.
- */
 
 public class MyItemAnimator extends SimpleItemAnimator {
     private static final boolean DEBUG = false;
@@ -454,7 +454,8 @@ public class MyItemAnimator extends SimpleItemAnimator {
     }
 
     private void resetAnimation(RecyclerView.ViewHolder holder) {
-        AnimatorCompatHelper.clearInterpolator(holder.itemView);
+        TimeInterpolator mDefaultInterpolator = new ValueAnimator().getInterpolator();
+        holder.itemView.animate().setInterpolator(mDefaultInterpolator);
         endAnimation(holder);
     }
 

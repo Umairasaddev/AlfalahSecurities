@@ -2,10 +2,15 @@ package com.softech.bipldirect;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.View;
 
@@ -24,12 +29,10 @@ import com.softech.bipldirect.Util.Util;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("ConstantConditions")
 public class ChartsActivity extends BaseActivity implements
         ChartDurationFragment.OnChartDurationListener, ChartTypeFragment.OnChartTypeListener
         , ChartViewFragment.OnChartViewListener {
 
-    @SuppressWarnings("FieldCanBeLocal")
     private final String TAG = "ChartsActivity";
     private FragmentManager fragmentManager;
     private MarketSymbol marketSymbol;
@@ -174,23 +177,23 @@ public class ChartsActivity extends BaseActivity implements
                                 });
 
                             } else {
-                                Alert.show(context, getString(R.string.app_name), result.getError());
+                                Alert.show(ChartsActivity.this, getString(R.string.app_name), result.getError());
                             }
 
                         } else {
-                            Alert.showErrorAlert(context);
+                            Alert.showErrorAlert(ChartsActivity.this);
                         }
                     }
                     break;
                 }
 
             } else {
-                Alert.show(context, getString(R.string.app_name), error);
+                Alert.show(ChartsActivity.this, getString(R.string.app_name), error);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            Alert.showErrorAlert(context);
+            Alert.showErrorAlert(ChartsActivity.this);
         }
 
     }

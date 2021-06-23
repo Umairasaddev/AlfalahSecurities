@@ -2,11 +2,12 @@ package com.softech.bipldirect.Fragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -43,22 +44,15 @@ import butterknife.ButterKnife;
 
 public class NetSharesFragment extends Fragment implements NetShareCustodyAdapter.OnNetShareClickListener {
 
-    @BindView(R.id.textView_dateTimeNow)
-    TextView textView_dateTimeNow;
-    @BindView(R.id.textView_dateTime)
-    TextView textView_dateTime;
-    @BindView(R.id.recyclerView_netShares)
-    RecyclerView recyclerView_netShares;
-    @BindView(R.id.textView_clientCode)
-    TextView textView_clientCode;
+    private TextView textView_dateTimeNow;
+    private TextView textView_dateTime;
+    private RecyclerView recyclerView_netShares;
+    private TextView textView_clientCode;
 
     String dateToDisplay = "";
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
+    private EditText clientcode;
+    private ListView listSearch1;
+    private LinearLayout listSearch_view1;
     private SearchClientListAdapter searchClientListAdapter;
     ArrayList<String> clientlist;
     boolean isSetInitialText = false;
@@ -104,7 +98,7 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_net_custody, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
@@ -242,5 +236,15 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
     public void onNetShareClick(NetShareCustody mItem) {
 
         ((MainActivity) getActivity()).goToNetShareDetail(mItem);
+    }
+
+    private void bindView(View bindSource) {
+        textView_dateTimeNow = bindSource.findViewById(R.id.textView_dateTimeNow);
+        textView_dateTime = bindSource.findViewById(R.id.textView_dateTime);
+        recyclerView_netShares = bindSource.findViewById(R.id.recyclerView_netShares);
+        textView_clientCode = bindSource.findViewById(R.id.textView_clientCode);
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
     }
 }

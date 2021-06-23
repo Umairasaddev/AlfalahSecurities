@@ -1,20 +1,17 @@
 package com.softech.bipldirect.Adapters;
-
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.softech.bipldirect.Models.Menu;
 import com.softech.bipldirect.R;
 
 import java.util.List;
 
-/**
- * Developed by Hasham.Tahir on 1/28/2016.
- */
 public class NavAdapter extends RecyclerView.Adapter<NavAdapter.ViewHolder> {
 
     private final List<Menu> mValues;
@@ -56,7 +53,7 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.ViewHolder> {
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final ImageView icon;
         public final TextView title;

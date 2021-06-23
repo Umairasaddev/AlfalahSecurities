@@ -6,10 +6,10 @@
 
     <solid
         android:radius="5dp"
-        android:color="@color/colorPrimary"
+        android:color="@color/blinkGreen"
 
         />
     <stroke
-        android:color="@color/colorPrimary"
+        android:color="@color/blinkGreen"
         android:width="1dp"/>
 </shape>

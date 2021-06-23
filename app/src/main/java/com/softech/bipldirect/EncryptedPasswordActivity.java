@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,13 +38,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EncryptedPasswordActivity extends BaseActivity {
+
+    private static final String TAG = "EncryptedPasswordActivi";
+
     private Preferences preferences;
-    @BindView(R.id.btn_registerme)
-    Button loginBtn;
-    @BindView(R.id.field_password)
-    EditText passwordField;
-    @BindView(R.id.btn_generatePass)
-    Button generatePasswordBtn;
+    private Button loginBtn;
+    private EditText passwordField;
+    private Button generatePasswordBtn;
     String generatedPassword;
     CountDownTimer countDownTimer;
     static int  check=0;
@@ -57,14 +55,13 @@ public class EncryptedPasswordActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encrypted_password);
-        ButterKnife.bind(this);
-        loading = new Loading(context, "Please wait...");
+        bindView();
+        loading = new Loading(EncryptedPasswordActivity.this, "Please wait...");
         loginBtn.setEnabled(true);
 
         try {
-            context = createPackageContext("com.sharedpref1", 0);//first app package name is "com.sharedpref1"
-            pref = context.getSharedPreferences(
-                    "demopref", Context.MODE_PRIVATE);
+            createPackageContext("com.sharedpref1", 0);//first app package name is "com.sharedpref1"
+            pref = getSharedPreferences("demopref", Context.MODE_PRIVATE);
             String your_data = pref.getString("demostring", "No Value");
             Toast.makeText(getApplicationContext(), your_data, Toast.LENGTH_LONG).show();
 
@@ -92,7 +89,7 @@ public class EncryptedPasswordActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (passwordField.getText().length() > 0) {
-                    Log.d("decryptedpass", preferences.getDecryptedPassword());
+                    Log.d("decryptedpass", preferences.getDecryptedPassword()+"");
                     if (getPackageName().equals("com.softech.bipldirect")){
                         loginBtn.setEnabled(false);
                         loading.show();
@@ -127,7 +124,6 @@ public class EncryptedPasswordActivity extends BaseActivity {
 
                 } else {
                     loginBtn.setEnabled(true);
-
                     loading.dismiss();
                     HSnackBar.showMsg(findViewById(android.R.id.content), "Please enter Second Level password.");
                 }
@@ -137,29 +133,21 @@ public class EncryptedPasswordActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 callPasswordService();
-
-
             }
         });
     }
 
-
     private void callPasswordService() {
-        Gson gson = new Gson();
-
-
         JsonObject login_obj = new JsonObject();
-
         login_obj.addProperty("MSGTYPE", Constants.SECOND_LEVEL_PASSWORD_REQUEST);
         login_obj.addProperty("userName", preferences.getUsername());
 
-
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+
 
             Map<Integer, String> map = new HashMap<>();
             map.put(1, Constants.SECOND_LEVEL_PASSWORD_REQUEST);
             map.put(2, login_obj.toString());
-
             write(map, true);
 
         } else {
@@ -209,20 +197,16 @@ public class EncryptedPasswordActivity extends BaseActivity {
 
     public void onMessageReceived(String action, String resp) {
         Gson gson = new Gson();
-//        SharedPreferences.Editor editor = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
-//        SharedPreferences prefs = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE);
-//        check = prefs.getBoolean("check", false);
         JsonParser jsonParser = new JsonParser();
         try {
 
-//                editor.putBoolean("check", true);
-//                editor.apply();
             JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
+            Log.e(TAG, "Response: "+ jsonObject.toString());
+
+
             String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
             String error = jsonObject.get("error").getAsString();
             String code = jsonObject.get("code").getAsString();
-
-//            Log.d(TAG, "MSGTYPE: " + MSGTYPE);
 
             if (code.equals("200") && error.equals("")) {
                 loading.dismiss();
@@ -302,5 +286,12 @@ public class EncryptedPasswordActivity extends BaseActivity {
         }
 
 
+    }
+
+
+    private void bindView() {
+        loginBtn = findViewById(R.id.btn_registerme);
+        passwordField = findViewById(R.id.field_password);
+        generatePasswordBtn = findViewById(R.id.btn_generatePass);
     }
 }

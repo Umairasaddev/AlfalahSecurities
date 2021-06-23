@@ -2,14 +2,15 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,6 @@ import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.CashBookModel.CashBookResponse;
 import com.softech.bipldirect.Models.CashBookModel.CashDatum;
 import com.softech.bipldirect.R;
-import com.softech.bipldirect.Util.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,18 +36,15 @@ import butterknife.OnClick;
 
 public class CashBookFragment extends Fragment {
 
-    @BindView(R.id.recyclerView_cashBook)
-    RecyclerView recyclerView_cashBook;
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
+    private RecyclerView recyclerView_cashBook;
+    private EditText clientcode;
+    private ListView listSearch1;
+    private LinearLayout listSearch_view1;
     private SearchClientListAdapter searchClientListAdapter;
     private CashBookResponse values;
     ArrayList<String> clientlist;
     boolean isSetInitialText = false;
+    private View mCancelSearch1;
 
     public CashBookFragment() {
         // Required empty public constructor
@@ -66,7 +63,7 @@ public class CashBookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cash_book, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
 
@@ -85,7 +82,7 @@ public class CashBookFragment extends Fragment {
     @Override
     public void onResume() {
 
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (toolbar != null) {
             toolbar.setTitle("Cash Book");
@@ -99,7 +96,7 @@ public class CashBookFragment extends Fragment {
 
         recyclerView_cashBook.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        recyclerView_cashBook.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        recyclerView_cashBook.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         listSearch1.setAdapter(searchClientListAdapter);
         clientcode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,8 +138,7 @@ public class CashBookFragment extends Fragment {
         });
     }
 
-    @OnClick(R.id.cancel_search1)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
 
@@ -166,5 +162,19 @@ public class CashBookFragment extends Fragment {
             recyclerView_cashBook.setAdapter(adapter);
 
         }
+    }
+
+    private void bindView(View bindSource) {
+        recyclerView_cashBook = bindSource.findViewById(R.id.recyclerView_cashBook);
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        mCancelSearch1 = bindSource.findViewById(R.id.cancel_search1);
+        mCancelSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
     }
 }

@@ -1,0 +1,654 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Fragments.QuotesFragment">
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/greyBar"
+        android:drawableEnd="@drawable/iconsearch"
+        android:drawableRight="@drawable/iconsearch"
+        android:hint="Securities"
+        android:inputType="textCapCharacters|textVisiblePassword|textNoSuggestions"
+        android:padding="15dp"
+        android:textColor="#000000"
+        android:textColorHint="@color/redDark" />
+
+    <TextView
+        android:id="@+id/symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/name"
+        fontPath="fonts/Helvetica Bold.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/symbol"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/trade_btn"
+        android:layout_alignRight="@+id/search"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Last"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/bid"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Bid (Size)"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/bidtext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#6387f1" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/offer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Offer (Size)"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/offertext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#eaea0f0f" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/Change"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Change (%)"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/changetext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/low"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Low - High"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/lowtext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/roww"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/limit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Limits"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/limittext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/turnover"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Turnover"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/turnovertext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/exchange"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Exchange"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/exchangetext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/market"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Market"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/markettext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/lot"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:text="Lot Size"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/lottext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="17"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                fontPath="fonts/Helvetica Bold.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="History"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Ranges"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Price(avg)"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Vol(avg)"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="30 Days"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lowhighPrice30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0 - 0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/avgPrice30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/AvgVolume30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="90 Days"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lowhighPrice90"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0 - 0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/avgPrice90"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/AvgVolume90"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="180 Days"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lowhighPrice180"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0 - 0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/avgPrice180"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/AvgVolume180"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/greyDarkBar"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        fontPath="fonts/Helvetica Bold.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="52 Weeks"
+                        android:textColor="@android:color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/lowhighPrice52"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0 - 0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/avgPrice52"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.0"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/AvgVolume52"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@android:color/black" />
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/trade_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_shape"
+        android:text="Trade"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/search_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/cancel_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:src="@drawable/cancel_white" />
+
+        <ListView
+            android:id="@+id/search_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

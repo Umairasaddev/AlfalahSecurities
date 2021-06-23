@@ -2,9 +2,10 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -18,21 +19,15 @@ import com.softech.bipldirect.Adapters.SymbolsAdapter;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
 import com.softech.bipldirect.R;
-
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class SymbolsFragment extends Fragment {
 
-    @BindView(R.id.symbol_list)
-    ListView symbol_list;
-    @BindView(R.id.searchField)
-    EditText searchField;
+    private ListView symbol_list;
+    private EditText searchField;
     List<Symbol> arrayList,filteredArraylist;
     boolean isSearched = false;
     SymbolsAdapter symbolsAdapter;
@@ -40,7 +35,7 @@ public class SymbolsFragment extends Fragment {
     public SymbolsFragment() {
     }
 
-    public static SymbolsFragment newInstance() {
+    public static Fragment newInstance() {
         return new SymbolsFragment();
     }
 
@@ -53,7 +48,7 @@ public class SymbolsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_symbols, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
@@ -124,5 +119,10 @@ public class SymbolsFragment extends Fragment {
             }
             symbolsAdapter.updateList((List<Symbol>) filteredArraylist);
         }
+    }
+
+    private void bindView(View bindSource) {
+        symbol_list = bindSource.findViewById(R.id.symbol_list);
+        searchField = bindSource.findViewById(R.id.searchField);
     }
 }

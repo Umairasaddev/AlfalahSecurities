@@ -1,8 +1,13 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.Models.PortfolioModel.Portfolio;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioFooter;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
@@ -22,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -52,11 +57,11 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case TYPE_NORMAL: {
                 View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.portfolio_list_item, viewGroup, false);
                 viewHolder = new ViewHolder(v) {};
+
             }
             break;
             case TYPE_FOOTER: {
-                View v = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.acc_list_item_footer, viewGroup, false);
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.acc_list_item_footer, viewGroup, false);
                 viewHolder = new FooterViewHolder(v);
             }
             break;
@@ -102,7 +107,8 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 viewHolder1.llItem.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) { portofolioClickListner.onPortfolioClick(obj);
+                    public void onClick(View v) {
+                        portofolioClickListner.onPortfolioClick(obj);
                     }
                 });
             }
@@ -129,13 +135,11 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 }
                 footerView.totalProfitLoss.setText(portfolioFooter.getTotalProfitloss());
-
             }
             break;
         }
 
     }
-
 
     public interface OnPortofolioClickListner {
         void onPortfolioClick(PortfolioSymbol mItem);
@@ -165,32 +169,29 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.portfolio_symbol)
         TextView sym;
-        @BindView(R.id.portfolio_volume)
         TextView volume;
-        @BindView(R.id.portfolio_profitloss)
         TextView profitloss;
-        @BindView(R.id.llItem)
         LinearLayout llItem;
 
         ImageView ivArrow;
         TextView portfolio_market_price, portfolio_cost_price, portfolio_total;
 
-
         public ViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+
+            sym=view.findViewById(R.id.portfolio_symbol);
+            volume=view.findViewById(R.id.portfolio_volume);
+            profitloss=view.findViewById(R.id.portfolio_profitloss);
+            llItem=view.findViewById(R.id.llItem);
             ivArrow=view.findViewById(R.id.ivArrow);
             portfolio_market_price=view.findViewById(R.id.portfolio_market_price);
             portfolio_cost_price=view.findViewById(R.id.portfolio_cost_price);
             portfolio_total=view.findViewById(R.id.portfolio_total);
-
         }
     }
 
     public static class FooterViewHolder extends RecyclerView.ViewHolder {
-
         TextView totalInvestment;
         TextView totalProfitLoss;
 

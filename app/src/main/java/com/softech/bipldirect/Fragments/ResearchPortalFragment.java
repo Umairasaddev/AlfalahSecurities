@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,18 +15,17 @@ import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.softech.bipldirect.Const.ConnectionDetector;
 import com.softech.bipldirect.Const.Constants;
-import com.softech.bipldirect.Models.SymbolsModel.Symbol;
 import com.softech.bipldirect.Network.OnRestClientCallback;
 import com.softech.bipldirect.Network.RestClient;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Loading;
-
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,8 +60,7 @@ public class ResearchPortalFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         loading = new Loading(getActivity(),"Loading..");
 
@@ -113,10 +109,7 @@ public class ResearchPortalFragment extends Fragment {
                 jsonObject.put("password", "rashid123");
                 jsonObject.put("ip", Constants.RESESRCH_PORTAL_IP);
 
-                RestClient.postRequest("research_portal",
-                        getActivity(),
-                        url,
-                        jsonObject,
+                RestClient.postRequest("research_portal", getActivity(), url, jsonObject,
                         new OnRestClientCallback() {
                             @Override
                             public void onRestSuccess(JSONObject response, String action) {

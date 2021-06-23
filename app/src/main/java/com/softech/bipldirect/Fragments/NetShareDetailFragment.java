@@ -1,9 +1,9 @@
 package com.softech.bipldirect.Fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +15,6 @@ import com.google.gson.Gson;
 import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Developed by hasham on 4/20/17.
  */
@@ -25,37 +22,25 @@ import butterknife.ButterKnife;
 public class NetShareDetailFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
-    @BindView(R.id.textView_symbol)
-    TextView textView_symbol;
-    @BindView(R.id.textView_symbolName)
-    TextView textView_symbolName;
-    @BindView(R.id.textView_cdcTradable)
-    TextView textView_cdcTradable;
-    @BindView(R.id.textView_closingRate)
-    TextView textView_closingRate;
-    @BindView(R.id.textView_CorpAct)
-    TextView textView_CorpAct;
-    @BindView(R.id.textView_CustodyBalance)
-    TextView textView_CustodyBalance;
-    @BindView(R.id.textView_Forward)
-    TextView textView_Forward;
-    @BindView(R.id.textView_PhyTradable)
-    TextView textView_PhyTradable;
-    @BindView(R.id.textView_Registered)
-    TextView textView_Registered;
-    @BindView(R.id.textView_Regular)
-    TextView textView_Regular;
-    @BindView(R.id.textView_Spot)
-    TextView textView_Spot;
-    @BindView(R.id.textView_UnRegistered)
-    TextView textView_UnRegistered;
+    private TextView textView_symbol;
+    private TextView textView_symbolName;
+    private TextView textView_cdcTradable;
+    private TextView textView_closingRate;
+    private TextView textView_CorpAct;
+    private TextView textView_CustodyBalance;
+    private TextView textView_Forward;
+    private TextView textView_PhyTradable;
+    private TextView textView_Registered;
+    private TextView textView_Regular;
+    private TextView textView_Spot;
+    private TextView textView_UnRegistered;
 
     NetShareCustody shareCustody = null;
 
     public NetShareDetailFragment() {
     }
 
-    public static NetShareDetailFragment newInstance(String param1) {
+    public static Fragment newInstance(String param1) {
         NetShareDetailFragment fragment = new NetShareDetailFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -93,7 +78,7 @@ public class NetShareDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_net_custody_detail, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
@@ -129,5 +114,19 @@ public class NetShareDetailFragment extends Fragment {
         }
         
     }
-    
+
+    private void bindView(View bindSource) {
+        textView_symbol = bindSource.findViewById(R.id.textView_symbol);
+        textView_symbolName = bindSource.findViewById(R.id.textView_symbolName);
+        textView_cdcTradable = bindSource.findViewById(R.id.textView_cdcTradable);
+        textView_closingRate = bindSource.findViewById(R.id.textView_closingRate);
+        textView_CorpAct = bindSource.findViewById(R.id.textView_CorpAct);
+        textView_CustodyBalance = bindSource.findViewById(R.id.textView_CustodyBalance);
+        textView_Forward = bindSource.findViewById(R.id.textView_Forward);
+        textView_PhyTradable = bindSource.findViewById(R.id.textView_PhyTradable);
+        textView_Registered = bindSource.findViewById(R.id.textView_Registered);
+        textView_Regular = bindSource.findViewById(R.id.textView_Regular);
+        textView_Spot = bindSource.findViewById(R.id.textView_Spot);
+        textView_UnRegistered = bindSource.findViewById(R.id.textView_UnRegistered);
+    }
 }

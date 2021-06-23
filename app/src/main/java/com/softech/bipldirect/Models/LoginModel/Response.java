@@ -423,4 +423,33 @@ public class Response {
     public void setChangePassword(String changePassword) {
         this.changePassword = changePassword;
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "changePassword='" + changePassword + '\'' +
+                ", client='" + client + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", feedPort='" + feedPort + '\'' +
+                ", feedIP='" + feedIP + '\'' +
+                ", regularMarketCode='" + regularMarketCode + '\'' +
+                ", pinCode='" + pinCode + '\'' +
+                ", systemDate='" + systemDate + '\'' +
+                ", oddLotMarketCode='" + oddLotMarketCode + '\'' +
+                ", applicationTitle='" + applicationTitle + '\'' +
+                ", userId='" + userId + '\'' +
+                ", trnCodes='" + trnCodes + '\'' +
+                ", action=" + action +
+                ", serverCode='" + serverCode + '\'' +
+                ", MSGTYPE='" + MSGTYPE + '\'' +
+                ", trader='" + trader + '\'' +
+                ", exchange='" + exchange + '\'' +
+                ", ordTypes=" + ordTypes +
+                ", usertype=" + usertype +
+                ", secondLevelPassword='" + secondLevelPassword + '\'' +
+                ", clientlist='" + clientlist + '\'' +
+                ", ordProps=" + ordProps +
+                ", showSecLevPswd=" + showSecLevPswd +
+                '}';
+    }
 }

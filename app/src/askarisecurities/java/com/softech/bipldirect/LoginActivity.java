@@ -55,16 +55,11 @@ public class LoginActivity extends BaseActivity {
     EditText etName;
     @BindView(R.id.login_pass)
     EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
     @BindView(R.id.tv_forgotPwd)
     TextView forgotPassword;
-
     @BindView(R.id.btnSignUp)
     Button btnSignUp;
 
-    //        @BindView(R.id.login_server)
-//    TextView etServer;
     Context context = LoginActivity.this;
     private Preferences preferences;
     private String user, pas;
@@ -142,6 +137,7 @@ public class LoginActivity extends BaseActivity {
     public void callingloginservice(View view) {
         user = etName.getText().toString();
         pas = etPass.getText().toString();
+
         try {
             EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
             userEncoded = enctyptionUtils.encrypt(user.trim());
@@ -149,20 +145,27 @@ public class LoginActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         if (user.length() > 0 && pas.length() > 0) {
 
-            if (pas.length()>4 && pas.length()<=16){
-                final JsonObject login_obj = new JsonObject();
+            //            if (pas.length()>=3){
+//            }
+//            else {
+//                HSnackBar.showMsg(view, "Password length should be minimum of 3 characters");
+//
+//            }
 
-                login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
-                login_obj.addProperty("userId", userEncoded);
-                login_obj.addProperty("pswd", passEncoded);
-                // For encryption
-                login_obj.addProperty("Ver", "1.7");
+            final JsonObject login_obj = new JsonObject();
+            login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
+            login_obj.addProperty("userId", userEncoded);
+            login_obj.addProperty("pswd", passEncoded);
 
-                connectWithMessageServer(login_obj);
+            // For encryption
+            login_obj.addProperty("Ver", "1.7");
+            connectWithMessageServer(login_obj);
 
-//For encryption
+            //For encryption
 //            if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 //
 //                if (Constants.KASB_API_LOGIN.isEmpty()) {
@@ -226,18 +229,11 @@ public class LoginActivity extends BaseActivity {
 //                }
 //            }
 
-            }
-            else {
-                HSnackBar.showMsg(view, "Password length should be minimum of 8 characters");
-
-            }
-
         } else {
             HSnackBar.showMsg(view, "Please enter username and password.");
         }
 
     }
-
 
     @OnClick(R.id.login_btn)
     public void submit(final View view) {
@@ -314,8 +310,6 @@ public class LoginActivity extends BaseActivity {
 
                                     try {
                                         String encodedPass = result.getResponse().getSecondLevelPassword();
-
-
                                         if (encodedPass.equals("")) {
 
                                             preferences.setDecryptedPassword(encodedPass);
@@ -335,6 +329,7 @@ public class LoginActivity extends BaseActivity {
                                         e.printStackTrace();
 
                                     }
+
                                 } else if (result.getResponse().getChangePassword() != null && result.getResponse().getChangePassword().equals("true")) {
                                     preferences.setUserId(result.getResponse().getUserId());
                                     startActivity(new Intent(LoginActivity.this, ChangePasswordActivity.class));
@@ -344,6 +339,7 @@ public class LoginActivity extends BaseActivity {
 
                                     Log.d("tesingbipl", "Work is done");
                                     Log.d(TAG2, "onMessageReceived: LOGIN_MESSAGE_RESPONSE");
+//                                    startActivity(new Intent(context, MainActivity.class));
                                     startActivity(new Intent(context, MainActivity.class));
                                     finish();
 
@@ -367,8 +363,6 @@ public class LoginActivity extends BaseActivity {
 
                     }
                     break;
-
-
                     case Constants.SYMBOL_MESSAGE_RESPONSE: {
                         SymbolsResponse result = gson.fromJson(resp, SymbolsResponse.class);
                         if (result != null) {
@@ -384,7 +378,6 @@ public class LoginActivity extends BaseActivity {
                         }
                     }
                     break;
-
                     case Constants.SUBSCRIPTION_LIST_REQUEST_RESPONSE: {
                         Log.d("tesingbipl", "SUBSCRIPTION_LIST_REQUEST_RESPONSE");
                         MarketResponse result = gson.fromJson(resp, MarketResponse.class);

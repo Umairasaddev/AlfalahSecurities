@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by saimshafqat on 05/10/2017.
- */
-
-
 public class SearchClientListAdapter extends BaseAdapter {
 
     // Declare Variables
@@ -87,7 +82,7 @@ public class SearchClientListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public class ViewHolder {
+    public static class ViewHolder {
         TextView label;
 
     }

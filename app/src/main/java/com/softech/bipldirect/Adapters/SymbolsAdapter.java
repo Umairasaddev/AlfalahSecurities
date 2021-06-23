@@ -1,7 +1,7 @@
 package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +11,11 @@ import android.widget.TextView;
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
 import com.softech.bipldirect.R;
 
-import java.util.AbstractList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Developed by Hasham.Tahir on 2/4/2016.
- */
 public class SymbolsAdapter extends BaseAdapter {
 
     Context mContext;
@@ -81,16 +77,16 @@ public class SymbolsAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        @BindView(R.id.symbol_symbol)
         TextView sym;
-        @BindView(R.id.symbol_market)
         TextView mar;
-        @BindView(R.id.symbol_exchange)
         TextView exc;
 
 
         public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+
+            sym=view.findViewById(R.id.symbol_symbol);
+            mar=view.findViewById(R.id.symbol_market);
+            exc=view.findViewById(R.id.symbol_exchange);
         }
     }
 }

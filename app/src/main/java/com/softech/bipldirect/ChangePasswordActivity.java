@@ -2,13 +2,11 @@ package com.softech.bipldirect;
 
 import android.os.Build;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -33,16 +31,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ChangePasswordActivity extends BaseActivity {
+
     private static final String TAG = "ChangePasswordActivity";
-    @BindView(R.id.edittext_new_pass)
-    EditText edit_newPass;
-    @BindView(R.id.edittext_old_pass)
-    EditText edit_oldPass;
-    @BindView(R.id.edittext_confirm_pass)
-    EditText edit_confirmPass;
+    private EditText edit_newPass;
+    private EditText edit_oldPass;
+    private EditText edit_confirmPass;
     String newpassEncoded, oldPassEncoded, useridEncoded;
     private Preferences preferences;
     EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
+    private View mButtonChangePass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +50,12 @@ public class ChangePasswordActivity extends BaseActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
         }
         setContentView(R.layout.activity_change_password);
-        ButterKnife.bind(this);
+        bindView();
         preferences = StoreBox.create(this, Preferences.class);
 
     }
 
-    @OnClick(R.id.button_change_pass)
-    public void submit(View view) {
+    private void submit(View view) {
         try {
             newpassEncoded = enctyptionUtils.encrypt(edit_newPass.getText().toString());
             oldPassEncoded = enctyptionUtils.encrypt(edit_oldPass.getText().toString());
@@ -73,25 +69,18 @@ public class ChangePasswordActivity extends BaseActivity {
 
 
         if (!TextUtils.equals(oldPassword, "")) {
-
-            if (!TextUtils.equals(newPassword, "") && newPassword.length() >= 8) {
-
+            if (!TextUtils.equals(newPassword, "") && newPassword.length() >= 8 && newPassword.length() <= 16) {
                 if (TextUtils.equals(newPassword, confirmPassword)) {
-
                     changePasswordRequest(oldPassEncoded, newpassEncoded);
-
                 } else {
-                    HToast.showMsg(this, "Passwords do not match.");
+                    HToast.showMsg(ChangePasswordActivity.this, "Passwords do not match.");
                 }
             } else {
-                HToast.showMsg(this, "New password must be equal to at least 8 characters.");
+                HToast.showMsg(this, "New password must be between 8 to 16 character long");
             }
-
         } else {
             HToast.showMsg(this, "Please type your old password.");
         }
-
-
     }
 
     public void changePasswordRequest(String oldPassword, String newPassword) {
@@ -109,7 +98,7 @@ public class ChangePasswordActivity extends BaseActivity {
         request_obj.addProperty("newPassword", newPassword);
 
 
-        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+        if (ConnectionDetector.getInstance(ChangePasswordActivity.this).isConnectingToInternet()) {
 
            connectWithMessageServer(request_obj);
 
@@ -194,5 +183,18 @@ public class ChangePasswordActivity extends BaseActivity {
 
 
         }
+    }
+
+    private void bindView() {
+        edit_newPass = findViewById(R.id.edittext_new_pass);
+        edit_oldPass = findViewById(R.id.edittext_old_pass);
+        edit_confirmPass = findViewById(R.id.edittext_confirm_pass);
+        mButtonChangePass = findViewById(R.id.button_change_pass);
+        mButtonChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit(v);
+            }
+        });
     }
 }

@@ -3,10 +3,13 @@ package com.softech.bipldirect.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,22 +55,14 @@ import butterknife.BindView;
 
 import static java.util.Collections.sort;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PortfolioWatchFragment extends Fragment {
 
 
-    @BindView(R.id.cash_text)
-    TextView cashTextView;
-    @BindView(R.id.custody_text)
-    TextView custody;
-    @BindView(R.id.capital)
-    TextView capital;
-    @BindView(R.id.netProfit_btn)
-    Button netProfitBtn;
-    @BindView(R.id.piechart)
-    PieChart pieChart;
+    private TextView cashTextView;
+    private TextView custody;
+    private TextView capital;
+    private Button netProfitBtn;
+    private PieChart pieChart;
     ScriptDetailAdapter scriptDetailAdapter;
     ArrayList<String> scriptList;
     PLSummaryAdapter plSummaryAdapter;
@@ -88,7 +83,7 @@ public class PortfolioWatchFragment extends Fragment {
             Color.rgb(255, 140, 157)
     };
 
-    public static PortfolioWatchFragment newInstance() {
+    public static Fragment newInstance() {
         return new PortfolioWatchFragment();
     }
 
@@ -98,6 +93,7 @@ public class PortfolioWatchFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_portfolio_watch, container, false);
         init(view);
+        bindView(view);
 
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
@@ -481,4 +477,11 @@ public class PortfolioWatchFragment extends Fragment {
 
     }
 
+    private void bindView(View bindSource) {
+        cashTextView = bindSource.findViewById(R.id.cash_text);
+        custody = bindSource.findViewById(R.id.custody_text);
+        capital = bindSource.findViewById(R.id.capital);
+        netProfitBtn = bindSource.findViewById(R.id.netProfit_btn);
+        pieChart = bindSource.findViewById(R.id.piechart);
+    }
 }

@@ -2,11 +2,13 @@ package com.softech.bipldirect.Network;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.softech.bipldirect.Const.Constants;
 import com.softech.bipldirect.LoginActivity;
+import com.softech.bipldirect.MainActivity;
 
 import java.io.IOException;
 import java.net.InetAddress;

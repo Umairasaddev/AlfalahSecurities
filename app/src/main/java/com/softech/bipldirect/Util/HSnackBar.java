@@ -1,11 +1,9 @@
 package com.softech.bipldirect.Util;
 
-import android.support.design.widget.Snackbar;
 import android.view.View;
 
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
+import com.google.android.material.snackbar.Snackbar;
+
 public class HSnackBar {
 
 

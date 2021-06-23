@@ -2,14 +2,15 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Util.EnctyptionUtils;
@@ -23,14 +24,12 @@ import butterknife.OnClick;
 
 public class ChangePassFragment extends Fragment {
 
-    @BindView(R.id.edittext_new_pass)
-    EditText edit_newPass;
-    @BindView(R.id.edittext_old_pass)
-    EditText edit_oldPass;
-    @BindView(R.id.edittext_confirm_pass)
-    EditText edit_confirmPass;
+    private EditText edit_newPass;
+    private EditText edit_oldPass;
+    private EditText edit_confirmPass;
     String newpassEncoded,oldPassEncoded;
     EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
+    private View mButtonChangePass;
 
     public ChangePassFragment() {
         // Required empty public constructor
@@ -49,12 +48,11 @@ public class ChangePassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_change_pass, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
         return view;
     }
 
-    @OnClick(R.id.button_change_pass)
-    public void submit(View view) {
+    private void submit(View view) {
         try {
             newpassEncoded = enctyptionUtils.encrypt(edit_newPass.getText().toString());
             oldPassEncoded = enctyptionUtils.encrypt(edit_oldPass.getText().toString());
@@ -100,4 +98,16 @@ public class ChangePassFragment extends Fragment {
         super.onResume();
     }
 
+    private void bindView(View bindSource) {
+        edit_newPass = bindSource.findViewById(R.id.edittext_new_pass);
+        edit_oldPass = bindSource.findViewById(R.id.edittext_old_pass);
+        edit_confirmPass = bindSource.findViewById(R.id.edittext_confirm_pass);
+        mButtonChangePass = bindSource.findViewById(R.id.button_change_pass);
+        mButtonChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit(v);
+            }
+        });
+    }
 }

@@ -2,15 +2,8 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.softech.bipldirect.Adapters.AccountAdapter;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
 import com.softech.bipldirect.Models.AccountModel.AccountDetail;
@@ -27,7 +26,6 @@ import com.softech.bipldirect.Models.AccountModel.AccountFooter;
 import com.softech.bipldirect.Models.AccountModel.AccountResponse;
 import com.softech.bipldirect.Models.AccountModel.OrdersList;
 import com.softech.bipldirect.MainActivity;
-import com.softech.bipldirect.Models.MarginModel.MarginDetail;
 import com.softech.bipldirect.R;
 
 import java.text.DecimalFormat;
@@ -41,31 +39,22 @@ import butterknife.OnClick;
 
 public class AccountFragment extends Fragment {
 
-    @BindView(R.id.cashtext)
-    TextView cash;
-    @BindView(R.id.freetext)
-    TextView freecash;
-    @BindView(R.id.blockedtext)
-    TextView blockedcash;
-    @BindView(R.id.holdingstext)
-    TextView holding;
-    @BindView(R.id.margintext)
-    TextView margin;
-    @BindView(R.id.usertext)
-    TextView user;
-    @BindView(R.id.acc_listView)
-    RecyclerView acc_list;
-    @BindView(R.id.etclientcode)
-    EditText clientcode;
-    @BindView(R.id.search_list1)
-    ListView listSearch1;
-    @BindView(R.id.search_list_view1)
-    LinearLayout listSearch_view1;
+    private TextView cash;
+    private TextView freecash;
+    private TextView blockedcash;
+    private TextView holding;
+    private TextView margin;
+    private TextView user;
+    private RecyclerView acc_list;
+    private EditText clientcode;
+    private ListView listSearch1;
+    private LinearLayout listSearch_view1;
     private SearchClientListAdapter searchClientListAdapter;
     ArrayList<String> clientlist;
     private AccountResponse values;
     boolean isSetInitialText = false;
     AccountAdapter accountAdapter;
+    private View mCancelSearch1;
 
     public AccountFragment() {
     }
@@ -83,7 +72,8 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        ButterKnife.bind(this, view);
+        bindView(view);
+
         acc_list.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
@@ -91,7 +81,7 @@ public class AccountFragment extends Fragment {
 
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).accountRequest(clientcode.getText().toString());
+            ((MainActivity) requireActivity()).accountRequest(clientcode.getText().toString());
         } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
@@ -104,7 +94,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onResume() {
 
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (toolbar != null) {
             toolbar.setTitle("Account");
@@ -112,8 +102,7 @@ public class AccountFragment extends Fragment {
         super.onResume();
     }
 
-    @OnClick(R.id.cancel_search1)
-    public void cancelSearch(View view) {
+    private void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
 
@@ -155,7 +144,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listSearch_view1.setVisibility(View.GONE);
-                ((MainActivity) getActivity()).accountRequest(clientlist.get(position));
+                ((MainActivity) requireActivity()).accountRequest(clientlist.get(position));
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
 
@@ -237,5 +226,25 @@ public class AccountFragment extends Fragment {
             acc_list.setAdapter(accountAdapter);
             accountAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void bindView(View bindSource) {
+        cash = bindSource.findViewById(R.id.cashtext);
+        freecash = bindSource.findViewById(R.id.freetext);
+        blockedcash = bindSource.findViewById(R.id.blockedtext);
+        holding = bindSource.findViewById(R.id.holdingstext);
+        margin = bindSource.findViewById(R.id.margintext);
+        user = bindSource.findViewById(R.id.usertext);
+        acc_list = bindSource.findViewById(R.id.acc_listView);
+        clientcode = bindSource.findViewById(R.id.etclientcode);
+        listSearch1 = bindSource.findViewById(R.id.search_list1);
+        listSearch_view1 = bindSource.findViewById(R.id.search_list_view1);
+        mCancelSearch1 = bindSource.findViewById(R.id.cancel_search1);
+        mCancelSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelSearch(v);
+            }
+        });
     }
 }
