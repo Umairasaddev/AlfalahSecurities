@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.insight.securities",
+  "variantName": "processInsightsecReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 3,
+      "versionName": "1.2",
+      "outputFile": "biplDirect-insightsec-releaseJun-24-1628.apk"
+    }
+  ]
+}
