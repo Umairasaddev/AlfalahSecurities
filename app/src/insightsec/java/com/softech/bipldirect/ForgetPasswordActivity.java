@@ -1,13 +1,11 @@
 package com.softech.bipldirect;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -32,18 +30,15 @@ import butterknife.ButterKnife;
 
 public class ForgetPasswordActivity extends BaseActivity {
     private static final String TAG = "ForgetPasswordActivity";
-    @BindView(R.id.useridField)
-    EditText userID;
-    @BindView(R.id.emailField)
-    EditText email;
-    @BindView(R.id.forgetBtn)
-    Button forgetBtn;
+    private EditText userID;
+    private EditText email;
+    private Button forgetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
+        bindView();
         forgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,5 +140,11 @@ public class ForgetPasswordActivity extends BaseActivity {
 
 
         }
+    }
+
+    private void bindView() {
+        userID = findViewById(R.id.useridField);
+        email = findViewById(R.id.emailField);
+        forgetBtn = findViewById(R.id.forgetBtn);
     }
 }

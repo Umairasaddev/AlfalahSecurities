@@ -2,7 +2,8 @@ package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
 import androidx.core.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,6 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Developed by Hasham.Tahir on 2/3/2016.
- */
 public class PortfolioAdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_FOOTER = 0;
@@ -172,45 +170,41 @@ public class PortfolioAdapterNew extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.portfolio_symbol)
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView sym;
-        @BindView(R.id.portfolio_volume)
         TextView volume;
-        @BindView(R.id.portfolio_market_price)
         TextView marketRate;
-        @BindView(R.id.portfolio_cost_price)
         TextView costRate;
-        @BindView(R.id.portfolio_total)
         TextView totalPortfolio;
-        @BindView(R.id.portfolio_profitloss)
         TextView profitloss;
-        @BindView(R.id.llItem)
         LinearLayout llItem;
-
-        @BindView(R.id.ivArrow)
         ImageView ivArrow;
-
-//        View mView;
-//        PortfolioSymbol mItem;
 
         public ViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            sym=view.findViewById(R.id.portfolio_symbol);
+            volume=view.findViewById(R.id.portfolio_volume);
+            marketRate=view.findViewById(R.id.portfolio_market_price);
+            costRate=view.findViewById(R.id.portfolio_cost_price);
+
+            totalPortfolio=view.findViewById(R.id.portfolio_total);
+            profitloss=view.findViewById(R.id.portfolio_profitloss);
+            llItem=view.findViewById(R.id.llItem);
+            ivArrow=view.findViewById(R.id.ivArrow);
         }
     }
 
-    public class FooterViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.acc_sym)
+    public static class FooterViewHolder extends RecyclerView.ViewHolder {
         TextView sym;
-        @BindView(R.id.acc_qty)
         TextView qty;
-        @BindView(R.id.acc_ammount)
         TextView totalProfitloss;
 
         public FooterViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+
+            sym=view.findViewById(R.id.acc_sym);
+            qty=view.findViewById(R.id.acc_qty);
+            totalProfitloss=view.findViewById(R.id.acc_ammount);
         }
 
     }

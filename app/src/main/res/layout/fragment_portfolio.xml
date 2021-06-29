@@ -112,17 +112,31 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/portfolio_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp" />
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
+    <androidx.core.widget.NestedScrollView
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/_20sdp"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.github.mikephil.charting.charts.PieChart>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/portfolio_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp">
+            </com.github.mikephil.charting.charts.PieChart>
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
 
     <!--<LinearLayout-->
     <!--android:id="@+id/linearLayoutPieChart"-->

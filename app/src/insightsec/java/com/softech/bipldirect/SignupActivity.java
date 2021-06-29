@@ -1,7 +1,6 @@
 package com.softech.bipldirect;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,18 +29,12 @@ import butterknife.ButterKnife;
 
 public class SignupActivity   extends BaseActivity {
     private static final String TAG = "SignupActivity";
-    @BindView(R.id.field_firstname)
-    EditText etfirstName;
-    @BindView(R.id.field_lastname)
-    EditText etlastName;
-    @BindView(R.id.field_username)
-    EditText etUsername;
-    @BindView(R.id.field_phoneno)
-    EditText etPhone;
-    @BindView(R.id.field_email)
-    EditText etEmail;
-    @BindView(R.id.signupButton)
-    Button signupBut;
+    private EditText etfirstName;
+    private EditText etlastName;
+    private EditText etUsername;
+    private EditText etPhone;
+    private EditText etEmail;
+    private Button signupBut;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.";
     private String firstname, lastname, username, phoneno, email;
 
@@ -49,7 +42,7 @@ public class SignupActivity   extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        ButterKnife.bind(this);
+        bindView();
         signupBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,9 +91,11 @@ public class SignupActivity   extends BaseActivity {
             }
         });
     }
+
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
     private void connectWithMessageServer(final JsonObject login_obj) {
 
         connectMessageServer();
@@ -173,5 +168,14 @@ public class SignupActivity   extends BaseActivity {
 
 
         }
+    }
+
+    private void bindView() {
+        etfirstName = findViewById(R.id.field_firstname);
+        etlastName = findViewById(R.id.field_lastname);
+        etUsername = findViewById(R.id.field_username);
+        etPhone = findViewById(R.id.field_phoneno);
+        etEmail = findViewById(R.id.field_email);
+        signupBut = findViewById(R.id.signupButton);
     }
 }

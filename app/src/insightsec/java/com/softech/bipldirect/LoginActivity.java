@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.BuildConfig;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,25 +43,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
 
 
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
-    @BindView(R.id.login_name)
-    EditText etName;
-    @BindView(R.id.login_pass)
-    EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
-    @BindView(R.id.tv_forgotPwd)
-    TextView forgotPassword;
-
-    @BindView(R.id.login_server)
-    TextView etServer;
+    private EditText etName;
+    private EditText etPass;
+    private TextView forgotPassword;
+    private TextView etServer;
 
 
     Context context = LoginActivity.this;
@@ -72,12 +61,13 @@ public class LoginActivity extends BaseActivity {
     String[] serverUrlArray = new String[]{"terminal1.alfalahtrade.com", "terminal2.alfalahtrade.com", "terminal1.alfalahtrade.net"};
     String userEncoded;
     String passEncoded, passdecoded;
+    private View mLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        bindView();
         if (BuildConfig.FLAVOR=="alfalahsec") {
              etServer = (TextView) findViewById(R.id.login_server);
         }
@@ -235,8 +225,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.login_btn)
-    public void submit(final View view) {
+    private void submit(final View view) {
         callingloginservice(view);
     }
 
@@ -484,5 +473,18 @@ public class LoginActivity extends BaseActivity {
     }
 
 
+    private void bindView() {
+        etName = findViewById(R.id.login_name);
+        etPass = findViewById(R.id.login_pass);
+        forgotPassword = findViewById(R.id.tv_forgotPwd);
+        etServer = findViewById(R.id.login_server);
+        mLoginBtn = findViewById(R.id.login_btn);
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit(v);
+            }
+        });
+    }
 }
 

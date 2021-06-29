@@ -30,13 +30,12 @@ import butterknife.OnClick;
 public class TopSymbolsFragment extends Fragment {
 
     private ListView top_symbol_list;
-    @BindViews({R.id.gainers, R.id.losers, R.id.volleader})
-    List<Button> buttonViews;
+
+    Button gainers;
+    Button losers;
+    Button volleader;
 
     private List<TopSymbol> values;
-    private View mGainers;
-    private View mLosers;
-    private View mVolleader;
 
     public TopSymbolsFragment() {
     }
@@ -61,33 +60,39 @@ public class TopSymbolsFragment extends Fragment {
     private void gainers(View view) {
 
         setValues(values, "1");
-
-        resetButtonView(view);
+        resetButtonViews(1);
     }
 
     private void losers(View view) {
 
         setValues(values, "2");
-
-        resetButtonView(view);
+        resetButtonViews(2);
     }
 
     private void leaders(View view) {
 
         setValues(values, "3");
-
-        resetButtonView(view);
+        resetButtonViews(3);
     }
 
 
-    private void resetButtonView(View view) {
-
-        for (Button button : buttonViews) {
-
-            button.setBackgroundResource(R.drawable.unselected);
+    private void resetButtonViews(int position) {
+        if(position==1){
+            gainers.setBackgroundResource(R.drawable.selected);
+            losers.setBackgroundResource(R.drawable.unselected);
+            volleader.setBackgroundResource(R.drawable.unselected);
         }
+        else if(position==2){
+            losers.setBackgroundResource(R.drawable.selected);
+            gainers.setBackgroundResource(R.drawable.unselected);
+            volleader.setBackgroundResource(R.drawable.unselected);
 
-        view.setBackgroundResource(R.drawable.selected);
+        }
+        else{
+            volleader.setBackgroundResource(R.drawable.selected);
+            gainers.setBackgroundResource(R.drawable.unselected);
+            losers.setBackgroundResource(R.drawable.unselected);
+        }
     }
 
     @Override
@@ -135,22 +140,22 @@ public class TopSymbolsFragment extends Fragment {
 
     private void bindView(View bindSource) {
         top_symbol_list = bindSource.findViewById(R.id.top_symbol_list);
-        mGainers = bindSource.findViewById(R.id.gainers);
-        mLosers = bindSource.findViewById(R.id.losers);
-        mVolleader = bindSource.findViewById(R.id.volleader);
-        mGainers.setOnClickListener(new View.OnClickListener() {
+        gainers = bindSource.findViewById(R.id.gainers);
+        losers = bindSource.findViewById(R.id.losers);
+        volleader = bindSource.findViewById(R.id.volleader);
+        gainers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gainers(v);
             }
         });
-        mLosers.setOnClickListener(new View.OnClickListener() {
+        losers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 losers(v);
             }
         });
-        mVolleader.setOnClickListener(new View.OnClickListener() {
+        volleader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 leaders(v);

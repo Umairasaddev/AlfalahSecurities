@@ -30,10 +30,6 @@ import com.softech.bipldirect.Util.Alert;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class PaymentFragment extends Fragment {
 
