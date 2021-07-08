@@ -34,7 +34,6 @@
                 android:id="@+id/menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="LinearLayoutManager"
                 android:layout_above="@+id/textView"
                 android:paddingBottom="30dp"/>
 

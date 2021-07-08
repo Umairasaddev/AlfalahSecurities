@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/portfolio_symbol"
-            android:fontFamily="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="OGDC"
@@ -41,7 +41,7 @@
 
         <TextView
             android:id="@+id/current"
-            android:fontFamily="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="148.99"
@@ -130,7 +130,7 @@
 
         <TextView
             android:id="@+id/change"
-            android:fontFamily="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#78787f"

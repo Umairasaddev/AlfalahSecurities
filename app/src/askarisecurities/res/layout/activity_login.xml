@@ -93,7 +93,7 @@
 
         <Button
             android:id="@+id/login_btn"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="@dimen/_98sdp"
             android:layout_height="@dimen/_26sdp"
             android:layout_marginLeft="30dp"
@@ -108,7 +108,7 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="@dimen/_98sdp"
             android:layout_height="@dimen/_26sdp"
             android:layout_marginLeft="@dimen/_10sdp"

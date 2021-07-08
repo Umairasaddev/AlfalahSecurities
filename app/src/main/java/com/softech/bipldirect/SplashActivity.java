@@ -18,7 +18,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.splash_main);
-        ivLogo=findViewById(R.id.ivLogo);
 
         new Handler().postDelayed(new Runnable() {
             @Override

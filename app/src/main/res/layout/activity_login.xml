@@ -87,7 +87,6 @@
             android:layout_alignStart="@+id/login_pass"
             android:layout_below="@+id/tv_forgotPwd"
             android:layout_marginTop="15dp"
-            android:background="@drawable/button_yellowishgreen"
             android:ems="10"
             android:text="Login"
             android:textColor="@android:color/white" />

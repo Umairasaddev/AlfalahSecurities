@@ -1,7 +1,6 @@
 package com.softech.bipldirect;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -37,18 +36,17 @@ import butterknife.ButterKnife;
 
 public class ForgetPasswordActivity extends BaseActivity {
     private static final String TAG = "ForgetPasswordActivity";
-    @BindView(R.id.useridField)
-    EditText userID;
-    @BindView(R.id.emailField)
-    EditText email;
-    @BindView(R.id.forgetBtn)
-    Button forgetBtn;
+    private EditText userID;
+    private EditText email;
+    private Button forgetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
+        bindView();
+
+
         forgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +179,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                     jsonObject.put("userId", "SIGNUP");
 
                     RestClient.postRequest("login",
-                            context,
+                            this,
                             Constants.KASB_API_LOGIN,
                             jsonObject,
                             new OnRestClientCallback() {
@@ -209,21 +207,21 @@ public class ForgetPasswordActivity extends BaseActivity {
                                         }
                                     } catch (Exception e) {
                                         e.printStackTrace();
-                                        HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
+                                        HToast.showMsg(ForgetPasswordActivity.this, "Unable to connect to Trading Server please try later or check your network");
                                     }
                                 }
 
                                 @Override
                                 public void onRestError(Exception e, String action) {
 
-                                    Alert.showErrorAlert(context);
+                                    Alert.showErrorAlert(ForgetPasswordActivity.this);
                                     Log.i("testingsignup", "Exception: " + e.getMessage());
                                 }
                             }, false, "Please wait...");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Alert.showErrorAlert(context);
+                    Alert.showErrorAlert(this);
                     Log.d("Call", "JSONException: ");
                 }
 
@@ -244,5 +242,11 @@ public class ForgetPasswordActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    private void bindView() {
+        userID = findViewById(R.id.useridField);
+        email = findViewById(R.id.emailField);
+        forgetBtn = findViewById(R.id.forgetBtn);
     }
 }

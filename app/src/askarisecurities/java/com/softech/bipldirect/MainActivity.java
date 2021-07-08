@@ -9,18 +9,21 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.core.app.Fragment;
-import androidx.core.app.FragmentManager;
-import androidx.core.app.FragmentTransaction;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.multidex.BuildConfig;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -279,12 +282,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 navMenuList.add(new Menu("Symbols", R.drawable.symbols2x, false));
             }
             if (TrnCodes.contains("OM09")) {
-                if (BuildConfig.FLAVOR.equals("bipl")) {
-                    navMenuList.add(new Menu("Market Performers", R.drawable.topsymbols2x, false));
-                } else {
-//                    navMenuList.add(new Menu("Top Symbols", R.drawable.topsymbols2x, false));
-                    navMenuList.add(new Menu("Market Performers", R.drawable.topsymbols2x, false));
-                }
+                //                    navMenuList.add(new Menu("Top Symbols", R.drawable.topsymbols2x, false));
+                navMenuList.add(new Menu("Market Performers", R.drawable.topsymbols2x, false));
             }
             if (TrnCodes.contains("OM04")) {
                 navMenuList.add(new Menu("Portfolio Summary", R.drawable.portfoliosummary2x, false));

@@ -47,6 +47,7 @@ import com.softech.bipldirect.Fragments.NetSharesFragment;
 import com.softech.bipldirect.Fragments.OrderStatsFragment;
 import com.softech.bipldirect.Fragments.PaymentFragment;
 import com.softech.bipldirect.Fragments.PortfolioDetail;
+import com.softech.bipldirect.Fragments.PortfolioFragment;
 import com.softech.bipldirect.Fragments.PortfolioWatchFragment;
 import com.softech.bipldirect.Fragments.QuotesFragment;
 import com.softech.bipldirect.Fragments.ResearchPortalFragment;
@@ -69,6 +70,7 @@ import com.softech.bipldirect.Models.NetShareModel.NetShareCustody;
 import com.softech.bipldirect.Models.NetShareModel.NetShareResponse;
 import com.softech.bipldirect.Models.OrderStatsModel.OrderStatsResponse;
 import com.softech.bipldirect.Models.OrderStatsModel.OrdersList;
+import com.softech.bipldirect.Models.PortfolioModel.Portfolio;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioResponse;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.Models.PortfolioWatch.Cash;
@@ -509,7 +511,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
             case R.drawable.portfoliosummary2x: {
 
-                replaceFragment(PortfolioWatchFragment.newInstance(), true, false);
+                replaceFragment(PortfolioFragment.newInstance(), true, false);
 
             }
             break;

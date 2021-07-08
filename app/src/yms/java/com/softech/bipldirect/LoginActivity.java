@@ -45,6 +45,7 @@ public class LoginActivity extends BaseActivity {
     private EditText etName;
     private EditText etPass;
     private TextView forgotPassword;
+    TextView tvAccount;
 
     private Preferences preferences;
     private String user, pas;
@@ -410,12 +411,25 @@ public class LoginActivity extends BaseActivity {
         etPass = findViewById(R.id.login_pass);
         forgotPassword = findViewById(R.id.tv_forgotPwd);
         mLoginBtn = findViewById(R.id.login_btn);
+        tvAccount=findViewById(R.id.tvAccount);
+
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 submit(v);
             }
         });
+
+        tvAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToSignupActivity();
+            }
+        });
+    }
+
+    private void moveToSignupActivity() {
+        //startActivity(new Intent(this, SignupActivity.class));
     }
 }
 

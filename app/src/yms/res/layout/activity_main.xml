@@ -17,7 +17,7 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/blinkGreen"
@@ -26,9 +26,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="40dp">
+            android:orientation="vertical">
 
+            <RelativeLayout
+                android:gravity="bottom|center_horizontal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp">
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_launcher"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"/>
+                <TextView
+                    android:layout_below="@+id/ivLogo"
+                    android:text="YMS Trade"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/menu_list"

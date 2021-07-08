@@ -97,7 +97,7 @@
 
         <Button
             android:id="@+id/signupButton"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="@dimen/_98sdp"
             android:layout_height="@dimen/_26sdp"
             android:layout_below="@+id/field_email"
