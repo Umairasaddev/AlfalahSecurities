@@ -29,10 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/white_cornerd"
-        android:hint="@string/new_pass"
         android:gravity="center"
+        android:hint="@string/new_pass"
         android:inputType="textPassword"
-        android:maxLength="8"
+        android:maxLength="16"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/black"
         android:textColorHint="@color/blinkGrey" />
@@ -46,7 +46,7 @@
         android:gravity="center"
         android:hint="@string/confirm_pass"
         android:inputType="textPassword"
-        android:maxLength="8"
+        android:maxLength="16"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/black"
         android:textColorHint="@color/blinkGrey" />

@@ -7,7 +7,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import androidx.core.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +22,6 @@ import com.softech.bipldirect.R;
 
 import java.util.List;
 
-/**
- * Developed by Hasham.Tahir on 1/28/2016.
- */
 public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder> {
 
     private final List<MarketSymbol> mValues;

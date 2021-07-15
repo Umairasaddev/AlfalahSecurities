@@ -70,81 +70,78 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/top_symbol_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@color/greyBar"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SYMBOL"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/textView27"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Volume"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="Profit/Loss"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:weightSum="3"
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
+        android:scrollbars="none"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:layout_weight="1.4"
-            android:id="@+id/portfolio_list"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:padding="3dp" />
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/top_symbol_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/greyBar"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:layout_marginTop="2dp"
-            android:layout_weight="1.6"
-            android:id="@+id/piechart"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-        </com.github.mikephil.charting.charts.PieChart>
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SYMBOL"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/black" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Volume"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/black" />
 
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="Profit/Loss"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/black" />
 
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <!--<LinearLayout-->
-    <!--android:id="@+id/linearLayoutPieChart"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="35"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:weightSum="100">-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:id="@+id/portfolio_list"
+                    tools:listitem="@layout/portfolio_list_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp" />
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/piechart"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp">
+                </com.github.mikephil.charting.charts.PieChart>
 
-    <!--</LinearLayout>-->
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

@@ -18,10 +18,12 @@ import android.webkit.WebViewClient;
 
 import com.softech.bipldirect.Const.ConnectionDetector;
 import com.softech.bipldirect.Const.Constants;
+import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Network.OnRestClientCallback;
 import com.softech.bipldirect.Network.RestClient;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
+import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Loading;
 import androidx.appcompat.app.ActionBar;
@@ -102,26 +104,37 @@ public class ResearchPortalFragment extends Fragment {
     public void callingResearchPortalService(String url) {
 
         if (ConnectionDetector.getInstance(getActivity()).isConnectingToInternet()) {
+
+            String encryptedUserName= "";
+            try {
+                encryptedUserName = EnctyptionUtils.encrypt(MainActivity.loginResponse.getResponse().getUserId());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("username", "rashid.irshad");
                 jsonObject.put("client", Constants.RESESRCH_PORTAL_CLIENT);
                 jsonObject.put("password", "rashid123");
                 jsonObject.put("ip", Constants.RESESRCH_PORTAL_IP);
+                jsonObject.put("brokerUserCode", encryptedUserName);
+                jsonObject.put("isDemoUser", false);
 
                 RestClient.postRequest("research_portal", getActivity(), url, jsonObject,
                         new OnRestClientCallback() {
                             @Override
                             public void onRestSuccess(JSONObject response, String action) {
-                                Log.d(TAG, "onRestSuccess: ");
 
                                 try {
                                     if (response.getString("response").equals("success")) {
 
                                         String url = response.getString("link");
+                                        Log.e(TAG, "url: "+url);
+
                                         if (symbolName!=null){
                                             url=url+ "&symbol=" + symbolName;
-                                            Log.d("PortalUrl",url);
+                                            Log.e("PortalUrl", url);
 
                                         }
                                         webView.loadUrl(url);

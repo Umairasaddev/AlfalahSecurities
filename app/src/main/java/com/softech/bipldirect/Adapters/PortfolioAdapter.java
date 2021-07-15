@@ -46,7 +46,6 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.arrayList = arrayList;
         inflater = LayoutInflater.from(mContext);
         this.portofolioClickListner = portofolioClickListner;
-
     }
 
     @Override

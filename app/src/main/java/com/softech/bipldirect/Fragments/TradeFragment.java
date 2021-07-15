@@ -221,7 +221,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
 
                 listSearch_view.setVisibility(View.GONE);
                 Symbol symbol = searchKeywordsList.get(position);
-                ((MainActivity) getActivity()).tradeSymbolRequest(symbol);
+                ((MainActivity) requireActivity()).tradeSymbolRequest(symbol);
 
             }
         });
@@ -267,7 +267,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
                     }
 
                 } else {
-                    radiosell.setBackgroundColor(getResources().getColor(R.color.red));
+                    radiosell.setBackgroundColor(getResources().getColor(R.color.blinkRed));
 
                     action = "SELL";
                     if (textViewOrderType.getText().toString().equals("MFB") || textViewOrderType.getText().toString().equals("LB")) {

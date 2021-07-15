@@ -105,7 +105,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     @Override
     public void onResume() {
 
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (toolbar != null) {
             toolbar.setTitle("Portfolio Summary");

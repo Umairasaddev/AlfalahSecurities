@@ -71,13 +71,13 @@ public class ChangePassFragment extends Fragment {
 
                 if (TextUtils.equals(newPassword, confirmPassword)) {
 
-                    ((MainActivity) getActivity()).changePasswordRequest(oldPassEncoded, newpassEncoded);
+                    ((MainActivity) requireActivity()).changePasswordRequest(oldPassEncoded, newpassEncoded);
 
                 } else {
                     HToast.showMsg(getActivity(), "Passwords do not match.");
                 }
             } else {
-                HToast.showMsg(getActivity(), "New password must be equal to 8 characters.");
+                HToast.showMsg(getActivity(), "New password must be greater than 8 characters.");
             }
 
         } else {

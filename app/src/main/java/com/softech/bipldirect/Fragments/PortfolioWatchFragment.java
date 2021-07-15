@@ -57,6 +57,7 @@ import static java.util.Collections.sort;
 
 public class PortfolioWatchFragment extends Fragment {
 
+    private static final String TAG = "PortfolioWatchFragment";
 
     private TextView cashTextView;
     private TextView custody;
@@ -87,10 +88,8 @@ public class PortfolioWatchFragment extends Fragment {
         return new PortfolioWatchFragment();
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_portfolio_watch, container, false);
         init(view);
         bindView(view);
@@ -107,7 +106,6 @@ public class PortfolioWatchFragment extends Fragment {
         }
         return view;
     }
-
 
     public void setCash(List<Cash> cash) {
         cashTextView.setText( cash.get(0).getCash());
@@ -265,10 +263,8 @@ public class PortfolioWatchFragment extends Fragment {
     }
 
     public void setValues(final List<PortfolioSymbol> values) {
-
-
+        Log.e(TAG, "setValues: ");
         setBarData(values.size(),values);
-
         if (values.size() > 0) {
 
             values1 = values;

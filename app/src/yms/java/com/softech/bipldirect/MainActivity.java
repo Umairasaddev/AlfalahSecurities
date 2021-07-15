@@ -510,9 +510,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             break;
 
             case R.drawable.portfoliosummary2x: {
-
                 replaceFragment(PortfolioFragment.newInstance(), true, false);
-
             }
             break;
 
@@ -1220,9 +1218,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            final NetSharesFragment frag =
-                                                    (NetSharesFragment) fragmentManager
-                                                            .findFragmentByTag(NetSharesFragment.class.getName());
+                                            final NetSharesFragment frag = (NetSharesFragment) fragmentManager.findFragmentByTag(NetSharesFragment.class.getName());
 
                                             if (frag != null) {
                                                 frag.setValues(netShareCustodies);
@@ -1246,41 +1242,20 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         break;
 
                         case Constants.PORTFOLIO_REQUEST_RESPONSE: {
-
                             final PortfolioResponse result = gson.fromJson(resp, PortfolioResponse.class);
-
-                            if (result != null) {
-
-                                if (result.getCode().equals("200")) {
-
-                                    final List<PortfolioSymbol> portfolioSymbols = result.getResponse().getSymbols();
-
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            final PortfolioWatchFragment frag =
-                                                    (PortfolioWatchFragment) fragmentManager
-                                                            .findFragmentByTag(PortfolioWatchFragment.class.getName());
-
-                                            if (frag != null) {
-
-
-                                                frag.setValues(portfolioSymbols);
-
-                                            } else {
-                                                Log.d("PortfolioResponse", "PortfolioResponse is null");
-                                            }
+                            if (result.getCode().equals("200")) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final List<PortfolioSymbol> portfolioSymbols = result.getResponse().getSymbols();
+                                        final PortfolioFragment frag = (PortfolioFragment) fragmentManager.findFragmentByTag(PortfolioFragment.class.getName());
+                                        if (frag != null) {
+                                            frag.setValues(portfolioSymbols);
                                         }
-                                    });
-
-                                } else {
-
-                                    Alert.show(MainActivity.this, getString(R.string.app_name), result.getError());
-                                }
-
-
+                                    }
+                                });
                             } else {
-                                Log.d(TAG, "Response :: PortfolioResponse null ");
+                                Alert.show(MainActivity.this, getString(R.string.app_name), result.getError());
                             }
                         }
                         break;

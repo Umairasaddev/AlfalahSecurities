@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop"
+        android:layout_width="320dp"
+        android:layout_height="@dimen/_200sdp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/pointer" />
@@ -28,7 +28,6 @@
         android:layout_height="@dimen/_230sdp"
         android:layout_below="@id/imageView5"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_18sdp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -168,7 +167,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version 3.1"
+            android:text="Version 3.2"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/slice_color_3"
             android:textSize="@dimen/_10sdp" />

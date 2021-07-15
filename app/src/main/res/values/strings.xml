@@ -15,7 +15,7 @@
     <string name="change_pass">Change Password</string>
     <string name="change_pin">Change Pin</string>
     <string name="old_pass">Old Password</string>
-    <string name="new_pass">New Password (at most 8 characters)</string>
+    <string name="new_pass">New Password (between 8 to 16 characters)</string>
     <string name="confirm_pass">Confirm New Password</string>
     <string name="submit">SUBMIT</string>
     <string name="old_pin">Old Pin</string>
@@ -95,6 +95,7 @@
     <string name="estimated_value">Estimated Value</string>
     <string name="enter_pin_code">Enter pincode here</string>
     <string name="remember_me">Remember Pin</string>
+    <string name="disclaimer_description">Cost per unit is based on your transaction record with ACPL. Value for Bonus shares, Right shares, and Free deliveries (Shares transferred from CDC Investor account or any other brokerage house) has not been incorporated in this report for calculating cost per unit.</string>
 
 
 </resources>
