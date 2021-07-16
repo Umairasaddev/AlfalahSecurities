@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -123,10 +124,12 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     private AtomicInteger notificationID = new AtomicInteger(0);
     String useridEncoded;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         connectMessageServer();
 

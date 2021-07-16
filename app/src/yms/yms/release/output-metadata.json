@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.softech.dym",
+  "applicationId": "com.softech.yms",
   "variantName": "processYmsReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 1,
-      "versionName": "1.0",
-      "outputFile": "biplDirect-yms-releaseJul-02-1223.apk"
+      "versionCode": 2,
+      "versionName": "1.1",
+      "outputFile": "biplDirect-yms-releaseJul-16-1657.apk"
     }
   ]
 }

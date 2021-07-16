@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -41,10 +42,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
-
 
 public class LoginActivity extends BaseActivity {
 
@@ -68,12 +65,14 @@ public class LoginActivity extends BaseActivity {
     String userEncoded;
     String passEncoded, passdecoded;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
 //            TextView etServer = (TextView) findViewById(R.id.login_server);
 //        }
@@ -279,7 +278,7 @@ public class LoginActivity extends BaseActivity {
                     case Constants.LOGIN_MESSAGE_RESPONSE: {
 
                         LoginResponse result = gson.fromJson(resp, LoginResponse.class);
-                        Log.d("Call","response result: "+result);
+                        //Log.e("Call","response result: "+result);
 
 
                         if (result != null) {
@@ -296,8 +295,6 @@ public class LoginActivity extends BaseActivity {
 
                                     try {
                                         String encodedPass = result.getResponse().getSecondLevelPassword();
-
-
                                         if (encodedPass.equals("")) {
 
                                             preferences.setDecryptedPassword(encodedPass);
@@ -321,7 +318,14 @@ public class LoginActivity extends BaseActivity {
                                     preferences.setUserId(result.getResponse().getUserId());
                                     startActivity(new Intent(LoginActivity.this, ChangePasswordActivity.class));
                                 } else {
-//      FOR ZAFAR SECURITIES
+
+                                    //      FOR ZAFAR SECURITIES
+
+                                    Log.e(TAG, "ClientID: "+ result.getResponse().getClient());
+                                    Log.e(TAG, "UserId: "+ result.getResponse().getUserId());
+
+                                    //logEventToFirebaseAnalytics(result.getResponse().getClient(), result.getResponse().getUserId());
+
                                     getMarket();
                                 }
                                 preferences.removeEvents(R.string.key_events);
@@ -331,11 +335,8 @@ public class LoginActivity extends BaseActivity {
 
 //                                getSymbolsFromServer();
                             } else {
-
                                 Alert.show(LoginActivity.this, "", result.getError());
                             }
-
-
                         } else {
                             Log.d(TAG, "Response :: LoginResponse null ");
                         }
@@ -470,6 +471,13 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    private void logEventToFirebaseAnalytics(String clientId, String userId){
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, clientId);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, userId);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    }
 
 }
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773790131903",
+    "project_id": "android-app-2ff9e",
+    "storage_bucket": "android-app-2ff9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773790131903:android:77ff001c7c0d4e306cc80a",
+        "android_client_info": {
+          "package_name": "com.softech.abbasisecurities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773790131903-62lgisa0utjpcqeq5654f0ard7beanvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy0chiQ3F4O0VpVPyueBsL2SnwbGd1BaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773790131903-62lgisa0utjpcqeq5654f0ard7beanvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

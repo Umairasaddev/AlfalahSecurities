@@ -1,6 +1,8 @@
 package com.softech.bipldirect.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,19 +50,19 @@ public class ResearchPortalFragment extends Fragment {
     public static ResearchPortalFragment newInstance(String symbolName) {
         Bundle extras = new Bundle();
         extras.putString(KEY_SYMBOL,symbolName);
-
         ResearchPortalFragment fragment = new ResearchPortalFragment();
-                fragment.setArguments(extras);
+        fragment.setArguments(extras);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         symbolName = getArguments().getString(KEY_SYMBOL);
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -83,9 +85,7 @@ public class ResearchPortalFragment extends Fragment {
 
     @Override
     public void onResume() {
-
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         if (toolbar != null) {
             toolbar.setTitle("Research Portal");
         }
