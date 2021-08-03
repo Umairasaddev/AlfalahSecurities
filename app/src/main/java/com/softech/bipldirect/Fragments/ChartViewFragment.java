@@ -62,10 +62,6 @@ import com.softech.bipldirect.R;
 
 import java.text.DecimalFormat;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class ChartViewFragment extends Fragment {
 

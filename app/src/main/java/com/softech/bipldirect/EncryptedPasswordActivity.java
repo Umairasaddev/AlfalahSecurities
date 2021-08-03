@@ -34,9 +34,6 @@ import net.orange_box.storebox.StoreBox;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class EncryptedPasswordActivity extends BaseActivity {
 
     private static final String TAG = "EncryptedPasswordActivi";

@@ -1276,64 +1276,23 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
         switch (textViewOrderType.getText().toString()) {
 
             case "MARKET": {
-
                 request_obj.addProperty("orderPrice", "");
                 request_obj.addProperty("triggerPrice", "");
-
-
                 break;
             }
-
-            case "LIMIT": {
-
-                request_obj.addProperty("orderPrice", enteredPrice);
-                request_obj.addProperty("triggerPrice", "");
-
-                break;
-            }
-
-            case "LEVERAGE BUY": {
-
-                request_obj.addProperty("orderPrice", enteredPrice);
-                request_obj.addProperty("triggerPrice", "");
-
-                break;
-            }
-            case "LEVERAGE SELL": {
-
-                request_obj.addProperty("orderPrice", enteredPrice);
-                request_obj.addProperty("triggerPrice", "");
-
-                break;
-            }
+            case "LIMIT":
+            case "LEVERAGE BUY":
+            case "LEVERAGE SELL":
             case "MFB": {
-
                 request_obj.addProperty("orderPrice", enteredPrice);
                 request_obj.addProperty("triggerPrice", "");
-
                 break;
             }
-            case "STOP LOSS": {
-
-                request_obj.addProperty("orderPrice", enteredPrice);
-                request_obj.addProperty("triggerPrice", enteredTriggerPrice);
-
-                break;
-            }
-
-            case "MIT": {
-
-                request_obj.addProperty("orderPrice", enteredPrice);
-                request_obj.addProperty("triggerPrice", enteredTriggerPrice);
-
-                break;
-            }
-
+            case "STOP LOSS":
+            case "MIT":
             case "SHORT SELL": {
-
                 request_obj.addProperty("orderPrice", enteredPrice);
                 request_obj.addProperty("triggerPrice", enteredTriggerPrice);
-
                 break;
             }
         }
@@ -1357,8 +1316,8 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
 
 //        Log.d("orderTrade", "" + request_obj.toString());
 
-        ((MainActivity) getActivity()).tradeOrderRequest(request_obj);
-        Util.hideKeyboard(getActivity());
+        ((MainActivity) requireActivity()).tradeOrderRequest(request_obj);
+        Util.hideKeyboard(requireActivity());
 
         return true;
     }

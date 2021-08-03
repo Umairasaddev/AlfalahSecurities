@@ -13,12 +13,6 @@ import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-/**
- * Developed by Hasham.Tahir on 7/18/2016.
- */
 public class CustodyAdapter extends BaseAdapter {
 
     Context mContext;
@@ -78,18 +72,16 @@ public class CustodyAdapter extends BaseAdapter {
     }
 
 
-    public class ViewHolder {
+    public static class ViewHolder {
 
-        @BindView(R.id.symbol_symbol)
         TextView symbol_symbol;
-        @BindView(R.id.symbol_market)
         TextView symbol_market;
-        @BindView(R.id.symbol_exchange)
         TextView symbol_exchange;
-
-
         public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
+
+            symbol_symbol = view.findViewById(R.id.symbol_symbol);
+            symbol_market = view.findViewById(R.id.symbol_market);
+            symbol_exchange = view.findViewById(R.id.symbol_exchange);
         }
 
     }

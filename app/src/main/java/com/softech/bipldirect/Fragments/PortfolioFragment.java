@@ -51,10 +51,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPortofolioClickListner {
 
@@ -125,7 +121,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
 
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).portfolioRequestRequest(clientcode.getText().toString());
+            ((MainActivity) requireActivity()).portfolioRequestRequest(clientcode.getText().toString());
         } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 3) {
 

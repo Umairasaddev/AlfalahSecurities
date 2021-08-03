@@ -51,8 +51,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import butterknife.BindView;
-
 import static java.util.Collections.sort;
 
 public class PortfolioWatchFragment extends Fragment {

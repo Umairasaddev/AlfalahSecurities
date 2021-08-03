@@ -26,10 +26,6 @@ import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class UserProfileFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

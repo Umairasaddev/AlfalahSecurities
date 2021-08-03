@@ -22,9 +22,6 @@ import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 public class LinksFragment extends Fragment {
 

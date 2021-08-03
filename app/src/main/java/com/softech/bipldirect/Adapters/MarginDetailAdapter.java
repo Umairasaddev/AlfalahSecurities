@@ -18,11 +18,7 @@ import com.softech.bipldirect.Models.MarginModel.CustodyHeader;
 import com.softech.bipldirect.Models.MarginModel.CustodyList;
 import com.softech.bipldirect.Models.MarginModel.MarginDetail;
 import com.softech.bipldirect.R;
-
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

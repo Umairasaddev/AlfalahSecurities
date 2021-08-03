@@ -30,9 +30,6 @@ import com.softech.bipldirect.Util.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.OnListItemClickListener {
 

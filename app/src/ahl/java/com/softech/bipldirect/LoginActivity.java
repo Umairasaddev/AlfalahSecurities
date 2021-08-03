@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.BuildConfig;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.multidex.BuildConfig;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -35,35 +36,17 @@ import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
 
 import net.orange_box.storebox.StoreBox;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
-
 
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
-    @BindView(R.id.login_name)
-    EditText etName;
-    @BindView(R.id.login_pass)
-    EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
-    @BindView(R.id.tv_forgotPwd)
-    TextView forgotPassword;
+    private EditText etName;
+    private EditText etPass;
+    private TextView forgotPassword;
 
-//    TextView etServer;
     Context context = LoginActivity.this;
     private Preferences preferences;
     private String user, pas;
@@ -71,20 +54,14 @@ public class LoginActivity extends BaseActivity {
     String[] serverUrlArray = new String[]{"terminal1.alfalahtrade.com", "terminal2.alfalahtrade.com", "terminal1.alfalahtrade.net"};
     String userEncoded;
     String passEncoded, passdecoded;
+    private View mLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, this.getTheme()));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
-        if (BuildConfig.FLAVOR=="alfalahsec") {
-        }
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, this.getTheme()));
+        bindView();
 
         etName.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 //        etName.setText("act01315");
@@ -110,6 +87,7 @@ public class LoginActivity extends BaseActivity {
                 Alert.show(context, getString(R.string.app_name), extras.getString("message"));
             }
         }
+
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,9 +125,8 @@ public class LoginActivity extends BaseActivity {
         user = etName.getText().toString();
         pas = etPass.getText().toString();
         try {
-            EnctyptionUtils enctyptionUtils = new EnctyptionUtils();
-            userEncoded = enctyptionUtils.encrypt(user.trim());
-            passEncoded = enctyptionUtils.encrypt(pas);
+            userEncoded = EnctyptionUtils.encrypt(user.trim());
+            passEncoded = EnctyptionUtils.encrypt(pas);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -189,8 +166,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.login_btn)
-    public void submit(final View view) {
+    private void login(final View view) {
         callingloginservice(view);
     }
 
@@ -438,5 +414,17 @@ public class LoginActivity extends BaseActivity {
     }
 
 
+    private void bindView() {
+        etName = findViewById(R.id.login_name);
+        etPass = findViewById(R.id.login_pass);
+        forgotPassword = findViewById(R.id.tv_forgotPwd);
+        mLoginBtn = findViewById(R.id.login_btn);
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login(v);
+            }
+        });
+    }
 }
 

@@ -56,10 +56,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class MarketFragment extends Fragment implements MarketAdapter.OnMarketItemClickListener {
 
@@ -582,7 +578,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         final String[] stringArray = MainActivity.optionItems.toArray(new String[0]);
 
-        Util.hideKeyboard(getActivity());
+        Util.hideKeyboard(requireActivity());
 
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
         alert.setTitle("Actions for " + sym.getSymbol());

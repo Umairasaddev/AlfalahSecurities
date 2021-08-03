@@ -17,10 +17,6 @@ import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 
 public class ChangePassFragment extends Fragment {
 

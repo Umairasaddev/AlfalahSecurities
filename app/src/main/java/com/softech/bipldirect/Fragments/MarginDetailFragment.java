@@ -34,10 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class MarginDetailFragment extends Fragment {
 
     private static final String PARAM = "clientCode";
@@ -244,49 +240,6 @@ public class MarginDetailFragment extends Fragment {
                 cancelSearch(v);
             }
         });
-    }
-
-    static class HeaderView {
-        @BindView(R.id.textViewDateTime)
-        TextView textViewDateTime;
-        @BindView(R.id.usertext)
-        TextView usertext;
-        @BindView(R.id.cashtext)
-        TextView cashtext;
-        @BindView(R.id.worthText)
-        TextView worthText;
-        @BindView(R.id.custodyText)
-        TextView custodyText;
-        @BindView(R.id.mtmText)
-        TextView mtmText;
-        @BindView(R.id.blockedMtmText)
-        TextView blockedMtmText;
-        @BindView(R.id.marginText)
-        TextView marginText;
-        @BindView(R.id.exposureText)
-        TextView exposureText;
-        @BindView(R.id.marginRequiredText)
-        TextView marginRequiredText;
-        @BindView(R.id.cashRequiredText)
-        TextView cashRequiredText;
-        @BindView(R.id.availableMarginText)
-        TextView availableMarginText;
-        @BindView(R.id.currentMarginText)
-        TextView currentMarginText;
-        @BindView(R.id.cashWithdrawalText)
-        TextView cashWithdrawalText;
-        @BindView(R.id.cashWithdrawalLimitText)
-        TextView cashWithdrawalLimitText;
-        @BindView(R.id.marginCallText)
-        TextView marginCallText;
-        @BindView(R.id.cashCallText)
-        TextView cashCallText;
-        @BindView(R.id.availableCashText)
-        TextView availableCashText;
-
-        public HeaderView(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 
 

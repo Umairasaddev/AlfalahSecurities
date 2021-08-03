@@ -14,9 +14,6 @@ import android.widget.ListView;
 import com.softech.bipldirect.Adapters.EventAdapter;
 import com.softech.bipldirect.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 public class EventsFragment extends Fragment {
 

@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.softech.abbasisecurities",
+  "variantName": "processAbbasisecuritiesReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 15,
+      "versionName": "2.6",
+      "outputFile": "biplDirect-abbasisecurities-releaseJul-26-1152.apk"
+    }
+  ]
+}

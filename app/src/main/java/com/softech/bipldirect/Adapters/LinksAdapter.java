@@ -9,11 +9,7 @@ import android.widget.TextView;
 
 import com.softech.bipldirect.Models.LinksModel.Link;
 import com.softech.bipldirect.R;
-
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class LinksAdapter extends BaseAdapter {

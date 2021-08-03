@@ -34,9 +34,6 @@ import com.softech.bipldirect.Util.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class
 QuotesFragment extends Fragment {

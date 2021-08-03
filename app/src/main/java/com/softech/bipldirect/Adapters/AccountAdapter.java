@@ -3,21 +3,15 @@ package com.softech.bipldirect.Adapters;
 import android.content.Context;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.softech.bipldirect.Models.AccountModel.AccountDetail;
 import com.softech.bipldirect.Models.AccountModel.AccountFooter;
 import com.softech.bipldirect.Models.AccountModel.OrdersList;
 import com.softech.bipldirect.R;
-
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_FOOTER = 0;
@@ -110,38 +104,37 @@ public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return ordersList.size();
     }
 
-    public class FooterViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.acc_sym)
+    public static class FooterViewHolder extends RecyclerView.ViewHolder {
         TextView sym;
-        @BindView(R.id.acc_qty)
         TextView qty;
-        @BindView(R.id.acc_ammount)
         TextView amount;
-        @BindView(R.id.acc_totalPort)
         TextView totalport;
-        @BindView(R.id.acc_totalPortValue)
         TextView totalportValue;
 
         public FooterViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            sym=view.findViewById(R.id.acc_sym);
+            qty=view.findViewById(R.id.acc_qty);
+            amount=view.findViewById(R.id.acc_ammount);
+            totalport=view.findViewById(R.id.acc_totalPort);
+            totalportValue=view.findViewById(R.id.acc_totalPortValue);
         }
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.acc_sym)
         TextView sym;
-        @BindView(R.id.acc_qty)
         TextView qty;
-        @BindView(R.id.acc_ammount)
         TextView amount;
 
 
         public ViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            sym=view.findViewById(R.id.acc_sym);
+            qty=view.findViewById(R.id.acc_qty);
+            amount=view.findViewById(R.id.acc_ammount);
+
         }
 
     }

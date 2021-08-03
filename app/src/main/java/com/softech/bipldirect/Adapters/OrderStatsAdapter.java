@@ -19,8 +19,6 @@ import com.softech.bipldirect.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.ViewHolder> {
 

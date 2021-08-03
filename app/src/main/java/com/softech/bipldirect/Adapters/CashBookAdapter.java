@@ -15,13 +15,6 @@ import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-/**
- * Developed by Hasham.Tahir on 1/13/2017.
- */
-
 public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHolder> {
 
     private final ArrayList<CashDatum> arraylist;
@@ -118,19 +111,18 @@ public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHo
 
         CashDatum mItem;
         View mView;
-        @BindView(R.id.textView1)
         TextView textView1;
-        @BindView(R.id.textView2)
         TextView textView2;
-        @BindView(R.id.textView3)
         TextView textView3;
-        @BindView(R.id.textView4)
         TextView textView4;
 
         public ViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
             this.mView = view;
+            textView1=view.findViewById(R.id.textView1);
+            textView2=view.findViewById(R.id.textView2);
+            textView3=view.findViewById(R.id.textView3);
+            textView4=view.findViewById(R.id.textView4);
         }
     }
 }

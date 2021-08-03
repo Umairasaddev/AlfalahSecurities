@@ -16,9 +16,6 @@ import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ChangePinFragment extends Fragment {
 

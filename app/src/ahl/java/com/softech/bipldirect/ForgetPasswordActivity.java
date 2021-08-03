@@ -2,7 +2,6 @@ package com.softech.bipldirect;
 
 import android.os.Build;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,28 +27,21 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ForgetPasswordActivity extends BaseActivity {
+
     private static final String TAG = "ForgetPasswordActivity";
-    @BindView(R.id.useridField)
+
     EditText userID;
-    @BindView(R.id.emailField)
     EditText email;
-    @BindView(R.id.forgetBtn)
     Button forgetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, this.getTheme()));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, this.getTheme()));
         setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
+        initView();
+
         forgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +72,12 @@ public class ForgetPasswordActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void initView() {
+        userID = (EditText) findViewById(R.id.useridField);
+        email = (EditText) findViewById(R.id.emailField);
+        forgetBtn = (Button) findViewById(R.id.forgetBtn);
     }
 
     private void connectWithMessageServer(final JsonObject login_obj) {

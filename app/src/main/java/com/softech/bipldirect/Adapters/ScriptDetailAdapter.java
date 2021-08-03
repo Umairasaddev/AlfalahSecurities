@@ -13,11 +13,6 @@ import com.softech.bipldirect.Models.PortfolioWatch.Cash;
 import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ScriptDetailAdapter extends RecyclerView.Adapter<ScriptDetailAdapter.ViewHolder> {
 

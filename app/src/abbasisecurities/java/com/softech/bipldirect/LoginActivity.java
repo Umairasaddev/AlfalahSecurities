@@ -292,7 +292,6 @@ public class LoginActivity extends BaseActivity {
                                 //      FOR ZAFAR SECURITIES
 
                                 if (result.getResponse().isShowSecLevPswd() && result.getResponse().getUsertype() == 1) {
-
                                     try {
                                         String encodedPass = result.getResponse().getSecondLevelPassword();
                                         if (encodedPass.equals("")) {
@@ -326,6 +325,7 @@ public class LoginActivity extends BaseActivity {
 
                                     //logEventToFirebaseAnalytics(result.getResponse().getClient(), result.getResponse().getUserId());
 
+                                    logEventToFirebaseAnalytics(result.getResponse().getClient(), result.getResponse().getUserId());
                                     getMarket();
                                 }
                                 preferences.removeEvents(R.string.key_events);
@@ -343,7 +343,6 @@ public class LoginActivity extends BaseActivity {
 
                     }
                     break;
-
 
                     case Constants.SYMBOL_MESSAGE_RESPONSE: {
 
@@ -375,11 +374,8 @@ public class LoginActivity extends BaseActivity {
 
                         if (result != null) {
 
-
                             if (result.getCode().equals("200")) {
-
                                 preferences.setMarketResult(gson.toJson(result));
-
                                 startActivity(new Intent(context, MainActivity.class));
                                 finish();
 
@@ -471,12 +467,17 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    private void logEventToFirebaseAnalytics(String clientId, String userId){
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, clientId);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, userId);
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    private void logEventToFirebaseAnalytics(String clientCode, String userId){
+        Bundle params = new Bundle();
+        params.putString("UserId", userId);
+        params.putString("ClientCode", clientCode);
+        mFirebaseAnalytics.logEvent("Login", params);
+
+        //        Bundle bundle = new Bundle();
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, userId);
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, clientCode);
+//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
 
 }

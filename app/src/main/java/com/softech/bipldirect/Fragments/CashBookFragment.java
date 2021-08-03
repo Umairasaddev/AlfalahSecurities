@@ -30,10 +30,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class CashBookFragment extends Fragment {
 
     private RecyclerView recyclerView_cashBook;

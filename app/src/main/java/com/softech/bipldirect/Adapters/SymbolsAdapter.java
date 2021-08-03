@@ -10,11 +10,7 @@ import android.widget.TextView;
 
 import com.softech.bipldirect.Models.SymbolsModel.Symbol;
 import com.softech.bipldirect.R;
-
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SymbolsAdapter extends BaseAdapter {
 

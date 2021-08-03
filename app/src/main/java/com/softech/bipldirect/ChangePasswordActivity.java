@@ -26,10 +26,6 @@ import net.orange_box.storebox.StoreBox;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class ChangePasswordActivity extends BaseActivity {
 
     private static final String TAG = "ChangePasswordActivity";

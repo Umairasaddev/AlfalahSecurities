@@ -18,9 +18,6 @@ import com.softech.bipldirect.R;
 
 import java.util.ArrayList;
 
-
-import butterknife.BindView;
-
 public class PLSummaryAdapter extends RecyclerView.Adapter<PLSummaryAdapter.ViewHolder> {
 
     private final ArrayList<Portfolio> arraylist;

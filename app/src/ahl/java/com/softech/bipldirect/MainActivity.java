@@ -11,18 +11,20 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.core.app.Fragment;
-import androidx.core.app.FragmentManager;
-import androidx.core.app.FragmentTransaction;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -331,7 +333,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             }
             if (TrnCodes.contains("OM20"))
             {
-                optionItems.add("Charts");
+                //optionItems.add("Charts");
             }
 
             if ((TrnCodes.contains("OM06") || TrnCodes.contains("OM012"))) {
@@ -515,7 +517,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
             case R.drawable.portfoliosummary2x: {
 
-                replaceFragment(PortfolioWatchFragment.newInstance(), true, false);
+                replaceFragment(PortfolioFragment.newInstance(), true, false);
 
             }
             break;
@@ -1262,15 +1264,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            final PortfolioWatchFragment frag =
-                                                    (PortfolioWatchFragment) fragmentManager
-                                                            .findFragmentByTag(PortfolioWatchFragment.class.getName());
-
+                                            final PortfolioFragment frag = (PortfolioFragment) fragmentManager.findFragmentByTag(PortfolioFragment.class.getName());
                                             if (frag != null) {
-
-
                                                 frag.setValues(portfolioSymbols);
-
+                                                Log.e(TAG, "Portfolio Request" );
                                             } else {
                                                 Log.d("PortfolioResponse", "PortfolioResponse is null");
                                             }

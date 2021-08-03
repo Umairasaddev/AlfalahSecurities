@@ -14,9 +14,6 @@ import android.widget.TextView;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SettingFragment extends Fragment {
 

@@ -38,10 +38,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-
 public class NetSharesFragment extends Fragment implements NetShareCustodyAdapter.OnNetShareClickListener {
 
     private TextView textView_dateTimeNow;
