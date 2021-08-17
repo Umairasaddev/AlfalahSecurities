@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -146,7 +147,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         if (item.getItemId() == R.id.action_feed_status) {
 //            Log.d("MarketFragment", "status clicked");
             if (!isConnected) {
-                ((MainActivity) getActivity()).connectFeed();
+                ((MainActivity) requireActivity()).connectFeed();
             }
             return true;
         }
@@ -161,7 +162,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         if(MainActivity.symbolsResponse != null)
             setSearchSymbols();
 
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (toolbar != null) {
             toolbar.setTitle("My Watch");
@@ -173,7 +174,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         if (shouldReload) {
 
-            ((MainActivity) getActivity()).getMarket();
+            ((MainActivity) requireActivity()).getMarket();
 
             shouldReload = false;
         }
@@ -199,8 +200,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         bindView(view);
 
@@ -208,7 +208,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         if (marketListView.getLayoutManager() == null) {
@@ -217,11 +217,11 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         marketListView.setItemAnimator(new MyItemAnimator());
 
-        pagerAdapter = new TopPagerAdapter(getActivity(), MainActivity.marketResponse.getResponse().getExchanges(), mPager);
+        pagerAdapter = new TopPagerAdapter(requireActivity(), MainActivity.marketResponse.getResponse().getExchanges(), mPager);
 
         mPager.setAdapter(pagerAdapter);
 
-        marketListView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        marketListView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
         marketListView.setHasFixedSize(true);
 
         marketListView.setAdapter(marketAdapter);
@@ -308,27 +308,20 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
             }
         });
-//        Log.d("MarketFragment", "Created: ");
 
 
         mFeedReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-//                Log.d("MarketFragment", "mFeedReceiver: ");
-
                 String message = intent.getStringExtra("response");
-
-
                 if (message != null) {
-//                    Log.d("MarketFragment", "message: "+message);
                     onFeedReceived(message);
                     updateFeedServerStatus(true);
                 } else {
-//                    Log.d("MarketFragment", "isConnected: "+isConnected);
                     isConnected = intent.getBooleanExtra("isConnected", false);
                     updateFeedServerStatus(isConnected);
                     try {
-                        ((MainActivity) getActivity()).showFeedDisconnectAlert();
+                        ((MainActivity) requireActivity()).showFeedDisconnectAlert();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -336,9 +329,8 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
             }
         };
 
-        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mFeedReceiver,
-                new IntentFilter(Constants.FEED_SERVER_BROADCAST));
-        ((MainActivity) getActivity()).exchangesRequest();
+        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mFeedReceiver, new IntentFilter(Constants.FEED_SERVER_BROADCAST));
+        ((MainActivity) requireActivity()).exchangesRequest();
 
     }
 
@@ -362,7 +354,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         // Unregister since the activity is about to be closed.
         Log.d("search_debug", "onDetach: ");
 
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mFeedReceiver);
+        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mFeedReceiver);
         super.onDetach();
         mListener = null;
         mAddSymbol = null;

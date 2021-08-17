@@ -2,9 +2,6 @@ package com.softech.bipldirect.Const;
 
 import com.softech.bipldirect.BuildConfig;
 
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
 public class Constants {
     public static final String ForgotPasswordRequest = "FGPR";
     public static final String ForgotPasswordResponse = "FGPS";
@@ -97,9 +94,6 @@ public class Constants {
     public static final String FEED_SERVER_BROADCAST = "FEED_SERVER_BROADCAST";
     public static final String MSG_SERVER_BROADCAST = "MSG_SERVER_BROADCAST";
 
-    /**
-     * UnComment following block for Live server
-     **/
     public static String[] serverIpAddress = BuildConfig.HOST;
     public static int[] ports = BuildConfig.PORTS;
     public static final String KASB_API_LOGIN = BuildConfig.API_LOGIN;
@@ -107,10 +101,5 @@ public class Constants {
     public  static final  String RESESRCH_PORTAL_CLIENT=BuildConfig.CLIENT;
     public  static final  String RESESRCH_PORTAL_IP=BuildConfig.IP;
 
-    /**
-     * UnComment following block for local server
-     **/
-//    public static final String KASB_API_LOGIN = "";
-//    public static String[] serverIpAddress = {"192.168.0.245", "192.168.0.240"};
-//    public static int[] ports = {5678, 5678};
+
 }

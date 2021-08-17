@@ -112,7 +112,6 @@ public class BaseActivity extends AppCompatActivity {
        // synchronized (this) {
             messageServerReadThread = MessageServerReadThread.getInstance(getApplicationContext());
             messageServerThread = MessageServerThread.getInstance(getApplicationContext());
-
 //        }
 
     }
@@ -135,15 +134,9 @@ public class BaseActivity extends AppCompatActivity {
 
         if (messageServerThread != null && messageServerReadThread != null) {
 
-//            if (messageServerThread.isAlive() && messageServerReadThread.isAlive()) {
-
-                Log.d("MessageServerThread", "message server thread running. writing now..");
-                Log.d("messageServerReadThread", "message server read thread running");
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("tesingbipl", "runOnUiThread: " + Calendar.getInstance().getTime());
                         messageServerThread.write(map);
                     }
                 });
@@ -161,7 +154,6 @@ public class BaseActivity extends AppCompatActivity {
                         };
 
                         handler.postDelayed(runnable, 500);
-                        Log.d("tesingbipl", "postDelayed");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -176,7 +168,6 @@ public class BaseActivity extends AppCompatActivity {
         if (messageServerReadThread == null) {
             Log.d("messageServerReadThread", "is null..");
         }
-
 
     }
 

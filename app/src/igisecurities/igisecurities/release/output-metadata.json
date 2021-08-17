@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.igi.mobileterminal",
+  "variantName": "processIgisecuritiesReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 10,
+      "versionName": "2.0",
+      "outputFile": "biplDirect-igisecurities-releaseAug-05-1434.apk"
+    }
+  ]
+}

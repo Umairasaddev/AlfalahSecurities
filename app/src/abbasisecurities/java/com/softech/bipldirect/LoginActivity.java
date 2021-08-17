@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -21,42 +23,24 @@ import com.softech.bipldirect.Models.Event;
 import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.Models.MarketModel.MarketResponse;
 import com.softech.bipldirect.Models.SymbolsModel.SymbolsResponse;
-import com.softech.bipldirect.Network.OnRestClientCallback;
-import com.softech.bipldirect.Network.RestClient;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.EnctyptionUtils;
 import com.softech.bipldirect.Util.HSnackBar;
-import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
-
 import net.orange_box.storebox.StoreBox;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
-    @BindView(R.id.login_name)
     EditText etName;
-    @BindView(R.id.login_pass)
     EditText etPass;
-        @BindView(R.id.login_registerme)
-        Button registermeBut;
-    @BindView(R.id.tv_forgotPwd)
+    Button login_btn, registermeBut;
     TextView forgotPassword;
 
-    //        @BindView(R.id.login_server)
-//    TextView etServer;
     Context context = LoginActivity.this;
     private Preferences preferences;
     private String user, pas;
@@ -71,23 +55,8 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        initViews();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-//        if (BuildConfig.FLAVOR=="alfalahsec") {
-//            TextView etServer = (TextView) findViewById(R.id.login_server);
-//        }
-//        etName.setText("act01315");
-//        etPass.setText("123456");
-//        etName.setText("00022249");
-//        etPass.setText("bipl1234");
-//        etName.setText("00024639");
-//        etPass.setText("pakipower1");
-
-
-//        etName.setText("RMS01");
-//        etPass.setText("123456");
-//        etName.setText("ACT01315");
-//        etPass.setText("123456");
 
 
         preferences = StoreBox.create(this, Preferences.class);
@@ -104,31 +73,28 @@ public class LoginActivity extends BaseActivity {
                 startActivity(new Intent(context, ForgetPasswordActivity.class));
             }
         });
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callingloginservice(v);
+            }
+        });
         registermeBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(context, SignupActivity.class));
             }
         });
-//        etServer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (BuildConfig.FLAVOR.equals("alfalahsec")) {
-//                    etServer.setText("Primary");
-//                    final AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-//                    alert.setItems(serverNameArray, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            etServer.setText(serverNameArray[which]);
-//                            Constants.serverIpAddress = new String[]{serverUrlArray[which]};
-//
-//
-//                        }
-//                    });
-//                    alert.show();
-//                }
-//            }
-//        });
+
+    }
+
+    private void initViews() {
+        etName = (EditText) findViewById(R.id.login_name);
+        etPass = (EditText) findViewById(R.id.login_pass);
+        forgotPassword = (TextView) findViewById(R.id.tv_forgotPwd);
+        login_btn = (Button) findViewById(R.id.login_btn);
+        registermeBut = (Button) findViewById(R.id.login_registerme);
+
     }
 
     public void callingloginservice(View view) {
@@ -219,11 +185,6 @@ public class LoginActivity extends BaseActivity {
             HSnackBar.showMsg(view, "Please enter username and password.");
         }
 
-    }
-
-    @OnClick(R.id.login_btn)
-    public void submit(final View view) {
-        callingloginservice(view);
     }
 
     private void connectWithMessageServer(final JsonObject login_obj) {

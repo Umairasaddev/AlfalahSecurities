@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -16,33 +15,23 @@ import com.softech.bipldirect.Const.ConnectionDetector;
 import com.softech.bipldirect.Const.Constants;
 import com.softech.bipldirect.Network.MessageServerReadThread;
 import com.softech.bipldirect.Network.MessageServerThread;
-import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.HSnackBar;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ForgetPasswordActivity extends BaseActivity {
     private static final String TAG = "ForgetPasswordActivity";
-    @BindView(R.id.useridField)
     EditText userID;
-    @BindView(R.id.emailField)
     EditText email;
-    @BindView(R.id.forgetBtn)
     Button forgetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
+        initViewS();
         forgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +58,15 @@ public class ForgetPasswordActivity extends BaseActivity {
 
                     HSnackBar.showMsg(v, "Please Fill All Fields.");
                 }
-
             }
         });
 
+    }
+
+    private void initViewS() {
+        userID = (EditText) findViewById(R.id.useridField);
+        email = (EditText) findViewById(R.id.emailField);
+        forgetBtn = (Button) findViewById(R.id.forgetBtn);
     }
 
     private void connectWithMessageServer(final JsonObject login_obj) {
@@ -145,4 +139,6 @@ public class ForgetPasswordActivity extends BaseActivity {
 
         }
     }
+
+
 }

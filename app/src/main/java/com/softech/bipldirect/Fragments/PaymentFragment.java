@@ -2,6 +2,8 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,10 +35,9 @@ import java.util.ArrayList;
 
 public class PaymentFragment extends Fragment {
 
-    //    @BindView(R.id.edittext_username)
-// EditText edit_username;
-    private
-    EditText clientcode;
+    private final String TAG = "PaymentFragment";
+
+    private EditText clientcode;
     private EditText edit_exchange;
     private EditText edit_amount;
     private RadioGroup radioGroup;
@@ -67,8 +68,7 @@ public class PaymentFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
         bindView(view);
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
@@ -89,17 +89,16 @@ public class PaymentFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         //      edit_username.setText(MainActivity.loginResponse.getResponse().getUserId());
         edit_exchange.setText(MainActivity.loginResponse.getResponse().getServerCode());
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                Log.d("checkedId", "checkedId: " + checkedId);
+                Log.e("checkedId", "checkedId: " + checkedId);
 
                 if (checkedId == R.id.radio1) {
 

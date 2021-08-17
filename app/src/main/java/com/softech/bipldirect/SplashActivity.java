@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.multidex.BuildConfig;
 
 public class SplashActivity extends AppCompatActivity {
 

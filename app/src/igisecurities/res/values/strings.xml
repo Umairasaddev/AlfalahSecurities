@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">iTrade</string>
+    <string name="forgotPassword">Forgot your password?</string>
+    <string name="call">Call 0800 234 34</string>
+    <string name="enterYourLoginCredentials">Enter your login credentials</string>
+    <string name="link">www.i-trade.com.pk</string>
+    <string name="thinkStupid"></string>
+    <string name="pleaseLoginHere"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -45,8 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_heading"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/textfield_login"
             android:ems="13"
             android:gravity="center"
@@ -105,20 +105,20 @@
 
         <Button
             android:id="@+id/login_btn"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_phone"
+            android:layout_alignStart="@+id/login_pass"
+            android:layout_alignLeft="@+id/login_pass"
+            android:layout_alignEnd="@+id/login_pass"
+            android:layout_alignRight="@+id/login_pass"
             android:layout_marginTop="30dp"
             android:background="@drawable/button_yellowishgreen"
             android:ems="6"
             android:text="Login"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/white"
-            android:layout_alignRight="@+id/login_pass"
-            android:layout_alignEnd="@+id/login_pass"
-            android:layout_alignLeft="@+id/login_pass"
-            android:layout_alignStart="@+id/login_pass" />
+            android:textColor="@android:color/white" />
 
 
     </RelativeLayout>
@@ -139,7 +139,7 @@
 
     <TextView
         android:id="@+id/link"
-        fontPath="fonts/Roboto-Light.ttf"
+        android:fontFamily="@font/roboto_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

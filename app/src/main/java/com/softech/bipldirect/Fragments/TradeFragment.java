@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.multidex.BuildConfig;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -29,12 +31,10 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
 import com.softech.bipldirect.Adapters.SearchListAdapter;
-import com.softech.bipldirect.BuildConfig;
 import com.softech.bipldirect.Const.Constants;
 import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.LoginModel.OrdProp;

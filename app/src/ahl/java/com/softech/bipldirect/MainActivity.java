@@ -136,11 +136,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, this.getTheme()));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, this.getTheme()));
         connectMessageServer();
 
         setContentView(R.layout.activity_main);
@@ -241,8 +237,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -263,7 +257,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         deleteAll();
         super.onDestroy();
     }
-
 
     private void initNavMenu() {
 
@@ -410,7 +403,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -450,7 +442,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onMenuInteraction(Menu item) {
@@ -606,7 +597,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         alert.show();
     }
 
-
     public void replaceFragment(Fragment fragment, boolean popStack, boolean isChild) {
 
         String backStateName = fragment.getClass().getName();
@@ -718,7 +708,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             }
         };
     }
-
 
     public void orderStatusRequest() {
 

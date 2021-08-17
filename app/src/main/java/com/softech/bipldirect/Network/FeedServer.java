@@ -25,9 +25,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Developed by Hasham.Tahir on 1/28/2016.
- */
 public class FeedServer extends AsyncTask<String, String, String> {
 
     Context context;
@@ -74,7 +71,6 @@ public class FeedServer extends AsyncTask<String, String, String> {
 
         try {
             InetAddress serverAddr = InetAddress.getByName(serverIpAddress.get(0));
-
             if (serverPort.contains(",") || serverPort.length() > 4) {
 
                 String[] ports = serverPort.split(",");
@@ -102,7 +98,6 @@ public class FeedServer extends AsyncTask<String, String, String> {
             }
         } catch (Exception e) {
             e.printStackTrace();
-
             if (serverIpAddress != null && serverIpAddress.size() > 1) {
 
                 try {
@@ -116,26 +111,16 @@ public class FeedServer extends AsyncTask<String, String, String> {
             } else {
                 sendMessage(null, false);
             }
-
         }
 
         if (socket != null && socket.isConnected()) {
-
             Log.d(TAG, "socket is connected");
-
-
             try {
-                PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket
-                        .getOutputStream())), true);
+                PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
                 String final_str = params[0] + "<END>";
                 out.println(final_str);
-
                 Log.d(TAG, "socket write..");
-
-
                 BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-
                 while (socket.isConnected()) {
 
                     String line = br.readLine();
@@ -154,7 +139,6 @@ public class FeedServer extends AsyncTask<String, String, String> {
                         break;
                     }
                 }
-
                 sendMessage(null, false);
             } catch (Exception e) {
 
@@ -194,4 +178,6 @@ public class FeedServer extends AsyncTask<String, String, String> {
         if (socket == null) return false;
         return socket.isFeedSocketConnected();
     }
+
+
 }

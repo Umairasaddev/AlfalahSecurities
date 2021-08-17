@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -20,27 +19,19 @@ import com.softech.bipldirect.Network.MessageServerReadThread;
 import com.softech.bipldirect.Network.MessageServerThread;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.HSnackBar;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SignupActivity   extends BaseActivity {
     private static final String TAG = "SignupActivity";
-    @BindView(R.id.field_firstname)
+
     EditText etfirstName;
-    @BindView(R.id.field_lastname)
     EditText etlastName;
-    @BindView(R.id.field_username)
     EditText etUsername;
-    @BindView(R.id.field_phoneno)
     EditText etPhone;
-    @BindView(R.id.field_email)
     EditText etEmail;
-    @BindView(R.id.signupButton)
     Button signupBut;
+
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.";
     private String firstname, lastname, username, phoneno, email;
 
@@ -48,7 +39,7 @@ public class SignupActivity   extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        ButterKnife.bind(this);
+        initViews();
         signupBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,9 +88,20 @@ public class SignupActivity   extends BaseActivity {
             }
         });
     }
+
+    private void initViews() {
+        etfirstName = (EditText) findViewById(R.id.field_firstname);
+        etlastName = (EditText) findViewById(R.id.field_lastname);
+        etUsername = (EditText) findViewById(R.id.field_username);
+        etPhone = (EditText) findViewById(R.id.field_email);
+        etEmail = (EditText) findViewById(R.id.field_phoneno);
+        signupBut = (Button) findViewById(R.id.signupButton);
+    }
+
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
     private void connectWithMessageServer(final JsonObject login_obj) {
 
         connectMessageServer();

@@ -69,43 +69,43 @@
 
         <TextView
             android:id="@+id/textView25"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:textSize="16sp"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="SYMBOL"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textView27"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:textSize="16sp"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Change (%)"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Change"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textView28"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:textSize="16sp"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Last Trade"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textView29"
-            fontPath="fonts/Helvetica Bold.ttf"
+            android:textSize="16sp"
+            android:fontFamily="@font/helvetica_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
             android:text="Turnover"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black" />
     </LinearLayout>
 

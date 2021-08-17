@@ -21,9 +21,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Developed by Hasham.Tahir on 7/25/2016.
- */
 public class MessageServerThread extends HandlerThread {
 
     private static MessageServerThread instance;
@@ -117,14 +114,11 @@ public class MessageServerThread extends HandlerThread {
 
         PrintWriter mOut;
 
-        mOut = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),
-                true);
-//        Log.d("tesingbipl", "on success writeToSocket: " + Calendar.getInstance().getTime());
+        mOut = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         String final_str = map.get(2) + "<END>";
         mOut.println(final_str);
         Log.i("printLogTime", "write to socket: " + msg);
         Log.d("MessageSocket", "write: " + final_str);
-
         action = map.get(1);
     }
 

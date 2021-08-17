@@ -219,13 +219,13 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/radio1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bank Transfer" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/radio2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_blue"
+            android:background="@drawable/button_yellowishgreen"
             android:text="@string/submit"
             android:textColor="@color/white" />
     </LinearLayout>

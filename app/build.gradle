@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
@@ -211,8 +212,8 @@ android {
             applicationId "com.softech.foundationedge"
             minSdkVersion 23
             targetSdkVersion 30
-            versionCode 13
-            versionName "2.4"
+            versionCode 14
+            versionName "2.5"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String[]', 'HOST',
                     "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"
@@ -222,6 +223,24 @@ android {
             buildConfigField 'int[]', 'PORTS',
                     "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
         }
+
+        igisecurities {
+            dimension "version"
+//            applicationId "com.softech.igisecurities"
+            applicationId "com.igi.mobileterminal"
+            minSdkVersion 23
+            targetSdkVersion 30
+            versionCode 10
+            versionName "2.0"
+
+            buildConfigField 'String[]', 'HOST', "{" + "\"onlinetrading.i-trade-pk.com\"," + "\"onlinetrading.i-trade-pk.com\"" + "}"
+            buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
+            buildConfigField 'String', 'CLIENT', '"admin.bipl"'
+            buildConfigField 'String', 'IP', '"203.17577.130"'
+            buildConfigField 'int[]', 'PORTS', "{5678,5678}"
+        }
+
 
 //        foundationEdge {
 //            dimension "version"
@@ -297,6 +316,8 @@ dependencies {
     implementation 'com.hudomju:swipe-to-dismiss-undo:1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.datastore:datastore-preferences-core:1.0.0-alpha08'
+
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'androidx.multidex:multidex:2.0.1'

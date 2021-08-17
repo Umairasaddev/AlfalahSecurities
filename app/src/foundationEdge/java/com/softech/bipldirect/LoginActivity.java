@@ -37,15 +37,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
-
-
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
