@@ -189,11 +189,11 @@ android {
 
         askarisecurities {
             dimension "version"
-            applicationId "com.softech.askarisecurities"
+            applicationId "com.softech.askari.securities"
             minSdkVersion 23
             targetSdkVersion 30
-            versionCode 5
-            versionName "3.2"
+            versionCode 1
+            versionName "1.1"
             multiDexEnabled true
             buildConfigField 'String[]', 'HOST',
 //                            "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"

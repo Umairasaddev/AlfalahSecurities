@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.softech.askarisecurities",
+  "applicationId": "com.softech.askari.securities",
   "variantName": "processAskarisecuritiesReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 5,
-      "versionName": "3.2",
-      "outputFile": "biplDirect-askarisecurities-releaseJul-09-1107.apk"
+      "versionCode": 1,
+      "versionName": "1.1",
+      "outputFile": "biplDirect-askarisecurities-releaseAug-24-1551.apk"
     }
   ]
 }
