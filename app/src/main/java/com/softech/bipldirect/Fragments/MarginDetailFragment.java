@@ -4,6 +4,7 @@ package com.softech.bipldirect.Fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import com.softech.bipldirect.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MarginDetailFragment extends Fragment {
@@ -50,6 +52,9 @@ public class MarginDetailFragment extends Fragment {
     ArrayList<String> clientlist;
     boolean isSetInitialText = false;
     private View mCancelSearch1;
+
+    double totalAmount = 0;
+    double totalPortfolio = 0;
 
     public MarginDetailFragment() {
         // Required empty public constructor
@@ -193,35 +198,31 @@ public class MarginDetailFragment extends Fragment {
 
 
             ArrayList<MarginDetail> arrayMain = new ArrayList<>();
-
             arrayMain.add(custodyHeader);
             arrayMain.addAll(response.getCustodyList());
-//            headerView.textViewDateTime.setText(getDateTimeString());
-//            headerView.usertext.setText(clientCode);
-//            headerView.cashtext.setText(response.getEquityCashBalance());
-//            headerView.worthText.setText(response.getTotalWorth());
-//            headerView.custodyText.setText(response.getEquityReducedValue());
-//            headerView.mtmText.setText(response.getEquityProfitLos());
-//            headerView.blockedMtmText.setText(response.getEquityBlockedMTMProfit());
-//            headerView.marginText.setText(response.getNetLiquidityEquity());
-//            headerView.exposureText.setText(response.getOpenPositionEquity());
-//            headerView.marginRequiredText.setText(response.getEquityMarginRequired());
-//            headerView.cashRequiredText.setText(response.getEquityMarginRequiredAsCash());
-//            headerView.availableMarginText.setText(response.getEquityFreeMargin());
-//            headerView.currentMarginText.setText(response.getEquityMarginPerc());
-//            headerView.cashWithdrawalText.setText(response.getEquityCashWithdrawalinProcess());
-//            headerView.cashWithdrawalLimitText.setText(response.getEquityCashWithdrawal());
-//            headerView.marginCallText.setText(response.getEquityCashMarginCall());
-//            headerView.cashCallText.setText(response.getEquityNetMarginCall());
-//            headerView.availableCashText.setText(response.getEquityFreeCash());
-//            header.invalidate();
-//            Log.d("Cashbalance", headerView.cashtext.getText().toString());
-            final ArrayList<CustodyList> custodyList = (ArrayList<CustodyList>) response.getCustodyList();
-            custody_listView.setAdapter(new MarginDetailAdapter(getActivity(), arrayMain));
-            // custody_listView.setAdapter(new CustodyAdapter(getActivity(), custodyList));
+
+            calculateTotalAmountAndPortfolio(custodyHeader, response.getCustodyList());
+            custody_listView.setAdapter(new MarginDetailAdapter(getActivity(), arrayMain, totalAmount, totalPortfolio));
 
 
         }
+    }
+
+    private void calculateTotalAmountAndPortfolio(CustodyHeader custodyHeader, List<CustodyList> custodyList) {
+
+        totalAmount=0;
+        totalPortfolio=0;
+
+        //Get Total Amount
+        for (CustodyList obj:custodyList){
+            double amt = Double.parseDouble(obj.getAmount().replace(",", ""));
+            totalAmount = totalAmount+amt;
+            Log.e("TAG", totalAmount+"" );
+        }
+
+        //Get total Portfolio
+        double cash = Double.parseDouble(custodyHeader.getEquityCashBalance().replace(",", ""));
+        totalPortfolio = cash + totalAmount;
     }
 
     public String getDateTimeString() {

@@ -157,9 +157,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
 
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
-
         fragmentManager = getSupportFragmentManager();
-
         replaceFragment(marketFragment, true, false);
         getSymbolsFromServer();
         connectFeed();
@@ -220,7 +218,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         deleteAll();
         super.onDestroy();
     }
-
 
     private void initNavMenu() {
 
@@ -328,17 +325,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     }
 
     private void initSessionData() {
-
         Gson gson = new Gson();
-
         loginResponse = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
         marketResponse = gson.fromJson(preferences.getMarketResult(), MarketResponse.class);
         symbolsResponse = gson.fromJson(preferences.getSymbolResult(), SymbolsResponse.class);
-
-
     }
-
-
 
     public void portfolioWatchRequest(String clientcode){
         JsonObject request_obj = new JsonObject();
@@ -393,7 +384,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
         }
     }
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -861,6 +851,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             }
         }
     }
+
 
     @Override
     public void onSymbolDeleteRequest(MarketSymbol symbol) {

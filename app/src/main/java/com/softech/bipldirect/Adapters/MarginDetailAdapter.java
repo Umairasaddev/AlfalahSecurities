@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.softech.bipldirect.Models.MarginModel.CustodyHeader;
@@ -22,16 +23,22 @@ import java.util.ArrayList;
 
 
 public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+
+    private static final String TAG = "MarginDetailAdapter";
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_NORMAL = 1;
+
+    double totalAmount=0;
+    double totalPortfolio=0;
     Context context;
     private ArrayList<MarginDetail> allData;
 
-    public MarginDetailAdapter(Context context, ArrayList<MarginDetail> data) {
-
+    public MarginDetailAdapter(Context context, ArrayList<MarginDetail> data, double totalAmount, double totalPortfolio) {
         this.context = context;
         this.allData = data;
-
+        this.totalAmount=totalAmount;
+        this.totalPortfolio=totalPortfolio;
     }
 
     @Override
@@ -58,15 +65,13 @@ public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         switch (viewType) {
             case TYPE_NORMAL: {
-                View v = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.symbols_list_item, viewGroup, false);
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.symbols_list_item, viewGroup, false);
                 viewHolder = new ItemViewHolder(v);
 
             }
             break;
             case TYPE_HEADER: {
-                View v = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.item_list_margin_header, viewGroup, false);
+                View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_margin_header, viewGroup, false);
                 viewHolder = new HeaderViewHolder(v);
             }
             break;
@@ -85,12 +90,32 @@ public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 } else {
                     viewHolder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
                 }
-                CustodyList obj = (CustodyList) allData.get(position);
 
+                CustodyList obj = (CustodyList) allData.get(position);
                 ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
                 itemViewHolder.symbol_symbol.setText(obj.getSymbol());
                 itemViewHolder.symbol_market.setText(obj.getBalance());
                 itemViewHolder.symbol_exchange.setText(obj.getAmount());
+
+
+                if(position==(allData.size()-1)){
+                    ((ItemViewHolder) viewHolder).tvTotalHoldings.setText(String.valueOf(totalAmount));
+                    ((ItemViewHolder) viewHolder).tvTotalPortfolio.setText(String.valueOf(totalPortfolio));
+
+                    if(allData.size()%2==0){
+                        ((ItemViewHolder) viewHolder).llTotalHoldings.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                        ((ItemViewHolder) viewHolder).llTotalPortfolio.setBackgroundColor(ContextCompat.getColor(context, R.color.greyBar));
+                    }else {
+                        ((ItemViewHolder) viewHolder).llTotalHoldings.setBackgroundColor(ContextCompat.getColor(context, R.color.greyBar));
+                        ((ItemViewHolder) viewHolder).llTotalPortfolio.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                    }
+                    ((ItemViewHolder) viewHolder).llTotalHoldings.setVisibility(View.VISIBLE);
+                    ((ItemViewHolder) viewHolder).llTotalPortfolio.setVisibility(View.VISIBLE);
+                }else{
+                    ((ItemViewHolder) viewHolder).llTotalHoldings.setVisibility(View.GONE);
+                    ((ItemViewHolder) viewHolder).llTotalPortfolio.setVisibility(View.GONE);
+                }
+
             }
             break;
             case TYPE_HEADER: {
@@ -133,12 +158,22 @@ public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView symbol_market;
         TextView symbol_exchange;
 
+        LinearLayout llTotalHoldings;
+        LinearLayout llTotalPortfolio;
+        TextView tvTotalHoldings;
+        TextView tvTotalPortfolio;
+
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             symbol_symbol=itemView.findViewById(R.id.symbol_symbol);
             symbol_market=itemView.findViewById(R.id.symbol_market);
             symbol_exchange=itemView.findViewById(R.id.symbol_exchange);
+
+            llTotalHoldings=itemView.findViewById(R.id.llTotalHoldings);
+            llTotalPortfolio=itemView.findViewById(R.id.llTotalPortfolio);
+            tvTotalHoldings=itemView.findViewById(R.id.tvTotalHoldings);
+            tvTotalPortfolio=itemView.findViewById(R.id.tvTotalPortfolio);
         }
     }
 
