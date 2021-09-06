@@ -449,7 +449,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     }
 
     public void removeMarket() {
-
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

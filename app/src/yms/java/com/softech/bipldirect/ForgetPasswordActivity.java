@@ -16,18 +16,10 @@ import com.softech.bipldirect.Const.ConnectionDetector;
 import com.softech.bipldirect.Const.Constants;
 import com.softech.bipldirect.Network.MessageServerReadThread;
 import com.softech.bipldirect.Network.MessageServerThread;
-import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.HSnackBar;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ForgetPasswordActivity extends BaseActivity {
     private static final String TAG = "ForgetPasswordActivity";

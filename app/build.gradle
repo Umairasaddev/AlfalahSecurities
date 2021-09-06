@@ -67,16 +67,16 @@ android {
             applicationId "com.softech.yms"
             minSdkVersion 23
             targetSdkVersion 30
-            versionCode 2
-            versionName "1.1"
+            versionCode 3
+            versionName "1.2"
             multiDexEnabled true
-            buildConfigField 'String[]', 'HOST', "{" + "\"t1.invest.pk\"," + "\"t1.invest.pk\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"t1.invest.pk\"," + "\"125.209.75.42\"" + "}"
 //            buildConfigField 'String[]', 'HOST', "{" + "\"103.94.186.27\"," + "\"103.94.186.27\"" + "}"
 
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.bipldirect.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
-            buildConfigField 'String', 'IP', '"203.17577.130"'
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
             buildConfigField 'int[]', 'PORTS', "{5678,5679}"
         }
 
@@ -111,7 +111,7 @@ android {
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://importal.imtrade.biz/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.ims"'
-            buildConfigField 'String', 'IP', '"203.17577.130"'
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
             buildConfigField 'int[]', 'PORTS',
                     "{5678,5679,5680,5681}"
         }

@@ -1331,12 +1331,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             final ExchangeResponse result = gson.fromJson(resp, ExchangeResponse.class);
 
                             if (result != null) {
-
                                 if (result.getCode().equals("200")) {
-
-                                    final ExchangeFragment frag = (ExchangeFragment)
-                                            fragmentManager.findFragmentByTag(ExchangeFragment.class.getName());
-
+                                    final ExchangeFragment frag = (ExchangeFragment) fragmentManager.findFragmentByTag(ExchangeFragment.class.getName());
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -1345,13 +1341,10 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                             }
                                         }
                                     });
-
                                 } else {
 
                                     Alert.show(context, getString(R.string.app_name), result.getError());
                                 }
-
-
                             } else {
                                 Log.d(TAG, "Response :: SymbolsResponse null ");
                             }

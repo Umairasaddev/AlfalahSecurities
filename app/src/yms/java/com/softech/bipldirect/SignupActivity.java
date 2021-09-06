@@ -32,9 +32,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SignupActivity extends BaseActivity {
     private static final String TAG = "SignupActivity";
     private EditText etfirstName;

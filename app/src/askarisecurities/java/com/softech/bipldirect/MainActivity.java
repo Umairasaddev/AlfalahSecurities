@@ -400,10 +400,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         return true;
     }
 
-
-
-
-
     public boolean onOptionsItemSelected(MenuItem item) {
         // toggle nav drawer on selecting action bar app icon/title
         if (toggle.onOptionsItemSelected(item)) {
@@ -423,7 +419,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onMenuInteraction(Menu item) {
@@ -959,16 +954,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                         }
                         break;
-
                         case Constants.SUBSCRIPTION_REQUEST_RESPONSE: {
-
                             Log.d("test", "SUBSCRIPTION_REQUEST_RESPONSE: " + Constants.SUBSCRIPTION_REQUEST_RESPONSE);
-
                             String responseType = response.get("responseType").getAsString();
                             String requestType = response.get("requestType").getAsString();
-
                             if (responseType.equals("ACPT") && requestType.equals("REM")) { //delete request
-
                                 try {
                                     marketFragment.removeMarket();
                                 } catch (Exception e) {
