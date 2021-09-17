@@ -19,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.softech.bipldirect.Adapters.OrderStatsAdapter;
-import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.OrderStatsModel.OrderStatsResponse;
 import com.softech.bipldirect.Models.OrderStatsModel.OrdersList;
 import com.softech.bipldirect.R;
@@ -73,14 +72,12 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_status, container, false);
         bindView(view);
 
         return view;
     }
-
 
     private void orderPressed() {
 //        trade.setBackgroundResource(R.drawable.unselected);
@@ -182,7 +179,6 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
 
 //        adapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void onAttach(Context context) {

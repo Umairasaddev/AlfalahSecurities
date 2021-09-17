@@ -35,8 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class
-QuotesFragment extends Fragment {
+public class QuotesFragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -122,13 +121,11 @@ QuotesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quotes, container, false);
         bindView(view);
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -157,7 +154,6 @@ QuotesFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

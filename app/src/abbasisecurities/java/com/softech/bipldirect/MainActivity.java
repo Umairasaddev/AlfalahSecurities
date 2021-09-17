@@ -162,6 +162,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         getSymbolsFromServer();
         connectFeed();
     }
+
     private void getSymbolsFromServer() {
 
         JsonObject login_obj = new JsonObject();
@@ -1054,9 +1055,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         break;
 
                         case Constants.OUOTES_SECURITIES_REQUEST_RESPONSE: {
-
                             JsonArray symbolsArr = response.getAsJsonArray("symbols");
-
                             if (symbolsArr.size() > 0) {
 
                                 final MarketSymbol marketSymbol = gson.fromJson(symbolsArr.get(0), MarketSymbol.class);
@@ -1101,7 +1100,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                                 }
                             } else {
-
                                 Alert.show(context, getString(R.string.app_name), "No symbol found.");
                             }
                         }
@@ -1110,7 +1108,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         case Constants.TOP_SYMBOLS_REQUEST_RESPONSE: {
 
                             final TopSymResponse result = gson.fromJson(resp, TopSymResponse.class);
-
                             if (result != null) {
 
                                 if (result.getCode().equals("200")) {
@@ -1224,9 +1221,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         break;
 
                         case Constants.MARGIN_REQUEST_RESPONSE: {
-
                             final AccountResponse result = gson.fromJson(resp, AccountResponse.class);
-
                             if (result != null) {
 
                                 if (result.getCode().equals("200")) {
@@ -1770,15 +1765,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     @Override
     public void onOnQoutesFragmentListener(Symbol symbol) {
-
         JsonObject request_obj = new JsonObject();
-
         request_obj.addProperty("MSGTYPE", Constants.OUOTES_SECURITIES_REQUEST_IDENTIFIER);
         request_obj.addProperty("symbol", symbol.getSymbol());
         request_obj.addProperty("market", symbol.getMarket());
         request_obj.addProperty("exchange", symbol.getExchangeCode());
-
-
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 
             Map<Integer, String> map = new HashMap<>();
@@ -1806,7 +1797,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     }
 
     public void goToNetShareDetail(NetShareCustody custody) {
-
         replaceFragment(NetShareDetailFragment.newInstance(new Gson().toJson(custody, NetShareCustody.class)), false, true);
     }
 
@@ -1945,20 +1935,15 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     public void accountRequest(String clientcode) {
 
         JsonObject request_obj = new JsonObject();
-
         request_obj.addProperty("MSGTYPE", Constants.MARGIN_REQUEST_IDENTIFIER);
         request_obj.addProperty("client", clientcode);
 
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-
             Map<Integer, String> map = new HashMap<>();
             map.put(1, Constants.MARGIN_REQUEST_IDENTIFIER);
             map.put(2, request_obj.toString());
-
             write(map, true);
-
         } else {
-
             try {
                 HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
             } catch (Exception e) {
@@ -2169,16 +2154,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     }
 
     public void tradeSymbolRequest(Symbol symbol) {
-
         JsonObject request_obj = new JsonObject();
-
         request_obj.addProperty("MSGTYPE", Constants.OUOTES_SECURITIES_REQUEST_IDENTIFIER);
         request_obj.addProperty("symbol", symbol.getSymbol());
         request_obj.addProperty("market", symbol.getMarket());
         request_obj.addProperty("exchange", symbol.getExchangeCode());
-
-
-
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 
             Map<Integer, String> map = new HashMap<>();

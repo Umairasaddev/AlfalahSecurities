@@ -141,8 +141,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             client = clientcode.getText().toString();
             clientcode.setEnabled(false);
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
+        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 || MainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
 
         }
@@ -202,11 +201,8 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if (s.length() >= 2) {
-
                     listSearch_view.setVisibility(View.VISIBLE);
-
                     String text = symbol.getText().toString();
                     searchAdapter.filter(text);
                 } else {
@@ -300,8 +296,6 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
 
         String TrnCodes = MainActivity.loginResponse.getResponse().getTrnCodes();
         ordTypes = MainActivity.loginResponse.getResponse().getOrdTypes();
-
-
         try {
             for (int i = 0; i < ordTypes.size(); i++) {
                 if (!(TrnCodes.contains("OM25")) && ordTypes.get(i).getName().equals("LEVERAGE BUY")) {
@@ -321,13 +315,12 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ordProps = MainActivity.loginResponse.getResponse().getOrdProps();
 
+        ordProps = MainActivity.loginResponse.getResponse().getOrdProps();
         if (ordTypes != null && ordTypes.size() > 0) {
             textViewOrderType.setText(ordTypes.get(0).getName());
             textViewOrderType.setTag(ordTypes.get(0).getCode());
         }
-
         if (ordProps != null && ordProps.size() > 0) {
             textViewOrderProp.setText(ordProps.get(0).getName());
             textViewOrderProp.setTag(ordProps.get(0).getCode());
@@ -342,9 +335,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
 
         if (marketSymbol != null && TrnCodes.contains("OM12") && marketSymbol.getMarket().equals("FUT")) {
             shortFlag = 1;
-//            Log.d("getExchangeCode", marketSymbol.getMarket());
         }
-
 
         if (marketSymbol != null) {
             setValues(marketSymbol, false);
@@ -1249,10 +1240,8 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
         String pri = price.getText().toString();
 
         if (vol.length() > 0 && pri.length() > 0) {
-
             try {
                 double orderVal = Double.parseDouble(vol) * Double.parseDouble(pri);
-
                 textViewOrderValue.setText(String.format(Locale.UK, "%.2f", orderVal));
             } catch (Exception e) {
                 e.printStackTrace();

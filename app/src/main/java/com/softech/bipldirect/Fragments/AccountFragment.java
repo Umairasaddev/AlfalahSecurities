@@ -52,8 +52,7 @@ public class AccountFragment extends Fragment {
     AccountAdapter accountAdapter;
     private View mCancelSearch1;
 
-    public AccountFragment() {
-    }
+    public AccountFragment() { }
 
     public static AccountFragment newInstance() {
         return new AccountFragment();
@@ -65,8 +64,7 @@ public class AccountFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         bindView(view);
 

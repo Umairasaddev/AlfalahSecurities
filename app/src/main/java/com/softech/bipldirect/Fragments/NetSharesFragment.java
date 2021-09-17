@@ -91,8 +91,7 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_net_custody, container, false);
         bindView(view);
         return view;
@@ -115,11 +114,8 @@ public class NetSharesFragment extends Fragment implements NetShareCustodyAdapte
 
         recyclerView_netShares.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView_netShares.setHasFixedSize(true);
-
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-
         textView_dateTimeNow.setText(currentDateTimeString);
-
         textView_clientCode.setText(MainActivity.loginResponse.getResponse().getClient());
         if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 2) {
