@@ -365,7 +365,6 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     @Override
     public void onPortfolioClick(PortfolioSymbol mItem) {
         ((MainActivity) getActivity()).showPortFolioDetail(mItem);
-
     }
 
     private void bindView(View bindSource) {

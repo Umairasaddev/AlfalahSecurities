@@ -95,15 +95,11 @@ public class UserProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         bindView(view);
-        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 2) {
-
+        if (MainActivity.loginResponse.getResponse().getUsertype() == 1 || MainActivity.loginResponse.getResponse().getUsertype() == 2) {
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
             ((MainActivity) getActivity()).profileRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
-                MainActivity.loginResponse.getResponse().getUsertype() == 3) {
-
+        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 || MainActivity.loginResponse.getResponse().getUsertype() == 3) {
             clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
         }

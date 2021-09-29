@@ -33,5 +33,7 @@
     <color name="ledRed">#ec0001</color>
     <color name="ledGreen">#00ff00</color>
     <color name="textSymbolDetailColor">#A5A5A5</color>
+    <color name="colorYellowishGreen">#9d9640</color>
+    <color name="colorYellowishGreenDark">#8d8739</color>
 
 </resources>

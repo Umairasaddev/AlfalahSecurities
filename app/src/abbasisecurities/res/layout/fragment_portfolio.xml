@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart"
+                android:id="@+id/piehart"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_170sdp">
             </com.github.mikephil.charting.charts.PieChart>
