@@ -78,7 +78,8 @@ public class PaymentFragment extends Fragment {
             client = clientcode.getText().toString();
             clientcode.setEnabled(false);
             ((MainActivity) getActivity()).getPaymentRequest(clientcode.getText().toString());
-        } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
+        }
+        else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 3) {
             clientlist = new ArrayList<String>(MainActivity.loginResponse.getResponse().getClientlist());
             searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);

@@ -55,6 +55,7 @@
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/activity_signup.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/dialog_input_pin.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_account.xml" value="0.1814814814814815" />
+        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_cash_book.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_events.xml" value="0.17899543378995433" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_exchange.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_glossary.xml" value="0.16" />
@@ -63,7 +64,7 @@
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_net_custody.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_net_custody_detail.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_order_status.xml" value="0.5" />
-        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_payment.xml" value="0.2" />
+        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_payment.xml" value="0.25" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_portfolio.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_portfolio_detail.xml" value="0.33" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_quotes.xml" value="0.33" />
@@ -83,6 +84,7 @@
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/menu/main.xml" value="0.17899543378995433" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19583333333333333" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/summitCapital/res/drawable/button_yellowishgreen.xml" value="0.19583333333333333" />
+        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/summitCapital/res/drawable/textfield_login.xml" value="0.19315068493150686" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/summitCapital/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/summitCapital/res/layout/splash_main.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/yms/res/layout/fragment_portfolio.xml" value="0.1814814814814815" />

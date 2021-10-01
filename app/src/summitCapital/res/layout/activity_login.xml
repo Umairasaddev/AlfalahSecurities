@@ -37,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:text="PLEASE LOGIN HERE"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorYellowishGreen" />
+            android:textColor="@color/colorSummitRed" />
 
         <EditText
             android:id="@+id/login_name"
@@ -53,7 +53,7 @@
             android:hint="USERNAME"
             android:inputType="textCapCharacters"
             android:maxLines="1"
-            android:textColorHint="#8d8739" />
+            android:textColorHint="@android:color/darker_gray" />
 
         <EditText
             android:id="@+id/login_pass"
@@ -69,7 +69,7 @@
             android:hint="PASSWORD"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColorHint="#8d8739" />
+            android:textColorHint="@android:color/darker_gray" />
 
 
         <TextView
@@ -117,7 +117,7 @@
             android:ems="6"
             android:fontFamily="@font/helvetica_bold"
             android:text="Login"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white" />
 
 

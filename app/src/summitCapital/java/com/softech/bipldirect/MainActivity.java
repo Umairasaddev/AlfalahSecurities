@@ -1475,17 +1475,12 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                         break;
 
                         case Constants.PAYMENT_REQ_RESPONSE: {
-
                             String responseAction = response.get("action").getAsString();
-
                             if (responseAction.equals("1") || responseAction.equals("2")) {
 
                                 Alert.show(context, getString(R.string.app_name), response.get("remarks").getAsString());
                                 Event.add(context, new Event(System.currentTimeMillis(), response.get("remarks").getAsString()));
-
                             }
-
-
                         }
                         break;
 
@@ -2308,6 +2303,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 e.printStackTrace();
             }
         }
+
     }
 
     public void showFeedDisconnectAlert() {

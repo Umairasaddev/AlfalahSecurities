@@ -194,12 +194,12 @@ android {
             targetSdkVersion 31
             versionCode 1
             versionName "1.0"
-            buildConfigField 'String[]', 'HOST', "{" + "\"110.93.195.230\"," + "\"202.143.145.145\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"110.93.195.230\"," + "\"110.93.195.230\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.abbasiandcompany.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.abbasico"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683}"
+            buildConfigField 'int[]', 'PORTS', "{5678}"
         }
 
         askarisecurities {
