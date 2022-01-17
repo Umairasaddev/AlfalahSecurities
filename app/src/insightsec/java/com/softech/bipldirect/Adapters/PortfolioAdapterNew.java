@@ -22,9 +22,6 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class PortfolioAdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_FOOTER = 0;

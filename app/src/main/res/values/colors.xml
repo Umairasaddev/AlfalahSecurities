@@ -29,6 +29,7 @@
     <color name="default_slice_color">#88FF0000</color>
     <color name="default_line_color">#88FFFFFF</color>
     <color name="greencolor">#00ff00</color>
+    <color name="darkGreen">#228B22</color>
 
     <color name="ledRed">#ec0001</color>
     <color name="ledGreen">#00ff00</color>

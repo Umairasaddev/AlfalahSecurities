@@ -106,8 +106,8 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
 
         } else if (exChange > 0) {
 
-            holder.change.setTextColor(colorGreen);
-            holder.change_per.setTextColor(colorGreen);
+            holder.change.setTextColor(ContextCompat.getColor(context, R.color.darkGreen));
+            holder.change_per.setTextColor(ContextCompat.getColor(context, R.color.darkGreen));
         }
 
     }

@@ -294,7 +294,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                 navMenuList.add(new Menu("Index Watch", R.drawable.marketicon2x, false));
             }
             if (TrnCodes.contains("OM24")) {
-//                navMenuList.add(new Menu("Research Portal", R.drawable.research2x, false));
+                navMenuList.add(new Menu("Research Portal", R.drawable.research2x, false));
             }
             if (TrnCodes.contains("OM13")) {
                 navMenuList.add(new Menu("Message Board", R.drawable.events2x, false));

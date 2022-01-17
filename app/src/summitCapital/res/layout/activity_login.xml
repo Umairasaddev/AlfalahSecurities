@@ -61,8 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/textfield_login"
             android:ems="13"
             android:gravity="center"
@@ -76,16 +76,15 @@
             android:id="@+id/tv_forgotPwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/login_pass"
             android:layout_alignLeft="@+id/login_pass"
             android:layout_alignRight="@+id/login_pass"
-            android:layout_below="@+id/login_pass"
             android:layout_marginTop="15dp"
-            android:gravity="center"
+            android:gravity="end"
             android:text="@string/forgotPassword"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:textColorLink="@color/colorPrimaryDark"
-            android:visibility="gone" />
+            android:textColor="@color/black"
+            android:textColorLink="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/tv_phone"
@@ -150,7 +149,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/white"
         android:textColorLink="@color/colorPrimaryDark"
-        android:visibility="gone" />
+        android:visibility="gone"
+        />
 
 
 </RelativeLayout>

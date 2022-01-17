@@ -1367,14 +1367,12 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
             }
             break;
             case R.id.textViewOrderType: {
-
                 if (ordTypes != null && ordTypes.size() > 0) {
                     showPickerOrderType(v);
                 }
             }
             break;
             case R.id.textViewOrderProp: {
-
                 if (ordProps != null && ordProps.size() > 0) {
                     showPickerOrderProp(v);
                 }

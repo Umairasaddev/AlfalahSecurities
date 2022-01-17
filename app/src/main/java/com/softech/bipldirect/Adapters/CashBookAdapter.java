@@ -60,13 +60,13 @@ public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHo
                 holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.blinkRed));
                 holder.textView4.setText(obj.getRunningBalance().replace("-", ""));
             } else {
-                holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.blinkGreen));
+                holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.darkGreen));
                 holder.textView4.setText(obj.getRunningBalance());
             }
 
             if (obj.getIndex() != 0) {
                 if (credit > 0) {
-                    holder.textView3.setTextColor(ContextCompat.getColor(context, R.color.blinkGreen));
+                    holder.textView3.setTextColor(ContextCompat.getColor(context, R.color.darkGreen));
                     holder.textView3.setText(obj.getCredit());
                 } else if (debit > 0) {
                     holder.textView3.setTextColor(ContextCompat.getColor(context, R.color.blinkRed));
@@ -96,7 +96,7 @@ public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHo
                 holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.blinkRed));
                 holder.textView4.setText(runningBalanceText.replace("-", ""));
             } else {
-                holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.blinkGreen));
+                holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.darkGreen));
                 holder.textView4.setText(runningBalanceText);
             }
         }

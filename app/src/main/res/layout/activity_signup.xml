@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/greyBar"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -15,12 +15,12 @@
 
         <EditText
             android:id="@+id/field_firstname"
+            android:background="@drawable/textfield_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight=".5"
-            android:background="@color/white"
             android:gravity="center"
 
             android:hint="First Name"
@@ -34,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight=".5"
-            android:background="@color/white"
+            android:background="@drawable/textfield_login"
             android:gravity="center"
             android:hint="Last Name"
             android:inputType="textEmailAddress"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:background="@color/white"
+        android:background="@drawable/textfield_login"
         android:gravity="center"
         android:hint="Username"
         android:inputType="textEmailAddress"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:background="@color/white"
+        android:background="@drawable/textfield_login"
         android:gravity="center"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:background="@color/white"
+        android:background="@drawable/textfield_login"
         android:gravity="center"
         android:hint="Phone No"
         android:inputType="phone"
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/nav_header_vertical_spacing"
-        android:background="@color/ledGreen"
+        android:background="@drawable/button_yellowishgreen"
         android:text="Signup"
         android:textAlignment="center"
         android:textColor="@color/white" />

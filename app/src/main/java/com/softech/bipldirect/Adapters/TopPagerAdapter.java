@@ -64,7 +64,7 @@ public class TopPagerAdapter extends PagerAdapter {
         } else if (exChange > 0) {
 
 
-            exc_chng.setTextColor(colorGreen);
+            exc_chng.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
 
         } else {
 

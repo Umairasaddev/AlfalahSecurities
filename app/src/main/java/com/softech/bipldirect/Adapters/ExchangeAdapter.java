@@ -99,8 +99,8 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
                 holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
             } else if (change > 0) {
-                holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
-                holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.change.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
+                holder.changePer.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
             } else {
                 holder.change.setTextColor(Color.BLACK);
                 holder.changePer.setTextColor(Color.BLACK);
@@ -116,7 +116,7 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.ViewHo
 
             if (current > last) {
                 Log.d("ExchangeCheck", "current: " + current + " > last:" + last);
-                holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
             } else if (current < last) {
                 Log.d("ExchangeCheck", "current: " + current + " < last:" + last);
                 holder.current.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));

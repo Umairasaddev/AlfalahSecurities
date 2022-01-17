@@ -141,15 +141,13 @@ android {
             targetSdkVersion 31
             versionCode 4
             versionName "1.3"
-            buildConfigField 'String[]', 'HOST',
-                    "{" + "\"online.insightsec.com.pk\"," + "\"online.insightsec.com.pk\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"online.insightsec.com.pk\"," + "\"online.insightsec.com.pk\"" + "}"
 //                    "{" + "\"124.29.245.115\"," + "\"124.29.245.115\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.e-falah.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"atif.khan"'
-            buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS',
-                    "{5678,5679,5680,5681}"
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681}"
         }
 
         rahatsec {
@@ -245,13 +243,13 @@ android {
             applicationId "com.igi.mobileterminal"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 10
-            versionName "2.0"
+            versionCode 11
+            versionName "2.1"
             buildConfigField 'String[]', 'HOST', "{" + "\"onlinetrading.i-trade-pk.com\"," + "\"onlinetrading.i-trade-pk.com\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.igisecurities.com.pk/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.igisec"'
-            buildConfigField 'String', 'IP', '"203.17577.130"'
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
             buildConfigField 'int[]', 'PORTS', "{5678,5678}"
         }
 

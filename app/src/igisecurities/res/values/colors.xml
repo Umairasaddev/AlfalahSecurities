@@ -27,6 +27,7 @@
     <color name="slice_color_4">#A9AE16</color>
 
     <color name="blinkGreen">#00ff00</color>
+    <color name="darkGreen">#2c8a42</color>
     <color name="blinkRed">#FE0000</color>
     <color name="blinkGrey">#555555</color>
     <color name="bidColor">@color/colorPrimary</color>

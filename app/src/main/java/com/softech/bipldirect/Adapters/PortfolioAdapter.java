@@ -87,7 +87,7 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 double profitLoss=Double.parseDouble(obj.getCapGainLoss().replace(",", ""));
                 if(profitLoss>0){
                     viewHolder1.ivArrow.setBackground(ContextCompat.getDrawable(mContext, R.drawable.arrow_green));
-                    viewHolder1.profitloss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                    viewHolder1.profitloss.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
                 }else{
                     viewHolder1.ivArrow.setBackground(ContextCompat.getDrawable(mContext, R.drawable.arrow_red));
                     viewHolder1.profitloss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
@@ -117,7 +117,7 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 DecimalFormat formatter = new DecimalFormat("#,###,###.##");
                 String totalInvestmentFormatted = formatter.format(totalInv);
                 if(totalInv>0){
-                    footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                    footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
                 }else{
                     footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 }
@@ -126,7 +126,7 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 double totalGainLoss=Double.parseDouble(portfolioFooter.getTotalProfitloss().replace(",", ""));
                 if(totalGainLoss>0){
-                    footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkGreen));
+                    footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
                 }else{
                     footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 }

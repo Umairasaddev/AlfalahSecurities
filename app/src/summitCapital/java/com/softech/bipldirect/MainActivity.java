@@ -237,7 +237,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         super.onDestroy();
     }
 
-
     private void initNavMenu() {
 
         RecyclerView navigationView = (RecyclerView) findViewById(R.id.menu_list);
@@ -382,7 +381,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -423,7 +421,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onMenuInteraction(Menu item) {
 
@@ -441,7 +438,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             break;
 
             case R.drawable.logout2x: {
-
                 logoutAlert();
             }
             break;
@@ -578,7 +574,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         alert.show();
     }
 
-
     public void replaceFragment(Fragment fragment, boolean popStack, boolean isChild) {
 
         String backStateName = fragment.getClass().getName();
@@ -690,7 +685,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
             }
         };
     }
-
 
     public void orderStatusRequest() {
 
@@ -914,6 +908,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                         }
                         break;
+
                         case Constants.SYMBOL_MESSAGE_RESPONSE: {
 
                             SymbolsResponse result = gson.fromJson(resp, SymbolsResponse.class);
@@ -934,6 +929,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             }
                         }
                         break;
+
                         case Constants.ORDER_STATUS_REQUEST_RESPONSE: {
 
                             final OrderStatsResponse result = gson.fromJson(resp, OrderStatsResponse.class);
@@ -1490,38 +1486,21 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             JsonObject json = parser.parse(resp).getAsJsonObject();
 
                             if (json.get("code").getAsString().equals("200")) {
-                                if (loginResponse.getResponse().getUsertype() == 0 ||
-                                        loginResponse.getResponse().getUsertype() == 3) {
-                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString()))
-                                    {
+                                if (loginResponse.getResponse().getUsertype() == 0 || loginResponse.getResponse().getUsertype() == 3) {
+                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
                                         Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                     }
-
-
-                                }
-                                else
-                                {
+                                } else {
                                     Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                 }
 
                                 Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
 
                                 if (response.get("confType").getAsString().equals("QUEUE") && response.get("MSGTYPE").getAsString().equals("OCNF")) {
 
-                                    final OrderStatsFragment frag =
-                                            (OrderStatsFragment) fragmentManager
-                                                    .findFragmentByTag(OrderStatsFragment.class.getName());
-
+                                    final OrderStatsFragment frag = (OrderStatsFragment) fragmentManager.findFragmentByTag(OrderStatsFragment.class.getName());
                                     if (frag != null) {
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                frag.removeItem();
-                                            }
-                                        });
+                                        runOnUiThread(() -> OrderStatsFragment.newInstance().removeItem());
 
                                     } else {
                                         Log.d("OrderStatsFragment", "OrderStatsFragment is null");
@@ -1654,65 +1633,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
 
             }
-
-//        switch (action) {
-//
-//
-//            case Constants.ACTION_ORDER_FROM_TRADE: {
-//
-//                JsonParser parser = new JsonParser();
-//                JsonObject json = parser.parse(resp).getAsJsonObject();
-//
-//                JsonObject response = json.getAsJsonObject("response");
-//
-//                if (json.get("code").getAsString().equals("200")) {
-//
-//                    final TradeFragment frag = (TradeFragment) fragmentManager.findFragmentByTag(TradeFragment.class.getName());
-//
-//
-//                    if (response.get("orderAction").getAsString().equals("ACPT")) {
-//                        if (frag != null) {
-//                            runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//
-//
-//                                    if (frag.sendMessage) {
-//                                        frag.proceedToOrder();
-//                                        frag.sendMessage = false;
-//                                    }
-//                                }
-//                            });
-//                        } else {
-//                            Log.d("TradeFragment", "TradeFragment is null");
-//                        }
-//                    }
-//
-//                    Alert.show(context, getString(R.string.app_name), response.get("orderRemarks").getAsString());
-//
-//                    Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
-//
-//                } else {
-//
-//                    if (json.get("error").getAsString().equals("")) {
-//                        Alert.showErrorAlert(context);
-//                    } else {
-//                        Alert.show(context, getString(R.string.app_name), json.get("error").getAsString());
-//                    }
-//                }
-//
-//
-//                if (!json.get("error").getAsString().equals("")) {
-//
-//                    Event.add(context, new Event(System.currentTimeMillis(), json.get("error").getAsString()));
-//
-//                }
-//            }
-//            break;
-//
-//
-//
-//        }
         }
     }
 

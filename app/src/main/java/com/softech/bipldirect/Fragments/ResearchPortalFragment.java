@@ -85,19 +85,27 @@ public class ResearchPortalFragment extends Fragment {
 
     @Override
     public void onResume() {
+        super.onResume();
+        webView.onResume();
+
         ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         if (toolbar != null) {
             toolbar.setTitle("Research Portal");
         }
-        super.onResume();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        webView.onPause();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (Constants.RESEARCH_PORTAL_URL.length() > 0) {
-            String url=Constants.RESEARCH_PORTAL_URL;
-                callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
+            callingResearchPortalService(Constants.RESEARCH_PORTAL_URL);
         }
     }
 
@@ -128,6 +136,7 @@ public class ResearchPortalFragment extends Fragment {
 
                                 try {
                                     if (response.getString("response").equals("success")) {
+                                        Log.e(TAG, "onRestSuccess: "+ response.toString());
 
                                         String url = response.getString("link");
                                         Log.e(TAG, "url: "+url);
@@ -180,4 +189,5 @@ public class ResearchPortalFragment extends Fragment {
             loading.cancel();
         }
     }
+
 }
