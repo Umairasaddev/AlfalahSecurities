@@ -11,8 +11,8 @@
         android:layout_width="@dimen/_191sdp"
         android:layout_height="@dimen/_105sdp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:background="@drawable/pointer" />
 
 <!--    <ImageView-->
@@ -46,66 +46,66 @@
         <EditText
             android:id="@+id/field_firstname"
             android:layout_width="@dimen/_213sdp"
-            android:layout_height="@dimen/_26sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/tv_credentials"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@color/slice_color_3"
             android:gravity="center"
             android:hint="Name"
-            android:textColorHint="@color/white"
-            android:singleLine="true"
             android:imeOptions="actionSend"
-            android:textSize="@dimen/_14sdp"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_14sdp" />
 
         <EditText
             android:id="@+id/field_phoneno"
             android:layout_width="@dimen/_213sdp"
-            android:layout_height="@dimen/_26sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/field_firstname"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_14sdp"
             android:background="@color/slice_color_3"
             android:gravity="center"
             android:hint="Contact #"
-            android:textSize="@dimen/_14sdp"
-            android:singleLine="true"
             android:imeOptions="actionSend"
-            android:textColorHint="@color/white"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_14sdp" />
 
         <EditText
             android:id="@+id/field_email"
             android:layout_width="@dimen/_213sdp"
-            android:layout_height="@dimen/_26sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/field_phoneno"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_14sdp"
             android:background="@color/slice_color_3"
             android:gravity="center"
             android:hint="Email"
-            android:textColorHint="@color/white"
-            android:textSize="@dimen/_14sdp"
-            android:singleLine="true"
             android:imeOptions="actionDone"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_14sdp" />
 
 
         <Button
             android:id="@+id/signupButton"
-            android:fontFamily="@font/helvetica_bold"
-            android:layout_width="@dimen/_98sdp"
-            android:layout_height="@dimen/_26sdp"
+            android:layout_width="@dimen/_213sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/field_email"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_25sdp"
-            android:background="@color/orderStatusSelectedColor"
-            android:textAllCaps="false"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/helvetica_bold"
             android:text="Sign Up"
+            android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
     </RelativeLayout>

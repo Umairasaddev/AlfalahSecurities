@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/gray_cornerd"
+            android:background="@drawable/white_cornerd"
             android:gravity="left|center_vertical"
             android:inputType="text"
             android:hint="@string/ClientCode"
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/gray_cornerd"
+            android:background="@drawable/white_cornerd"
             android:editable="false"
             android:enabled="false"
             android:gravity="left|center_vertical"
@@ -238,7 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_yellowishgreen"
+            android:background="@drawable/bg_button"
             android:text="@string/submit"
             android:textColor="@color/white" />
     </LinearLayout>

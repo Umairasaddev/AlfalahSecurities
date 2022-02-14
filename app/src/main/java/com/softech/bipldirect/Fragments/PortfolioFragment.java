@@ -76,7 +76,29 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
             Color.rgb(191, 134, 134), Color.rgb(179, 48, 80), Color.rgb(192, 255, 140),
             Color.rgb(255, 247, 140), Color.rgb(255, 208, 140), Color.rgb(140, 234, 255),
-            Color.rgb(255, 140, 157)
+            Color.rgb(255, 140, 157),
+            Color.rgb(128,0,0),
+            Color.rgb(165,42,42),
+            Color.rgb(220,20,60),
+            Color.rgb(255,99,71),
+            Color.rgb(255,127,80),
+            Color.rgb(240,128,128),
+            Color.rgb(233,150,122),
+            Color.rgb(255,160,122),
+            Color.rgb(255,140,0),
+            Color.rgb(184,134,11),
+            Color.rgb(218,165,32),
+            Color.rgb(128,128,0),
+            Color.rgb(85,107,47),
+            Color.rgb(107,142,35),
+            Color.rgb(143,188,143),
+            Color.rgb(47,79,79),
+            Color.rgb(95,158,160),
+            Color.rgb(72,61,139),
+            Color.rgb(139,69,19),
+            Color.rgb(210,105,30),
+            Color.rgb(188,143,143),
+            Color.rgb(112,128,144)
     };
 
 
@@ -321,7 +343,6 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             }
 
             for (int i = 0; i < entries.size(); i++) {
-
                 legendEntries.add(new LegendEntry(entries.get(i).getLabel(), Legend.LegendForm.CIRCLE,
                         Float.NaN, Float.NaN, null, chartColors[i]));
             }

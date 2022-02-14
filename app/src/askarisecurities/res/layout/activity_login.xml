@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:scaleType="centerCrop"
         android:layout_width="320dp"
         android:layout_height="@dimen/_200sdp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/pointer" />
+        android:background="@drawable/pointer"
+        android:scaleType="centerCrop" />
 
 <!--    <ImageView-->
 <!--        android:id="@+id/imageView6"-->
@@ -45,8 +45,7 @@
         <EditText
             android:id="@+id/login_name"
             android:layout_width="@dimen/_213sdp"
-            android:layout_height="@dimen/_26sdp"
-            android:text=""
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/tv_credentials"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
@@ -54,29 +53,30 @@
             android:background="@color/slice_color_3"
             android:ems="10"
             android:gravity="center"
-            android:textColorHint="@color/white"
             android:hint="username"
             android:inputType="textCapCharacters"
             android:maxLines="1"
+            android:text=""
             android:textAllCaps="true"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/login_pass"
             android:layout_width="@dimen/_213sdp"
-            android:layout_height="@dimen/_26sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/login_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@color/slice_color_3"
             android:ems="10"
-            android:text=""
             android:gravity="center"
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white" />
+            android:text=""
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <TextView
             android:id="@+id/tv_forgotPwd"
@@ -92,33 +92,33 @@
 
         <Button
             android:id="@+id/login_btn"
-            android:fontFamily="@font/helvetica_bold"
             android:layout_width="@dimen/_98sdp"
-            android:layout_height="@dimen/_26sdp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/tv_forgotPwd"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="@dimen/_32sdp"
-            android:background="@color/orderStatusSelectedColor"
-            android:textAllCaps="false"
+            android:background="@drawable/bg_button"
             android:ems="10"
+            android:fontFamily="@font/helvetica_bold"
             android:text="Log In"
+            android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
 
         <Button
             android:id="@+id/btnSignUp"
-            android:fontFamily="@font/helvetica_bold"
             android:layout_width="@dimen/_98sdp"
-            android:layout_height="@dimen/_26sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:background="@color/orderStatusSelectedColor"
-            android:textAllCaps="false"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="@dimen/_32sdp"
-            android:layout_alignParentRight="true"
+            android:layout_height="@dimen/_35sdp"
             android:layout_below="@+id/tv_forgotPwd"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bg_button"
             android:ems="10"
+            android:fontFamily="@font/helvetica_bold"
             android:text="Sign Up"
+            android:textAllCaps="false"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 

@@ -92,7 +92,7 @@
             android:layout_marginTop="15dp"
             android:ems="10"
             android:text="Login"
-            android:background="@drawable/button_yellowishgreen"
+            android:background="@drawable/bg_button"
             android:textColor="@android:color/white" />
 
     </RelativeLayout>

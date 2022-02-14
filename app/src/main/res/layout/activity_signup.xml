@@ -22,7 +22,8 @@
             android:layout_margin="10dp"
             android:layout_weight=".5"
             android:gravity="center"
-
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorTextHint"
             android:hint="First Name"
             android:inputType="textEmailAddress"
             android:padding="10dp" />
@@ -37,6 +38,8 @@
             android:background="@drawable/textfield_login"
             android:gravity="center"
             android:hint="Last Name"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorTextHint"
             android:inputType="textEmailAddress"
             android:padding="10dp" />
     </LinearLayout>
@@ -51,6 +54,8 @@
         android:background="@drawable/textfield_login"
         android:gravity="center"
         android:hint="Username"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
         android:inputType="textEmailAddress"
         android:padding="10dp" />
 
@@ -63,6 +68,8 @@
         android:background="@drawable/textfield_login"
         android:gravity="center"
         android:hint="Email"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
         android:inputType="textEmailAddress"
         android:padding="10dp" />
     <EditText
@@ -71,6 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
         android:background="@drawable/textfield_login"
         android:gravity="center"
         android:hint="Phone No"
@@ -80,10 +89,11 @@
         android:id="@+id/signupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/nav_header_vertical_spacing"
-        android:background="@drawable/button_yellowishgreen"
+        android:background="@drawable/bg_button"
         android:text="Signup"
+        android:layout_margin="10dp"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 </LinearLayout>

@@ -14,7 +14,7 @@
         android:gravity="left"
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/colorText" />
 
     <TextView
         android:id="@+id/acc_qty"
@@ -24,7 +24,7 @@
         android:gravity="center"
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/colorText" />
 
     <TextView
         android:id="@+id/acc_ammount"
@@ -34,5 +34,5 @@
         android:gravity="right"
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/colorText" />
 </LinearLayout>

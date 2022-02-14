@@ -106,8 +106,7 @@ android {
             targetSdkVersion 30
             versionCode 16
             versionName "3.4"
-            buildConfigField 'String[]', 'HOST',
-                    "{" + "\"103.94.186.27\"," + "\"103.94.186.27\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"103.94.186.27\"," + "\"103.94.186.27\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://importal.imtrade.biz/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.ims"'
@@ -200,6 +199,21 @@ android {
             buildConfigField 'int[]', 'PORTS', "{5678}"
         }
 
+        Vector {
+            dimension "version"
+            applicationId "com.softech.vector"
+            minSdkVersion 23
+            targetSdkVersion 31
+            versionCode 1
+            versionName "1.0"
+            buildConfigField 'String[]', 'HOST', "{" + "\"192.168.4.30\"," + "\"192.168.4.30\"" + "}"
+            buildConfigField 'String', 'API_LOGIN', '""'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.abbasiandcompany.com/api/v2/service/authenticate"'
+            buildConfigField 'String', 'CLIENT', '"admin.abbasico"'
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
+            buildConfigField 'int[]', 'PORTS', "{6790,6791,6792,6793,6994}"
+        }
+
         askarisecurities {
             dimension "version"
             applicationId "com.softech.askari.securities"
@@ -233,8 +247,7 @@ android {
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://research.fsedge.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"FSEDGE"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS',
-                    "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
         }
 
         igisecurities {
@@ -243,14 +256,15 @@ android {
             applicationId "com.igi.mobileterminal"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 11
-            versionName "2.1"
+            versionCode 13
+            versionName "2.3"
             buildConfigField 'String[]', 'HOST', "{" + "\"onlinetrading.i-trade-pk.com\"," + "\"onlinetrading.i-trade-pk.com\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.igisecurities.com.pk/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.igisec"'
             buildConfigField 'String', 'IP', '"203.175.77.130"'
-            buildConfigField 'int[]', 'PORTS', "{5678,5678}"
+//            buildConfigField 'int[]', 'PORTS', "{5678,5678}"
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688}"
         }
 
     }

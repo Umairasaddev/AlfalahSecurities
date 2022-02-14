@@ -32,8 +32,6 @@ public class MessageSocket extends Socket {
     }
 
     public static synchronized MessageSocket getInstance() throws Exception {
-
-
         if (instance == null) {
             outerLoop:
             for (int i = 0; i < Constants.ports.length; i++) {
@@ -48,8 +46,7 @@ public class MessageSocket extends Socket {
                     try {
                         instance = new MessageSocket(new InetSocketAddress(serverAddress, Constants.ports[portPos]), 6000);
                         if (instance.isConnected()) {
-                            Log.d("MessageSocket", "connected to: " +
-                                    Constants.serverIpAddress[j] + ":" + Constants.ports[portPos]);
+                            Log.d("MessageSocket", "connected to: " + Constants.serverIpAddress[j] + ":" + Constants.ports[portPos]);
 
                             break outerLoop;
                         }

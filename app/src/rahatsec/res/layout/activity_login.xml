@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_phone"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_yellowishgreen"
+            android:background="@drawable/bg_button"
             android:ems="6"
             android:text="Login"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"

@@ -3,6 +3,10 @@
     <color name="colorPrimary">#08567e</color>
     <color name="colorPrimaryDark">#096696</color>
     <color name="colorAccent">@color/colorPrimary</color>
+
+    <color name="colorText">@color/black</color>
+    <color name="colorTextHint">@android:color/darker_gray</color>
+
     <color name="blackBackground">#1d1c1c</color>
     <color name="white">#ffffff</color>
     <color name="topExchangeBackground">#383838</color>
