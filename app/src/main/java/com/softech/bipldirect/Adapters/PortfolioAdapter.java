@@ -2,13 +2,8 @@ package com.softech.bipldirect.Adapters;
 
 import android.content.Context;
 import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +27,8 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private static final int TYPE_FOOTER = 0;
     private static final int TYPE_NORMAL = 1;
     Context mContext;
-    double totalInv=0.00;
     LayoutInflater inflater;
     private List<Portfolio> arrayList;
-    private int m_flag = 1;
     private OnPortofolioClickListner portofolioClickListner;
 
     public PortfolioAdapter(Context context, List<Portfolio> arrayList, OnPortofolioClickListner portofolioClickListner) {
@@ -97,10 +90,6 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 viewHolder1.portfolio_total.setText(obj.getTotalCost());
 
-                double totalCost  = Double.parseDouble(obj.getTotalCost().replace(",", ""));
-                totalInv=totalInv+totalCost;
-                Log.e(TAG, "Total Investment: "+ totalInv);
-
                 viewHolder1.llItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -113,10 +102,10 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 FooterViewHolder footerView = (FooterViewHolder) viewHolder;
                 PortfolioFooter portfolioFooter = (PortfolioFooter) arrayList.get(arrayList.size() - 1);
 
-
                 DecimalFormat formatter = new DecimalFormat("#,###,###.##");
-                String totalInvestmentFormatted = formatter.format(totalInv);
-                if(totalInv>0){
+                String totalInvestmentFormatted = formatter.format(portfolioFooter.getTotalInvestment());
+
+                if(portfolioFooter.getTotalInvestment()>0){
                     footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
                 }else{
                     footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
@@ -124,13 +113,13 @@ public class PortfolioAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 footerView.totalInvestment.setText(totalInvestmentFormatted);
 
 
-                double totalGainLoss=Double.parseDouble(portfolioFooter.getTotalProfitloss().replace(",", ""));
+                double totalGainLoss=Double.parseDouble(portfolioFooter.getTotalProfitLoss().replace(",", ""));
                 if(totalGainLoss>0){
                     footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
                 }else{
                     footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 }
-                footerView.totalProfitLoss.setText(portfolioFooter.getTotalProfitloss());
+                footerView.totalProfitLoss.setText(portfolioFooter.getTotalProfitLoss());
             }
             break;
         }

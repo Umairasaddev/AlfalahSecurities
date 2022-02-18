@@ -24,7 +24,7 @@
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/drawable/textfield_login.xml" value="0.1425" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/activity_encrypted_password.xml" value="0.33" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/activity_forget_password.xml" value="0.2" />
-        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/activity_signup.xml" value="0.18" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/item_list_cash_book.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/askarisecurities/res/layout/item_list_exchanges.xml" value="0.1814814814814815" />
@@ -81,7 +81,7 @@
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_net_custody_detail.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_order_status.xml" value="0.5" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_payment.xml" value="0.18" />
-        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_portfolio.xml" value="0.1814814814814815" />
+        <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_portfolio.xml" value="0.18" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_portfolio_detail.xml" value="0.33" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_portfolio_watch.xml" value="0.1814814814814815" />
         <entry key="..\:/Office Work (Ali Ashraf)/BIPLDirect_Android/app/src/main/res/layout/fragment_quotes.xml" value="0.33" />

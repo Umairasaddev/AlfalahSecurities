@@ -1,18 +1,25 @@
 package com.softech.bipldirect.Models.PortfolioModel;
 
-/**
- * Created by saimshafqat on 04/12/2017.
- */
 
 public class PortfolioFooter extends Portfolio {
-    private String totalProfitloss;
 
-    public String getTotalProfitloss() {
-        return totalProfitloss;
+    private double totalInvestment;
+    private String totalProfitLoss;
+
+    public double getTotalInvestment() {
+        return totalInvestment;
     }
 
-    public void setTotalProfitloss(String totalProfitloss) {
-        this.totalProfitloss = totalProfitloss;
+    public void setTotalInvestment(double totalInvestment) {
+        this.totalInvestment = totalInvestment;
+    }
+
+    public String getTotalProfitLoss() {
+        return totalProfitLoss;
+    }
+
+    public void setTotalProfitLoss(String totalProfitLoss) {
+        this.totalProfitLoss = totalProfitLoss;
     }
 
     public  PortfolioFooter()

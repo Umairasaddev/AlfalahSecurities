@@ -206,12 +206,12 @@ android {
             targetSdkVersion 31
             versionCode 1
             versionName "1.0"
-            buildConfigField 'String[]', 'HOST', "{" + "\"192.168.4.30\"," + "\"192.168.4.30\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"apps.vector.com.pk\"" + ", " + "\"apps.vector.com.pk\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.abbasiandcompany.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.abbasico"'
             buildConfigField 'String', 'IP', '"203.175.77.130"'
-            buildConfigField 'int[]', 'PORTS', "{6790,6791,6792,6793,6994}"
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681}"
         }
 
         askarisecurities {
@@ -219,19 +219,15 @@ android {
             applicationId "com.softech.askari.securities"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 2
-            versionName "1.2"
+            versionCode 3
+            versionName "1.3"
             multiDexEnabled true
-            buildConfigField 'String[]', 'HOST',
-//                            "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
-//                            "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
-                    "{" + "\"115.186.156.214\"," + "\"59.103.185.185\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"115.186.156.214\"," + "\"59.103.185.185\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.capitalstake.com/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS',
-                    "{5678,5679,5680,5681}"
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681}"
         }
 
         foundationEdge {

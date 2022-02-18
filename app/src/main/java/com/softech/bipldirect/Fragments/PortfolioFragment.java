@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,28 +38,21 @@ import com.softech.bipldirect.Models.LoginModel.LoginResponse;
 import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.Preferences;
-import com.softech.bipldirect.charts.Pacpie;
 
 import net.orange_box.storebox.StoreBox;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
 
 public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPortofolioClickListner {
 
-    public static final String TYPE = "type";
-    public static Pacpie pacpie;
     public static Preferences preferences;
     public static LoginResponse loginResponse;
     private static int[] COLORS = new int[]{Color.GREEN, Color.BLUE, Color.MAGENTA, Color.CYAN};
-    int[] pieChartValues = {25, 15, 20, 40};
-    float values[] = {700, 400, 100, 500, 600};
     private EditText clientcode;
     private RecyclerView portfolio_list;
     private ListView listSearch1;
@@ -132,8 +124,7 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_portfolio, container, false);
         bindView(view);
         portfolio_list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -156,9 +147,6 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
         return view;
     }
 
-    private void setupViews() {
-
-    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -205,8 +193,8 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             }
         });
 
-        // ((MainActivity) getActivity()).portfolioRequestRequest();
     }
+
     private void cancelSearch(View view) {
         listSearch_view1.setVisibility(View.GONE);
     }
@@ -217,60 +205,35 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
         if (values.size() > 0) {
 
             values1 = values;
-            Collections.sort(values1, new Comparator<PortfolioSymbol>() {
-                @Override
-                public int compare(PortfolioSymbol portfolioSymbol, PortfolioSymbol t1) {
-                    String pfWeight1 = portfolioSymbol.getPfWeight();
-                    String pfWeight2 = t1.getPfWeight();
+            Collections.sort(values1, (portfolioSymbol, t1) -> {
+                String pfWeight1 = portfolioSymbol.getPfWeight();
+                String pfWeight2 = t1.getPfWeight();
 
-                    return pfWeight1.compareTo(pfWeight2);
+                return pfWeight1.compareTo(pfWeight2);
 
-                }
             });
-//            View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.acc_list_item_footer, portfolio_list, false);
-            double totalValue = 0;
+
+            double totalValue = 0.00;
+            double totalInvestment = 0.00;
             for (PortfolioSymbol obj : values) {
-
-
                 try {
                     double amountVal = Double.parseDouble(obj.getCapGainLoss().replace(",", ""));
-
                     totalValue = totalValue + amountVal;
+
+                    double totalCost  = Double.parseDouble(obj.getTotalCost().replace(",", ""));
+                    totalInvestment=totalInvestment+totalCost;
+
+
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
             }
 
             PortfolioFooter portfolioFooter = new PortfolioFooter();
-
-//            TextView sym = (TextView) footerView.findViewById(R.id.acc_sym);
-//            TextView qty = (TextView) footerView.findViewById(R.id.acc_qty);
-//            TextView amount = (TextView) footerView.findViewById(R.id.acc_ammount);
-//            TextView totalPortfolio = (TextView) footerView.findViewById(R.id.acc_totalPort);
-//            TextView totalPortfolioValue = (TextView) footerView.findViewById(R.id.acc_totalPortValue);
-//            footerView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.greyDarkBar));
-
-//            if (portfolio_list.getFooterViewsCount() > 0) {
-//
-//            } else {
-//                portfolio_list.addFooterView(footerView);
-//                sym.setText("");
-//                qty.setText("Total Profit/loss");
-//                totalPortfolio.setText("Total Portfolio");
-//
-//            }
-            //  double cashvalue = Double.parseDouble("");
-            Double totportfoliosum = totalValue;
-
-//            totalValue= Math.round(totalValue);
-
-            String sum = String.format("%.0f", totalValue);
-            String portsum = String.format("%.0f", totportfoliosum);
-            double portfoliosum = Double.parseDouble(portsum);
-            DecimalFormat formatter = new DecimalFormat("#,###,###,###.00");
-            //totalPortfolioValue.setText(formatter.format(portfoliosum));
+            portfolioFooter.setTotalInvestment(totalInvestment);
             String yourFormattedString = NumberFormat.getNumberInstance(Locale.UK).format(totalValue);
-            portfolioFooter.setTotalProfitloss(yourFormattedString);
+            portfolioFooter.setTotalProfitLoss(yourFormattedString);
+
             ArrayList<Portfolio> arrayMain = new ArrayList<>();
             arrayMain.addAll(values);
             arrayMain.add(portfolioFooter);
@@ -279,19 +242,13 @@ public class PortfolioFragment extends Fragment implements PortfolioAdapter.OnPo
             portfolioAdapter.notifyDataSetChanged();
             setUpPieChart();
 
-//                amount.setText(yourFormattedString);
-//            portfolio_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-            //   ((MainActivity) getActivity()).showPortFolioDetail(values.get(position));
-//                }
-//            });
+
 
         } else {
             Alert.show(getActivity(), getString(R.string.app_name), "You do not have any portfolio yet.");
         }
     }
+
     private void setUpPieChart() {
 
         pieChart.setUsePercentValues(true);
