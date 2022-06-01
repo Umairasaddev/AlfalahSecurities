@@ -88,6 +88,7 @@ import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
+import com.softech.bipldirect.callBack.OnOrderDeleteRequest;
 
 import net.orange_box.storebox.StoreBox;
 
@@ -102,8 +103,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
-        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
-        OrderStatsFragment.OnOrderDeleteRequest, QuotesFragment.OnQoutesFragmentListener {
+        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest, QuotesFragment.OnQoutesFragmentListener {
 
     public static LoginResponse loginResponse;
     public static MarketResponse marketResponse;
@@ -124,6 +124,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     String useridEncoded;
 
     private FeedServer feedServer;
+    private OnOrderDeleteRequest onOrderDeleteRequest;
 
 
     @Override
@@ -1495,39 +1496,19 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             JsonObject json = parser.parse(resp).getAsJsonObject();
 
                             if (json.get("code").getAsString().equals("200")) {
-                                if (loginResponse.getResponse().getUsertype() == 0 ||
-                                        loginResponse.getResponse().getUsertype() == 3) {
-                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString()))
-                                    {
+                                if (loginResponse.getResponse().getUsertype() == 0 || loginResponse.getResponse().getUsertype() == 3) {
+                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
                                         Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                     }
-
-
-                                }
-                                else
-                                {
+                                } else {
                                     Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                 }
-
                                 Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
-
                                 if (response.get("confType").getAsString().equals("QUEUE") && response.get("MSGTYPE").getAsString().equals("OCNF")) {
 
-                                    final OrderStatsFragment frag =
-                                            (OrderStatsFragment) fragmentManager
-                                                    .findFragmentByTag(OrderStatsFragment.class.getName());
-
+                                    final OrderStatsFragment frag = (OrderStatsFragment) fragmentManager.findFragmentByTag(OrderStatsFragment.class.getName());
                                     if (frag != null) {
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                frag.removeItem();
-                                            }
-                                        });
-
+                                        onOrderDeleteRequest.onOrderDeleteRequestResponse();
                                     } else {
                                         Log.d("OrderStatsFragment", "OrderStatsFragment is null");
                                     }
@@ -1721,8 +1702,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
-    @Override
-    public void onOrderDeleteRequest(OrdersList order) {
+    public void cancelOrderRequest(OrdersList order, OnOrderDeleteRequest onOrderDeleteRequest) {
+        this.onOrderDeleteRequest = onOrderDeleteRequest;
 
         JsonObject request_obj = new JsonObject();
 

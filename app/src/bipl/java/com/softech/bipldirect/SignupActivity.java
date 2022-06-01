@@ -1,7 +1,6 @@
 package com.softech.bipldirect;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,32 +31,36 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SignupActivity extends BaseActivity {
     private static final String TAG = "SignupActivity";
-    @BindView(R.id.field_firstname)
+
     EditText etfirstName;
-    @BindView(R.id.field_phoneno)
     EditText etPhone;
-    @BindView(R.id.field_email)
     EditText etEmail;
-    @BindView(R.id.signupButton)
     Button signupBut;
+
     private String firstname, phoneno, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        ButterKnife.bind(this);
+        initViews();
         signupBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callingloginservice(v);
             }
         });
+    }
+
+    private void initViews() {
+         etfirstName = findViewById(R.id.field_firstname);
+         etPhone = findViewById(R.id.field_phoneno);
+         etEmail = findViewById(R.id.field_email);
+         signupBut = findViewById(R.id.signupButton);
+
     }
 
     public static boolean isValidEmail(CharSequence target) {
@@ -154,7 +157,7 @@ public class SignupActivity extends BaseActivity {
                     jsonObject.put("userId", "SIGNUP");
 
                     RestClient.postRequest("login",
-                            context,
+                            SignupActivity.this,
                             Constants.KASB_API_LOGIN,
                             jsonObject,
                             new OnRestClientCallback() {
@@ -182,21 +185,21 @@ public class SignupActivity extends BaseActivity {
                                         }
                                     } catch (Exception e) {
                                         e.printStackTrace();
-                                        HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
+                                        HToast.showMsg(SignupActivity.this, "Unable to connect to Trading Server please try later or check your network");
                                     }
                                 }
 
                                 @Override
                                 public void onRestError(Exception e, String action) {
 
-                                    Alert.showErrorAlert(context);
+                                    Alert.showErrorAlert(SignupActivity.this);
                                     Log.i("testingsignup", "Exception: " + e.getMessage());
                                 }
                             }, false, "Please wait...");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Alert.showErrorAlert(context);
+                    Alert.showErrorAlert(SignupActivity.this);
                     Log.d("Call", "JSONException: ");
                 }
 

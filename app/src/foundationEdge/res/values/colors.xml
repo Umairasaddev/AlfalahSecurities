@@ -39,4 +39,10 @@
 
     <color name="dialog_text_green">#86AA76</color>
 
+
+    <color name="colorText">#010202</color>
+    <color name="colorTextHint">@android:color/darker_gray</color>
+
+
+
 </resources>

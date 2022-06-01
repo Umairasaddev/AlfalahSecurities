@@ -18,6 +18,7 @@ import com.softech.bipldirect.Models.PortfolioModel.PortfolioFooter;
 import com.softech.bipldirect.Models.PortfolioModel.PortfolioSymbol;
 import com.softech.bipldirect.R;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -116,24 +117,30 @@ public class PortfolioAdapterNew extends RecyclerView.Adapter<RecyclerView.ViewH
             }
             break;
             case TYPE_FOOTER: {
-                FooterViewHolder footerView = (FooterViewHolder) viewHolder;
+                PortfolioAdapter.FooterViewHolder footerView = (PortfolioAdapter.FooterViewHolder) viewHolder;
                 PortfolioFooter portfolioFooter = (PortfolioFooter) arrayList.get(arrayList.size() - 1);
-                footerView.sym.setText("");
-                footerView.qty.setText("Total Profit/loss");
-                Log.d("totalprofitloss", portfolioFooter.getTotalProfitloss());
-                footerView.totalProfitloss.setText(portfolioFooter.getTotalProfitloss());
 
-                if (Double.parseDouble(portfolioFooter.getTotalProfitloss().replaceAll(",", "")) >0){
-                    footerView.qty.setTextColor(colorGreen);
-                    footerView.totalProfitloss.setTextColor(colorGreen);
+                DecimalFormat formatter = new DecimalFormat("#,###,###.##");
+                String totalInvestmentFormatted = formatter.format(portfolioFooter.getTotalInvestment());
+
+                if(portfolioFooter.getTotalInvestment()>0){
+                    footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
                 }else{
-                    footerView.qty.setTextColor(colorRed);
-                    footerView.totalProfitloss.setTextColor(colorRed);
+                    footerView.totalInvestment.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
                 }
+                footerView.totalInvestment.setText(totalInvestmentFormatted);
+
+
+                double totalGainLoss=Double.parseDouble(portfolioFooter.getTotalProfitLoss().replace(",", ""));
+                if(totalGainLoss>0){
+                    footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.darkGreen));
+                }else{
+                    footerView.totalProfitLoss.setTextColor(ContextCompat.getColor(mContext, R.color.blinkRed));
+                }
+                footerView.totalProfitLoss.setText(portfolioFooter.getTotalProfitLoss());
             }
             break;
         }
-
     }
 
     private String getFormatedAmount(double amount){

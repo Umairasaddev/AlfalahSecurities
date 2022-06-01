@@ -10,19 +10,20 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.core.BuildConfig;
-import androidx.core.app.Fragment;
-import androidx.core.app.FragmentManager;
-import androidx.core.app.FragmentTransaction;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,6 +92,7 @@ import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Loading;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
+import com.softech.bipldirect.callBack.OnOrderDeleteRequest;
 
 import net.orange_box.storebox.StoreBox;
 import net.orange_box.storebox.adapters.StoreType;
@@ -109,8 +111,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static com.softech.bipldirect.Network.MessageSocket.context;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
-        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
-        OrderStatsFragment.OnOrderDeleteRequest, QuotesFragment.OnQoutesFragmentListener {
+        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest, QuotesFragment.OnQoutesFragmentListener {
 
     public static LoginResponse loginResponse;
     public static MarketResponse marketResponse;
@@ -134,13 +135,16 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     //Code
     private Loading loading;
 
+    private OnOrderDeleteRequest onOrderDeleteRequest;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         connectMessageServer();
 
-        setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         loading = new Loading(context, "Loading Market...");
@@ -1565,36 +1569,21 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             JsonObject json = parser.parse(resp).getAsJsonObject();
 
                             if (json.get("code").getAsString().equals("200")) {
-                                if (loginResponse.getResponse().getUsertype() == 0 ||
-                                        loginResponse.getResponse().getUsertype() == 3) {
+                                if (loginResponse.getResponse().getUsertype() == 0 || loginResponse.getResponse().getUsertype() == 3) {
                                     if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
                                         Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                     }
-
-
                                 } else {
                                     Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                 }
 
                                 Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
 
                                 if (response.get("confType").getAsString().equals("QUEUE") && response.get("MSGTYPE").getAsString().equals("OCNF")) {
 
-                                    final OrderStatsFragment frag =
-                                            (OrderStatsFragment) fragmentManager
-                                                    .findFragmentByTag(OrderStatsFragment.class.getName());
-
+                                    final OrderStatsFragment frag = (OrderStatsFragment) fragmentManager.findFragmentByTag(OrderStatsFragment.class.getName());
                                     if (frag != null) {
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                frag.removeItem();
-                                            }
-                                        });
-
+                                        onOrderDeleteRequest.onOrderDeleteRequestResponse();
                                     } else {
                                         Log.d("OrderStatsFragment", "OrderStatsFragment is null");
                                     }
@@ -1614,6 +1603,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                 Event.add(context, new Event(System.currentTimeMillis(), json.get("error").getAsString()));
 
                             }
+
                         }
                         break;
 
@@ -1788,8 +1778,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
-    @Override
-    public void onOrderDeleteRequest(OrdersList order) {
+    public void cancelOrderRequest(OrdersList order, OnOrderDeleteRequest onOrderDeleteRequest) {
+        this.onOrderDeleteRequest = onOrderDeleteRequest;
 
         JsonObject request_obj = new JsonObject();
 
@@ -1798,7 +1788,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         request_obj.addProperty("orderMarket", order.getMarket());
         request_obj.addProperty("orderExchange", loginResponse.getResponse().getExchange());
         request_obj.addProperty("orderVolume", order.getVolume() + "");
-        request_obj.addProperty("client", order.getClient());
+        request_obj.addProperty("client",order.getClient());
 
         if (order.getSide().equals("B") || order.getSide().equals("Buy")) {
             request_obj.addProperty("orderSide", "B");

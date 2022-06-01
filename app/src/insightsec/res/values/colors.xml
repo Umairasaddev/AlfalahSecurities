@@ -4,6 +4,8 @@
     <color name="colorPrimary">#75C552</color>
     <color name="colorPrimaryDark">#75C552</color>
     <color name="colorAccent">#29a6ff</color>
+    <color name="colorText">#010202</color>
+    <color name="colorTextHint">@android:color/darker_gray</color>
 
 
     <color name="blackBackground">#1d1c1c</color>

@@ -1,9 +1,18 @@
 <component name="libraryTable">
   <library name="Gradle: com.hudomju:swipe-to-dismiss-undo:1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e99ec48b76ecb1968cdf3d7f45f247ca/jetified-swipe-to-dismiss-undo-1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e99ec48b76ecb1968cdf3d7f45f247ca/jetified-swipe-to-dismiss-undo-1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e99ec48b76ecb1968cdf3d7f45f247ca/jetified-swipe-to-dismiss-undo-1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9bf21fa67a34db715564911aadcb74fe/jetified-swipe-to-dismiss-undo-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9bf21fa67a34db715564911aadcb74fe/jetified-swipe-to-dismiss-undo-1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9bf21fa67a34db715564911aadcb74fe/jetified-swipe-to-dismiss-undo-1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5806d22e5cc05eb5cee65f453ffb5cf2/jetified-swipe-to-dismiss-undo-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5806d22e5cc05eb5cee65f453ffb5cf2/jetified-swipe-to-dismiss-undo-1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5806d22e5cc05eb5cee65f453ffb5cf2/jetified-swipe-to-dismiss-undo-1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/beab5e2d68db09ffcd5e5431ea06e379/jetified-swipe-to-dismiss-undo-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/beab5e2d68db09ffcd5e5431ea06e379/jetified-swipe-to-dismiss-undo-1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/beab5e2d68db09ffcd5e5431ea06e379/jetified-swipe-to-dismiss-undo-1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/224334d730e0bc09f1e58c4ad962358a/jetified-swipe-to-dismiss-undo-1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/224334d730e0bc09f1e58c4ad962358a/jetified-swipe-to-dismiss-undo-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/224334d730e0bc09f1e58c4ad962358a/jetified-swipe-to-dismiss-undo-1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hudomju/swipe-to-dismiss-undo/1.0/5bc3074b68e2c1219cede17f27fbbc1b103149cc/swipe-to-dismiss-undo-1.0-javadoc.jar!/" />

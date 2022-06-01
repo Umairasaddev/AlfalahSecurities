@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.BuildConfig;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,29 +39,17 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
-
 
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
-    @BindView(R.id.login_name)
-    EditText etName;
-    @BindView(R.id.login_pass)
-    EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
-    @BindView(R.id.tv_forgotPwd)
-    TextView forgotPassword;
 
-    @BindView(R.id.login_server)
+    EditText etName;
+    EditText etPass;
+    TextView forgotPassword;
     TextView etServer;
+    Button login_btn;
+
     Context context = LoginActivity.this;
     private Preferences preferences;
     private String user, pas;
@@ -75,24 +62,10 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
-        if (BuildConfig.FLAVOR=="alfalahsec") {
-             etServer = (TextView) findViewById(R.id.login_server);
-        }
-//        etName.setText("act01315");
-//        etPass.setText("123456");
-//        etName.setText("00022249");
-//        etPass.setText("bipl1234");
-//        etName.setText("00024639");
-//        etPass.setText("pakipower1");
+        initViews();
 
+        etServer = (TextView) findViewById(R.id.login_server);
 
-////
-//        etName.setText("Softech");
-//        etPass.setText("afs321");
-
-//        etName.setText("Demo320");
-//        etPass.setText("Demo123");
 
         preferences = StoreBox.create(this, Preferences.class);
         Bundle extras = getIntent().getExtras();
@@ -135,6 +108,22 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    private void initViews() {
+
+        etName = findViewById(R.id.login_name);
+        etPass = findViewById(R.id.login_pass);
+        forgotPassword = findViewById(R.id.tv_forgotPwd);
+        etServer = findViewById(R.id.login_server);
+        login_btn = findViewById(R.id.login_btn);
+
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submit(view);
+            }
+        });
+    }
+
     public void callingloginservice(View view) {
         user = etName.getText().toString();
         pas = etPass.getText().toString();
@@ -151,9 +140,9 @@ public class LoginActivity extends BaseActivity {
             login_obj.addProperty("MSGTYPE", Constants.LOGIN_MESSAGE_IDENTIFIER);
             login_obj.addProperty("userId", userEncoded);
             login_obj.addProperty("pswd", passEncoded);
-            // For encryption
             login_obj.addProperty("Ver", "1.7");
-//For encryption
+
+            //For encryption
             if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 //
                 Constants.KASB_API_LOGIN.length();
@@ -231,7 +220,6 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.login_btn)
     public void submit(final View view) {
         callingloginservice(view);
     }

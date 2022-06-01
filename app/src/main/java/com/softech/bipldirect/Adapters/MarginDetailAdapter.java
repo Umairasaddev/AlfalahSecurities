@@ -19,6 +19,8 @@ import com.softech.bipldirect.Models.MarginModel.CustodyHeader;
 import com.softech.bipldirect.Models.MarginModel.CustodyList;
 import com.softech.bipldirect.Models.MarginModel.MarginDetail;
 import com.softech.bipldirect.R;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -99,8 +101,13 @@ public class MarginDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
                 if(position==(allData.size()-1)){
-                    ((ItemViewHolder) viewHolder).tvTotalHoldings.setText(String.valueOf(totalAmount));
-                    ((ItemViewHolder) viewHolder).tvTotalPortfolio.setText(String.valueOf(totalPortfolio));
+
+                    DecimalFormat formatter = new DecimalFormat("#############.##");
+                    String totalAmountCommaSeparated = new DecimalFormat("#,###.##").format(Double.parseDouble(formatter.format(totalAmount)));
+                    String totalPortfolioCommaSeparated = new DecimalFormat("#,###.##").format(Double.parseDouble(formatter.format(totalPortfolio)));
+
+                    ((ItemViewHolder) viewHolder).tvTotalHoldings.setText(totalAmountCommaSeparated);
+                    ((ItemViewHolder) viewHolder).tvTotalPortfolio.setText(totalPortfolioCommaSeparated);
 
                     if(allData.size()%2==0){
                         ((ItemViewHolder) viewHolder).llTotalHoldings.setBackgroundColor(ContextCompat.getColor(context, R.color.white));

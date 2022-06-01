@@ -38,6 +38,7 @@ import java.util.Locale;
 
 public class MarginDetailFragment extends Fragment {
 
+    private static final String TAG = "MarginDetailFragment";
     private static final String PARAM = "clientCode";
 
 
@@ -78,8 +79,7 @@ public class MarginDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_margin_detail, container, false);
         bindView(view);
         custody_listView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -89,7 +89,7 @@ public class MarginDetailFragment extends Fragment {
 
             clientcode.setText(MainActivity.loginResponse.getResponse().getClient());
             clientcode.setEnabled(false);
-            ((MainActivity) getActivity()).marginRequest(clientcode.getText().toString());
+            ((MainActivity) requireActivity()).marginRequest(clientcode.getText().toString());
         } else if (MainActivity.loginResponse.getResponse().getUsertype() == 0 ||
                 MainActivity.loginResponse.getResponse().getUsertype() == 3) {
 
@@ -106,14 +106,13 @@ public class MarginDetailFragment extends Fragment {
     @Override
     public void onResume() {
 
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (toolbar != null) {
             toolbar.setTitle("Margin Detail");
         }
         super.onResume();
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -154,7 +153,7 @@ public class MarginDetailFragment extends Fragment {
                 listSearch_view1.setVisibility(View.GONE);
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
-                ((MainActivity) getActivity()).marginRequest(clientlist.get(position));
+                ((MainActivity) requireActivity()).marginRequest(clientlist.get(position));
 
             }
         });
@@ -217,12 +216,13 @@ public class MarginDetailFragment extends Fragment {
         for (CustodyList obj:custodyList){
             double amt = Double.parseDouble(obj.getAmount().replace(",", ""));
             totalAmount = totalAmount+amt;
-            Log.e("TAG", totalAmount+"" );
         }
+        Log.e(TAG, "Total Amount: "+totalAmount );
 
         //Get total Portfolio
         double cash = Double.parseDouble(custodyHeader.getEquityCashBalance().replace(",", ""));
         totalPortfolio = cash + totalAmount;
+        Log.e(TAG, "Total Portfolio: "+totalPortfolio );
     }
 
     public String getDateTimeString() {

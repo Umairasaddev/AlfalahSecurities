@@ -38,33 +38,18 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-/**
- * Developed by Hasham.Tahir on 1/27/2016.
- */
 
 
 public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
     private static final String TAG2 = "LoginIntentDebug";
-    @BindView(R.id.login_name)
+
     EditText etName;
-    @BindView(R.id.login_pass)
     EditText etPass;
-    //    @BindView(R.id.login_registerme)
-//    Button registermeBut;
-    @BindView(R.id.tv_forgotPwd)
     TextView forgotPassword;
+    Button  login_btn, btnSignUp;
 
-    @BindView(R.id.btnSignUp)
-    Button btnSignUp;
-
-    //        @BindView(R.id.login_server)
-//    TextView etServer;
     Context context = LoginActivity.this;
     private Preferences preferences;
     private String user, pas;
@@ -78,14 +63,14 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        initViews();
 //        if (BuildConfig.FLAVOR=="alfalahsec") {
 //            TextView etServer = (TextView) findViewById(R.id.login_server);
 //        }
 //        etName.setText("act01315");
 //        etPass.setText("123456");
-        etName.setText("00022249");
-        etPass.setText("bipl1234");
+//        etName.setText("00022249");
+//        etPass.setText("bipl1234");
 //        etName.setText("00024639");
 //        etPass.setText("pakipower1");
 //        etName.setText("00024639");
@@ -110,6 +95,14 @@ public class LoginActivity extends BaseActivity {
                 startActivity(new Intent(context, ForgetPasswordActivity.class));
             }
         });
+
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callingloginservice(v);
+            }
+        });
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +134,16 @@ public class LoginActivity extends BaseActivity {
 //                }
 //            }
 //        });
+    }
+
+    private void initViews() {
+         etName = findViewById(R.id.login_name);
+         etPass = findViewById(R.id.login_pass);
+         forgotPassword = findViewById(R.id.tv_forgotPwd);
+        login_btn = findViewById(R.id.login_btn);
+         btnSignUp = findViewById(R.id.btnSignUp);
+
+
     }
 
     public void callingloginservice(View view) {
@@ -233,7 +236,6 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.login_btn)
     public void submit(final View view) {
         callingloginservice(view);
     }
@@ -309,7 +311,6 @@ public class LoginActivity extends BaseActivity {
                                     try {
                                         String encodedPass = result.getResponse().getSecondLevelPassword();
 
-
                                         if (encodedPass.equals("")) {
 
                                             preferences.setDecryptedPassword(encodedPass);
@@ -329,20 +330,15 @@ public class LoginActivity extends BaseActivity {
                                         e.printStackTrace();
 
                                     }
-                                } else if (result.getResponse().getChangePassword() != null && result.getResponse().getChangePassword().equals("true")) {
+                                }
+                                else if (result.getResponse().getChangePassword() != null && result.getResponse().getChangePassword().equals("true")) {
                                     preferences.setUserId(result.getResponse().getUserId());
                                     startActivity(new Intent(LoginActivity.this, ChangePasswordActivity.class));
-                                } else {
-//      FOR ZAFAR SECURITIE
-//                                    getMarket();
-
-                                    Log.d("tesingbipl", "Work is done");
-                                    Log.d(TAG2, "onMessageReceived: LOGIN_MESSAGE_RESPONSE");
+                                }
+                                else {
+                                    Log.e(TAG, "Moving To MainActivity: ");
                                     startActivity(new Intent(context, MainActivity.class));
                                     finish();
-
-
-                                    Log.d("tesingbipl", "loading market: " + Calendar.getInstance().getTime());
                                 }
                                 preferences.removeEvents(R.string.key_events);
 
@@ -415,66 +411,6 @@ public class LoginActivity extends BaseActivity {
             Alert.showErrorAlert(context);
         }
     }
-
- /*   private void getSymbolsFromServer() {
-
-        JsonObject login_obj = new JsonObject();
-
-        login_obj.addProperty("MSGTYPE", Constants.SYMBOL_MESSAGE_IDENTIFIER);
-//        login_obj.addProperty("userId", user);
-//        login_obj.addProperty("pswd", pas);
-        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-
-            Map<Integer, String> map = new HashMap<>();
-            map.put(1, Constants.SYMBOL_MESSAGE_IDENTIFIER);
-            map.put(2, login_obj.toString());
-
-            write(map, true);
-
-        } else {
-
-            try {
-                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-    }*/
-
-   /* private void getMarket() {
-
-        Gson gson = new Gson();
-
-
-        String clientcode = gson.fromJson(preferences.getLoginResult(), LoginResponse.class).getResponse().getClient();
-
-        Log.d("clientcode", "clientcode: " + clientcode);
-
-        JsonObject login_obj = new JsonObject();
-
-        login_obj.addProperty("MSGTYPE", Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
-        login_obj.addProperty("userId", user);
-        login_obj.addProperty("client", clientcode);
-
-
-        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-
-            Map<Integer, String> map = new HashMap<>();
-            map.put(1, Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
-            map.put(2, login_obj.toString());
-
-            write(map, true);
-
-        } else {
-
-            try {
-                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
 
 
 }

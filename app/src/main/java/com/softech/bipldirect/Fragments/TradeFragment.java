@@ -52,6 +52,7 @@ import java.util.Locale;
 
 public class TradeFragment extends Fragment implements View.OnClickListener {
 
+    private final String TAG = "TradeFragment";
     private static final String ARG_PARAM1 = "param1";
     public boolean sendMessage = true;
 
@@ -128,7 +129,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
         searchAdapter = new SearchListAdapter(getActivity(), searchKeywordsList);
         searchClientListAdapter = new SearchClientListAdapter(getActivity(), clientlist);
 
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     @Override
@@ -481,15 +482,19 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
     public void setValues(MarketSymbol sym, boolean isLoaded) {
         this.marketSymbol = sym;
 
-//        Log.d("setValues", "marketSymbol: " + new Gson().toJson(sym, MarketSymbol.class));
+        Log.e(TAG, "marketSymbol: " + new Gson().toJson(sym, MarketSymbol.class));
 
         textChangeByUser = false;
 
         symbol.setText(sym.getSymbol()/* + "-" + sym.getMarket() + "-" + sym.getExchangeCode()*/);
 
         limit_tv.setText(sym.getLowerLimit() + "-" + sym.getUpperLimit());
+
+        Log.e(TAG, "setValues: "+ sym.getLowerLimit() + "-" + sym.getUpperLimit());
+
         buyvol.setText(sym.getBuyPrice() + "(" + sym.getBuyVolume() + ")");
         sellvol.setText(sym.getSellPrice() + "(" + sym.getSellVolume() + ")");
+
 
 //        if (isLoaded){
 //

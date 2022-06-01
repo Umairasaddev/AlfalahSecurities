@@ -50,10 +50,6 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
 
 
         OrdersList obj = arraylist.get(position);
-
-        holder.mItem = obj;
-        holder.position = position;
-
         holder.exc_mar.setText(obj.getExchange() + "-" + obj.getMarket());
         holder.s_symbol.setText(obj.getSymbol());
         holder.datetime.setText(obj.getDate());
@@ -118,6 +114,14 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
 
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.onListItemClick(v, obj, position);
+            }
+        });
+
 
     }
 
@@ -132,17 +136,11 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
         notifyItemRangeChanged(position, arraylist.size());
     }
 
-
     public interface OnListItemClickListener {
         void onListItemClick(View caller, OrdersList mItem, int position);
-
-
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        OrdersList mItem;
-        int position;
 
         View image;
         TextView exc_mar;
@@ -158,14 +156,6 @@ public class OrderStatsAdapter extends RecyclerView.Adapter<OrderStatsAdapter.Vi
         public ViewHolder(View view, final OnListItemClickListener listener) {
             super(view);
             initViews(view);
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    listener.onListItemClick(v, mItem, position);
-                }
-            });
         }
 
         private void initViews(View view) {

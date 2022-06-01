@@ -1,7 +1,6 @@
 package com.softech.bipldirect;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,62 +16,57 @@ import com.softech.bipldirect.Const.ConnectionDetector;
 import com.softech.bipldirect.Const.Constants;
 import com.softech.bipldirect.Network.MessageServerReadThread;
 import com.softech.bipldirect.Network.MessageServerThread;
-import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.HSnackBar;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ForgetPasswordActivity extends BaseActivity {
     private static final String TAG = "ForgetPasswordActivity";
-    @BindView(R.id.useridField)
+
     EditText userID;
-    @BindView(R.id.emailField)
     EditText email;
-    @BindView(R.id.forgetBtn)
     Button forgetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
-        forgetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (email.getText().toString().length() > 0 && userID.getText().toString().length() > 0) {
-                    final JsonObject login_obj = new JsonObject();
-                    login_obj.addProperty("MSGTYPE", Constants.ForgotPasswordRequest);
-                    login_obj.addProperty("email", email.getText().toString());
-                    login_obj.addProperty("userId", userID.getText().toString());
-                    if (ConnectionDetector.getInstance(ForgetPasswordActivity.this).isConnectingToInternet()) {
+        initViews();
+        forgetBtn.setOnClickListener(v -> {
+            if (email.getText().toString().length() > 0 && userID.getText().toString().length() > 0) {
+                final JsonObject login_obj = new JsonObject();
+                login_obj.addProperty("MSGTYPE", Constants.ForgotPasswordRequest);
+                login_obj.addProperty("email", email.getText().toString());
+                login_obj.addProperty("userId", userID.getText().toString());
+                if (ConnectionDetector.getInstance(ForgetPasswordActivity.this).isConnectingToInternet()) {
 
-                        connectWithMessageServer(login_obj);
+                    connectWithMessageServer(login_obj);
 //                }
 
-                    } else {
-                        try {
-                            HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
                 } else {
-
-                    HSnackBar.showMsg(v, "Please Fill All Fields.");
+                    try {
+                        HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
+
+            } else {
+
+                HSnackBar.showMsg(v, "Please Fill All Fields.");
             }
+
         });
+    }
+
+    private void initViews() {
+         userID = findViewById(R.id.useridField);
+         email = findViewById(R.id.emailField);
+         forgetBtn = findViewById(R.id.forgetBtn);
 
     }
 

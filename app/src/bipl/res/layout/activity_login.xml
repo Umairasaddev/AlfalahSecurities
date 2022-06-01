@@ -99,9 +99,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_32sdp"
             android:background="@drawable/blue_btn"
-            android:textAllCaps="false"
             android:ems="10"
             android:text="Log In"
+            android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
     </RelativeLayout>

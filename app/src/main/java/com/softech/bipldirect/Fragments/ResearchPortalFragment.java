@@ -38,8 +38,10 @@ import static com.softech.bipldirect.Network.MessageSocket.context;
 public class ResearchPortalFragment extends Fragment {
 
     private static final String TAG = "ResearchPortalDebug";
+
     private WebView webView;
     private Loading loading;
+
     private static final String KEY_SYMBOL ="key_symbol";
     private String symbolName =null;
 

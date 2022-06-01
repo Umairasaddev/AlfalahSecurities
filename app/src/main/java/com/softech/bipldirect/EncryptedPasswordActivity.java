@@ -36,14 +36,13 @@ import java.util.Map;
 
 public class EncryptedPasswordActivity extends BaseActivity {
 
-    private static final String TAG = "EncryptedPasswordActivi";
+    private static final String TAG = "EncryptedPasswordActivity";
 
     private Preferences preferences;
     private Button loginBtn;
     private EditText passwordField;
     private Button generatePasswordBtn;
     String generatedPassword;
-    CountDownTimer countDownTimer;
     static int  check=0;
     SharedPreferences pref;
     private Loading loading;
@@ -72,7 +71,9 @@ public class EncryptedPasswordActivity extends BaseActivity {
         }
         connectMessageServer();
         preferences = StoreBox.create(this, Preferences.class);
-//        if (preferences.getDecryptedPassword().equals(""))
+        Log.e(TAG, preferences.getDecryptedPassword()+"");
+
+        //        if (preferences.getDecryptedPassword().equals(""))
 //        {
 //
 //            generatePasswordBtn.setVisibility(View.VISIBLE);
@@ -82,41 +83,27 @@ public class EncryptedPasswordActivity extends BaseActivity {
 
         //  passwordField.setText("UWJ9YZ");
 
+        Log.e(TAG, "Second Level Pass: "+preferences.getDecryptedPassword());
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (passwordField.getText().length() > 0) {
-                    Log.d("decryptedpass", preferences.getDecryptedPassword()+"");
                     if (getPackageName().equals("com.softech.bipldirect")){
                         loginBtn.setEnabled(false);
                         loading.show();
                         getMarket();
                     }
-                    else if (passwordField.getText().toString().equals(preferences.getDecryptedPassword())) {
+                    if (passwordField.getText().toString().equals(preferences.getDecryptedPassword())) {
 
-//                        if (countDownTimer==null) {
-//                            countDownTimer = new CountDownTimer(20000, 1000) {
-//                                public void onTick(long millisUntilFinished) {
-//                                    Log.d("TimerOnTick", String.valueOf(millisUntilFinished));
-//                                }
-//
-//                                public void onFinish() {
-////                                    if (!LoginActivity.check)
-//                                        finish();
-//                                        startActivity(new Intent(context, SplashActivity.class));
-//                                }
-//                            }.start();
-//                        }
                         loginBtn.setEnabled(false);
-
                         loading.show();
                         getMarket();
+
+
                     } else{
                         loginBtn.setEnabled(true);
-
                         loading.dismiss();
                         HSnackBar.showMsg(findViewById(android.R.id.content), "Passowrd Does Not Match.");
-
                     }
 
                 } else {
@@ -159,15 +146,10 @@ public class EncryptedPasswordActivity extends BaseActivity {
     }
 
     private void getMarket() {
-
-        Gson gson = new Gson();
-
-
         JsonObject login_obj = new JsonObject();
-
         login_obj.addProperty("MSGTYPE", Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
         login_obj.addProperty("userId", preferences.getUsername());
-        login_obj.addProperty("clientCode", preferences.getClientCode());
+        login_obj.addProperty("client", preferences.getClientCode());
 
 
         if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
@@ -285,10 +267,11 @@ public class EncryptedPasswordActivity extends BaseActivity {
 
     }
 
-
     private void bindView() {
         loginBtn = findViewById(R.id.btn_registerme);
         passwordField = findViewById(R.id.field_password);
         generatePasswordBtn = findViewById(R.id.btn_generatePass);
     }
+
+
 }

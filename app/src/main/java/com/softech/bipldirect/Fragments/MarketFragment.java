@@ -60,6 +60,8 @@ import java.util.List;
 
 public class MarketFragment extends Fragment implements MarketAdapter.OnMarketItemClickListener {
 
+    private final String TAG = "MarketFragment";
+
     private static int postionToRemove = -1;
     public Boolean shouldReload = false;
     public boolean isReloaded = false;
@@ -217,9 +219,14 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
         marketListView.setItemAnimator(new MyItemAnimator());
 
-        pagerAdapter = new TopPagerAdapter(requireActivity(), MainActivity.marketResponse.getResponse().getExchanges(), mPager);
+        Log.e(TAG, "onViewCreated: "+ MainActivity.marketResponse.getResponse().toString());
 
-        mPager.setAdapter(pagerAdapter);
+        if(MainActivity.marketResponse.getResponse()!=null){
+            pagerAdapter = new TopPagerAdapter(requireActivity(), MainActivity.marketResponse.getResponse().getExchanges(), mPager);
+            mPager.setAdapter(pagerAdapter);
+        }else{
+            Log.e(TAG, "onViewCreated: null" );
+        }
 
         marketListView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
         marketListView.setHasFixedSize(true);
@@ -360,7 +367,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         mAddSymbol = null;
     }
 
-
     private void pagerChange(View v) {
 
         if (v.getId() == R.id.left_arrow) {
@@ -382,7 +388,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
         }
 //        onPageFinished(mPager.getCurrentItem());
     }
-
 
     private boolean symbolAlreadyAdded(Symbol symToCompare) {
 
@@ -449,7 +454,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     }
 
     public void removeMarket() {
-        getActivity().runOnUiThread(new Runnable() {
+        requireActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (postionToRemove > -1) {
@@ -632,7 +637,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
     @Override
     public void onMarketItemClick(View caller, MarketSymbol mItem, int position, boolean openTrade) {
         if (openTrade) {
-            ((MainActivity) getActivity()).goToTrade(mItem);
+            ((MainActivity) requireActivity()).goToTrade(mItem);
         } else {
 //            Log.d("MarketFrag", new Gson().toJson(mItem, MarketSymbol.class));
             showOptionsMenu(mItem, position);

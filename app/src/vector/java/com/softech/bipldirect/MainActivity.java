@@ -88,6 +88,7 @@ import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
+import com.softech.bipldirect.callBack.OnOrderDeleteRequest;
 
 import net.orange_box.storebox.StoreBox;
 
@@ -101,9 +102,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
-        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
-        OrderStatsFragment.OnOrderDeleteRequest, QuotesFragment.OnQoutesFragmentListener {
+public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener, MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest, QuotesFragment.OnQoutesFragmentListener {
 
     public static LoginResponse loginResponse;
     public static MarketResponse marketResponse;
@@ -124,6 +123,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     String useridEncoded;
 
     private FeedServer feedServer;
+    private OnOrderDeleteRequest onOrderDeleteRequest;
 
 
     @Override
@@ -1493,15 +1493,12 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                                 } else {
                                     Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
                                 }
-
                                 Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
-
                                 if (response.get("confType").getAsString().equals("QUEUE") && response.get("MSGTYPE").getAsString().equals("OCNF")) {
 
                                     final OrderStatsFragment frag = (OrderStatsFragment) fragmentManager.findFragmentByTag(OrderStatsFragment.class.getName());
                                     if (frag != null) {
-                                        runOnUiThread(() -> OrderStatsFragment.newInstance().removeItem());
-
+                                        onOrderDeleteRequest.onOrderDeleteRequestResponse();
                                     } else {
                                         Log.d("OrderStatsFragment", "OrderStatsFragment is null");
                                     }
@@ -1636,8 +1633,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
     }
 
-    @Override
-    public void onOrderDeleteRequest(OrdersList order) {
+    public void cancelOrderRequest(OrdersList order, OnOrderDeleteRequest onOrderDeleteRequest) {
+        this.onOrderDeleteRequest = onOrderDeleteRequest;
 
         JsonObject request_obj = new JsonObject();
 
@@ -2086,7 +2083,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     public void paymentRequest(int amountVal, String selectedVal,String clientcode) {
 
         JsonObject request_obj = new JsonObject();
-
         request_obj.addProperty("MSGTYPE", Constants.PAYMENT_REQ_IDENTIFIER);
         request_obj.addProperty("client", clientcode);
         request_obj.addProperty("amount", amountVal + "");
@@ -2289,4 +2285,5 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         }
 
     }
+
 }

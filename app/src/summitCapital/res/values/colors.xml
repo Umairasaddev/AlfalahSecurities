@@ -44,4 +44,7 @@
     <color name="colorYellowishGreen">#007BB5</color>
     <color name="colorYellowishGreenDark">#007BB5</color>
 
+    <color name="colorText">#010202</color>
+    <color name="colorTextHint">@android:color/darker_gray</color>
+
 </resources>

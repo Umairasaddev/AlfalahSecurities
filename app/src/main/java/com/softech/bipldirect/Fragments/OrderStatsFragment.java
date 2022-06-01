@@ -1,8 +1,6 @@
 package com.softech.bipldirect.Fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
@@ -23,15 +21,15 @@ import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.OrderStatsModel.OrderStatsResponse;
 import com.softech.bipldirect.Models.OrderStatsModel.OrdersList;
 import com.softech.bipldirect.R;
-import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Util;
+import com.softech.bipldirect.callBack.OnOrderDeleteRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.OnListItemClickListener {
+public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.OnListItemClickListener, OnOrderDeleteRequest {
 
     private static int postionToRemove = -1;
     private RecyclerView order_status_list;
@@ -39,12 +37,13 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
     private Button trade;
     private TextView textViewError;
     OrderStatsResponse result;
-    ArrayList<OrdersList> OrdersList, TradeList;
-    OnOrderDeleteRequest deleteListener;
+    ArrayList<OrdersList> OrdersList = new ArrayList();
+    ArrayList<OrdersList> TradeList = new ArrayList();
     int tabSelected = 1;
     private OrderStatsAdapter adapter;
     private View mOrderbtn;
     private View mTradebtn;
+    OnOrderDeleteRequest onOrderDeleteRequest;
 
     public OrderStatsFragment() {
         // Required empty public constructor
@@ -57,13 +56,13 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        onOrderDeleteRequest = this;
     }
 
     @Override
     public void onResume() {
 
-        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar toolbar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (toolbar != null) {
             toolbar.setTitle("Order Status");
@@ -81,31 +80,19 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
     }
 
     private void orderPressed() {
-//        trade.setBackgroundResource(R.drawable.unselected);
-//        trade.setBackgroundResource(R.drawable.unselected);
-//        order.setBackgroundColor(R.drawable.selected);
-
-
-
-        trade.setBackgroundColor(getContext().getResources().getColor(R.color.greyDarkBar));
-        order.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
-
+        trade.setBackgroundColor(requireActivity().getResources().getColor(R.color.greyDarkBar));
+        order.setBackgroundColor(requireActivity().getResources().getColor(R.color.colorPrimary));
         tabSelected = 1;
-        setResult(result);
+        setAdapter();
     }
 
     private void tradePressed() {
         trade.setBackgroundResource(R.drawable.selected);
         order.setBackgroundResource(R.drawable.unselected);
-
-
-//        trade.setBackgroundColor(getContext().getResources().getColor(R.color.greyDarkBar));
-//        order.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
-
-        order.setBackgroundColor(getContext().getResources().getColor(R.color.greyDarkBar));
-        trade.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
+        order.setBackgroundColor(requireActivity().getResources().getColor(R.color.greyDarkBar));
+        trade.setBackgroundColor(requireActivity().getResources().getColor(R.color.colorPrimary));
         tabSelected = 2;
-        setResult(result);
+        setAdapter();
     }
 
     @Override
@@ -132,8 +119,8 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
             if (listMain != null && listMain.size() > 0) {
 
 
-                OrdersList = new ArrayList<>();
-                TradeList = new ArrayList<>();
+                OrdersList.clear();
+                TradeList.clear();
 
 
                 for (OrdersList obj : listMain) {
@@ -144,70 +131,46 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
                         OrdersList.add(obj);
                     }
                 }
-                textViewError.setVisibility(View.GONE);
 
-                if (tabSelected == 1 && !(OrdersList.size() > 0)) {
+                setAdapter();
 
-                    textViewError.setVisibility(View.VISIBLE);
-                    textViewError.setText("There is no outstanding Order.");
-
-                } else if (tabSelected == 1 && !(OrdersList.size() > 0) && !(TradeList.size() > 0)) {
-
-                    textViewError.setVisibility(View.VISIBLE);
-                    textViewError.setText("No orders or trades available to display.");
-
-                } else if (tabSelected == 2 && !(TradeList.size() > 0)) {
-
-                    textViewError.setVisibility(View.VISIBLE);
-                    textViewError.setText("There is no Trade");
-                }
-
-
-                if (tabSelected == 1) {
-                    adapter = new OrderStatsAdapter(getActivity(), OrdersList, this);
-                    order_status_list.setAdapter(adapter);
-
-                } else {
-                    adapter = new OrderStatsAdapter(getActivity(), TradeList, this);
-                    order_status_list.setAdapter(adapter);
-
-                }
             } else {
                 textViewError.setVisibility(View.VISIBLE);
                 textViewError.setText("No orders available to display.");
             }
         }
 
-//        adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnOrderDeleteRequest) {
-            deleteListener = (OnOrderDeleteRequest) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnOrderDeleteRequest");
+    public void setAdapter(){
+        textViewError.setVisibility(View.GONE);
+
+        if (tabSelected == 1 && !(OrdersList.size() > 0)) {
+
+            textViewError.setVisibility(View.VISIBLE);
+            textViewError.setText("There is no outstanding Order.");
+
+        }
+        else if (tabSelected == 1 && !(OrdersList.size() > 0) && !(TradeList.size() > 0)) {
+
+            textViewError.setVisibility(View.VISIBLE);
+            textViewError.setText("No orders or trades available to display.");
+
+        }
+        else if (tabSelected == 2 && !(TradeList.size() > 0)) {
+
+            textViewError.setVisibility(View.VISIBLE);
+            textViewError.setText("There is no Trade");
         }
 
-    }
-
-    @Override
-    public void onAttach(Activity context) {
-        super.onAttach(context);
-        if (context instanceof OnOrderDeleteRequest) {
-            deleteListener = (OnOrderDeleteRequest) context;
+        if (tabSelected == 1) {
+            adapter = new OrderStatsAdapter(requireActivity(), OrdersList, this);
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnOrderDeleteRequest");
+            adapter = new OrderStatsAdapter(requireActivity(), TradeList, this);
         }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        deleteListener = null;
+        order_status_list.setAdapter(adapter);
+
     }
 
     @Override
@@ -255,7 +218,6 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setPositiveButton("PROCEED", new DialogInterface.OnClickListener()
-
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -268,19 +230,12 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
                         }
 
                         if (editText.getText().toString().equals(MainActivity.loginResponse.getResponse().getPinCode())) {
-
-
-                            if (deleteListener != null) {
-
-                                deleteListener.onOrderDeleteRequest(mItem);
-
-                            }
-
+                            ((MainActivity) requireActivity()).cancelOrderRequest(mItem, onOrderDeleteRequest);
                         } else {
                             HToast.showMsg(getActivity(), "Invalid Pin Code.");
                         }
 
-                        Util.hideKeyboard(getActivity());
+                        Util.hideKeyboard(requireActivity());
                         dialog.dismiss();
 
 
@@ -308,21 +263,6 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         }
     }
 
-    public void removeItem() {
-        if (postionToRemove > -1) {
-
-            OrdersList.remove(postionToRemove);
-
-            adapter = new OrderStatsAdapter(getActivity(), OrdersList, this);
-
-            order_status_list.setAdapter(adapter);
-
-            HSnackBar.showMsg(order_status_list, "Successfully removed.");
-
-            ((MainActivity) getActivity()).orderStatusRequest();
-        }
-    }
-
     private void bindView(View bindSource) {
         order_status_list = bindSource.findViewById(R.id.order_status_list);
         order = bindSource.findViewById(R.id.orderbtn);
@@ -344,7 +284,10 @@ public class OrderStatsFragment extends Fragment implements OrderStatsAdapter.On
         });
     }
 
-    public interface OnOrderDeleteRequest {
-        void onOrderDeleteRequest(OrdersList order);
+    @Override
+    public void onOrderDeleteRequestResponse() {
+        if (postionToRemove > -1) {
+            adapter.removeAt(postionToRemove);
+        }
     }
 }

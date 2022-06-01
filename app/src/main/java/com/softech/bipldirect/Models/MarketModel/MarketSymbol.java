@@ -553,4 +553,43 @@ public class MarketSymbol {
         LowPrice90 = lowPrice90;
     }
 
+    @Override
+    public String toString() {
+        return "MarketSymbol{" +
+                "sellPrice='" + sellPrice + '\'' +
+                ", indicator='" + indicator + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", change='" + change + '\'' +
+                ", turnOver='" + turnOver + '\'' +
+                ", lowPrice='" + lowPrice + '\'' +
+                ", lotSize='" + lotSize + '\'' +
+                ", exchangeCode='" + exchangeCode + '\'' +
+                ", sellVolume='" + sellVolume + '\'' +
+                ", buyVolume='" + buyVolume + '\'' +
+                ", market='" + market + '\'' +
+                ", upperLimit='" + upperLimit + '\'' +
+                ", lowerLimit='" + lowerLimit + '\'' +
+                ", name='" + name + '\'' +
+                ", current='" + current + '\'' +
+                ", buyPrice='" + buyPrice + '\'' +
+                ", highPrice='" + highPrice + '\'' +
+                ", changePer='" + changePer + '\'' +
+                ", AvgVol180='" + AvgVol180 + '\'' +
+                ", HighPrice180='" + HighPrice180 + '\'' +
+                ", LowPrice180='" + LowPrice180 + '\'' +
+                ", AvgPrice30='" + AvgPrice30 + '\'' +
+                ", AvgVolume30='" + AvgVolume30 + '\'' +
+                ", HighPrice30='" + HighPrice30 + '\'' +
+                ", LowPrice30='" + LowPrice30 + '\'' +
+                ", WAvgPrice52='" + WAvgPrice52 + '\'' +
+                ", WAvgVolume52='" + WAvgVolume52 + '\'' +
+                ", WHighPrice52='" + WHighPrice52 + '\'' +
+                ", WLowPrice52='" + WLowPrice52 + '\'' +
+                ", AvgPrice90='" + AvgPrice90 + '\'' +
+                ", AvgVolume90='" + AvgVolume90 + '\'' +
+                ", HighPrice90='" + HighPrice90 + '\'' +
+                ", LowPrice90='" + LowPrice90 + '\'' +
+                ", AvgPrice180='" + AvgPrice180 + '\'' +
+                '}';
+    }
 }

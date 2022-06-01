@@ -24,6 +24,7 @@ import java.util.List;
 
 public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder> {
 
+    private final String TAG = "MarketAdapter";
     private final List<MarketSymbol> mValues;
     private final int colorRed, colorGreen, colorReallyGreen;
     OnMarketItemClickListener listener;
@@ -56,6 +57,14 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
 
         holder.position = position;
         holder.mItem = mValues.get(position);
+
+
+        if(position <= 5){
+            Log.e(TAG, "MarketSymbol: "+ mValues.get(position));
+            Log.e(TAG, "Lower - Upper: "+ mValues.get(position).getLowerLimit()+" - "+mValues.get(position).getUpperLimit());
+        }
+
+
 
         holder.symbol.setText(holder.mItem.getSymbol());
         holder.market.setText(holder.mItem.getMarket());
@@ -428,7 +437,6 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     Log.d("Test",new Gson().toJson(mItem,MarketSymbol.class));
-
                     listener.onMarketItemClick(v, mItem, position, false);
                 }
             });
