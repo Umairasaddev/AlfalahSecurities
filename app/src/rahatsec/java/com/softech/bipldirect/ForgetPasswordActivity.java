@@ -20,29 +20,22 @@ import com.softech.bipldirect.R;
 import com.softech.bipldirect.Util.Alert;
 import com.softech.bipldirect.Util.HSnackBar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ForgetPasswordActivity extends BaseActivity {
     private static final String TAG = "ForgetPasswordActivity";
-    @BindView(R.id.useridField)
     EditText userID;
-    @BindView(R.id.emailField)
     EditText email;
-    @BindView(R.id.forgetBtn)
     Button forgetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        ButterKnife.bind(this);
+        initViews();
         forgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +68,12 @@ public class ForgetPasswordActivity extends BaseActivity {
 
     }
 
+    private void initViews() {
+        userID = findViewById(R.id.useridField);
+        email = findViewById(R.id.emailField);
+        forgetBtn = findViewById(R.id.forgetBtn);
+    }
+
     private void connectWithMessageServer(final JsonObject login_obj) {
 
         connectMessageServer();
@@ -103,7 +102,6 @@ public class ForgetPasswordActivity extends BaseActivity {
         }
 
     }
-
     @Override
     public void onMessageReceived(String action, String resp) {
 

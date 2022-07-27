@@ -294,12 +294,12 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/acc_listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/linearLayout" />
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentBottom="true" />
     <LinearLayout
         android:id="@+id/search_list_view1"
         android:layout_width="match_parent"

@@ -41,7 +41,6 @@
 
         <EditText
             android:id="@+id/login_name"
-            android:text="00006305"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_heading"
@@ -70,7 +69,6 @@
             android:hint="PASSWORD"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:text="abc741"
             android:textColorHint="#8d8739" />
 
 
@@ -117,7 +115,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/bg_button"
             android:ems="6"
-            android:fontFamily="@font/helvetica_bold"
+            android:fontFamily="@font/helvetica"
             android:text="Login"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white" />

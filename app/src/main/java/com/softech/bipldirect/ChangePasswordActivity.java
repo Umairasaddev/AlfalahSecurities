@@ -65,14 +65,14 @@ public class ChangePasswordActivity extends BaseActivity {
 
 
         if (!TextUtils.equals(oldPassword, "")) {
-            if (!TextUtils.equals(newPassword, "") && newPassword.length() >= 8 && newPassword.length() <= 16) {
+            if (!TextUtils.equals(newPassword, "") && newPassword.length() >= 8 && newPassword.length() <= 15) {
                 if (TextUtils.equals(newPassword, confirmPassword)) {
                     changePasswordRequest(oldPassEncoded, newpassEncoded);
                 } else {
                     HToast.showMsg(ChangePasswordActivity.this, "Passwords do not match.");
                 }
             } else {
-                HToast.showMsg(this, "New password must be between 8 to 16 character long");
+                HToast.showMsg(this, "New password must be between 8 to 15 character long");
             }
         } else {
             HToast.showMsg(this, "Please type your old password.");

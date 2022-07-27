@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">H.G PSX Trading</string>
+    <string name="forgotPassword">Forgot your password?</string>
+    <string name="call">Call +92 21 111 262 872</string>
+    <string name="enterYourLoginCredentials">Enter your login credentials</string>
+    <string name="link">www.bmatrade.com</string>
+    <string name="thinkStupid">Think Investments. Think BMA</string>
+    <string name="pleaseLoginHere">PLEASE LOGIN HERE</string>
+</resources>

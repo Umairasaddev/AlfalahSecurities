@@ -164,61 +164,67 @@ public class LoginActivity extends BaseActivity {
             login_obj.addProperty("pswd", passEncoded);
             // For encryption
             login_obj.addProperty("Ver", BuildConfig.VERSION_NAME);
-//For encryption
+
+            //For encryption
             if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
 //
-                Constants.KASB_API_LOGIN.length();
+                connectWithMessageServer(login_obj);
 
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("userId", user);
 
-                    RestClient.postRequest("login",
-                            context,
-                            Constants.KASB_API_LOGIN,
-                            jsonObject,
-                            new OnRestClientCallback() {
-                                @Override
-                                public void onRestSuccess(JSONObject response, String action) {
-
-//                                    Log.d("Call","response: "+response);
-                                    try {
-                                        if (response.getString("code").equals("200")) {
-
-                                            String ip = response.getString("ip");
-                                            String port = response.getString("port");
-                                            Constants.serverIpAddress = new String[]{ip};
-                                            if (port.contains(",")) {
-                                                String[] portsArray = port.split(",");
-                                                Constants.ports = new int[portsArray.length];
-                                                for (int i = 0; i < Constants.ports.length; i++) {
-                                                    Constants.ports[i] = Integer.parseInt(portsArray[i]);
-                                                }
-                                            } else
-                                                Constants.ports[0] = Integer.parseInt(port);
-
-                                            connectWithMessageServer(login_obj);
-
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
-                                    }
-                                }
-
-                                @Override
-                                public void onRestError(Exception e, String action) {
-
-                                    Alert.showErrorAlert(context);
-                                    Log.d("Call", "onRestError: ");
-                                }
-                            }, false, "Fetching Server IP's");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Alert.showErrorAlert(context);
-                    Log.d("Call", "JSONException: ");
-                }
+                //                Constants.KASB_API_LOGIN.length();
+//                JSONObject jsonObject = new JSONObject();
+//                try {
+//                    jsonObject.put("userId", user);
+//                    RestClient.postRequest("login",
+//                            context,
+//                            Constants.KASB_API_LOGIN,
+//                            jsonObject,
+//                            new OnRestClientCallback() {
+//                                @Override
+//                                public void onRestSuccess(JSONObject response, String action) {
+//
+////                                    Log.d("Call","response: "+response);
+//                                    try {
+//                                        if (response.getString("code").equals("200")) {
+//
+//                                            String ip = response.getString("ip");
+//                                            String port = response.getString("port");
+//
+//                                            Log.e(TAG, "Server IP: "+ ip);
+//                                            Log.e(TAG, "Server Port: "+ port);
+//
+//
+//                                            Constants.serverIpAddress = new String[]{ip};
+//                                            if (port.contains(",")) {
+//                                                String[] portsArray = port.split(",");
+//                                                Constants.ports = new int[portsArray.length];
+//                                                for (int i = 0; i < Constants.ports.length; i++) {
+//                                                    Constants.ports[i] = Integer.parseInt(portsArray[i]);
+//                                                }
+//                                            } else{
+//                                                Constants.ports[0] = Integer.parseInt(port);
+//                                            }
+//
+//                                        }
+//                                    } catch (Exception e) {
+//                                        e.printStackTrace();
+//                                        HToast.showMsg(context, "Unable to connect to Trading Server please try later or check your network");
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onRestError(Exception e, String action) {
+//
+//                                    Alert.showErrorAlert(context);
+//                                    Log.d("Call", "onRestError: ");
+//                                }
+//                            }, false, "Fetching Server IP's");
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    Alert.showErrorAlert(context);
+//                    Log.d("Call", "JSONException: ");
+//                }
 
             } else {
                 try {
@@ -236,9 +242,6 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    public void submit(final View view) {
-        callingloginservice(view);
-    }
 
     private void connectWithMessageServer(final JsonObject login_obj) {
         Log.d(TAG, "connectWithMessageServer");

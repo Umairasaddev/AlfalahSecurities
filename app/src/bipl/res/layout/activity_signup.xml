@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/new_bg"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".ForgetPasswordActivity">
 
     <ImageView
@@ -12,9 +11,11 @@
         android:layout_height="@dimen/_105sdp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bipl_logo" />
+        android:background="@drawable/bipl_logo"
+        android:visibility="invisible" />
 
     <ImageView
+        android:visibility="invisible"
         android:id="@+id/imageView6"
         android:layout_width="@dimen/_222sdp"
         android:layout_height="@dimen/_28sdp"
@@ -28,7 +29,7 @@
         android:layout_height="@dimen/_230sdp"
         android:layout_below="@id/imageView6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:background="@drawable/grey_box"
         android:gravity="center"
         android:orientation="vertical">
@@ -54,11 +55,11 @@
             android:background="@drawable/input_fields"
             android:gravity="center"
             android:hint="Name"
-            android:singleLine="true"
             android:imeOptions="actionSend"
-            android:textSize="@dimen/_14sdp"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
 
         <EditText
             android:id="@+id/field_phoneno"
@@ -70,11 +71,11 @@
             android:background="@drawable/input_fields"
             android:gravity="center"
             android:hint="Contact #"
-            android:textSize="@dimen/_14sdp"
-            android:singleLine="true"
             android:imeOptions="actionSend"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
 
         <EditText
             android:id="@+id/field_email"
@@ -86,11 +87,11 @@
             android:background="@drawable/input_fields"
             android:gravity="center"
             android:hint="Email"
-            android:textSize="@dimen/_14sdp"
-            android:singleLine="true"
             android:imeOptions="actionDone"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
 
 
         <Button
@@ -102,8 +103,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_25sdp"
             android:background="@drawable/blue_btn"
-            android:textAllCaps="false"
             android:text="Sign Up"
+            android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
     </RelativeLayout>
@@ -112,8 +113,8 @@
         android:id="@+id/tv_Trust"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/llBottom"
-        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_below="@+id/linearLayout8"
         android:layout_centerHorizontal="true"
         android:text="Your Trust, Our Strength"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -125,25 +126,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/_4sdp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version 2.8"
+            android:text="Version 3.0"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/white"
             android:textSize="@dimen/_10sdp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="www.bipldirect.com"
-            android:layout_marginTop="@dimen/_5sdp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/white"
-            android:textSize="@dimen/_10sdp" />
+            android:textSize="@dimen/_10sdp"
+            android:visibility="invisible" />
     </LinearLayout>
 
 </RelativeLayout>

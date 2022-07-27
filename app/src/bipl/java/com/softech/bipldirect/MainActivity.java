@@ -108,7 +108,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.softech.bipldirect.Network.MessageSocket.context;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
         MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest, QuotesFragment.OnQoutesFragmentListener {

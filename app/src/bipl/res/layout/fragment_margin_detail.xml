@@ -13,8 +13,6 @@
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioGroup"
-
         android:layout_marginRight="6dp"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="10dp"
@@ -44,7 +42,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@id/linearLayout10"
         android:id="@+id/custody_listView"
         android:layout_width="match_parent"

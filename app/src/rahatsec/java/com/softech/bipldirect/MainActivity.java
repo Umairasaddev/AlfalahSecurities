@@ -88,6 +88,7 @@ import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.HToast;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
+import com.softech.bipldirect.callBack.OnOrderDeleteRequest;
 
 import net.orange_box.storebox.StoreBox;
 import net.orange_box.storebox.adapters.StoreType;
@@ -106,8 +107,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static com.softech.bipldirect.Network.MessageSocket.context;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
-        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
-        OrderStatsFragment.OnOrderDeleteRequest, QuotesFragment.OnQoutesFragmentListener {
+        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest, QuotesFragment.OnQoutesFragmentListener {
 
     public static LoginResponse loginResponse;
     public static MarketResponse marketResponse;
@@ -127,6 +127,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     private AtomicInteger notificationID = new AtomicInteger(0);
     String useridEncoded;
 
+    private OnOrderDeleteRequest onOrderDeleteRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1513,39 +1514,19 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
                             JsonObject json = parser.parse(resp).getAsJsonObject();
 
                             if (json.get("code").getAsString().equals("200")) {
-                                if (loginResponse.getResponse().getUsertype() == 0 ||
-                                        loginResponse.getResponse().getUsertype() == 3) {
-                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString()))
-                                    {
+                                if (loginResponse.getResponse().getUsertype() == 0 || loginResponse.getResponse().getUsertype() == 3) {
+                                    if (loginResponse.getResponse().getUserId().equals(response.get("UserId").getAsString())) {
                                         Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                     }
-
-
-                                }
-                                else
-                                {
+                                } else {
                                     Alert.show(MainActivity.this, "Order Confirmation", response.get("orderRemarks").getAsString());
-
                                 }
-
                                 Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
-
                                 if (response.get("confType").getAsString().equals("QUEUE") && response.get("MSGTYPE").getAsString().equals("OCNF")) {
 
-                                    final OrderStatsFragment frag =
-                                            (OrderStatsFragment) fragmentManager
-                                                    .findFragmentByTag(OrderStatsFragment.class.getName());
-
+                                    final OrderStatsFragment frag = (OrderStatsFragment) fragmentManager.findFragmentByTag(OrderStatsFragment.class.getName());
                                     if (frag != null) {
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                frag.removeItem();
-                                            }
-                                        });
-
+                                        onOrderDeleteRequest.onOrderDeleteRequestResponse();
                                     } else {
                                         Log.d("OrderStatsFragment", "OrderStatsFragment is null");
                                     }
@@ -1678,69 +1659,11 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
             }
 
-//        switch (action) {
-//
-//
-//            case Constants.ACTION_ORDER_FROM_TRADE: {
-//
-//                JsonParser parser = new JsonParser();
-//                JsonObject json = parser.parse(resp).getAsJsonObject();
-//
-//                JsonObject response = json.getAsJsonObject("response");
-//
-//                if (json.get("code").getAsString().equals("200")) {
-//
-//                    final TradeFragment frag = (TradeFragment) fragmentManager.findFragmentByTag(TradeFragment.class.getName());
-//
-//
-//                    if (response.get("orderAction").getAsString().equals("ACPT")) {
-//                        if (frag != null) {
-//                            runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//
-//
-//                                    if (frag.sendMessage) {
-//                                        frag.proceedToOrder();
-//                                        frag.sendMessage = false;
-//                                    }
-//                                }
-//                            });
-//                        } else {
-//                            Log.d("TradeFragment", "TradeFragment is null");
-//                        }
-//                    }
-//
-//                    Alert.show(context, getString(R.string.app_name), response.get("orderRemarks").getAsString());
-//
-//                    Event.add(context, new Event(System.currentTimeMillis(), response.get("orderRemarks").getAsString()));
-//
-//                } else {
-//
-//                    if (json.get("error").getAsString().equals("")) {
-//                        Alert.showErrorAlert(context);
-//                    } else {
-//                        Alert.show(context, getString(R.string.app_name), json.get("error").getAsString());
-//                    }
-//                }
-//
-//
-//                if (!json.get("error").getAsString().equals("")) {
-//
-//                    Event.add(context, new Event(System.currentTimeMillis(), json.get("error").getAsString()));
-//
-//                }
-//            }
-//            break;
-//
-//
-//
-//        }
         }
     }
 
-    @Override
-    public void onOrderDeleteRequest(OrdersList order) {
+    public void cancelOrderRequest(OrdersList order, OnOrderDeleteRequest onOrderDeleteRequest) {
+        this.onOrderDeleteRequest = onOrderDeleteRequest;
 
         JsonObject request_obj = new JsonObject();
 

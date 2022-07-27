@@ -48,18 +48,29 @@ android {
             applicationId "com.softech.bipldirect"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 19
-            versionName "2.8"
+            versionCode 21
+            versionName "3.0"
             multiDexEnabled true
-            buildConfigField 'String[]', 'HOST',
-//                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
-                    "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
+
+//            //Live IP
+//            buildConfigField 'String[]', 'HOST',
+////                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
+//                    "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
+
+            //Local IP
+            buildConfigField 'String[]', 'HOST', "{" + "\"61.5.159.27\"," + "\"61.5.159.27\"" + "}"
+
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.bipldirect.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS',
-                    "{5678,5679}"
+
+//            //Live Ports
+//            buildConfigField 'int[]', 'PORTS', "{5678,5679}"
+
+            //Local Ports
+            buildConfigField 'int[]', 'PORTS', "{5678}"
+
         }
 
         yms {
@@ -154,14 +165,12 @@ android {
             targetSdkVersion 31
             versionCode 2
             versionName "1.1"
-            buildConfigField 'String[]', 'HOST',
-                    "{" + "\"122.129.79.120\"," + "\"122.129.79.120\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"122.129.79.120\"," + "\"110.38.56.60\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.rahatonline.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.rahat"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS',
-                    "{5678,5679}"
+            buildConfigField 'int[]', 'PORTS', "{5678,5679}"
         }
 
         abbasisecurities {
@@ -245,8 +254,8 @@ android {
             applicationId "com.softech.foundationedge"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 14
-            versionName "2.5"
+            versionCode 15
+            versionName "2.6"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String[]', 'HOST', "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://research.fsedge.com/api/v2/service/authenticate"'
@@ -270,6 +279,21 @@ android {
             buildConfigField 'String', 'IP', '"203.175.77.130"'
 //            buildConfigField 'int[]', 'PORTS', "{5678,5678}"
             buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688}"
+        }
+
+        harvestPSXTrading{
+            dimension "version"
+            applicationId "com.softech.harvestPSXTrading"
+            minSdkVersion 23
+            targetSdkVersion 31
+            versionCode 1
+            versionName "1.0"
+            buildConfigField 'String', 'API_LOGIN', '""'
+            buildConfigField 'String[]', 'HOST', "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://research.fsedge.com/api/v2/service/authenticate"'
+            buildConfigField 'String', 'CLIENT', '"FSEDGE"'
+            buildConfigField 'String', 'IP', '"203.17577.130"'
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
         }
 
     }

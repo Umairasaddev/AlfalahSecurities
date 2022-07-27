@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FEFEFD</color>
+    <color name="black">#090909</color>
+    <color name="gold">#EAEA11</color>
+
+
+    <color name="colorPrimary">@color/black</color>
+    <color name="colorPrimaryDark">@color/black</color>
+    <color name="colorAccent">@color/gold</color>
+
+    <color name="greyBar">#eae9e9</color>
+    <color name="greyDarkBar">#c2c2c2</color>
+
+    <color name="blinkGreen">#017E14</color>
+    <color name="blinkRed">#FF3333</color>
+    <color name="bidColor">@color/colorPrimary</color>
+    <color name="blinkGrey">#555555</color>
+
+    <color name="offerColor">#ffb6c1</color>
+    <color name="default_slice_color">#88FF0000</color>
+    <color name="red">#88FF0000</color>
+    <color name="default_line_color">#88FFFFFF</color>
+
+    <color name="ledRed">@color/blinkRed</color>
+    <color name="ledGreen">#00ff00</color>
+    <color name="searchIconColor">@color/black</color>
+
+
+    <color name="colorText">@color/white</color>
+    <color name="colorTextHint">@android:color/darker_gray</color>
+
+
+
+</resources>

@@ -3,8 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -14,18 +12,18 @@
         android:layout_above="@+id/linearLayout8"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher" />
 
     <RelativeLayout
         android:id="@+id/linearLayout8"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -45,15 +43,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_heading"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/textfield_login"
             android:ems="13"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:gravity="center"
             android:hint="USERNAME"
             android:inputType="textCapCharacters"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff" />
 
@@ -63,46 +61,48 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/textfield_login"
             android:ems="13"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:gravity="center"
             android:hint="PASSWORD"
             android:inputType="textPassword"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff" />
+
         <TextView
             android:id="@+id/login_server"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_pass"
-            android:layout_marginBottom="10dp"
+            android:layout_alignStart="@+id/login_pass"
+            android:layout_alignLeft="@+id/login_pass"
+            android:layout_alignEnd="@+id/login_pass"
+            android:layout_alignRight="@+id/login_pass"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/textfield_login"
             android:ems="13"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:hint="SERVER"
             android:inputType="textCapCharacters"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
-            android:layout_alignRight="@+id/login_pass"
-            android:layout_alignEnd="@+id/login_pass"
-            android:layout_alignLeft="@+id/login_pass"
-            android:layout_alignStart="@+id/login_pass" />
+            android:visibility="gone" />
 
 
         <TextView
             android:id="@+id/tv_forgotPwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/login_server"
             android:layout_alignLeft="@+id/login_pass"
             android:layout_alignRight="@+id/login_pass"
-            android:layout_below="@+id/login_server"
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="@string/forgotPassword"
@@ -115,9 +115,9 @@
             android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_forgotPwd"
             android:layout_alignLeft="@+id/login_server"
             android:layout_alignRight="@+id/login_server"
-            android:layout_below="@+id/tv_forgotPwd"
             android:layout_marginTop="4dp"
             android:gravity="center"
             android:text="@string/call"
@@ -132,16 +132,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_phone"
+            android:layout_alignStart="@+id/login_pass"
+            android:layout_alignLeft="@+id/login_pass"
+            android:layout_alignEnd="@+id/login_pass"
+            android:layout_alignRight="@+id/login_pass"
             android:layout_marginTop="30dp"
             android:background="@drawable/bg_button"
             android:ems="6"
             android:text="Login"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/white"
-            android:layout_alignRight="@+id/login_pass"
-            android:layout_alignEnd="@+id/login_pass"
-            android:layout_alignLeft="@+id/login_pass"
-            android:layout_alignStart="@+id/login_pass" />
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 
@@ -161,7 +161,6 @@
 
     <TextView
         android:id="@+id/link"
-        fontPath="fonts/Roboto-Light.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

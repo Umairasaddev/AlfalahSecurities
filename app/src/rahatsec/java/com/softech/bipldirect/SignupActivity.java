@@ -24,23 +24,18 @@ import com.softech.bipldirect.Util.HSnackBar;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class SignupActivity   extends BaseActivity {
     private static final String TAG = "SignupActivity";
-    @BindView(R.id.field_firstname)
+
     EditText etfirstName;
-    @BindView(R.id.field_lastname)
     EditText etlastName;
-    @BindView(R.id.field_username)
     EditText etUsername;
-    @BindView(R.id.field_phoneno)
     EditText etPhone;
-    @BindView(R.id.field_email)
     EditText etEmail;
-    @BindView(R.id.signupButton)
     Button signupBut;
+
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.";
     private String firstname, lastname, username, phoneno, email;
 
@@ -48,7 +43,7 @@ public class SignupActivity   extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        ButterKnife.bind(this);
+        initView();
         signupBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +92,16 @@ public class SignupActivity   extends BaseActivity {
             }
         });
     }
+
+    private void initView() {
+        etfirstName = findViewById(R.id.field_firstname);
+        etlastName = findViewById(R.id.field_lastname);
+        etUsername = findViewById(R.id.field_username);
+        etPhone = findViewById(R.id.field_phoneno);
+        etEmail = findViewById(R.id.field_email);
+        signupBut = findViewById(R.id.signupButton);
+    }
+
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }

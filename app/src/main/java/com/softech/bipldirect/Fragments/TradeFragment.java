@@ -264,7 +264,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
                     }
 
                 } else {
-                    radiosell.setBackgroundColor(getResources().getColor(R.color.blinkRed));
+                    radiosell.setBackgroundResource(R.drawable.selector_radio_button);
 
                     action = "SELL";
                     if (textViewOrderType.getText().toString().equals("MFB") || textViewOrderType.getText().toString().equals("LB")) {

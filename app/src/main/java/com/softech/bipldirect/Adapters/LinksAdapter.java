@@ -48,7 +48,7 @@ public class LinksAdapter extends BaseAdapter {
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
-            view = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            view = inflater.inflate(R.layout.list_item_link, parent, false);
             holder = new ViewHolder(view);
             view.setTag(holder);
         }

@@ -121,6 +121,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
     private boolean isActive = true;
     private AtomicInteger notificationID = new AtomicInteger(0);
     String useridEncoded;
+
+
+    private FeedServer feedServer;
     private OnOrderDeleteRequest onOrderDeleteRequest;
 
     @Override
@@ -213,21 +216,17 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     public void connectFeed() {
 
-        try{
-            JsonObject feed_obj = new JsonObject();
+        JsonObject feed_obj = new JsonObject();
 
-            String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
-            String user = MainActivity.loginResponse.getResponse().getUserId();
+        String action = Constants.FEED_LOGIN_MESSAGE_IDENTIFIER;
+        String user = MainActivity.loginResponse.getResponse().getUserId();
 
-            feed_obj.addProperty("MSGTYPE", action);
-            feed_obj.addProperty("userId", user);
-
-            new FeedServer(context).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
+        feed_obj.addProperty("MSGTYPE", action);
+        feed_obj.addProperty("userId", user);
+        if(feedServer == null) {
+            feedServer = new FeedServer(context);
+            feedServer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, feed_obj.toString());
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
 
     }
 
@@ -236,12 +235,24 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
         super.onResume();
         enableReconnect = true;
         isActive = true;
+
+        // connect feed server every time app comes from pause or app is just started
+        connectFeed();
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         isActive = false;
+
+        try {
+            // close the feed socket connection whenever the app goes into pause
+            FeedSocket.closeConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        feedServer = null;
     }
 
     @Override
