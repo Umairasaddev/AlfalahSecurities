@@ -52,24 +52,23 @@ android {
             versionName "3.0"
             multiDexEnabled true
 
-//            //Live IP
-//            buildConfigField 'String[]', 'HOST',
-////                    "{" + "\"192.168.0.122\"," + "\"192.168.0.122\"" + "}"
-//                    "{" + "\"202.44.82.35\"," + "\"202.44.82.35\"" + "}"
+            //Live IP
+            buildConfigField 'String[]', 'HOST', "{" + "\"apps.bipldirect.com\"," + "\"apps.bipldirect.com\"" + "}"
 
-            //Local IP
-            buildConfigField 'String[]', 'HOST', "{" + "\"61.5.159.27\"," + "\"61.5.159.27\"" + "}"
+//            //Local IP
+//            buildConfigField 'String[]', 'HOST', "{" + "\"61.5.159.27\"," + "\"61.5.159.27\"" + "}"
 
             buildConfigField 'String', 'API_LOGIN', '"https://apps.bipldirect.com/MessageBrokerMobile/mobile/login"'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.bipldirect.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.bipl"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
 
-//            //Live Ports
-//            buildConfigField 'int[]', 'PORTS', "{5678,5679}"
+            //Live Ports
+            buildConfigField 'int[]', 'PORTS', "{5678,5679}"
 
-            //Local Ports
-            buildConfigField 'int[]', 'PORTS', "{5678}"
+
+//            //Local Ports
+//            buildConfigField 'int[]', 'PORTS', "{5678}"
 
         }
 
@@ -131,8 +130,8 @@ android {
             applicationId "com.alfalah.mobileterminal"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 12
-            versionName "2.3"
+            versionCode 13
+            versionName "2.4"
             buildConfigField 'String[]', 'HOST', "{" + "\"terminal1.alfalahtrade.com\"," + "\"terminal1.alfalahtrade.com\"" + "}"
 //                    "{" + "\"124.29.245.115\"," + "\"124.29.245.115\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
@@ -230,6 +229,28 @@ android {
 
 //            //Local
 //            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683}"
+
+        }
+
+        IEL {
+            dimension "version"
+            applicationId "com.softech.IEL"
+            minSdkVersion 23
+            targetSdkVersion 31
+            versionCode 1
+            versionName "1.0"
+
+            //Live
+            buildConfigField 'String[]', 'HOST', "{" + "\"192.168.1.112\"" + ", " + "\"192.168.1.112\"" + "}"
+
+
+            buildConfigField 'String', 'API_LOGIN', '""'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.vector.com.pk/api/v2/service/authenticate"'
+            buildConfigField 'String', 'CLIENT', '"admin.vector"'
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
+
+            //Live
+            buildConfigField 'int[]', 'PORTS', "{6789}"
 
         }
 

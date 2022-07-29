@@ -3,19 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:paddingBottom="@dimen/_16sdp"
-    android:paddingTop="@dimen/_16sdp"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView5"
+        android:padding="@dimen/_60sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout8"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:paddingTop="@dimen/_16sdp"
-        android:paddingBottom="@dimen/_16sdp"
+        android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
         android:src="@drawable/harvest_logo" />
 
@@ -118,7 +115,7 @@
             android:background="@drawable/bg_button"
             android:ems="6"
             android:text="Login"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/black" />
 
 
     </RelativeLayout>

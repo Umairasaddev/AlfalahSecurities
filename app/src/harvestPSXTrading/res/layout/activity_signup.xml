@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/blackBackground"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/field_firstname"
+            android:background="@drawable/textfield_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorTextHint"
+            android:hint="First Name"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/field_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/textfield_login"
+            android:gravity="center"
+            android:hint="Last Name"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorTextHint"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+    </LinearLayout>
+
+    <EditText
+
+        android:id="@+id/field_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/textfield_login"
+        android:gravity="center"
+        android:hint="Username"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/field_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/textfield_login"
+        android:gravity="center"
+        android:hint="Email"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/field_phoneno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
+        android:background="@drawable/textfield_login"
+        android:gravity="center"
+        android:hint="Phone No"
+        android:inputType="phone"
+        android:padding="10dp" />
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:text="Signup"
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+</LinearLayout>

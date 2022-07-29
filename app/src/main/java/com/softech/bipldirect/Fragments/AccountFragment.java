@@ -21,11 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.softech.bipldirect.Adapters.AccountAdapter;
 import com.softech.bipldirect.Adapters.SearchClientListAdapter;
+import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.Models.AccountModel.AccountDetail;
 import com.softech.bipldirect.Models.AccountModel.AccountFooter;
 import com.softech.bipldirect.Models.AccountModel.AccountResponse;
 import com.softech.bipldirect.Models.AccountModel.OrdersList;
-import com.softech.bipldirect.MainActivity;
 import com.softech.bipldirect.R;
 
 import java.text.DecimalFormat;
