@@ -451,7 +451,7 @@ public class LoginActivity extends BaseActivity {
         JsonObject login_obj = new JsonObject();
 
         login_obj.addProperty("MSGTYPE", Constants.SUBSCRIPTION_LIST_REQUEST_IDENTIFIER);
-        login_obj.addProperty("userId", user);
+        login_obj.addProperty("userId", gson.fromJson(preferences.getLoginResult(), LoginResponse.class).getResponse().getUserId());
         login_obj.addProperty("client", clientcode);
 
 

@@ -162,9 +162,7 @@ public class FeedServer extends AsyncTask<String, String, String> {
     @Override
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
-
         sendMessage(values[0], true);
-
     }
 
     private void sendMessage(String response, boolean isConnected) {

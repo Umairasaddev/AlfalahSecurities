@@ -7,7 +7,7 @@ public class Constants {
     public static final String ForgotPasswordResponse = "FGPS";
     public static final String SIGNUP_MESSAGE_IDENTIFIER = "SGNR";
     public static final String SIGNUP_MESSAGE_RESPONSE = "SGNS";
-    public static final String PORTFOLIO_CASH_REQUEST_RESPONSE ="PCRS";
+    public static final String PORTFOLIO_CASH_REQUEST_RESPONSE = "PCRS";
 
     public static final String LOGIN_MESSAGE_IDENTIFIER = "LOGN";
     public static final String LOGIN_MESSAGE_RESPONSE = "LCNF";
@@ -16,7 +16,7 @@ public class Constants {
     public static final String SECOND_LEVEL_PASSWORD_REQUEST = "GSLP";
     public static final String SECOND_LEVEL_PASSWORD_RESPONSE = "GSLR";
 
-    public static final String PORTFOLIO_CASH_REQUEST_IDENTIFIER ="PCRQ";
+    public static final String PORTFOLIO_CASH_REQUEST_IDENTIFIER = "PCRQ";
 
 
     public static final String SYMBOL_MESSAGE_IDENTIFIER = "SYMR";
@@ -85,8 +85,8 @@ public class Constants {
     public static final String CHARTS_REQ_IDENTIFIER = "SGRQ";
     public static final String CHARTS_REQ_RESPONSE = "SGRS";
 
-    public static final String NET_CUSTODY_REQ_IDENTIFIER= "NCSR";
-    public static final String NET_CUSTODY_REQ_RESPONSE= "NCSS";
+    public static final String NET_CUSTODY_REQ_IDENTIFIER = "NCSR";
+    public static final String NET_CUSTODY_REQ_RESPONSE = "NCSS";
 
     public static final String CASHBOOK_REQ_IDENTIFIER = "CASR";
     public static final String CASHBOOK_REQ_RESPONSE = "CASS";
@@ -97,9 +97,9 @@ public class Constants {
     public static String[] serverIpAddress = BuildConfig.HOST;
     public static int[] ports = BuildConfig.PORTS;
     public static final String KASB_API_LOGIN = BuildConfig.API_LOGIN;
-    public  static final  String RESEARCH_PORTAL_URL=BuildConfig.RESEARCH_PORTAL_URL;
-    public  static final  String RESESRCH_PORTAL_CLIENT=BuildConfig.CLIENT;
-    public  static final  String RESESRCH_PORTAL_IP=BuildConfig.IP;
+    public static final String RESEARCH_PORTAL_URL = BuildConfig.RESEARCH_PORTAL_URL;
+    public static final String RESESRCH_PORTAL_CLIENT = BuildConfig.CLIENT;
+    public static final String RESESRCH_PORTAL_IP = BuildConfig.IP;
 
 
 }

@@ -24,7 +24,6 @@ android {
     }
 
     productFlavors {
-
         local {
             dimension "version"
             applicationId "com.softech.bipldirect_local"
@@ -48,8 +47,8 @@ android {
             applicationId "com.softech.bipldirect"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 21
-            versionName "3.0"
+            versionCode 22
+            versionName "3.1"
             multiDexEnabled true
 
             //Live IP
@@ -302,6 +301,7 @@ android {
             buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688}"
         }
 
+
         harvestPSXTrading{
             dimension "version"
             applicationId "com.softech.harvestPSXTrading"
@@ -310,13 +310,14 @@ android {
             versionCode 1
             versionName "1.0"
             buildConfigField 'String', 'API_LOGIN', '""'
-            buildConfigField 'String[]', 'HOST', "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"203.135.22.252\"" + ", " + "\"203.135.22.252\"" + "}"
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://research.fsedge.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"FSEDGE"'
-            buildConfigField 'String', 'IP', '"203.17577.130"'
-            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
+//            buildConfigField 'String', 'IP', '"203.17577.130"'
+//            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688,5689,5690}"
+            buildConfigField 'String','IP', '"203.135.22.252"'
+            buildConfigField 'int[]', 'PORTS', "{5678}"
         }
-
     }
 
     buildTypes {

@@ -2,6 +2,7 @@ package com.softech.bipldirect;
 
 import android.content.Context;
 
+import androidx.multidex.BuildConfig;
 import androidx.multidex.MultiDexApplication;
 
 import org.acra.ACRA;
@@ -15,7 +16,6 @@ import org.acra.annotation.ReportsCrashes;
         resToastText = R.string.crash_toast_text, formKey = "")
 
 public class MyApplication extends MultiDexApplication {
-
 
     private static Context mAppContext;
 

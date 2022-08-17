@@ -119,15 +119,10 @@ public class ForgetPasswordActivity extends BaseActivity {
 
     @Override
     public void onMessageReceived(String action, String resp) {
-
         Gson gson = new Gson();
-
         JsonParser jsonParser = new JsonParser();
-
         try {
             JsonObject jsonObject = jsonParser.parse(resp).getAsJsonObject();
-
-
             String MSGTYPE = jsonObject.get("response").getAsJsonObject().get("MSGTYPE").getAsString();
             String error = jsonObject.get("error").getAsString();
             String code = jsonObject.get("code").getAsString();
@@ -154,8 +149,6 @@ public class ForgetPasswordActivity extends BaseActivity {
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
             Alert.showErrorAlert(ForgetPasswordActivity.this);
-
-
         }
     }
 
@@ -164,7 +157,6 @@ public class ForgetPasswordActivity extends BaseActivity {
     }
 
     public void callingloginservice(View view) {
-
         String name = userID.getText().toString();
         String email_str = email.getText().toString();
 
@@ -174,7 +166,6 @@ public class ForgetPasswordActivity extends BaseActivity {
                 return;
             }
             final JsonObject login_obj = new JsonObject();
-
             login_obj.addProperty("MSGTYPE", Constants.ForgotPasswordRequest);
             login_obj.addProperty("email", email_str);
             login_obj.addProperty("userId", name);
@@ -198,18 +189,18 @@ public class ForgetPasswordActivity extends BaseActivity {
                                     try {
                                         if (response.getString("code").equals("200")) {
 
-                                            String ip = response.getString("ip");
-                                            String port = response.getString("port");
-                                            Constants.serverIpAddress = new String[]{ip};
-                                            if (port.contains(",")) {
-                                                String[] portsArray = port.split(",");
-                                                Constants.ports = new int[portsArray.length];
-                                                for (int i = 0; i < Constants.ports.length; i++) {
-                                                    Constants.ports[i] = Integer.parseInt(portsArray[i]);
-                                                }
-                                            } else
-                                                Constants.ports[0] = Integer.parseInt(port);
-                                            Log.i("testingsignup", "Ip: " + ip);
+//                                            String ip = response.getString("ip");
+//                                            String port = response.getString("port");
+//                                            Constants.serverIpAddress = new String[]{ip};
+//                                            if (port.contains(",")) {
+//                                                String[] portsArray = port.split(",");
+//                                                Constants.ports = new int[portsArray.length];
+//                                                for (int i = 0; i < Constants.ports.length; i++) {
+//                                                    Constants.ports[i] = Integer.parseInt(portsArray[i]);
+//                                                }
+//                                            } else
+//                                                Constants.ports[0] = Integer.parseInt(port);
+//                                            Log.i("testingsignup", "Ip: " + ip);
                                             connectWithMessageServer(login_obj);
 
                                         }
