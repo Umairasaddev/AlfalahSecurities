@@ -100,6 +100,4 @@ public class Constants {
     public static final String RESEARCH_PORTAL_URL = BuildConfig.RESEARCH_PORTAL_URL;
     public static final String RESESRCH_PORTAL_CLIENT = BuildConfig.CLIENT;
     public static final String RESESRCH_PORTAL_IP = BuildConfig.IP;
-
-
 }

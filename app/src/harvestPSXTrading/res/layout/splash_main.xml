@@ -10,5 +10,5 @@
         android:layout_width="@dimen/_160sdp"
         android:layout_height="@dimen/_160sdp"
         android:layout_centerInParent="true"
-        android:src="@drawable/harvest_logo" />
+        android:src="@drawable/hg_splash" />
 </RelativeLayout>

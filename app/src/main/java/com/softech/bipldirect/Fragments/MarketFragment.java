@@ -175,12 +175,9 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnMarketIt
 
 
         if (shouldReload) {
-
             ((MainActivity) requireActivity()).getMarket();
-
             shouldReload = false;
         }
-
 //        Log.d("MarketFragment", "isReloaded: " + isReloaded);
 
         if (isReloaded) {

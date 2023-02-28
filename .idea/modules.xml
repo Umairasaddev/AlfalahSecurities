@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BIPLDirect_Android.iml" filepath="$PROJECT_DIR$/.idea/modules/BIPLDirect_Android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_Android.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BIPLDirect_AndroidUsman.iml" filepath="$PROJECT_DIR$/.idea/modules/BIPLDirect_AndroidUsman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BIPLDirect_AndroidUsman.app.unitTest.iml" />
     </modules>
   </component>
 </project>

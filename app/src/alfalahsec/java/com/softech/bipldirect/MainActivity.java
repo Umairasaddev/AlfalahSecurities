@@ -934,6 +934,7 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                             preferences.setLoginResult(resp);
                             loginResponse = gson.fromJson(preferences.getLoginResult(), LoginResponse.class);
+
                             connectFeed();
 
                         }

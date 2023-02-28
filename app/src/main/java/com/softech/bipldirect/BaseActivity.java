@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.softech.bipldirect.Const.Constants;
@@ -107,6 +108,9 @@ public class BaseActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
     public void connectMessageServer() {
        // synchronized (this) {

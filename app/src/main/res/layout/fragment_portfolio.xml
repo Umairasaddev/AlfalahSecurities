@@ -108,7 +108,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:fillViewport="true"
-        android:paddingBottom="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_5sdp"
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -124,12 +124,23 @@
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechart"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_170sdp">
+                android:layout_height="@dimen/_190sdp">
             </com.github.mikephil.charting.charts.PieChart>
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_190sdp">
+            </com.github.mikephil.charting.charts.BarChart>
         </LinearLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 
 

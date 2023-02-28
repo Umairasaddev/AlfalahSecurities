@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/harvest_logo" />
+        android:src="@drawable/hg_splash" />
 
     <RelativeLayout
         android:id="@+id/linearLayout8"

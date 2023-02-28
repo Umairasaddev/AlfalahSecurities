@@ -89,6 +89,7 @@ import com.softech.bipldirect.Util.HSnackBar;
 import com.softech.bipldirect.Util.Loading;
 import com.softech.bipldirect.Util.Preferences;
 import com.softech.bipldirect.Util.Util;
+import com.softech.bipldirect.callBack.OnOrderDeleteRequest;
 
 import net.orange_box.storebox.StoreBox;
 
@@ -101,8 +102,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInteractionListener,
-        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest,
-        OrderStatsFragment.OnOrderDeleteRequest, QuotesFragment.OnQoutesFragmentListener {
+        MarketFragment.OnMarketFragmentListener, MarketFragment.OnSymbolRequest, QuotesFragment.OnQoutesFragmentListener {
 
     public static LoginResponse loginResponse;
     public static MarketResponse marketResponse;
@@ -125,6 +125,8 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
     //Code
     private Loading loading;
+
+    private OnOrderDeleteRequest onOrderDeleteRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -705,6 +707,56 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //                    Constants.ORDER_STATUS_REQUEST_IDENTIFIER, request_obj.toString());
 
 
+        } else {
+
+            try {
+                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void cancelOrderRequest(OrdersList order, OnOrderDeleteRequest onOrderDeleteRequest) {
+        this.onOrderDeleteRequest = onOrderDeleteRequest;
+
+        JsonObject request_obj = new JsonObject();
+
+        request_obj.addProperty("MSGTYPE", Constants.ORDER_REQUEST_IDENTIFIER);
+        request_obj.addProperty("orderPrice", order.getPrice() + "");
+        request_obj.addProperty("orderMarket", order.getMarket());
+        request_obj.addProperty("orderExchange", loginResponse.getResponse().getExchange());
+        request_obj.addProperty("orderVolume", order.getVolume() + "");
+        request_obj.addProperty("client",order.getClient());
+
+        if (order.getSide().equals("B") || order.getSide().equals("Buy")) {
+            request_obj.addProperty("orderSide", "B");
+        } else {
+            request_obj.addProperty("orderSide", "S");
+        }
+
+
+        request_obj.addProperty("orderAction", "CNL");
+
+        int remVolume = order.getVolume() - order.getExecVolume();
+
+        request_obj.addProperty("orderRemVolume", remVolume + "");
+        request_obj.addProperty("orderSymbol", order.getSymbol());
+        request_obj.addProperty("orderType", order.getOrderType());
+        request_obj.addProperty("orderNumber", order.getOrderNo());
+        request_obj.addProperty("triggerPrice", order.getTriggerPrice());
+        request_obj.addProperty("discVol", order.getDiscVol());
+        request_obj.addProperty("orderProp", order.getOrderProp());
+
+
+        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
+
+            Map<Integer, String> map = new HashMap<>();
+            map.put(1, Constants.ORDER_REQUEST_IDENTIFIER);
+            map.put(2, request_obj.toString());
+
+            write(map, true);
+//            new MessageServer(context, this, true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
+//                    Constants.ORDER_REQUEST_IDENTIFIER, request_obj.toString());
         } else {
 
             try {
@@ -1558,19 +1610,9 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 
                                 if (response.get("confType").getAsString().equals("QUEUE") && response.get("MSGTYPE").getAsString().equals("OCNF")) {
 
-                                    final OrderStatsFragment frag =
-                                            (OrderStatsFragment) fragmentManager
-                                                    .findFragmentByTag(OrderStatsFragment.class.getName());
-
+                                    final OrderStatsFragment frag = (OrderStatsFragment) fragmentManager.findFragmentByTag(OrderStatsFragment.class.getName());
                                     if (frag != null) {
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                frag.removeItem();
-                                            }
-                                        });
-
+                                        onOrderDeleteRequest.onOrderDeleteRequestResponse();
                                     } else {
                                         Log.d("OrderStatsFragment", "OrderStatsFragment is null");
                                     }
@@ -1761,57 +1803,6 @@ public class MainActivity extends BaseActivity implements NavAdapter.OnMenuInter
 //
 //
 //        }
-        }
-    }
-
-    @Override
-    public void onOrderDeleteRequest(OrdersList order) {
-
-        JsonObject request_obj = new JsonObject();
-
-        request_obj.addProperty("MSGTYPE", Constants.ORDER_REQUEST_IDENTIFIER);
-        request_obj.addProperty("orderPrice", order.getPrice() + "");
-        request_obj.addProperty("orderMarket", order.getMarket());
-        request_obj.addProperty("orderExchange", loginResponse.getResponse().getExchange());
-        request_obj.addProperty("orderVolume", order.getVolume() + "");
-        request_obj.addProperty("client", order.getClient());
-
-        if (order.getSide().equals("B") || order.getSide().equals("Buy")) {
-            request_obj.addProperty("orderSide", "B");
-        } else {
-            request_obj.addProperty("orderSide", "S");
-        }
-
-
-        request_obj.addProperty("orderAction", "CNL");
-
-        int remVolume = order.getVolume() - order.getExecVolume();
-
-        request_obj.addProperty("orderRemVolume", remVolume + "");
-        request_obj.addProperty("orderSymbol", order.getSymbol());
-        request_obj.addProperty("orderType", order.getOrderType());
-        request_obj.addProperty("orderNumber", order.getOrderNo());
-        request_obj.addProperty("triggerPrice", order.getTriggerPrice());
-        request_obj.addProperty("discVol", order.getDiscVol());
-        request_obj.addProperty("orderProp", order.getOrderProp());
-
-
-        if (ConnectionDetector.getInstance(this).isConnectingToInternet()) {
-
-            Map<Integer, String> map = new HashMap<>();
-            map.put(1, Constants.ORDER_REQUEST_IDENTIFIER);
-            map.put(2, request_obj.toString());
-
-            write(map, true);
-//            new MessageServer(context, this, true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
-//                    Constants.ORDER_REQUEST_IDENTIFIER, request_obj.toString());
-        } else {
-
-            try {
-                HSnackBar.showMsg(findViewById(android.R.id.content), "No Internet Connection.");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 

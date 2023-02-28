@@ -2,6 +2,7 @@ package com.softech.bipldirect.Fragments;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -141,11 +142,22 @@ public class AccountFragment extends Fragment {
                 ((MainActivity) requireActivity()).accountRequest(clientlist.get(position));
                 isSetInitialText = true;
                 clientcode.setText(clientlist.get(position));
+                updateUI();
 
             }
         });
 
 
+    }
+    public void updateUI(){
+        if(!clientcode.getText().toString().equals("")){
+            new Handler().postDelayed(() -> {
+                ((MainActivity) requireActivity()).accountRequest(clientcode.getText().toString());
+                updateUI();
+
+            },30000);
+
+        }
     }
 
     public void setValues(AccountResponse values) {

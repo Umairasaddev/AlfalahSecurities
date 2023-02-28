@@ -572,6 +572,7 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
         volumeField.setText(volume.getText().toString());
         priceField.setText(price.getText().toString());
         valueField.setText(textViewOrderValue.getText().toString());
+        Log.d(TAG, "proceedTradePopup:  " + valueField.getText().toString());
 
         if (MainActivity.preferences.getRememberPin()) {
 
@@ -1247,12 +1248,18 @@ public class TradeFragment extends Fragment implements View.OnClickListener {
         if (vol.length() > 0 && pri.length() > 0) {
             try {
                 double orderVal = Double.parseDouble(vol) * Double.parseDouble(pri);
-                textViewOrderValue.setText(String.format(Locale.UK, "%.2f", orderVal));
+                Log.d(TAG, "order value:  " + orderVal);
+                String formatedValue = String.format("%.2f", orderVal);
+                Log.d(TAG, "formatedValue:  " + formatedValue);
+                textViewOrderValue.setText(formatedValue);
+                Log.d(TAG, "textViewOrderValue:  " + textViewOrderValue.getText().toString());
             } catch (Exception e) {
+                Log.d(TAG, "exception:  " + e.getMessage());
                 e.printStackTrace();
             }
         } else {
             textViewOrderValue.setText("");
+            Log.d(TAG, "proceedTradePopup:  " + textViewOrderValue.getText().toString());
         }
 
     }

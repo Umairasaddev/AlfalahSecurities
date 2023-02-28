@@ -58,7 +58,7 @@ public class CashBookAdapter extends RecyclerView.Adapter<CashBookAdapter.ViewHo
 
             if (runningBalance < 0) {
                 holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.blinkRed));
-                holder.textView4.setText(obj.getRunningBalance().replace("-", ""));
+                holder.textView4.setText(String.format("(%s)", obj.getRunningBalance().replace("-", "")));
             } else {
                 holder.textView4.setTextColor(ContextCompat.getColor(context, R.color.darkGreen));
                 holder.textView4.setText(obj.getRunningBalance());
