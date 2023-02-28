@@ -129,12 +129,12 @@ android {
             applicationId "com.alfalah.mobileterminal"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 13
-            versionName "2.4"
+            versionCode 14
+            versionName "2.5"
             buildConfigField 'String[]', 'HOST', "{" + "\"terminal1.alfalahtrade.com\"," + "\"terminal1.alfalahtrade.com\"" + "}"
 //                    "{" + "\"124.29.245.115\"," + "\"124.29.245.115\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
-            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://www.e-falah.com/api/v2/service/authenticate"'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://www.e-falah.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"atif.khan"'
             buildConfigField 'String', 'IP', '"203.17577.130"'
             buildConfigField 'int[]', 'PORTS', "{5678,5679}"
@@ -163,7 +163,7 @@ android {
             targetSdkVersion 31
             versionCode 2
             versionName "1.1"
-            buildConfigField 'String[]', 'HOST', "{" + "\"122.129.79.120\"," + "\"110.38.56.60\"" + "}"
+            buildConfigField 'String[]', 'HOST', "{" + "\"122.129.79.120\"," + "\"110.39.7.60\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://analytics.rahatonline.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.rahat"'
@@ -209,8 +209,8 @@ android {
             applicationId "com.softech.vector"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 2
-            versionName "2.0"
+            versionCode 4
+            versionName "2.2"
 
             //Live
             buildConfigField 'String[]', 'HOST', "{" + "\"apps.vector.com.pk\"" + ", " + "\"apps.vector.com.pk\"" + "}"
@@ -221,10 +221,41 @@ android {
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.vector.com.pk/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.vector"'
+
+            //mock
+            //buildConfigField 'String', 'IP', '"192.168.4.40"'
+            // original
             buildConfigField 'String', 'IP', '"203.175.77.130"'
 
             //Live
             buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681}"
+
+//            //Local
+//            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683}"
+
+        }
+
+        Amanah {
+            dimension "version"
+            applicationId "com.softech.amanah"
+            minSdkVersion 23
+            targetSdkVersion 31
+            versionCode 1
+            versionName "1.0"
+
+            //Live
+            buildConfigField 'String[]', 'HOST', "{" + "\"124.29.195.45\"" + ", " + "\"124.29.195.46\"" + "}"
+
+//            //Local
+//            buildConfigField 'String[]', 'HOST', "{" + "\"192.168.0.211\"," + "\"192.168.0.211\"" + "}"
+
+            buildConfigField 'String', 'API_LOGIN', '""'
+            buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.vector.com.pk/api/v2/service/authenticate"'
+            buildConfigField 'String', 'CLIENT', '"admin.vector"'
+            buildConfigField 'String', 'IP', '"203.175.77.130"'
+
+            //Live
+            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,8888,8889,8890,8891}"
 
 //            //Local
 //            buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683}"
@@ -236,20 +267,18 @@ android {
             applicationId "com.softech.IEL"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 1
-            versionName "1.0"
+            versionCode 4
+            versionName "1.3"
 
             //Live
-            buildConfigField 'String[]', 'HOST', "{" + "\"192.168.1.112\"" + ", " + "\"192.168.1.112\"" + "}"
-
-
+            buildConfigField 'String[]', 'HOST', "{" + "\"202.141.226.90\"" + ", " + "\"202.141.226.90\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.vector.com.pk/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"admin.vector"'
             buildConfigField 'String', 'IP', '"203.175.77.130"'
 
             //Live
-            buildConfigField 'int[]', 'PORTS', "{6789}"
+            buildConfigField 'int[]', 'PORTS', "{5678}"
 
         }
 
@@ -300,7 +329,6 @@ android {
 //            buildConfigField 'int[]', 'PORTS', "{5678,5678}"
             buildConfigField 'int[]', 'PORTS', "{5678,5679,5680,5681,5682,5683,5684,5685,5686,5687,5688}"
         }
-
 
         harvestPSXTrading{
             dimension "version"
