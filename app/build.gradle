@@ -194,8 +194,8 @@ android {
             applicationId "com.softech.summitCapital"
             minSdkVersion 23
             targetSdkVersion 31
-            versionCode 2
-            versionName "1.1"
+            versionCode 5
+            versionName "1.4"
             buildConfigField 'String[]', 'HOST', "{" + "\"110.93.195.230\"," + "\"110.93.195.230\"" + "}"
             buildConfigField 'String', 'API_LOGIN', '""'
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"https://analytics.summitcapital.com.pk/api/v2/service/authenticate"'
@@ -306,7 +306,8 @@ android {
             versionCode 15
             versionName "2.6"
             buildConfigField 'String', 'API_LOGIN', '""'
-            buildConfigField 'String[]', 'HOST', "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}"
+           buildConfigField 'String[]', 'HOST', "{" + "\"fslive.com.pk\"" + ", " + "\"fslive.com.pk\"" + "}" // for live
+
             buildConfigField 'String', 'RESEARCH_PORTAL_URL', '"http://research.fsedge.com/api/v2/service/authenticate"'
             buildConfigField 'String', 'CLIENT', '"FSEDGE"'
             buildConfigField 'String', 'IP', '"203.17577.130"'

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -226,6 +225,7 @@
         <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/amanah/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.116" />
         <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/amanah/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.115" />
         <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/foundationEdge/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/main/res/layout/acc_list_item.xml" value="0.16655405405405405" />
         <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/main/res/layout/activity_login.xml" value="0.16655405405405405" />
         <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/main/res/layout/activity_main.xml" value="0.16655405405405405" />
         <entry key="..\:/Office Work (Ali Ashraf)/usman/BIPLDirect_AndroidUsman/app/src/main/res/layout/app_bar_main.xml" value="0.16655405405405405" />
@@ -281,5 +281,5 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="corretto-11" project-jdk-type="JavaSDK" />
 </project>
